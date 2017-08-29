@@ -1,13 +1,18 @@
 package minim.view;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.PersistState;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -24,6 +29,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.osgi.framework.Bundle;
 
 import minim.Minim;
 import minim.controller.StateManager;
@@ -140,14 +146,20 @@ public class UnitList {
 			}
 			b.setText(u.getname() + suffix);
 			String icon = u instanceof Character ? "krusader.png" : "kuser.png";
-			b.setImage(new Image(Display.getCurrent(),
-					Minim.BASEPATH + "icons" + File.separator + icon));
+			b.setImage(getImage("icons" + File.separator + icon));
 			Menu m = addmenu(b, u);
 			b.addSelectionListener(new ShowMenu(m, b));
 		}
 		/* Shouldn't have to do this manually but it bugs otherwise. */
 		layout.layout();
 		unitsarea.layout();
+	}
+
+	Image getImage(String path) {
+		Bundle bundle = Platform.getBundle(Minim.PLUGINID);
+		URL url = FileLocator.find(bundle, new Path(path), null);
+		ImageDescriptor imageDesc = ImageDescriptor.createFromURL(url);
+		return imageDesc.createImage();
 	}
 
 	Menu addmenu(Button b, Unit u) {

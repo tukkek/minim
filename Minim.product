@@ -3,6 +3,7 @@
 
 <product name="Minim" id="Minim.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
+
    <configIni use="default">
    </configIni>
 
@@ -13,12 +14,13 @@
 
    <windowImages i16="/Minim/icons/wod/folder_home2.png"/>
 
-   <launcher>
+   <launcher name="minim">
       <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>

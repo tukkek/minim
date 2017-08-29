@@ -7,8 +7,10 @@ import minim.view.UnitList;
 
 public class Minim implements BundleActivator {
 	public static final boolean DEBUG = false;
-	public static final String BASEPATH = UnitList.class.getProtectionDomain()
-			.getCodeSource().getLocation().getPath();
+	public static final String BASEPATH = true ? ""
+			: UnitList.class.getProtectionDomain().getCodeSource().getLocation()
+					.getPath();
+	public static final String PLUGINID = "Minim";
 
 	public static Minim singleton;
 
