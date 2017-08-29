@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            name="Minim"
+            application="org.eclipse.e4.ui.workbench.swt.E4Application">
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/Minim/css/default.css">
+         </property>
+         <property
+               name="appName"
+               value="Minim">
+         </property>
+         <property
+               name="windowImages"
+               value="/Minim/icons/wod/folder_home2.png">
+         </property>
+         <property
+           name="lifeCycleURI"
+           value="bundleclass://Minim/minim.Minim">
+         </property>
+      </product>
+   </extension>
+
+</plugin>
