@@ -1,8 +1,10 @@
 package minim.controller.action.attack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import minim.controller.Cancel;
 import minim.controller.action.base.BasicAction;
 import minim.model.Character;
 import minim.model.Unit;
@@ -11,8 +13,8 @@ import minim.view.UnitList;
 import minim.view.dialog.LazyInputDialog;
 
 public class Attack extends BasicAction {
-	public static final String[] ATTACKS = new String[] { "brawl", "fire",
-			"shooting", };
+	public static final String[] ATTACKS = new String[] { "&brawl", "&fire",
+			"&shooting", };
 	public static final String[] FUMBLES = new String[] {
 			"is distracted (attackers get +1 to hit until next turn)",
 			"falls to the ground", "moves back", "is disarmed or drops an item",
@@ -20,19 +22,19 @@ public class Attack extends BasicAction {
 			"is flat-footed (cannot move next turn)",
 			"interacts with the surrounding environment" };
 
-	public class TargetSelectionDialog extends LazyInputDialog {
+	public class TargetDialog extends LazyInputDialog {
 		List<Character> targets;
 		Character attacker;
 
-		public TargetSelectionDialog(Character attacker,
-				List<Character> targets) {
+		public TargetDialog(Character attacker, List<Character> targets) {
 			super("Choose the target of this attack:", false, targets);
 			this.attacker = attacker;
 			this.targets = targets;
 			title = attacker + "'s " + skill;
+			numbered = true;
 		}
 
-		public Character gettarget() {
+		public Character gettarget() throws Cancel {
 			return targets.get(getvalue());
 		}
 
@@ -48,7 +50,7 @@ public class Attack extends BasicAction {
 					.asList(new String[] { "Apply damage", "Ignore damage" }));
 		}
 
-		boolean applydamage() {
+		boolean applydamage() throws Cancel {
 			return getvalue() == 0;
 		}
 
@@ -71,7 +73,7 @@ public class Attack extends BasicAction {
 	}
 
 	@Override
-	public int run(Character c) {
+	public int run(Character c) throws Cancel {
 		int result = super.run(c);
 		if (result == 0) {
 			fumble(gettarget(c));
@@ -102,10 +104,9 @@ public class Attack extends BasicAction {
 		Output.print(c + " " + FUMBLES[fumble] + ".");
 	}
 
-	Character gettarget(Character attacker) {
-		Character target = new TargetSelectionDialog(attacker,
-				UnitList.singleton.getcharacters()).gettarget();
-		lasttarget = target;
-		return target;
+	Character gettarget(Character attacker) throws Cancel {
+		ArrayList<Character> targets = UnitList.singleton.getcharacters();
+		lasttarget = new TargetDialog(attacker, targets).gettarget();
+		return lasttarget;
 	}
 }

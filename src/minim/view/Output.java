@@ -24,7 +24,7 @@ public class Output {
 	}
 
 	public static void print(String text) {
-		singleton.text.append(text + "\n\n");
+		singleton.text.append(text + "\n");
 	}
 
 	public void clear() {

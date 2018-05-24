@@ -3,6 +3,7 @@ package minim.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import minim.controller.Cancel;
 import minim.controller.action.base.Action;
 import minim.view.UnitList;
 import minim.view.dialog.LazyInputDialog;
@@ -12,6 +13,7 @@ public class Group implements Unit, Serializable {
 		public GroupSelectionDialog(ArrayList<Character> characters) {
 			super("Which characters should be part of this group?", true,
 					characters);
+			numbered = true;
 		}
 
 		@Override
@@ -33,18 +35,22 @@ public class Group implements Unit, Serializable {
 	}
 
 	@Override
-	public void run(Action action) {
+	public void run(Action action) throws Cancel {
 		for (Character c : group) {
 			action.run(c);
 		}
 	}
 
 	public void selectgroup(ArrayList<Character> characters) {
-		ArrayList<Integer> selection = new GroupSelectionDialog(characters)
-				.getselection();
-		group.clear();
-		for (int i : selection) {
-			group.add(characters.get(i));
+		try {
+			ArrayList<Integer> selection = new GroupSelectionDialog(characters)
+					.getselection();
+			group.clear();
+			for (int i : selection) {
+				group.add(characters.get(i));
+			}
+		} catch (Cancel c) {
+			return;
 		}
 	}
 

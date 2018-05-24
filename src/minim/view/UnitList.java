@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.osgi.framework.Bundle;
 
 import minim.Minim;
+import minim.controller.Cancel;
 import minim.controller.StateManager;
 import minim.controller.action.ChangeName;
 import minim.controller.action.DetermineOrder;
@@ -78,9 +79,13 @@ public class UnitList {
 	public class DetermineAll extends SelectionAdapter {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			ArrayList<Character> all = getcharacters();
-			if (!all.isEmpty()) {
-				new DetermineOrder(null).determineorder(all);
+			try {
+				ArrayList<Character> all = getcharacters();
+				if (!all.isEmpty()) {
+					new DetermineOrder(null).determineorder(all);
+				}
+			} catch (Cancel e1) {
+				return;
 			}
 		}
 	}
@@ -110,16 +115,18 @@ public class UnitList {
 	Composite unitsarea;
 	Composite layout;
 
+	@SuppressWarnings("unused")
 	@PostConstruct
 	public void createControls(Composite parent) {
 		singleton = this;
+		Minim.shell = parent.getShell();
 		layout = new Composite(parent, SWT.NONE);
 		layout.setLayout(new RowLayout(SWT.VERTICAL));
 		Composite add = new Composite(layout, SWT.NONE);
 		add.setLayout(new FillLayout(SWT.HORIZONTAL));
-		addbutton(add, "Add character", new AddCharacter());
-		addbutton(add, "Add group", new AddGroup());
-		addbutton(add, "Determine order", new DetermineAll());
+		addbutton(add, "Add &character", new AddCharacter());
+		addbutton(add, "Add &group", new AddGroup());
+		addbutton(add, "Determine &order", new DetermineAll());
 		new Label(layout, SWT.NONE);
 		unitsarea = new Composite(layout, SWT.NONE);
 		unitsarea.setLayout(new FillLayout(SWT.VERTICAL));
@@ -165,31 +172,31 @@ public class UnitList {
 	Menu addmenu(Button b, Unit u) {
 		final Menu menu = new Menu(b);
 		b.setMenu(menu);
-		final Menu attack = addsubmenu(menu, "Attack");
+		final Menu attack = addsubmenu(menu, "&Attack");
 		for (String s : Attack.ATTACKS) {
 			addmenuitem(s, b, attack, new Attack(s, u));
 		}
-		final Menu physical = addsubmenu(menu, "Physical");
+		final Menu physical = addsubmenu(menu, "&Physical");
 		for (String s : BasicAction.PHYSICAL) {
 			addmenuitem(s, b, physical, new BasicAction("physical", s, u));
 		}
-		final Menu social = addsubmenu(menu, "Social");
+		final Menu social = addsubmenu(menu, "&Social");
 		for (String s : BasicAction.SOCIAL) {
 			addmenuitem(s, b, social, new BasicAction("social", s, u));
 		}
-		final Menu mental = addsubmenu(menu, "Mental");
+		final Menu mental = addsubmenu(menu, "&Mental");
 		for (String s : BasicAction.MENTAL) {
 			addmenuitem(s, b, mental, new BasicAction("mental", s, u));
 		}
 		if (u instanceof Group) {
-			final Menu group = addsubmenu(menu, "Group");
+			final Menu group = addsubmenu(menu, "&Group");
 			Group g = (Group) u;
-			addmenuitem("Determine order", b, group, new DetermineOrder(g));
-			addmenuitem("Modify group", b, group, new ModifyGroup(this, g));
+			addmenuitem("Determine &order", b, group, new DetermineOrder(g));
+			addmenuitem("Modify &group", b, group, new ModifyGroup(this, g));
 		}
-		addmenuitem("Modify damage", b, menu, new ModifyDamage(u));
-		addmenuitem("Change name", b, menu, new ChangeName(this, u));
-		addmenuitem("Remove", b, menu, new RemoveUnit(this, u));
+		addmenuitem("Modify &damage", b, menu, new ModifyDamage(u));
+		addmenuitem("Change &name", b, menu, new ChangeName(this, u));
+		addmenuitem("&Remove", b, menu, new RemoveUnit(this, u));
 		return menu;
 	}
 
@@ -203,7 +210,7 @@ public class UnitList {
 
 	void addmenuitem(String label, Button b, Menu menu, Action a) {
 		MenuItem i = new MenuItem(menu, SWT.NONE);
-		i.setText("&" + label);
+		i.setText(label);
 		i.addSelectionListener(a);
 	}
 

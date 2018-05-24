@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 
 import minim.Minim;
+import minim.controller.Cancel;
 import minim.controller.action.base.Action;
 import minim.view.Output;
 import minim.view.UnitList;
@@ -28,7 +29,7 @@ public class Character implements Unit, Serializable {
 			title = "Dead";
 		}
 
-		public boolean confirm() {
+		public boolean confirm() throws Cancel {
 			return getvalue() == 0;
 		}
 	}
@@ -41,10 +42,11 @@ public class Character implements Unit, Serializable {
 					"poor", "mediocre", "good", "amazing" }));
 			this.previous = previous;
 			title = name;
+			numbered = true;
 		}
 
 		@Override
-		public int getvalue() {
+		public int getvalue() throws Cancel {
 			return super.getvalue() + 1;
 		}
 
@@ -60,10 +62,11 @@ public class Character implements Unit, Serializable {
 					Arrays.asList(new String[] { "Very difficult", "Difficult",
 							"Normal", "Easy", "Very easy" }));
 			this.title = title;
+			numbered = true;
 		}
 
 		@Override
-		public int getvalue() {
+		public int getvalue() throws Cancel {
 			return super.getvalue() - 2;
 		}
 
@@ -87,11 +90,11 @@ public class Character implements Unit, Serializable {
 	}
 
 	@Override
-	public void run(Action action) {
+	public void run(Action action) throws Cancel {
 		action.run(this);
 	}
 
-	public int getstat(String stat, boolean forceprompt) {
+	public int getstat(String stat, boolean forceprompt) throws Cancel {
 		Integer value = stats.get(stat.toLowerCase());
 		if (!forceprompt && value != null) {
 			return value;
@@ -112,7 +115,7 @@ public class Character implements Unit, Serializable {
 		this.name = name;
 	}
 
-	public int roll(String attribute, String skill, Action a) {
+	public int roll(String attribute, String skill, Action a) throws Cancel {
 		int attributevalue = getstat(attribute);
 		int skillvalue = getstat(skill);
 		int attributeroll = roll();
@@ -143,7 +146,7 @@ public class Character implements Unit, Serializable {
 		return result;
 	}
 
-	public int getstat(String name) {
+	public int getstat(String name) throws Cancel {
 		return getstat(name, false);
 	}
 
@@ -181,7 +184,7 @@ public class Character implements Unit, Serializable {
 		UnitList.singleton.updateunits();
 	}
 
-	public void damage(int d) {
+	public void damage(int d) throws Cancel {
 		damage += d;
 		if (damage <= 4) {
 			return;

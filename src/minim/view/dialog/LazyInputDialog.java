@@ -13,14 +13,18 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 
+import minim.controller.Cancel;
+
 public class LazyInputDialog extends Dialog {
+	protected boolean numbered = false;
+	protected List<?> choices;
+	protected String title;
+
 	Integer selection;
 	ArrayList<Integer> result = new ArrayList<>(1);
 	Group group;
 	String prompt;
-	private boolean multiple;
-	protected List<?> choices;
-	protected String title;
+	boolean multiple;
 
 	/**
 	 * Constructor.
@@ -53,7 +57,8 @@ public class LazyInputDialog extends Dialog {
 		for (int i = 0; i < choices.size(); i++) {
 			Object o = choices.get(i);
 			Button b = new Button(group, multiple ? SWT.CHECK : SWT.RADIO);
-			b.setText(o.toString());
+			String number = numbered ? (i + 1) + ". " : "";
+			b.setText("&" + number + o);
 			if (isselected(o, i)) {
 				b.setSelection(true);
 				b.setFocus();
@@ -82,12 +87,15 @@ public class LazyInputDialog extends Dialog {
 		super.buttonPressed(buttonId);
 	}
 
-	public ArrayList<Integer> getselection() {
-		open();
+	public ArrayList<Integer> getselection() throws Cancel {
+		int code = open();
+		if (code == Dialog.CANCEL) {
+			throw new Cancel();
+		}
 		return result;
 	}
 
-	public int getvalue() {
+	public int getvalue() throws Cancel {
 		return getselection().get(0);
 	}
 

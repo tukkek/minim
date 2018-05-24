@@ -3,7 +3,6 @@
 
 <product name="Minim" id="Minim.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
-
    <configIni use="default">
    </configIni>
 
@@ -20,7 +19,6 @@
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>

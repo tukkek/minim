@@ -1,5 +1,6 @@
 package minim.controller.action;
 
+import minim.controller.Cancel;
 import minim.controller.action.base.SimpleAction;
 import minim.model.Group;
 import minim.view.UnitList;
@@ -18,7 +19,7 @@ public class ModifyGroup extends SimpleAction {
 	}
 
 	@Override
-	public void run() {
+	public void run() throws Cancel {
 		g.selectgroup(this.unitsView.getcharacters());
 	}
 }

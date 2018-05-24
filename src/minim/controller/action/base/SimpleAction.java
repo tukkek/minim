@@ -1,5 +1,6 @@
 package minim.controller.action.base;
 
+import minim.controller.Cancel;
 import minim.model.Character;
 import minim.model.Group;
 import minim.model.Unit;
@@ -17,10 +18,10 @@ public abstract class SimpleAction extends Action {
 	}
 
 	@Override
-	abstract public void run();
+	abstract public void run() throws Cancel;
 
 	@Override
-	public int run(Character character) {
+	public int run(Character character) throws Cancel {
 		// never called
 		throw new RuntimeException("Should not be called #simpleaction");
 	}

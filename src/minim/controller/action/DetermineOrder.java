@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import minim.Minim;
+import minim.controller.Cancel;
 import minim.controller.action.base.SimpleAction;
 import minim.model.Character;
 import minim.model.Group;
@@ -20,14 +21,16 @@ public class DetermineOrder extends SimpleAction {
 	}
 
 	@Override
-	public void run() {
+	public void run() throws Cancel {
 		determineorder(g.group);
 	}
 
-	public void determineorder(ArrayList<Character> group) {
+	public void determineorder(ArrayList<Character> group) throws Cancel {
 		HashMap<Object, Integer> initiatives = new HashMap<>();
+		HashMap<Object, Integer> perceptions = new HashMap<>();
 		for (Character c : group) {
 			initiatives.put(c, c.roll("social", "perception", this));
+			perceptions.put(c, c.getstat("perception"));
 		}
 		group = new ArrayList<>(group);
 		Collections.shuffle(group);
@@ -36,7 +39,7 @@ public class DetermineOrder extends SimpleAction {
 			if (delta != 0) {
 				return delta;
 			}
-			return b.getstat("perception") - a.getstat("perception");
+			return perceptions.get(a) - perceptions.get(b);
 		});
 		String result = "Initiative order:\n";
 		for (Character c : group) {
