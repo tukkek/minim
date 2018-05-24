@@ -34,6 +34,15 @@ public class Attack extends BasicAction {
 			numbered = true;
 		}
 
+		@Override
+		public ArrayList<Integer> getselection() throws Cancel {
+			ArrayList<Integer> selection = super.getselection();
+			if (selection.isEmpty()) {
+				throw new Cancel();
+			}
+			return selection;
+		}
+
 		public Character gettarget() throws Cancel {
 			return targets.get(getvalue());
 		}
