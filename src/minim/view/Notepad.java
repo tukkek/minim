@@ -16,6 +16,8 @@ public class Notepad {
 
 	private Text text;
 
+	private String saved;
+
 	@PostConstruct
 	public void createControls(Composite parent) {
 		singleton = this;
@@ -25,6 +27,9 @@ public class Notepad {
 		text.setBackground(
 				Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		text.setText("Type your free-form text here :)");
+		if (saved != null) {
+			text.setText(saved);
+		}
 	}
 
 	public static void print(String text) {
@@ -33,10 +38,7 @@ public class Notepad {
 
 	@PostConstruct
 	public void start() {
-		String saved = (String) StateManager.load(Notepad.class);
-		if (saved != null) {
-			text.setText(saved);
-		}
+		saved = (String) StateManager.load(Notepad.class);
 	}
 
 	@PersistState
