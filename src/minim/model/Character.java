@@ -151,7 +151,11 @@ public class Character implements Unit, Serializable {
 	}
 
 	public static int roll() {
-		return RANDOM.nextInt(6) + 1;
+		return roll(6);
+	}
+
+	public static int roll(int sides) {
+		return RANDOM.nextInt(sides) + 1;
 	}
 
 	private int bind(int value, int min, int max) {

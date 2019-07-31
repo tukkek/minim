@@ -1,0 +1,24 @@
+package minim.controller.table.gme;
+
+import minim.controller.table.Table;
+import minim.model.Character;
+
+public class SceneTone extends Table {
+	public SceneTone() {
+		super("Scene tone");
+	}
+
+	@Override
+	public void build() {
+		add(1,3,"Dramatic scene");
+		add(4,5,"Quiet scene");
+		add(6,"Meanwhile...");
+	}
+	
+	@Override
+	public String roll() {
+		var result=super.roll();
+		if(Character.roll(6)==1) result+=" (twist: "+SceneTwist.SINGLETON.roll()+")";
+		return result;
+	}
+}

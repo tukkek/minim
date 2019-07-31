@@ -6,13 +6,16 @@
         <children xsi:type="basic:Part" xmi:id="_kkgJ0IwmEee8yupzolVhbQ" elementId="minim.part.units" contributionURI="bundleclass://minim/minim.view.UnitList" label="Units" iconURI="platform:/plugin/minim/icons/kpoker.png">
           <toolbar xmi:id="_Vu-qkIwnEee8yupzolVhbQ" elementId="minim.toolbar.0"/>
         </children>
+        <children xsi:type="basic:Part" xmi:id="_5rUQ8LM3Eemjj_beKdeyzg" elementId="minim.part.tables" contributionURI="bundleclass://minim/minim.view.Tables" label="Tables" iconURI="platform:/plugin/minim/bin/folder_home2.png"/>
       </children>
       <children xsi:type="basic:PartSashContainer" xmi:id="_eWLfAIwpEee8yupzolVhbQ" elementId="minim.partsashcontainer.1">
         <children xsi:type="basic:PartStack" xmi:id="_khULkIwpEee8yupzolVhbQ" elementId="minim.partstack.1">
           <children xsi:type="basic:Part" xmi:id="_fJEUgIwpEee8yupzolVhbQ" elementId="minim.part.output" contributionURI="bundleclass://minim/minim.view.Output" label="Output" iconURI="platform:/plugin/minim/icons/kiriki_16.png">
             <handlers xmi:id="_1pajIKwjEem48f5TO4OC0w" elementId="minim2.handler.0" contributionURI="bundleclass://minim/minim.view.command.ClearOutput" command="_f1RawIxLEeeInLn4CU4p0g"/>
+            <handlers xmi:id="_9ErPALGuEemrv93eDPRZ5g" elementId="minim.handler.rolldice" contributionURI="bundleclass://minim/minim.view.command.RollDice" command="_6LvTALGuEemrv93eDPRZ5g"/>
             <toolbar xmi:id="_rMgOMIxKEeeInLn4CU4p0g" elementId="minim.toolbar.1">
               <children xsi:type="menu:HandledToolItem" xmi:id="_wYkqcIxKEeeInLn4CU4p0g" elementId="minim.handledtoolitem.clear" label="Clear" command="_f1RawIxLEeeInLn4CU4p0g"/>
+              <children xsi:type="menu:HandledToolItem" xmi:id="_1TUykLGuEemrv93eDPRZ5g" elementId="minim.handledtoolitem.roll" label="Roll dice" command="_6LvTALGuEemrv93eDPRZ5g"/>
             </toolbar>
           </children>
         </children>
@@ -29,6 +32,7 @@
   </rootContext>
   <descriptors xmi:id="_4SBsEIwgEee8yupzolVhbQ" elementId="minim.partdescriptor.0"/>
   <commands xmi:id="_f1RawIxLEeeInLn4CU4p0g" elementId="minim.command.clearoutput" commandName="clearoutput"/>
+  <commands xmi:id="_6LvTALGuEemrv93eDPRZ5g" elementId="minim.command.rolldice" commandName="rolldice"/>
   <addons xmi:id="_c3AF0sjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_c3AF08jYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_c3AF1MjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
