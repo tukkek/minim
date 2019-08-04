@@ -6,8 +6,10 @@ import java.util.List;
 import minim.model.Character;
 
 public abstract class Table {
-	protected List<String> lines = new ArrayList<>(0);
 	public String title;
+
+	protected List<String> lines = new ArrayList<>(0);
+	protected boolean rebuild = false;
 
 	public Table(String title) {
 		this.title = title;
@@ -25,12 +27,19 @@ public abstract class Table {
 	public abstract void build();
 
 	public String roll() {
-		if (lines.isEmpty())
+		if (rebuild) {
+			lines.clear();
+			build();
+		} else if (lines.isEmpty())
 			build();
 		return lines.get(Character.roll(lines.size()) - 1);
 	}
 
 	protected void add(List<String> list) {
 		lines.addAll(list);
+	}
+
+	protected void add(String line) {
+		lines.add(line);
 	}
 }

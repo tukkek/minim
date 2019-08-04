@@ -1,4 +1,4 @@
-package minim.controller.table.gme;
+package minim.controller.table.conjectural;
 
 public class YesNoKnowledge extends YesNoLoom {
 	public YesNoKnowledge() {

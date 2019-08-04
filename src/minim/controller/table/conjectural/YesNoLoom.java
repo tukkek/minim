@@ -1,4 +1,4 @@
-package minim.controller.table.gme;
+package minim.controller.table.conjectural;
 
 import minim.controller.table.Table;
 import minim.model.Character;

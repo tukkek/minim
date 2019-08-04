@@ -14,19 +14,36 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import minim.controller.table.Table;
-import minim.controller.table.adventure.Adventure;
-import minim.controller.table.adventure.BadGuy;
-import minim.controller.table.adventure.Location;
-import minim.controller.table.adventure.Motive;
-import minim.controller.table.gme.SceneTone;
-import minim.controller.table.gme.SceneTwist;
-import minim.controller.table.gme.Unexpectedly;
-import minim.controller.table.gme.YesNo;
-import minim.controller.table.gme.YesNoAdvantage;
-import minim.controller.table.gme.YesNoConflict;
-import minim.controller.table.gme.YesNoDisadvantage;
-import minim.controller.table.gme.YesNoEnding;
-import minim.controller.table.gme.YesNoKnowledge;
+import minim.controller.table.conjectural.SceneTone;
+import minim.controller.table.conjectural.SceneTwist;
+import minim.controller.table.conjectural.Unexpectedly;
+import minim.controller.table.conjectural.YesNo;
+import minim.controller.table.conjectural.YesNoAdvantage;
+import minim.controller.table.conjectural.YesNoConflict;
+import minim.controller.table.conjectural.YesNoDisadvantage;
+import minim.controller.table.conjectural.YesNoEnding;
+import minim.controller.table.conjectural.YesNoKnowledge;
+import minim.controller.table.ironsworn.ChallengeRank;
+import minim.controller.table.ironsworn.CharacterGenerator;
+import minim.controller.table.ironsworn.CombatAction;
+import minim.controller.table.ironsworn.MysticBackslash;
+import minim.controller.table.ironsworn.Oracles;
+import minim.controller.table.ironsworn.PlotTwist;
+import minim.controller.table.ironsworn.Region;
+import minim.controller.table.ironsworn.SettlementName;
+import minim.controller.table.ironsworn.SettlementTrouble;
+import minim.controller.table.ironsworn.WaterLocation;
+import minim.controller.table.mythic.EventFocus;
+import minim.controller.table.mythic.EventMeaning;
+import minim.controller.table.mythic.Fate;
+import minim.controller.table.mythic.SceneChaos;
+import minim.controller.table.tarot.Character;
+import minim.controller.table.tarot.PlotGenerator;
+import minim.controller.table.tarot.TarotCard;
+import minim.controller.table.toon.BadGuy;
+import minim.controller.table.toon.CartoonAdventure;
+import minim.controller.table.toon.Location;
+import minim.controller.table.toon.Motive;
 
 public class Tables {
 	static class Category {
@@ -41,16 +58,30 @@ public class Tables {
 		}
 	}
 
-	static final Category GME = new Category("GM engine",
+	static final Category CONJECTURAL = new Category("Conjectural GME",
 			List.of(new SceneTone(), SceneTwist.SINGLETON, YesNo.SINGLETON, new YesNoAdvantage(),
 					new YesNoDisadvantage(), new YesNoKnowledge(), Unexpectedly.SINGLETON, new YesNoConflict(),
 					new YesNoEnding()));
-	static final Category ADVENTUREGENERATOR = new Category("Adventure generator",
-			List.of(new Adventure(), Location.SINGLETON, BadGuy.SINGLETON,
-					minim.controller.table.adventure.Character.SINGLETON, Motive.SINGLETON,
-					minim.controller.table.adventure.Object.SINGLETON, Location.ANYTOWN, Location.OUTERSPACE,
-					Location.OUTSIDEOFTOWN, Location.THECITY));
-	static final List<Category> CATEGORIES = new ArrayList<>(List.of(GME, ADVENTUREGENERATOR));
+	static final Category TOON = new Category("Cartoon adventure", List.of(new CartoonAdventure(), Location.SINGLETON,
+			BadGuy.SINGLETON, minim.controller.table.toon.Character.SINGLETON, Motive.SINGLETON,
+			minim.controller.table.toon.Object.SINGLETON, Location.ANYTOWN, Location.OUTERSPACE, Location.OUTSIDEOFTOWN,
+			Location.THECITY, CartoonAdventure.BATTLE, CartoonAdventure.CHASE, CartoonAdventure.MYSTERY,
+			CartoonAdventure.RESCUE, CartoonAdventure.SURVIVAL, CartoonAdventure.THEFT));
+	static final Category TAROT = new Category("Tarot",
+			List.of(TarotCard.SINGLETON, TarotCard.MAJOR, TarotCard.CUPS, TarotCard.PENTACLES, TarotCard.SWORDS,
+					TarotCard.WANDS, new Character(), new PlotGenerator(), PlotGenerator.ACT1, PlotGenerator.ACT2,
+					PlotGenerator.ACT3));
+	static final Category MYTHIC = new Category("Mythic GME",
+			List.of(Fate.EVENODSS, Fate.IMPOSSIBLE, Fate.LIKELY, Fate.SURETHING, Fate.UNLIKELY, new EventFocus(),
+					EventMeaning.SINGLETON, EventMeaning.ACTION, EventMeaning.SUBJECT, SceneChaos.LOW,
+					SceneChaos.NORMAL, SceneChaos.HIGH));
+	static final Category IRONSWORN = new Category("Ironsworn GME",
+			List.of(new CharacterGenerator(), new minim.controller.table.ironsworn.Location(),
+					minim.controller.table.ironsworn.Location.DESCRIPTOR, Oracles.ACTION, Oracles.THEME, new Region(),
+					new WaterLocation(), new SettlementName(), new SettlementTrouble(), CharacterGenerator.DESCRIPTOR,
+					CharacterGenerator.GOAL, CharacterGenerator.ROLE, new CombatAction(), new MysticBackslash(),
+					new PlotTwist(), new ChallengeRank()));
+	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
@@ -74,6 +105,8 @@ public class Tables {
 			var result = t.roll();
 			if (!result.endsWith("."))
 				result += ".";
+			if (result.contains("\n"))
+				result = "\n" + result;
 			Output.print(t.title + ": " + result + "\n");
 		});
 		for (var c : CATEGORIES) {

@@ -1,4 +1,4 @@
-package minim.controller.table.adventure;
+package minim.controller.table.toon;
 
 import minim.controller.table.Table;
 
