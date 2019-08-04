@@ -14,6 +14,9 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import minim.controller.table.Table;
+import minim.controller.table.bold.ArcedWaylay;
+import minim.controller.table.bold.Connection;
+import minim.controller.table.bold.Waylay;
 import minim.controller.table.conjectural.SceneTone;
 import minim.controller.table.conjectural.SceneTwist;
 import minim.controller.table.conjectural.Unexpectedly;
@@ -23,6 +26,14 @@ import minim.controller.table.conjectural.YesNoConflict;
 import minim.controller.table.conjectural.YesNoDisadvantage;
 import minim.controller.table.conjectural.YesNoEnding;
 import minim.controller.table.conjectural.YesNoKnowledge;
+import minim.controller.table.cyberpunk.Enemy;
+import minim.controller.table.cyberpunk.Family;
+import minim.controller.table.cyberpunk.LifeEvent;
+import minim.controller.table.cyberpunk.Lifepath;
+import minim.controller.table.cyberpunk.LifepathMotivation;
+import minim.controller.table.cyberpunk.Romance;
+import minim.controller.table.cyberpunk.Sibling;
+import minim.controller.table.cyberpunk.Style;
 import minim.controller.table.ironsworn.ChallengeRank;
 import minim.controller.table.ironsworn.CharacterGenerator;
 import minim.controller.table.ironsworn.CombatAction;
@@ -44,6 +55,11 @@ import minim.controller.table.toon.BadGuy;
 import minim.controller.table.toon.CartoonAdventure;
 import minim.controller.table.toon.Location;
 import minim.controller.table.toon.Motive;
+import minim.controller.table.une.Importance;
+import minim.controller.table.une.Mood;
+import minim.controller.table.une.Motivation;
+import minim.controller.table.une.Npc;
+import minim.controller.table.une.PowerLevel;
 
 public class Tables {
 	static class Category {
@@ -81,7 +97,30 @@ public class Tables {
 					new WaterLocation(), new SettlementName(), new SettlementTrouble(), CharacterGenerator.DESCRIPTOR,
 					CharacterGenerator.GOAL, CharacterGenerator.ROLE, new CombatAction(), new MysticBackslash(),
 					new PlotTwist(), new ChallengeRank()));
-	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN));
+	static final Category UNE = new Category("Universal NPC emulator",
+			List.of(Importance.SINGLETON, Importance.DEMEANOR, Importance.FOCUS, Mood.FRIENDLY, Mood.HOSTILE,
+					Mood.NEUTRAL, Motivation.SINGLETON, Motivation.NOUN, Motivation.VERB, new Npc(), Npc.MODIFIER,
+					Npc.NOUN, PowerLevel.SINGLETON)) {
+		{
+			this.tables.addAll(Importance.BEARINGS.values());
+		}
+	};
+	static final Category BOLD = new Category("Stories and deeds",
+			List.of(new ArcedWaylay(), new Connection(), Connection.ACTION, Connection.GERUND, Connection.SUBJECT,
+					Waylay.SINGLETON, Waylay.EASYFOES, Waylay.EPIC, Waylay.FACTIONAL, Waylay.HARDFOES, Waylay.HAVEN,
+					Waylay.KNOWLEDGE, Waylay.MODIFIER, Waylay.NATURAL, Waylay.PARTY, Waylay.PERSONAL, Waylay.PHYSICAL,
+					Waylay.SOLUTION));
+	static final Category CYBERPUNK = new Category("Cyberpunk lifepath",
+			List.of(Enemy.ACTION, Enemy.DIRECTION, Enemy.FORCES, Enemy.WHO, Enemy.WHY, new Enemy(), Family.CHILDHOOD,
+					Family.NOPARENTS, Family.RANKING, Family.SINGLETON, Family.TRAGEDY, LifeEvent.BIGPROBLEMSBIGWINS,
+					LifeEvent.DISASTER, LifeEvent.FRIEND, LifeEvent.FRIENDSFOES, LifeEvent.LUCKY, LifeEvent.SINGLETON,
+					LifeEvent.ACTION, new Lifepath(), Lifepath.ETHNICITY, LifepathMotivation.PERSONALITY,
+					LifepathMotivation.POSSESSION, LifepathMotivation.RELATIONS, LifepathMotivation.SINGLETON,
+					LifepathMotivation.VALUED, LifepathMotivation.VALUES, Romance.FEELINGS, Romance.PROBLEMATIC,
+					Romance.TRAGIC, new Romance(), Sibling.AGE, Sibling.FEELINGS, Sibling.GENDER, Sibling.SINGLETON,
+					Style.AFFECTATION, Style.CLOTHES, Style.HAIR, Style.SINGLETON));
+	static final List<Category> CATEGORIES = new ArrayList<>(
+			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));

@@ -42,4 +42,9 @@ public abstract class Table {
 	protected void add(String line) {
 		lines.add(line);
 	}
+
+	@Override
+	public String toString() {
+		return title;
+	}
 }
