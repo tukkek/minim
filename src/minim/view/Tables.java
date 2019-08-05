@@ -48,6 +48,7 @@ import minim.controller.table.mythic.EventFocus;
 import minim.controller.table.mythic.EventMeaning;
 import minim.controller.table.mythic.Fate;
 import minim.controller.table.mythic.SceneChaos;
+import minim.controller.table.steampunk.Diary;
 import minim.controller.table.tarot.Character;
 import minim.controller.table.tarot.PlotGenerator;
 import minim.controller.table.tarot.TarotCard;
@@ -119,8 +120,11 @@ public class Tables {
 					LifepathMotivation.VALUED, LifepathMotivation.VALUES, Romance.FEELINGS, Romance.PROBLEMATIC,
 					Romance.TRAGIC, new Romance(), Sibling.AGE, Sibling.FEELINGS, Sibling.GENDER, Sibling.SINGLETON,
 					Style.AFFECTATION, Style.CLOTHES, Style.HAIR, Style.SINGLETON));
+	static final Category DIARY = new Category("Steampunk diary",
+			List.of(new Diary(), Diary.ALLEGIANCES, Diary.APPEARANCE, Diary.BACKGROUND, Diary.FAMILY, Diary.PERSONALITY,
+					Diary.PREFERENCES, Diary.ROMANCE, Diary.SKILLS));
 	static final List<Category> CATEGORIES = new ArrayList<>(
-			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK));
+			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
@@ -142,7 +146,7 @@ public class Tables {
 			if (t == null)
 				return;
 			var result = t.roll();
-			if (!result.endsWith("."))
+			if (!result.endsWith(".") && !result.endsWith("?"))
 				result += ".";
 			if (result.contains("\n"))
 				result = "\n" + result;

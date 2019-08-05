@@ -7,8 +7,8 @@ import minim.model.Character;
 
 public abstract class Table {
 	public String title;
+	public List<String> lines = new ArrayList<>(0);
 
-	protected List<String> lines = new ArrayList<>(0);
 	protected boolean rebuild = false;
 
 	public Table(String title) {
