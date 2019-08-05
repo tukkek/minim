@@ -39,6 +39,12 @@ import minim.controller.table.cyberpunk.LifepathMotivation;
 import minim.controller.table.cyberpunk.Romance;
 import minim.controller.table.cyberpunk.Sibling;
 import minim.controller.table.cyberpunk.Style;
+import minim.controller.table.instant.InstantChallenge;
+import minim.controller.table.instant.InstantCharacter;
+import minim.controller.table.instant.InstantPlot;
+import minim.controller.table.instant.InstantSetting;
+import minim.controller.table.instant.Thing;
+import minim.controller.table.instant.Trait;
 import minim.controller.table.ironsworn.ChallengeRank;
 import minim.controller.table.ironsworn.CharacterGenerator;
 import minim.controller.table.ironsworn.CombatAction;
@@ -134,8 +140,15 @@ public class Tables {
 					TurningPoint.SINGLETON, new minim.controller.table.adventurecrafter.Character(),
 					new CharacterCrafter(), CharacterCrafter.DESCRIPTOR, CharacterCrafter.IDENTITY,
 					CharacterCrafter.TRAIT));
-	static final List<Category> CATEGORIES = new ArrayList<>(
-			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER));
+	static final Category INSTANT = new Category("Instant game",
+			List.of(new InstantChallenge(), InstantCharacter.FLAW, InstantCharacter.PEOPLE,
+					InstantCharacter.PERSONALITY, InstantCharacter.NORMAL, InstantCharacter.WEAK,
+					InstantCharacter.FLAMBOYANT, InstantPlot.ACTION, InstantPlot.OPPOSITION, InstantPlot.SINGLETON,
+					InstantSetting.PLACE, InstantSetting.POPULATION, InstantSetting.SINGLETON, InstantSetting.TECH,
+					InstantSetting.TONE, Thing.DESCRIPTOR, Thing.SINGLETON, Trait.OTHER, Trait.RANKS, Trait.SINGLETON,
+					Trait.SKILL, Trait.ATTRIBUTE));
+	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
+			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
