@@ -14,6 +14,11 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import minim.controller.table.Table;
+import minim.controller.table.adventurecrafter.Adventure;
+import minim.controller.table.adventurecrafter.CharacterCrafter;
+import minim.controller.table.adventurecrafter.PlotPoint;
+import minim.controller.table.adventurecrafter.Plotline;
+import minim.controller.table.adventurecrafter.TurningPoint;
 import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
@@ -123,8 +128,14 @@ public class Tables {
 	static final Category DIARY = new Category("Steampunk diary",
 			List.of(new Diary(), Diary.ALLEGIANCES, Diary.APPEARANCE, Diary.BACKGROUND, Diary.FAMILY, Diary.PERSONALITY,
 					Diary.PREFERENCES, Diary.ROMANCE, Diary.SKILLS));
+	static final Category ADVENTURECRAFTER = new Category("Adventure crafter",
+			List.of(new Adventure(), Plotline.SINGLETON, PlotPoint.ACTION, PlotPoint.META, PlotPoint.MYSTERY,
+					PlotPoint.PERSONAL, PlotPoint.SINGLETON, PlotPoint.SOCIAL, PlotPoint.TENSION, PlotPoint.THEME,
+					TurningPoint.SINGLETON, new minim.controller.table.adventurecrafter.Character(),
+					new CharacterCrafter(), CharacterCrafter.DESCRIPTOR, CharacterCrafter.IDENTITY,
+					CharacterCrafter.TRAIT));
 	static final List<Category> CATEGORIES = new ArrayList<>(
-			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY));
+			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
