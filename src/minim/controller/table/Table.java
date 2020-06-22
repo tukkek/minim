@@ -16,12 +16,15 @@ public abstract class Table {
 	}
 
 	protected void add(int n, String s) {
-		lines.add(s);
+		for (var i = 0; i < n; i++) {
+			lines.add(s);
+		}
 	}
 
 	protected void add(int from, int to, String s) {
-		for (var i = from; i <= to; i++)
+		for (var i = from; i <= to; i++) {
 			lines.add(s);
+		}
 	}
 
 	public abstract void build();
@@ -30,8 +33,9 @@ public abstract class Table {
 		if (rebuild) {
 			lines.clear();
 			build();
-		} else if (lines.isEmpty())
+		} else if (lines.isEmpty()) {
 			build();
+		}
 		return lines.get(Character.roll(lines.size()) - 1);
 	}
 

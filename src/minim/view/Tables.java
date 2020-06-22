@@ -72,6 +72,7 @@ import minim.controller.table.une.Mood;
 import minim.controller.table.une.Motivation;
 import minim.controller.table.une.Npc;
 import minim.controller.table.une.PowerLevel;
+import minim.controller.table.world.WorldNpc;
 
 public class Tables {
 	static class Category {
@@ -147,8 +148,10 @@ public class Tables {
 					InstantSetting.PLACE, InstantSetting.POPULATION, InstantSetting.SINGLETON, InstantSetting.TECH,
 					InstantSetting.TONE, Thing.DESCRIPTOR, Thing.SINGLETON, Trait.OTHER, Trait.RANKS, Trait.SINGLETON,
 					Trait.SKILL, Trait.ATTRIBUTE));
+	static final Category WORLD = new Category("Real-world NPC",
+			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION));
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
-			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT));
+			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
@@ -164,16 +167,20 @@ public class Tables {
 		var tree = new Tree(parent, SWT.SINGLE);
 		tree.addListener(SWT.MouseDown, e -> {
 			var i = tree.getItem(new Point(e.x, e.y));
-			if (i == null)
+			if (i == null) {
 				return;
+			}
 			var t = (Table) i.getData();
-			if (t == null)
+			if (t == null) {
 				return;
+			}
 			var result = t.roll();
-			if (!result.endsWith(".") && !result.endsWith("?"))
+			if (!result.endsWith(".") && !result.endsWith("?")) {
 				result += ".";
-			if (result.contains("\n"))
+			}
+			if (result.contains("\n")) {
 				result = "\n" + result;
+			}
 			Output.print(t.title + ": " + result + "\n");
 		});
 		for (var c : CATEGORIES) {
