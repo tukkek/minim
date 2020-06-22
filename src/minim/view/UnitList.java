@@ -239,12 +239,15 @@ public class UnitList {
 
 	@PostConstruct
 	public void start() {
-		ArrayList<Unit> units = (ArrayList<Unit>) StateManager
+		var saved=(ArrayList<Unit>) StateManager
 				.load(UnitList.class);
-		if (units != null) {
-			this.units = units;
-			updateunits();
-		}
+		if( saved!= null)
+		units =  (ArrayList<Unit>) StateManager
+		.load(UnitList.class);
+//		if (saved != null) {
+//			this.units = saved;
+//			updateunits();
+//		}
 	}
 
 	@PersistState

@@ -6,23 +6,11 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            name="Minim"
-            application="org.eclipse.e4.ui.workbench.swt.E4Application">
-         <property
-               name="applicationCSS"
-               value="platform:/plugin/Minim/css/default.css">
-         </property>
+            application="org.eclipse.e4.ui.workbench.swt.E4Application"
+            name="minim">
          <property
                name="appName"
-               value="Minim">
-         </property>
-         <property
-               name="windowImages"
-               value="/Minim/icons/wod/folder_home2.png">
-         </property>
-         <property
-           name="lifeCycleURI"
-           value="bundleclass://Minim/minim.Minim">
+               value="minim">
          </property>
       </product>
    </extension>

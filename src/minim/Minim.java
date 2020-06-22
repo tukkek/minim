@@ -7,7 +7,7 @@ import org.osgi.framework.BundleContext;
 public class Minim implements BundleActivator {
 	public static final boolean DEBUG = false;
 	public static final String BASEPATH = "";
-	public static final String PLUGINID = "Minim";
+	public static final String PLUGINID = "minim";
 
 	public static Minim singleton;
 	public static Shell shell;

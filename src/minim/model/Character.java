@@ -37,11 +37,11 @@ public class Character implements Unit, Serializable {
 	public class StatDialog extends LazyInputDialog {
 		Integer previous;
 
-		public StatDialog(String prompt, boolean multiple, Integer previous) {
+		public StatDialog(String prompt, String stat, boolean multiple, Integer previous) {
 			super(prompt, multiple, Arrays.asList(new String[] { "terrrible",
 					"poor", "mediocre", "good", "amazing" }));
 			this.previous = previous;
-			title = name;
+			title = name+": "+stat;
 			numbered = true;
 		}
 
@@ -100,7 +100,7 @@ public class Character implements Unit, Serializable {
 			return value;
 		}
 		final String prompt = "What should be the value for " + stat + "?";
-		value = new StatDialog(prompt, false, value).getvalue();
+		value = new StatDialog(prompt,stat, false, value).getvalue();
 		stats.put(stat, value);
 		return value;
 	}
@@ -151,7 +151,11 @@ public class Character implements Unit, Serializable {
 	}
 
 	public static int roll() {
-		return RANDOM.nextInt(6) + 1;
+		return roll(6);
+	}
+
+	public static int roll(int sides) {
+		return RANDOM.nextInt(sides) + 1;
 	}
 
 	private int bind(int value, int min, int max) {
