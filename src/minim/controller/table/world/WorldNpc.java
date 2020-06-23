@@ -1,5 +1,6 @@
 package minim.controller.table.world;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import minim.controller.table.SimpleTable;
@@ -13,6 +14,8 @@ import minim.controller.table.Table;
 public class WorldNpc extends Table {
 	static final String ATHEIST = "Atheist";
 	static final String STRAIGHT = "Straight";
+	static final String ABLE = "Able";
+	static final String NEUROTYPICAL = "Neurotypical";
 
 	static public final Table AGE = new Table("Age") {
 		@Override
@@ -60,6 +63,29 @@ public class WorldNpc extends Table {
 		}
 	};
 
+	static public final Table DISABILITY = new Table("Disability") {
+		@Override
+		public void build() {
+			add(5,"Difficulty walking");
+			add(1,"Blind");
+			add(1,"Deaf");
+			add(1,"Wheelchair");
+			add(lines.size()*4, ABLE);
+		}
+	};
+
+	static public final Table MENTALISSUE = new Table("Mental issues") {
+		@Override
+		public void build() {
+			add(5,"Depression");
+			add(4,"Substance abuse");
+			add(2,"Anxiety");
+			add(1,"Schizophrenia");
+			add(1,"Bipolar");
+			add(lines.size()*9, NEUROTYPICAL);
+		}
+	};
+
 	public WorldNpc() {
 		super("NPC");
 	}
@@ -71,17 +97,17 @@ public class WorldNpc extends Table {
 
 	@Override
 	public String roll() {
-		var npc = AGE.roll() + " ";
-		var religion = RELIGION.roll();
-		if (religion != ATHEIST) {
-			npc += religion + " ";
+		var basic=new ArrayList<String>(3);
+		basic.add(AGE.roll());
+		basic.add(RACE.roll());
+		basic.add(SEX.roll());
+		var npc=new ArrayList<String>(4);
+		npc.add(String.join(" ",basic).toLowerCase());
+		for(var table:List.of(RELIGION,SEXUALITY,DISABILITY,MENTALISSUE)) {
+			var line=table.roll();
+			if(line != ATHEIST && line != STRAIGHT && line != ABLE && line != NEUROTYPICAL)
+				npc.add(table.toString()+": "+line.toLowerCase());
 		}
-		var orientation = SEXUALITY.roll();
-		if (orientation != STRAIGHT) {
-			npc += orientation + " ";
-		}
-		npc += RACE.roll() + " ";
-		npc += SEX.roll();
-		return npc.toLowerCase();
+		return String.join(". ", npc);
 	}
 }
