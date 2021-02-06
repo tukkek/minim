@@ -25,7 +25,7 @@ public class WorldNpc extends Table {
 			add(1, "Teenager");
 			add(4, "Adult");
 			add(2, "Middle-aged");
-			add(1, "Old");
+			add(1, "Elderly");
 		}
 	};
 	static public final Table SEX = new SimpleTable("Sex", List.of("Male", "Female"));
@@ -66,23 +66,23 @@ public class WorldNpc extends Table {
 	static public final Table DISABILITY = new Table("Disability") {
 		@Override
 		public void build() {
-			add(5,"Difficulty walking");
-			add(1,"Blind");
-			add(1,"Deaf");
-			add(1,"Wheelchair");
-			add(lines.size()*4, ABLE);
+			add(5, "Difficulty walking");
+			add(1, "Blind");
+			add(1, "Deaf");
+			add(1, "Wheelchair");
+			add(lines.size() * 4, ABLE);
 		}
 	};
 
 	static public final Table MENTALISSUE = new Table("Mental issues") {
 		@Override
 		public void build() {
-			add(5,"Depression");
-			add(4,"Substance abuse");
-			add(2,"Anxiety");
-			add(1,"Schizophrenia");
-			add(1,"Bipolar");
-			add(lines.size()*9, NEUROTYPICAL);
+			add(5, "Depression");
+			add(4, "Substance abuse");
+			add(2, "Anxiety");
+			add(1, "Schizophrenia");
+			add(1, "Bipolar");
+			add(lines.size() * 9, NEUROTYPICAL);
 		}
 	};
 
@@ -97,17 +97,21 @@ public class WorldNpc extends Table {
 
 	@Override
 	public String roll() {
-		var basic=new ArrayList<String>(3);
+		var basic = new ArrayList<String>(3);
 		basic.add(AGE.roll());
 		basic.add(RACE.roll());
 		basic.add(SEX.roll());
-		var npc=new ArrayList<String>(4);
-		npc.add(String.join(" ",basic).toLowerCase());
-		for(var table:List.of(RELIGION,SEXUALITY,DISABILITY,MENTALISSUE)) {
-			var line=table.roll();
-			if(line != ATHEIST && line != STRAIGHT && line != ABLE && line != NEUROTYPICAL)
-				npc.add(table.toString()+": "+line.toLowerCase());
+		var details = new ArrayList<String>(4);
+		for (var table : List.of(RELIGION, SEXUALITY, DISABILITY, MENTALISSUE)) {
+			var line = table.roll();
+			if (line != ATHEIST && line != STRAIGHT && line != ABLE && line != NEUROTYPICAL)
+				details.add(line.toLowerCase());
 		}
-		return String.join(". ", npc);
+		Personality.TRAITS.stream().filter(t -> t.israre()).map(t -> t.rare.toLowerCase()).forEach(t -> details.add(t));
+		details.sort(null);
+		var npc = String.join(" ", basic);
+		if (!details.isEmpty())
+			npc += ", " + String.join(", ", details);
+		return npc.toLowerCase();
 	}
 }

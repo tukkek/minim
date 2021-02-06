@@ -72,6 +72,7 @@ import minim.controller.table.une.Mood;
 import minim.controller.table.une.Motivation;
 import minim.controller.table.une.Npc;
 import minim.controller.table.une.PowerLevel;
+import minim.controller.table.world.Personality;
 import minim.controller.table.world.WorldNpc;
 
 public class Tables {
@@ -149,7 +150,8 @@ public class Tables {
 					InstantSetting.TONE, Thing.DESCRIPTOR, Thing.SINGLETON, Trait.OTHER, Trait.RANKS, Trait.SINGLETON,
 					Trait.SKILL, Trait.ATTRIBUTE));
 	static final Category WORLD = new Category("Real-world NPC",
-			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,WorldNpc.DISABILITY,WorldNpc.MENTALISSUE));
+			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
+					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE));
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
 			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD));
 
