@@ -39,6 +39,11 @@ import minim.controller.table.cyberpunk.LifepathMotivation;
 import minim.controller.table.cyberpunk.Romance;
 import minim.controller.table.cyberpunk.Sibling;
 import minim.controller.table.cyberpunk.Style;
+import minim.controller.table.hexcrawl.Elevation;
+import minim.controller.table.hexcrawl.Hex;
+import minim.controller.table.hexcrawl.PointOfInterest;
+import minim.controller.table.hexcrawl.Vegetation;
+import minim.controller.table.hexcrawl.Water;
 import minim.controller.table.instant.InstantChallenge;
 import minim.controller.table.instant.InstantCharacter;
 import minim.controller.table.instant.InstantPlot;
@@ -152,8 +157,11 @@ public class Tables {
 	static final Category WORLD = new Category("Real-world NPC",
 			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
 					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE));
+	static final Category HEXCRAWL = new Category("Hexcrawl",
+			List.of(new Hex(), Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
+					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT));
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
-			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD));
+			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
