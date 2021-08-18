@@ -22,6 +22,10 @@ import minim.controller.table.adventurecrafter.TurningPoint;
 import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
+import minim.controller.table.combat.Action;
+import minim.controller.table.combat.ActionType;
+import minim.controller.table.combat.Twist;
+import minim.controller.table.combat.Wound;
 import minim.controller.table.conjectural.SceneTone;
 import minim.controller.table.conjectural.SceneTwist;
 import minim.controller.table.conjectural.Unexpectedly;
@@ -160,8 +164,11 @@ public class Tables {
 	static final Category HEXCRAWL = new Category("Hexcrawl",
 			List.of(new Hex(), Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
 					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT));
+	static final Category COMBAT = new Category("Combat",
+			List.of(Action.CAREFREE, Action.CAUTIOUS, Action.CERTAIN, Action.COWERING, Action.DARING, Action.TREMBLING,
+					ActionType.SINGLETON, Twist.SINGLETON, Wound.HIT, Wound.CRITICAL, Wound.DEADLY));
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
-			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL));
+			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
