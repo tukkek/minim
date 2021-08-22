@@ -24,8 +24,7 @@ public class Notepad {
 		Composite layout = new Composite(parent, SWT.NONE);
 		layout.setLayout(new FillLayout());
 		text = new Text(layout, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
-		text.setBackground(
-				Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		text.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		text.setText("Type your free-form text here :)");
 		if (saved != null) {
 			text.setText(saved);

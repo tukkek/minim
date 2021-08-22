@@ -14,6 +14,15 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import minim.controller.table.Table;
+import minim.controller.table.adventure.Type;
+import minim.controller.table.adventure.dungeon.Dungeon;
+import minim.controller.table.adventure.dungeon.Grid;
+import minim.controller.table.adventure.dungeon.Map;
+import minim.controller.table.adventure.dungeon.Motif;
+import minim.controller.table.adventure.dungeon.lore.Backstory;
+import minim.controller.table.adventure.dungeon.lore.Information;
+import minim.controller.table.adventure.dungeon.lore.Occupant;
+import minim.controller.table.adventure.dungeon.lore.Purpose;
 import minim.controller.table.adventurecrafter.Adventure;
 import minim.controller.table.adventurecrafter.CharacterCrafter;
 import minim.controller.table.adventurecrafter.PlotPoint;
@@ -167,8 +176,14 @@ public class Tables {
 	static final Category COMBAT = new Category("Combat",
 			List.of(Action.CAREFREE, Action.CAUTIOUS, Action.CERTAIN, Action.COWERING, Action.DARING, Action.TREMBLING,
 					ActionType.SINGLETON, Twist.SINGLETON, Wound.HIT, Wound.CRITICAL, Wound.DEADLY));
+	static final Category ADVENTURE = new Category("Adventure overview",
+			List.of(new Type(), Motif.SINGLETON, Map.SINGLETON, Grid.SINGLETON, new Dungeon(), Backstory.SINGLETON,
+					Purpose.SINGLETON, Occupant.SINGLETON, Information.CLUE, Information.RUMOR,
+					Information.RUMORCONTENT, Information.WRITING, Information.SINGLETON,
+					minim.controller.table.adventure.dungeon.Location.SINGLETON,
+					minim.controller.table.adventure.dungeon.Location.EXOTIC));
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
-			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT));
+			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));

@@ -1,6 +1,7 @@
 package minim.controller.table;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import minim.model.Character;
@@ -39,7 +40,7 @@ public abstract class Table {
 		return lines.get(Character.roll(lines.size()) - 1);
 	}
 
-	protected void add(List<String> list) {
+	protected void add(Collection<String> list) {
 		lines.addAll(list);
 	}
 
