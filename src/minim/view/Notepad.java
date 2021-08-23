@@ -6,7 +6,6 @@ import org.eclipse.e4.ui.di.PersistState;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
 import minim.controller.StateManager;
@@ -14,9 +13,8 @@ import minim.controller.StateManager;
 public class Notepad {
 	public static Notepad singleton;
 
-	private Text text;
-
-	private String saved;
+	public Text text;
+	String saved;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -24,7 +22,9 @@ public class Notepad {
 		Composite layout = new Composite(parent, SWT.NONE);
 		layout.setLayout(new FillLayout());
 		text = new Text(layout, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
-		text.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+//		var d = Display.getCurrent();
+//		text.setBackground(d.getSystemColor(SWT.COLOR_WHITE));
+//		text.setForeground(d.getSystemColor(SWT.COLOR_BLACK));
 		text.setText("Type your free-form text here :)");
 		if (saved != null) {
 			text.setText(saved);
