@@ -28,6 +28,7 @@ import minim.controller.table.adventure.weather.Desert;
 import minim.controller.table.adventure.weather.Temperate;
 import minim.controller.table.adventure.weather.TemperateSummer;
 import minim.controller.table.adventure.weather.TemperateWinter;
+import minim.controller.table.adventure.weather.Weather;
 import minim.controller.table.adventurecrafter.Adventure;
 import minim.controller.table.adventurecrafter.CharacterCrafter;
 import minim.controller.table.adventurecrafter.PlotPoint;
@@ -187,8 +188,9 @@ public class Tables {
 					Information.RUMORCONTENT, Information.WRITING, Information.SINGLETON,
 					minim.controller.table.adventure.dungeon.Location.SINGLETON,
 					minim.controller.table.adventure.dungeon.Location.EXOTIC));
-	static final Category WEATHER = new Category("Weather", List.of(new Cold(), new Desert(), new Temperate(),
-			new TemperateSummer(), new TemperateWinter(), new minim.controller.table.adventure.weather.Type()));
+	static final Category WEATHER = new Category("Weather",
+			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
+					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
 			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER));
 

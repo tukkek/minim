@@ -23,7 +23,9 @@
           <children xsi:type="basic:Part" xmi:id="_ffbmEIwpEee8yupzolVhbQ" elementId="minim.part.notepad" contributionURI="bundleclass://minim/minim.view.Notepad" label="Notepad" iconURI="platform:/plugin/minim/icons/korganizer.png">
             <handlers xmi:id="_hqFFkAO2Eeyu1oHgscIxLA" elementId="minim.handler.enlarge" contributionURI="bundleclass://minim/minim.view.command.notepad.EnlargeFont" command="_1N-tkAO3Eeyu1oHgscIxLA"/>
             <handlers xmi:id="_Qh3VgAO4Eeyu1oHgscIxLA" elementId="minim.handler.0" contributionURI="bundleclass://minim/minim.view.command.notepad.ShrinkFont" command="_N3wfsAO4Eeyu1oHgscIxLA"/>
+            <handlers xmi:id="_9zv5cAPLEeyu1oHgscIxLA" elementId="minim.handler.1" contributionURI="bundleclass://minim/minim.view.command.notepad.Export" command="_08m5oAPLEeyu1oHgscIxLA"/>
             <toolbar xmi:id="_r1QqsAO3Eeyu1oHgscIxLA" elementId="minim.toolbar.2">
+              <children xsi:type="menu:HandledToolItem" xmi:id="_7JVhoAPLEeyu1oHgscIxLA" elementId="minim.handledtoolitem.export" label="Export" command="_08m5oAPLEeyu1oHgscIxLA"/>
               <children xsi:type="menu:HandledToolItem" xmi:id="_s9e3AAO3Eeyu1oHgscIxLA" elementId="minim.handledtoolitem.enlargefont" label="+" command="_1N-tkAO3Eeyu1oHgscIxLA"/>
               <children xsi:type="menu:HandledToolItem" xmi:id="_KUf0UAO4Eeyu1oHgscIxLA" elementId="minim.handledtoolitem.shrinkfont" label="-" command="_N3wfsAO4Eeyu1oHgscIxLA"/>
             </toolbar>
@@ -42,6 +44,7 @@
   <commands xmi:id="_6LvTALGuEemrv93eDPRZ5g" elementId="minim.command.rolldice" commandName="rolldice"/>
   <commands xmi:id="_1N-tkAO3Eeyu1oHgscIxLA" elementId="minim.command.enlargefont" commandName="enlargefont"/>
   <commands xmi:id="_N3wfsAO4Eeyu1oHgscIxLA" elementId="minim.command.shrinkfont" commandName="shrinkfont"/>
+  <commands xmi:id="_08m5oAPLEeyu1oHgscIxLA" elementId="minim.command.export" commandName="export" description=""/>
   <addons xmi:id="_c3AF0sjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_c3AF08jYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_c3AF1MjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
