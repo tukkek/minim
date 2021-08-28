@@ -6,6 +6,7 @@ import java.util.Set;
 
 import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
+import minim.model.Character;
 
 /**
  * Built using semi-extensive real-world data.
@@ -13,6 +14,8 @@ import minim.controller.table.Table;
  * @author alex
  */
 public class WorldNpc extends Table {
+	public static final Table SIMPLE = new WorldNpc("NPC (simple)", true);
+
 	static final String ATHEIST = "Atheist";
 	static final String STRAIGHT = "Straight";
 	static final String ABLE = "Able";
@@ -101,16 +104,23 @@ public class WorldNpc extends Table {
 	static public final Table HEALTH = new Table("Health issues") {
 		@Override
 		public void build() {
-			add(30, "Hypertension");
-			add(10, "Diabetes");
-			add(10, "Cardiovascular disease");
-			add(10, "Cold (if cold weather)");
-			add(100 - lines.size(), HEALTHY);
+			add(3, "Hypertension");
+			add(1, "Diabetes");
+			add(1, "Cardiovascular disease");
+			add(1, "Common cold (if cold weather)");
+			add(10 - lines.size(), HEALTHY);
 		}
 	};
 
+	protected boolean simple = false;
+
 	public WorldNpc() {
 		super("NPC");
+	}
+
+	WorldNpc(String title, boolean simple) {
+		super(title);
+		this.simple = simple;
 	}
 
 	@Override
@@ -131,10 +141,11 @@ public class WorldNpc extends Table {
 				details.add(line.toLowerCase());
 		}
 		Personality.TRAITS.stream().filter(t -> t.israre()).map(t -> t.rare.toLowerCase()).forEach(t -> details.add(t));
+		if (simple)
+			while (details.size() > 2)
+				details.remove(Character.roll(details.size() - 1));
 		details.sort(null);
-		var npc = String.join(" ", basic);
-		if (!details.isEmpty())
-			npc += ", " + String.join(", ", details);
+		var npc = String.join(" ", basic) + " - " + String.join(", ", details);
 		return npc.toLowerCase();
 	}
 }
