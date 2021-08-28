@@ -2,6 +2,7 @@ package minim.controller.table.world;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
@@ -16,6 +17,8 @@ public class WorldNpc extends Table {
 	static final String STRAIGHT = "Straight";
 	static final String ABLE = "Able";
 	static final String NEUROTYPICAL = "Neurotypical";
+	static final String HEALTHY = "Healthy";
+	static final Set<String> TYPICAL = Set.of(ATHEIST, STRAIGHT, ABLE, NEUROTYPICAL, HEALTHY);
 
 	static public final Table AGE = new Table("Age") {
 		@Override
@@ -86,6 +89,26 @@ public class WorldNpc extends Table {
 		}
 	};
 
+	/*
+	 * As of August 2021 (cases per year, relative to population):
+	 * 
+	 * - Cold: 300%.
+	 * 
+	 * - Flu: 0.01%.
+	 * 
+	 * - CoVid: 0.02%.
+	 */
+	static public final Table HEALTH = new Table("Health issues") {
+		@Override
+		public void build() {
+			add(30, "Hypertension");
+			add(10, "Diabetes");
+			add(10, "Cardiovascular disease");
+			add(10, "Cold (if cold weather)");
+			add(100 - lines.size(), HEALTHY);
+		}
+	};
+
 	public WorldNpc() {
 		super("NPC");
 	}
@@ -102,9 +125,9 @@ public class WorldNpc extends Table {
 		basic.add(RACE.roll());
 		basic.add(SEX.roll());
 		var details = new ArrayList<String>(4);
-		for (var table : List.of(RELIGION, SEXUALITY, DISABILITY, MENTALISSUE)) {
+		for (var table : List.of(RELIGION, SEXUALITY, DISABILITY, MENTALISSUE, HEALTH)) {
 			var line = table.roll();
-			if (line != ATHEIST && line != STRAIGHT && line != ABLE && line != NEUROTYPICAL)
+			if (!TYPICAL.contains(line))
 				details.add(line.toLowerCase());
 		}
 		Personality.TRAITS.stream().filter(t -> t.israre()).map(t -> t.rare.toLowerCase()).forEach(t -> details.add(t));

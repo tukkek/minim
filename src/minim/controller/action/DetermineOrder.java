@@ -17,7 +17,6 @@ public class DetermineOrder extends SimpleAction {
 	public DetermineOrder(Group g) {
 		super(g);
 		this.g = g;
-		applymodifier = false;
 	}
 
 	@Override

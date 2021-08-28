@@ -50,8 +50,8 @@ public class CartoonAdventure extends Table {
 									"hidden", "occupied by species", "eating by species"));
 					add(1, 2, "\n" + object + " has been " + objectsecret.roll());
 					add(3, 4, "\n" + object + " is held by " + BadGuy.SINGLETON.roll());
-					add(5, "\n" + String.join(". ", lines));
-					add(6, "");
+					add("\n" + String.join(". ", lines));
+					add("");
 				}
 			}.roll();
 			add("Players go to " + location + " to steal " + object + " thereby gaining " + motive + "." + secret);
@@ -68,10 +68,10 @@ public class CartoonAdventure extends Table {
 			var secret = new Table("secret") {
 				@Override
 				public void build() {
-					add(1, badguy + " has multiple personalities");
-					add(2, badguy + " has strange companion or familiar");
-					add(3, location + " changes from scene to scene");
-					add(4, object + " is really strange");
+					add(badguy + " has multiple personalities");
+					add(badguy + " has strange companion or familiar");
+					add(location + " changes from scene to scene");
+					add(object + " is really strange");
 					Collections.shuffle(lines);
 					add(5, 6, String.join(" ", lines.subList(0, Character.roll(lines.size()))));
 				}
@@ -108,10 +108,10 @@ public class CartoonAdventure extends Table {
 			var secret = new Table("secret") {
 				@Override
 				public void build() {
-					add(1, "\n" + character + " doesn't want to be rescued");
-					add(2, "\n" + character + " owns " + location);
-					add(3, "\n" + character + " is another " + badguy);
-					add(4, "\n" + character + " is actually holding " + badguy);
+					add("\n" + character + " doesn't want to be rescued");
+					add("\n" + character + " owns " + location);
+					add("\n" + character + " is another " + badguy);
+					add("\n" + character + " is actually holding " + badguy);
 					add(5, 6, "");
 				}
 			}.roll();

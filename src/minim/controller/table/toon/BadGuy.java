@@ -11,11 +11,11 @@ public class BadGuy extends Table {
 
 	@Override
 	public void build() {
-		add(1, "mobster with tough guy");
-		add(2, "Foogle");
-		add(3, "spy");
-		add(4, "mastermind");
-		add(5, "witch");
-		add(6, "monster");
+		add("mobster with tough guy");
+		add("Foogle");
+		add("spy");
+		add("mastermind");
+		add("witch");
+		add("monster");
 	}
 }

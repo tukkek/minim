@@ -1,10 +1,12 @@
 package minim.controller.table.conjectural;
 
+import java.util.function.BinaryOperator;
+
 import minim.controller.table.Table;
 
 public class YesNoAdvantage extends Table {
 	public YesNoAdvantage() {
-		super("Yes/No (simple, disadvantage)");
+		super("Yes/no (simple, advantage)");
 	}
 
 	@Override
@@ -14,6 +16,14 @@ public class YesNoAdvantage extends Table {
 
 	@Override
 	public String roll() {
-		return "Select worst:\n" + YesNo.SINGLETON.roll() + "\n" + YesNo.SINGLETON.roll();
+		return roll((a, b) -> Math.max(a, b));
+	}
+
+	public static String roll(BinaryOperator<Integer> select) {
+		var results = YesNo.RESULTS;
+		var a = results.indexOf(YesNo.SINGLETON.roll(false));
+		var b = results.indexOf(YesNo.SINGLETON.roll(false));
+		var r = YesNo.expand(results.get(select.apply(a, b)));
+		return r;
 	}
 }

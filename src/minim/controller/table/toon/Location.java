@@ -55,9 +55,9 @@ public class Location extends Table {
 	@Override
 	public void build() {
 		add(1, 2, ANYTOWN.title);
-		add(2, 4, THECITY.title);
-		add(5, OUTERSPACE.title);
-		add(5, OUTSIDEOFTOWN.title);
+		add(3, 4, THECITY.title);
+		add(OUTERSPACE.title);
+		add(OUTSIDEOFTOWN.title);
 	}
 
 	@Override

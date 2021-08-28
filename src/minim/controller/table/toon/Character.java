@@ -11,11 +11,11 @@ public class Character extends Table {
 
 	@Override
 	public void build() {
-		add(1, "themselves");
-		add(2, "daughter");
-		add(3, "son");
-		add(4, "Professor");
-		add(5, "Granny");
-		add(6, "boss");
+		add("themselves");
+		add("daughter");
+		add("son");
+		add("Professor");
+		add("Granny");
+		add("boss");
 	}
 }

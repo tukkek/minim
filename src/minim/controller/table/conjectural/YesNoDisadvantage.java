@@ -4,7 +4,7 @@ import minim.controller.table.Table;
 
 public class YesNoDisadvantage extends Table {
 	public YesNoDisadvantage() {
-		super("Yes/No (simple, advantage)");
+		super("Yes/no (simple, disadvantage)");
 	}
 
 	@Override
@@ -14,6 +14,6 @@ public class YesNoDisadvantage extends Table {
 
 	@Override
 	public String roll() {
-		return "Select best:\n" + YesNo.SINGLETON.roll() + "\n" + YesNo.SINGLETON.roll();
+		return YesNoAdvantage.roll((a, b) -> Math.min(a, b));
 	}
 }

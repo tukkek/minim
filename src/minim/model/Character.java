@@ -18,14 +18,12 @@ import minim.view.dialog.LazyInputDialog;
 public class Character implements Unit, Serializable {
 	public static final Random RANDOM = new Random();
 	public static final List<String> HEALTH = Arrays
-			.asList(new String[] { "Unhurt", "Scratched", "Hurt",
-					"Wounded (-1)", "Injured (-2)", "Dead" });
+			.asList(new String[] { "Unhurt", "Scratched", "Hurt", "Wounded (-1)", "Injured (-2)", "Dead" });
 
 	public class ConfirmDeathDialog extends LazyInputDialog {
 		public ConfirmDeathDialog(Character c) {
 			super("Confirm " + c + "'s death?", false,
-					Arrays.asList(new String[] { "Yes, remove from game.",
-							"No, keep alive." }));
+					Arrays.asList(new String[] { "Yes, remove from game.", "No, keep alive." }));
 			title = "Dead";
 		}
 
@@ -38,10 +36,9 @@ public class Character implements Unit, Serializable {
 		Integer previous;
 
 		public StatDialog(String prompt, String stat, boolean multiple, Integer previous) {
-			super(prompt, multiple, Arrays.asList(new String[] { "terrrible",
-					"poor", "mediocre", "good", "amazing" }));
+			super(prompt, multiple, Arrays.asList(new String[] { "terrrible", "poor", "mediocre", "good", "amazing" }));
 			this.previous = previous;
-			title = name+": "+stat;
+			title = name;
 			numbered = true;
 		}
 
@@ -56,11 +53,10 @@ public class Character implements Unit, Serializable {
 		}
 	}
 
-	public class ModifierDialog extends LazyInputDialog {
+	public static class ModifierDialog extends LazyInputDialog {
 		public ModifierDialog(String title) {
 			super("Select the appropriate modifier:", false,
-					Arrays.asList(new String[] { "Very difficult", "Difficult",
-							"Normal", "Easy", "Very easy" }));
+					Arrays.asList(new String[] { "Very difficult", "Difficult", "Normal", "Easy", "Very easy" }));
 			this.title = title;
 			numbered = true;
 		}
@@ -100,7 +96,7 @@ public class Character implements Unit, Serializable {
 			return value;
 		}
 		final String prompt = "What should be the value for " + stat + "?";
-		value = new StatDialog(prompt,stat, false, value).getvalue();
+		value = new StatDialog(prompt, stat, false, value).getvalue();
 		stats.put(stat, value);
 		return value;
 	}
@@ -123,7 +119,7 @@ public class Character implements Unit, Serializable {
 		int damage = Math.max(0, this.damage - 2);
 		int modifier = 0;
 		if (a.applymodifier) {
-			modifier += new ModifierDialog(name).getvalue();
+			modifier += Group.modifier == null ? new ModifierDialog(name).getvalue() : Group.modifier;
 		}
 		if (Minim.DEBUG) {
 			String info;
@@ -168,8 +164,7 @@ public class Character implements Unit, Serializable {
 		return value;
 	}
 
-	String printroll(minim.model.Character c, String name, int value,
-			int roll) {
+	String printroll(minim.model.Character c, String name, int value, int roll) {
 		return ">" + c + " rolls " + name + " (" + value + "). " + roll + "\n";
 	}
 

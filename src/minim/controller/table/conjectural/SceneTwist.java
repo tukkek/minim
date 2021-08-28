@@ -3,31 +3,31 @@ package minim.controller.table.conjectural;
 import minim.controller.table.Table;
 
 public class SceneTwist extends Table {
-	public static final SceneTwist SINGLETON=new SceneTwist();
-	
-	static final Table FIRST=new Table("") {
+	public static final SceneTwist SINGLETON = new SceneTwist();
+
+	static final Table FIRST = new Table("") {
 		@Override
 		public void build() {
-			add(1,"NPC");
-			add(2,"PC");
-			add(3,"Organization");
-			add(4,"Physical event");
-			add(5,"Emotional event");
-			add(6,"Item");
+			add("NPC");
+			add("PC");
+			add("Organization");
+			add("Physical event");
+			add("Emotional event");
+			add("Item");
 		}
 	};
-	static final Table SECOND=new Table("") {
+	static final Table SECOND = new Table("") {
 		@Override
 		public void build() {
-			add(1,"Appears");
-			add(2,"Alters the location");
-			add(3,"Helps the hero");
-			add(4,"Hinders the hero");
-			add(5,"Changes the goal");
-			add(6,"Ends the scene");
+			add("Appears");
+			add("Alters the location");
+			add("Helps the hero");
+			add("Hinders the hero");
+			add("Changes the goal");
+			add("Ends the scene");
 		}
 	};
-	
+
 	SceneTwist() {
 		super("Scene twist");
 	}
@@ -37,9 +37,9 @@ public class SceneTwist extends Table {
 		FIRST.build();
 		SECOND.build();
 	}
-	
+
 	@Override
 	public String roll() {
-		return FIRST.roll()+" "+SECOND.roll().toLowerCase();
+		return FIRST.roll() + " " + SECOND.roll().toLowerCase();
 	}
 }

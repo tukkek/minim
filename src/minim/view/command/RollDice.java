@@ -2,6 +2,7 @@
 package minim.view.command;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.eclipse.e4.core.di.annotations.Execute;
@@ -13,15 +14,22 @@ public class RollDice {
 	@Execute
 	public void execute() {
 		try {
-			var dice = Integer.parseInt(UnitList.getname("Roll how many dice?", "1"));
-			var sides = Integer.parseInt(UnitList.getname("How many sides per dice?", "6"));
+			var raw = UnitList.getname("Enter roll:", "1d2+3");
+			var input = Arrays.stream(raw.split("[d+-]")).map(i -> Integer.parseInt(i)).collect(Collectors.toList());
+			var dice = input.get(0);
+			var sides = input.get(1);
 			var roll = new ArrayList<Integer>(dice);
-			var bonus = Integer.parseInt(UnitList.getname("Add bonus or penalty?", "+0"));
 			for (var i = 0; i < dice; i++) {
 				roll.add(minim.model.Character.roll(sides));
 			}
 			Output.print(
-					"Rolls: " + roll.stream().map(r -> Integer.toString(r)).collect(Collectors.joining(" ")) + ".");
+					"Rolls: " + roll.stream().map(r -> Integer.toString(r)).collect(Collectors.joining(", ")) + ".");
+			var bonus = 0;
+			if (input.size() > 2) {
+				bonus = input.get(2);
+				if (raw.contains("-"))
+					bonus = -bonus;
+			}
 			var total = roll.stream().reduce(Integer::sum).orElseThrow() + bonus;
 			Output.print("Total: " + total + ".");
 			Output.print("");

@@ -3,6 +3,7 @@ package minim.view;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -24,7 +25,6 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
@@ -50,8 +50,7 @@ public class UnitList {
 	public class AddCharacter extends SelectionAdapter {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			String name = UnitList.getname("What is the new character's name?",
-					"");
+			String name = UnitList.getname("What is the new character's name?", "");
 			if (name != null && !name.isEmpty()) {
 				units.add(new Character(name));
 			}
@@ -102,12 +101,13 @@ public class UnitList {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			Rectangle bounds = b.getBounds();
-			Point point = b.getParent().toDisplay(bounds.x + bounds.width,
-					bounds.y);
+			Point point = b.getParent().toDisplay(bounds.x + bounds.width, bounds.y);
 			menu.setLocation(point);
 			menu.setVisible(true);
 		}
 	}
+
+	static final List<String> ACCELERATORS = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
 	public static UnitList singleton;
 
@@ -140,18 +140,17 @@ public class UnitList {
 	}
 
 	public void updateunits() {
-		for (Control w : unitsarea.getChildren()) {
+		var s = unitsarea.getShell();
+		for (var w : unitsarea.getChildren()) {
 			w.dispose();
 		}
 		for (int i = 0; i < units.size(); i++) {
-			Unit u = units.get(i);
-			Button b = new Button(unitsarea, SWT.NONE);
-			int accelerator = i + 1;
-			String suffix = "";
-			if (accelerator < 10) {
-				suffix = " (&" + accelerator + ")";
-			}
-			b.setText(u.getname() + suffix);
+			var u = units.get(i);
+			var b = new Button(unitsarea, SWT.NONE);
+			var label = u.getname();
+			if (i < ACCELERATORS.size())
+				label = "&" + ACCELERATORS.get(i) + " " + label;
+			b.setText(label);
 			String icon = u instanceof Character ? "krusader.png" : "kuser.png";
 			b.setImage(getImage("icons" + File.separator + icon));
 			Menu m = addmenu(b, u);
@@ -230,8 +229,7 @@ public class UnitList {
 	}
 
 	public static String getname(String message, String previous) {
-		InputDialog d = new InputDialog(Display.getCurrent().getActiveShell(),
-				message, message, previous, null);
+		InputDialog d = new InputDialog(Display.getCurrent().getActiveShell(), message, message, previous, null);
 		d.setBlockOnOpen(true);
 		d.open();
 		return d.getValue();
@@ -239,11 +237,9 @@ public class UnitList {
 
 	@PostConstruct
 	public void start() {
-		var saved=(ArrayList<Unit>) StateManager
-				.load(UnitList.class);
-		if( saved!= null)
-		units =  (ArrayList<Unit>) StateManager
-		.load(UnitList.class);
+		var saved = (ArrayList<Unit>) StateManager.load(UnitList.class);
+		if (saved != null)
+			units = (ArrayList<Unit>) StateManager.load(UnitList.class);
 //		if (saved != null) {
 //			this.units = saved;
 //			updateunits();

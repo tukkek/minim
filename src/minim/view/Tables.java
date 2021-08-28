@@ -46,10 +46,10 @@ import minim.controller.table.conjectural.SceneTwist;
 import minim.controller.table.conjectural.Unexpectedly;
 import minim.controller.table.conjectural.YesNo;
 import minim.controller.table.conjectural.YesNoAdvantage;
-import minim.controller.table.conjectural.YesNoConflict;
 import minim.controller.table.conjectural.YesNoDisadvantage;
-import minim.controller.table.conjectural.YesNoEnding;
-import minim.controller.table.conjectural.YesNoKnowledge;
+import minim.controller.table.conjectural.loom.YesNoConflict;
+import minim.controller.table.conjectural.loom.YesNoEnding;
+import minim.controller.table.conjectural.loom.YesNoKnowledge;
 import minim.controller.table.cyberpunk.Enemy;
 import minim.controller.table.cyberpunk.Family;
 import minim.controller.table.cyberpunk.LifeEvent;
@@ -175,7 +175,7 @@ public class Tables {
 					Trait.SKILL, Trait.ATTRIBUTE));
 	static final Category WORLD = new Category("Real-world NPC",
 			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
-					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE));
+					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH));
 	static final Category HEXCRAWL = new Category("Hexcrawl",
 			List.of(new Hex(), Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
 					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT));

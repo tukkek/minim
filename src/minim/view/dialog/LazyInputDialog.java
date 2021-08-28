@@ -29,13 +29,10 @@ public class LazyInputDialog extends Dialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param a
-	 *            Asserts this is a valid value
-	 * @param prompt
-	 *            Previous message.
+	 * @param a      Asserts this is a valid value
+	 * @param prompt Previous message.
 	 */
-	public LazyInputDialog(final String prompt, boolean multiple,
-			List<?> choices) {
+	public LazyInputDialog(final String prompt, boolean multiple, List<?> choices) {
 		super(Display.getCurrent().getActiveShell());
 		this.prompt = prompt;
 		this.multiple = multiple;
@@ -48,10 +45,11 @@ public class LazyInputDialog extends Dialog {
 	 */
 	@Override
 	protected Control createDialogArea(final Composite parent) {
+		var dialog = (Composite) super.createDialogArea(parent);
 		if (title != null) {
 			getShell().setText(title);
 		}
-		group = new Group(parent, SWT.NONE);
+		group = new Group(dialog, SWT.NONE);
 		group.setLayout(new RowLayout(SWT.VERTICAL));
 		group.setText(prompt);
 		for (int i = 0; i < choices.size(); i++) {
@@ -64,9 +62,12 @@ public class LazyInputDialog extends Dialog {
 				b.setFocus();
 			}
 		}
-		parent.layout();
-		return parent;
+//		dialog.layout();	
+		return dialog;
 	}
+
+	static final List<Integer> KEYS = List.of(SWT.KEYPAD_1, SWT.KEYPAD_1, SWT.KEYPAD_2, SWT.KEYPAD_3, SWT.KEYPAD_4,
+			SWT.KEYPAD_5, SWT.KEYPAD_6, SWT.KEYPAD_7, SWT.KEYPAD_8, SWT.KEYPAD_9);
 
 	protected boolean isselected(Object o, int i) {
 		return false;
@@ -101,7 +102,6 @@ public class LazyInputDialog extends Dialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				true);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 	}
 }

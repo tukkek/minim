@@ -1,6 +1,7 @@
-package minim.controller.table.conjectural;
+package minim.controller.table.conjectural.loom;
 
 import minim.controller.table.Table;
+import minim.controller.table.conjectural.Unexpectedly;
 import minim.model.Character;
 
 public abstract class YesNoLoom extends Table {

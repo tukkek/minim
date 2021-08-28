@@ -12,7 +12,7 @@ import minim.view.Output;
 
 public abstract class Action extends SelectionAdapter {
 
-	public boolean applymodifier = true;
+	public boolean applymodifier = false;
 	protected Unit unit;
 
 	public Action(Unit u) {
@@ -32,8 +32,7 @@ public abstract class Action extends SelectionAdapter {
 	}
 
 	int show(RuntimeException e) {
-		MessageBox dialog = new MessageBox(Minim.shell,
-				SWT.ICON_ERROR | SWT.OK);
+		MessageBox dialog = new MessageBox(Minim.shell, SWT.ICON_ERROR | SWT.OK);
 		dialog.setText("Error");
 		dialog.setMessage(e.getLocalizedMessage());
 		return dialog.open();
