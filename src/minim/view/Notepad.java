@@ -14,17 +14,15 @@ public class Notepad {
 	public static Notepad singleton;
 
 	public Text text;
-	String saved;
+	String saved = null;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
+		saved = (String) StateManager.load(Notepad.class);
 		singleton = this;
 		Composite layout = new Composite(parent, SWT.NONE);
 		layout.setLayout(new FillLayout());
 		text = new Text(layout, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
-//		var d = Display.getCurrent();
-//		text.setBackground(d.getSystemColor(SWT.COLOR_WHITE));
-//		text.setForeground(d.getSystemColor(SWT.COLOR_BLACK));
 		text.setText("Type your free-form text here :)");
 		if (saved != null) {
 			text.setText(saved);
@@ -33,11 +31,6 @@ public class Notepad {
 
 	public static void print(String text) {
 		singleton.text.append(text + "\n");
-	}
-
-	@PostConstruct
-	public void start() {
-		saved = (String) StateManager.load(Notepad.class);
 	}
 
 	@PersistState

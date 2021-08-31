@@ -118,6 +118,9 @@ public class UnitList {
 	@SuppressWarnings("unused")
 	@PostConstruct
 	public void createControls(Composite parent) {
+		var saved = (ArrayList<Unit>) StateManager.load(UnitList.class);
+		if (saved != null)
+			units = (ArrayList<Unit>) StateManager.load(UnitList.class);
 		singleton = this;
 		Minim.shell = parent.getShell();
 		layout = new Composite(parent, SWT.NONE);
@@ -233,17 +236,6 @@ public class UnitList {
 		d.setBlockOnOpen(true);
 		d.open();
 		return d.getValue();
-	}
-
-	@PostConstruct
-	public void start() {
-		var saved = (ArrayList<Unit>) StateManager.load(UnitList.class);
-		if (saved != null)
-			units = (ArrayList<Unit>) StateManager.load(UnitList.class);
-//		if (saved != null) {
-//			this.units = saved;
-//			updateunits();
-//		}
 	}
 
 	@PersistState
