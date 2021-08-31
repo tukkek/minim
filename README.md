@@ -26,12 +26,12 @@ This can be a great help for GMs who want to try improvising part of their games
 
 **What the Companion is not:** the companion is not a replacement for coming up with an awesome adventure for your group, great dungeon designs, terrific monstrous foes or memorable figures to inhabit your game world. All it tries to do is take care of all the mechanical parts of a game session so that everything else can progress as smoothly as possible. It also knows that some of these mechanical tasks are better left for the players, who will want to roll some things on their own and keep track of their most important information themselves. The Companion makes no attempt at managing the heroes' special abilities, willpower pools or equipment - a skilled GM will know how to use it to the fullest and when to let the players roll their own dice and resolve their own actions manually.
 
-You can download the Companion's [latest relase for your operating system on the releases page](https://github.com/tukkek/minim/releases). You will require [Java 8 or higher](https://java.com/inc/BrowserRedirect1.jsp?locale=en) in order to run it.
+You can download the Companion's [latest relase for your operating system on the releases page](https://github.com/tukkek/minim/releases).
 
 If instead you want to compile the source code yourself then you will need:
 
-* Java Development Kit (Version 8 or higher) http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html
-* Eclipse RCP (version 4 or higher) http://www.eclipse.org/downloads/eclipse-packages/
+* Java Development Kit (Version 14 or higher) http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html
+* Eclipse RCP (version 4 or higher, Minim 1.4 built with Eclipse 4.20) http://www.eclipse.org/downloads/eclipse-packages/
 
 A little bit about the Companion's history: it was first created around 2008 as a New World of Darkness companion software, with much of the same goals as it has today. In 2013 it was converted to the Minim roleplaying system (at the time called "Base 5"). The current version is a rewrite from scratch, turning the old 10-thousand lines-of-code previous project into around one thousand LoC only. The previous incarnation was a little bit fancier but they are, for all intents and purposes, equivalent solutions.
 
