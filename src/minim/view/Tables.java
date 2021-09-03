@@ -79,6 +79,7 @@ import minim.controller.table.ironsworn.Region;
 import minim.controller.table.ironsworn.SettlementName;
 import minim.controller.table.ironsworn.SettlementTrouble;
 import minim.controller.table.ironsworn.WaterLocation;
+import minim.controller.table.misc.Quantity;
 import minim.controller.table.mythic.EventFocus;
 import minim.controller.table.mythic.EventMeaning;
 import minim.controller.table.mythic.Fate;
@@ -191,8 +192,10 @@ public class Tables {
 	static final Category WEATHER = new Category("Weather",
 			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
 					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
+	static final Category MISC = new Category("Miscellaneous", List.of(new Quantity()));
+
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
-			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER));
+			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
