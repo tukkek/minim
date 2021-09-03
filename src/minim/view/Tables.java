@@ -37,6 +37,11 @@ import minim.controller.table.adventurecrafter.TurningPoint;
 import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
+import minim.controller.table.chronicles.Monster;
+import minim.controller.table.chronicles.kindred.Age;
+import minim.controller.table.chronicles.kindred.Clan;
+import minim.controller.table.chronicles.kindred.Generation;
+import minim.controller.table.chronicles.kindred.Kindred;
 import minim.controller.table.combat.Action;
 import minim.controller.table.combat.ActionType;
 import minim.controller.table.combat.Twist;
@@ -193,9 +198,13 @@ public class Tables {
 			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
 					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
 	static final Category MISC = new Category("Miscellaneous", List.of(new Quantity()));
-
-	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
-			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC));
+	static final Category CHRONICLES = new Category("Chronicles of darkness",
+			List.of(new Monster(), Clan.ANARCH, Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN,
+					Generation.INSTANCE, minim.controller.table.chronicles.kindred.Type.INSTANCE, Age.INSTANCE,
+					Kindred.RURAL, Kindred.URBAN));
+	static final List<Category> CATEGORIES = new ArrayList<>(
+			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
+					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));

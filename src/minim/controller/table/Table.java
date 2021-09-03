@@ -2,7 +2,9 @@ package minim.controller.table;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import minim.model.Character;
 
@@ -51,5 +53,10 @@ public abstract class Table {
 	@Override
 	public String toString() {
 		return title;
+	}
+
+	public Set<String> getunique() {
+		roll();
+		return new HashSet<String>(lines);
 	}
 }
