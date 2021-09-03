@@ -42,6 +42,13 @@ import minim.controller.table.chronicles.kindred.Age;
 import minim.controller.table.chronicles.kindred.Clan;
 import minim.controller.table.chronicles.kindred.Generation;
 import minim.controller.table.chronicles.kindred.Kindred;
+import minim.controller.table.chronicles.mage.Rank;
+import minim.controller.table.chronicles.mage.Tradition;
+import minim.controller.table.chronicles.mage.npc.Mage;
+import minim.controller.table.chronicles.mage.npc.Marauder;
+import minim.controller.table.chronicles.mage.social.Chantry;
+import minim.controller.table.chronicles.mage.social.Convention;
+import minim.controller.table.chronicles.mage.social.Labyrinth;
 import minim.controller.table.combat.Action;
 import minim.controller.table.combat.ActionType;
 import minim.controller.table.combat.Twist;
@@ -201,7 +208,11 @@ public class Tables {
 	static final Category CHRONICLES = new Category("Chronicles of darkness",
 			List.of(new Monster(), Clan.ANARCH, Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN,
 					Generation.INSTANCE, minim.controller.table.chronicles.kindred.Type.INSTANCE, Age.INSTANCE,
-					Kindred.RURAL, Kindred.URBAN));
+					Kindred.RURAL, Kindred.URBAN, minim.controller.table.chronicles.mage.Faction.INSTANCE,
+					Tradition.INSTANCE, Rank.TECHNOCRACY, Rank.TRADITIONS, new Chantry(), new Convention(),
+					Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST, Mage.TECHNOCRAT, Rank.NEṔHANDI,
+					Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER, Marauder.BACKRGOUND,
+					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
