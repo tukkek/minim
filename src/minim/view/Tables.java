@@ -50,6 +50,8 @@ import minim.controller.table.chronicles.mage.npc.Marauder;
 import minim.controller.table.chronicles.mage.social.Chantry;
 import minim.controller.table.chronicles.mage.social.Convention;
 import minim.controller.table.chronicles.mage.social.Labyrinth;
+import minim.controller.table.chronicles.werewolf.Tribe;
+import minim.controller.table.chronicles.werewolf.Werewolf;
 import minim.controller.table.combat.Action;
 import minim.controller.table.combat.ActionType;
 import minim.controller.table.combat.Twist;
@@ -213,7 +215,8 @@ public class Tables {
 					Tradition.INSTANCE, Rank.TECHNOCRACY, Rank.TRADITIONS, new Chantry(), new Convention(),
 					Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST, Mage.TECHNOCRAT, Rank.NEṔHANDI,
 					Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER, Marauder.BACKRGOUND,
-					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION));
+					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION,
+					Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf()));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
