@@ -8,6 +8,7 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public class Wraith extends Table {
+	public static final Table INSTANCE = new Wraith();
 	public static final Table LEGIONS = new SimpleTable("Wraith (faction, hierarchy legions)",
 			List.of("Emerald legion", "Legion of fate", "Grim legion", "Iron legion", "Legion of paupers",
 					"Penitent legion", "Silent legion", "Skeletal legion"));
@@ -28,7 +29,7 @@ public class Wraith extends Table {
 			List.of("Alchemists", "Artificers", "Chanteur", "Harbingers", "Haunters", "Masquers", "Mnemoi", "Monitors",
 					"Oracles", "Pardoners", "Proctors", "Sandmen", "Solicitors", "Sppoks", "Usurers"));
 
-	public Wraith() {
+	Wraith() {
 		super("Wraith");
 	}
 

@@ -21,6 +21,7 @@ public class Promethean extends Table {
 				List.of("Chimera", "Crane", "Dragon", "Fox", "La llorona", "Raven", "Salamander", "Toad"));
 	}
 
+	public static final Table INSTANCE = new Promethean();
 	private static final String FRANKENSTEIN = "Frankenstein";
 	private static final String GALATEA = "Galatea";
 	private static final String OSIRIS = "Osiris";
@@ -72,7 +73,7 @@ public class Promethean extends Table {
 		DISQUIET.put(ULGAN, "causes intense paranoia");
 	}
 
-	public Promethean() {
+	Promethean() {
 		super("Promethean");
 	}
 

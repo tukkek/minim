@@ -7,10 +7,11 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public class Werewolf extends Table {
+	public static final Table INSTANCE = new Werewolf();
 	public static final Table AUSPICE = new SimpleTable("Werewolf (auspice)",
 			List.of("Warrior", "Visinary", "Walker-between", "Spirit master", "Stalker"));
 
-	public Werewolf() {
+	Werewolf() {
 		super("Werewolf");
 	}
 

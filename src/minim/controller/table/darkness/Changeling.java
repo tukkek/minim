@@ -9,6 +9,7 @@ import minim.controller.table.Table;
 import minim.model.Character;
 
 public class Changeling extends Table {
+	public static final Table INSTANCE = new Changeling();
 	public static final String SIDHE = "Sidhe";
 	public static final Table KITHAIN = new SimpleTable("Changeling (kith, kithain)",
 			List.of("Boggasn", "Eshu", "Nockers", "Pooka", "Redcaps", "Satyrs", SIDHE, "Sluagh", "Trolls"));
@@ -46,7 +47,7 @@ public class Changeling extends Table {
 			List.of("Aesin", "Ailil", "Balor", "Daireann", "Leanhaun", "Varich", "Scathach"));
 	public static final Table HOUSES = new SimpleMetaTable("Changeling (house)", List.of(SEELIEHOUSES, UNSEELIEHOUSES));
 
-	public Changeling() {
+	Changeling() {
 		super("Changeling");
 	}
 

@@ -7,13 +7,14 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public class Beast extends Table {
+	public static final Table INSTANCE = new Beast();
 	public static final Table FAMILIES = new SimpleTable("Beasr (family)", List.of("Anakim, giants", "Eshmaki, lurkers",
 			"Inguma, outsiders", "Makara, leviathans", "Namtaru, gorgoms", "Talassii, captors", "Ugallu, raptors"));
 	public static final Table HUNGER = new SimpleTable("Beasr (hunger)",
 			List.of("Predator (prey)", "Tyrant (power)", "Nemesies (punishment)", "Ravager (ruin)",
 					"Collectors (hoard)", "Whispers (secrets)", "Enablers (transgression)"));
 
-	public Beast() {
+	Beast() {
 		super("Beast");
 	}
 

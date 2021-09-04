@@ -7,12 +7,13 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public class Demon extends Table {
+	public static final Table INSTANCE = new Demon();
 	public static final Table HOUSE = new SimpleTable("Demon (houses)",
 			List.of("Devils", "Scourges", "Malefactors", "Fiends", "Defilers", "Devourers", "Slayers"));
 	public static final Table FACTION = new SimpleTable("Demon (factions)",
 			List.of("Faustian", "Cryptics", "Luciferans", "Raveners", "Reconcilers"));
 
-	public Demon() {
+	Demon() {
 		super("Demon");
 	}
 

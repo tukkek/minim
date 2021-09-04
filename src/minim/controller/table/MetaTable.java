@@ -26,7 +26,11 @@ public abstract class MetaTable extends Table {
 	public String roll() {
 		var r = super.roll();
 		var t = tables.get(r);
-		return t == null ? r : t.roll();
+		return onroll(t, t == null ? r : t.roll());
+	}
+
+	protected String onroll(Table t, String result) {
+		return result;
 	}
 
 	protected void add(int n, Table t) {

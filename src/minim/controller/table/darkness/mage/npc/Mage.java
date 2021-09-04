@@ -11,6 +11,7 @@ import minim.controller.table.darkness.mage.Tradition;
 import minim.model.Character;
 
 public class Mage extends Table {
+	public static final Table INSTANCE = new Mage();
 	public static final Table TRADITIONALIST = new Table("Mage (NPC, traditionalist)") {
 		@Override
 		public void build() {
@@ -81,8 +82,8 @@ public class Mage extends Table {
 		FACTIONS.put(Faction.ORPHANS, ORPHAN);
 	}
 
-	public Mage() {
-		super("Mage (NPC)");
+	Mage() {
+		super("Mage");
 	}
 
 	@Override

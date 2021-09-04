@@ -9,11 +9,12 @@ import minim.controller.table.darkness.mage.Tradition;
 import minim.model.Character;
 
 public class HedgeMage extends Table {
+	public static final Table INSTANCE = new HedgeMage();
 	public static final String LARGEGROUP = "Large group";
 	public static final Table ORGANIZATION = new SimpleTable("Hedge mage (organization)",
 			List.of("Loner", "Small group", LARGEGROUP));
 
-	public HedgeMage() {
+	HedgeMage() {
 		super("Hedge mage");
 	}
 

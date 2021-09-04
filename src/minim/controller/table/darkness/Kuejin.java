@@ -8,6 +8,7 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public class Kuejin extends Table {
+	public static final Table INSTANCE = new Kuejin();
 	public static final Table ORTHODOX = new SimpleTable("Kue-jin (dharma, orthodox)",
 			List.of("Devil-tiger", "Song of shadow", "Resplendent crane", "Thrashing dragon", "Thousand whispers"));
 	public static final Table HERETICAL = new SimpleTable("Kue-jin (dharma, heretical)",
@@ -30,7 +31,7 @@ public class Kuejin extends Table {
 		}
 	};
 
-	public Kuejin() {
+	Kuejin() {
 		super("Kue-jin");
 	}
 

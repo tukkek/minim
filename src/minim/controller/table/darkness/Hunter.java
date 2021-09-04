@@ -9,6 +9,7 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public class Hunter extends Table {
+	public static final Table INSTANCE = new Hunter();
 	public static final Table MERCY = new SimpleTable("Hunter (creed, mercy)",
 			List.of("Innocents", "Martyrs", "Redeemers"));
 	public static final Table VISION = new SimpleTable("Hunter (creed, vision)",
@@ -34,7 +35,7 @@ public class Hunter extends Table {
 		}
 	};
 
-	public Hunter() {
+	Hunter() {
 		super("Hunter");
 	}
 

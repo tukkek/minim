@@ -218,26 +218,31 @@ public class Tables {
 			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
 					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
 	static final Category MISC = new Category("Miscellaneous", List.of(new Quantity()));
-	static final Category CHRONICLES = new Category("World of darkness", List.of(new Monster(), Clan.ANARCH,
+	static final Category MONSTER = new Category("World of darkness (monsters)",
+			List.of(Wraith.INSTANCE, Hunter.INSTANCE, Werewolf.INSTANCE, Changeling.INSTANCE, Beast.INSTANCE,
+					Demon.INSTANCE, Kindred.URBAN, Kindred.RURAL, HedgeMage.INSTANCE, Mage.INSTANCE, Kuejin.INSTANCE,
+					Bound.INSTANCE, Promethean.INSTANCE, Mummy.INSTANCE, Monster.INSTANCE));
+	static final Category DARKNESS = new Category("World of darkness", List.of(Monster.INSTANCE, Clan.ANARCH,
 			Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN, Generation.INSTANCE,
 			minim.controller.table.darkness.kindred.Type.INSTANCE, Age.INSTANCE, Kindred.RURAL, Kindred.URBAN,
 			minim.controller.table.darkness.mage.Faction.INSTANCE, Tradition.INSTANCE, Rank.TECHNOCRACY,
-			Rank.TRADITIONS, new Chantry(), new Convention(), Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST,
+			Rank.TRADITIONS, new Chantry(), new Convention(), Convention.CONSTRUCT, Mage.INSTANCE, Mage.TRADITIONALIST,
 			Mage.TECHNOCRAT, Rank.NEṔHANDI, Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER,
-			Marauder.BACKRGOUND, Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION,
-			Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf(), new Wraith(),
-			Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES, new Hunter(),
-			Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL, Hunter.COMPACT, Hunter.CONSPIRACY,
-			Hunter.ORGANIZATION, new Changeling(), Changeling.ADHENE, Changeling.COURT, Changeling.GALLAIN,
-			Changeling.HOUSES, Changeling.HSIEN, Changeling.INANIMAE, Changeling.KITH, Changeling.KITHAIN,
-			Changeling.NUNNEHI, Changeling.SEELIEHOUSES, Changeling.THALLAIN, Changeling.UNSEELIEHOUSES, new Beast(),
-			Beast.FAMILIES, Beast.HUNGER, new Demon(), Demon.FACTION, Demon.HOUSE, new Kuejin(), Kuejin.DHARMA,
-			Kuejin.HERETICAL, Kuejin.ORTHODOX, Kuejin.CHI, new Bound(), Bound.BURDEN, Bound.HAUNT, Bound.KEY,
-			new Promethean(), Promethean.LINEAGE, Promethean.REFINEMENT, Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN,
-			Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ, Athanor.ULGAN, new Mummy(), Mummy.DECREE, Mummy.GUILD));
+			Marauder.BACKRGOUND, Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, HedgeMage.INSTANCE,
+			HedgeMage.ORGANIZATION, Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE,
+			Werewolf.INSTANCE, Wraith.INSTANCE, Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS,
+			Wraith.RENEGADES, Hunter.INSTANCE, Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL, Hunter.COMPACT,
+			Hunter.CONSPIRACY, Hunter.ORGANIZATION, Changeling.INSTANCE, Changeling.ADHENE, Changeling.COURT,
+			Changeling.GALLAIN, Changeling.HOUSES, Changeling.HSIEN, Changeling.INANIMAE, Changeling.KITH,
+			Changeling.KITHAIN, Changeling.NUNNEHI, Changeling.SEELIEHOUSES, Changeling.THALLAIN,
+			Changeling.UNSEELIEHOUSES, Beast.INSTANCE, Beast.FAMILIES, Beast.HUNGER, Demon.INSTANCE, Demon.FACTION,
+			Demon.HOUSE, Kuejin.INSTANCE, Kuejin.DHARMA, Kuejin.HERETICAL, Kuejin.ORTHODOX, Kuejin.CHI, Bound.INSTANCE,
+			Bound.BURDEN, Bound.HAUNT, Bound.KEY, Promethean.INSTANCE, Promethean.LINEAGE, Promethean.REFINEMENT,
+			Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN, Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ,
+			Athanor.ULGAN, Mummy.INSTANCE, Mummy.DECREE, Mummy.GUILD));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
-					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
+					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));

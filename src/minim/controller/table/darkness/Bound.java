@@ -7,6 +7,7 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public class Bound extends Table {
+	public static final Table INSTANCE = new Bound();
 	public static final Table BURDEN = new SimpleTable("Bound (burden)",
 			List.of("Abiding", "Bereaved", "Hungry", "Kindly", "Vengeful"));
 	public static final Table HAUNT = new SimpleTable("Bound (haunt)", List.of("Boneyard", "Caul", "Curse", "Dirge",
@@ -14,7 +15,7 @@ public class Bound extends Table {
 	public static final Table KEY = new SimpleTable("Bound (key)", List.of("Beasts", "Blood", "Chance", "Cold wind",
 			"Deep waters", "Disease", "Grave dirt", "Pyre flame", "Stillness"));
 
-	public Bound() {
+	Bound() {
 		super("Bound");
 	}
 
