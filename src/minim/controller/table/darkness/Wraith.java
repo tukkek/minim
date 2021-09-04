@@ -1,4 +1,4 @@
-package minim.controller.table.chronicles;
+package minim.controller.table.darkness;
 
 import java.util.List;
 

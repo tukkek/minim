@@ -1,11 +1,11 @@
-package minim.controller.table.chronicles.mage.npc;
+package minim.controller.table.darkness.mage.npc;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
-import minim.controller.table.chronicles.mage.Tradition;
+import minim.controller.table.darkness.mage.Tradition;
 import minim.model.Character;
 
 public class HedgeMage extends Table {

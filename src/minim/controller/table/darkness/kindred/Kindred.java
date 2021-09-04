@@ -1,4 +1,4 @@
-package minim.controller.table.chronicles.kindred;
+package minim.controller.table.darkness.kindred;
 
 import java.util.HashMap;
 import java.util.List;

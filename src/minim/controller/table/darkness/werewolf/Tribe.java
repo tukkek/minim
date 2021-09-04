@@ -1,4 +1,4 @@
-package minim.controller.table.chronicles.werewolf;
+package minim.controller.table.darkness.werewolf;
 
 import java.util.HashMap;
 import java.util.List;

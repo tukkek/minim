@@ -1,4 +1,4 @@
-package minim.controller.table.chronicles.mage.social;
+package minim.controller.table.darkness.mage.social;
 
 import java.util.ArrayList;
 

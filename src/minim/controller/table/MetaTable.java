@@ -3,6 +3,18 @@ package minim.controller.table;
 import java.util.List;
 
 public abstract class MetaTable extends Table {
+	public static class SimpleMetaTable extends MetaTable {
+		public SimpleMetaTable(String title, List<Table> tables) {
+			super(title, tables);
+		}
+
+		@Override
+		public void build() {
+			for (var t : tables.keySet())
+				add(t);
+		}
+	}
+
 	TableMap tables;
 
 	public MetaTable(String title, List<Table> tables) {

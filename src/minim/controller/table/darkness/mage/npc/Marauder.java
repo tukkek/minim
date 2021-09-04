@@ -1,9 +1,9 @@
-package minim.controller.table.chronicles.mage.npc;
+package minim.controller.table.darkness.mage.npc;
 
 import java.util.ArrayList;
 
 import minim.controller.table.Table;
-import minim.controller.table.chronicles.mage.Rank;
+import minim.controller.table.darkness.mage.Rank;
 import minim.model.Character;
 
 public class Marauder extends Table {

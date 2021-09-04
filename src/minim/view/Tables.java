@@ -37,22 +37,6 @@ import minim.controller.table.adventurecrafter.TurningPoint;
 import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
-import minim.controller.table.chronicles.Monster;
-import minim.controller.table.chronicles.Wraith;
-import minim.controller.table.chronicles.kindred.Age;
-import minim.controller.table.chronicles.kindred.Clan;
-import minim.controller.table.chronicles.kindred.Generation;
-import minim.controller.table.chronicles.kindred.Kindred;
-import minim.controller.table.chronicles.mage.Rank;
-import minim.controller.table.chronicles.mage.Tradition;
-import minim.controller.table.chronicles.mage.npc.HedgeMage;
-import minim.controller.table.chronicles.mage.npc.Mage;
-import minim.controller.table.chronicles.mage.npc.Marauder;
-import minim.controller.table.chronicles.mage.social.Chantry;
-import minim.controller.table.chronicles.mage.social.Convention;
-import minim.controller.table.chronicles.mage.social.Labyrinth;
-import minim.controller.table.chronicles.werewolf.Tribe;
-import minim.controller.table.chronicles.werewolf.Werewolf;
 import minim.controller.table.combat.Action;
 import minim.controller.table.combat.ActionType;
 import minim.controller.table.combat.Twist;
@@ -74,6 +58,23 @@ import minim.controller.table.cyberpunk.LifepathMotivation;
 import minim.controller.table.cyberpunk.Romance;
 import minim.controller.table.cyberpunk.Sibling;
 import minim.controller.table.cyberpunk.Style;
+import minim.controller.table.darkness.Hunter;
+import minim.controller.table.darkness.Monster;
+import minim.controller.table.darkness.Wraith;
+import minim.controller.table.darkness.kindred.Age;
+import minim.controller.table.darkness.kindred.Clan;
+import minim.controller.table.darkness.kindred.Generation;
+import minim.controller.table.darkness.kindred.Kindred;
+import minim.controller.table.darkness.mage.Rank;
+import minim.controller.table.darkness.mage.Tradition;
+import minim.controller.table.darkness.mage.npc.HedgeMage;
+import minim.controller.table.darkness.mage.npc.Mage;
+import minim.controller.table.darkness.mage.npc.Marauder;
+import minim.controller.table.darkness.mage.social.Chantry;
+import minim.controller.table.darkness.mage.social.Convention;
+import minim.controller.table.darkness.mage.social.Labyrinth;
+import minim.controller.table.darkness.werewolf.Tribe;
+import minim.controller.table.darkness.werewolf.Werewolf;
 import minim.controller.table.hexcrawl.Elevation;
 import minim.controller.table.hexcrawl.Hex;
 import minim.controller.table.hexcrawl.PointOfInterest;
@@ -209,16 +210,17 @@ public class Tables {
 			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
 					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
 	static final Category MISC = new Category("Miscellaneous", List.of(new Quantity()));
-	static final Category CHRONICLES = new Category("Chronicles of darkness",
+	static final Category CHRONICLES = new Category("World of darkness",
 			List.of(new Monster(), Clan.ANARCH, Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN,
-					Generation.INSTANCE, minim.controller.table.chronicles.kindred.Type.INSTANCE, Age.INSTANCE,
-					Kindred.RURAL, Kindred.URBAN, minim.controller.table.chronicles.mage.Faction.INSTANCE,
+					Generation.INSTANCE, minim.controller.table.darkness.kindred.Type.INSTANCE, Age.INSTANCE,
+					Kindred.RURAL, Kindred.URBAN, minim.controller.table.darkness.mage.Faction.INSTANCE,
 					Tradition.INSTANCE, Rank.TECHNOCRACY, Rank.TRADITIONS, new Chantry(), new Convention(),
 					Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST, Mage.TECHNOCRAT, Rank.NEṔHANDI,
 					Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER, Marauder.BACKRGOUND,
 					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION,
 					Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf(),
-					new Wraith(), Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES));
+					new Wraith(), Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES,
+					new Hunter(), Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));

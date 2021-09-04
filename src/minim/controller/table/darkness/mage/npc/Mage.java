@@ -1,13 +1,13 @@
-package minim.controller.table.chronicles.mage.npc;
+package minim.controller.table.darkness.mage.npc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import minim.controller.table.Table;
-import minim.controller.table.chronicles.mage.Faction;
-import minim.controller.table.chronicles.mage.Rank;
-import minim.controller.table.chronicles.mage.Tradition;
+import minim.controller.table.darkness.mage.Faction;
+import minim.controller.table.darkness.mage.Rank;
+import minim.controller.table.darkness.mage.Tradition;
 import minim.model.Character;
 
 public class Mage extends Table {

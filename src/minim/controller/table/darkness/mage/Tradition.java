@@ -1,4 +1,4 @@
-package minim.controller.table.chronicles.mage;
+package minim.controller.table.darkness.mage;
 
 import java.util.List;
 

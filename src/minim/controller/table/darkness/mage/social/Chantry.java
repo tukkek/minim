@@ -1,11 +1,11 @@
-package minim.controller.table.chronicles.mage.social;
+package minim.controller.table.darkness.mage.social;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import minim.controller.table.Table;
-import minim.controller.table.chronicles.mage.Tradition;
+import minim.controller.table.darkness.mage.Tradition;
 import minim.model.Character;
 
 public class Chantry extends Table {
