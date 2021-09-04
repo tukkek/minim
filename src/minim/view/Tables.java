@@ -58,6 +58,7 @@ import minim.controller.table.cyberpunk.LifepathMotivation;
 import minim.controller.table.cyberpunk.Romance;
 import minim.controller.table.cyberpunk.Sibling;
 import minim.controller.table.cyberpunk.Style;
+import minim.controller.table.darkness.Beast;
 import minim.controller.table.darkness.Changeling;
 import minim.controller.table.darkness.Hunter;
 import minim.controller.table.darkness.Monster;
@@ -211,19 +212,21 @@ public class Tables {
 			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
 					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
 	static final Category MISC = new Category("Miscellaneous", List.of(new Quantity()));
-	static final Category CHRONICLES = new Category("World of darkness", List.of(new Monster(), Clan.ANARCH,
-			Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN, Generation.INSTANCE,
-			minim.controller.table.darkness.kindred.Type.INSTANCE, Age.INSTANCE, Kindred.RURAL, Kindred.URBAN,
-			minim.controller.table.darkness.mage.Faction.INSTANCE, Tradition.INSTANCE, Rank.TECHNOCRACY,
-			Rank.TRADITIONS, new Chantry(), new Convention(), Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST,
-			Mage.TECHNOCRAT, Rank.NEṔHANDI, Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER,
-			Marauder.BACKRGOUND, Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION,
-			Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf(), new Wraith(),
-			Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES, new Hunter(),
-			Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL, Hunter.COMPACT, Hunter.CONSPIRACY,
-			Hunter.ORGANIZATION, new Changeling(), Changeling.ADHENE, Changeling.COURT, Changeling.GALLAIN,
-			Changeling.HOUSES, Changeling.HSIEN, Changeling.INANIMAE, Changeling.KITH, Changeling.KITHAIN,
-			Changeling.NUNNEHI, Changeling.SEELIEHOUSES, Changeling.THALLAIN, Changeling.UNSEELIEHOUSES));
+	static final Category CHRONICLES = new Category("World of darkness",
+			List.of(new Monster(), Clan.ANARCH, Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN,
+					Generation.INSTANCE, minim.controller.table.darkness.kindred.Type.INSTANCE, Age.INSTANCE,
+					Kindred.RURAL, Kindred.URBAN, minim.controller.table.darkness.mage.Faction.INSTANCE,
+					Tradition.INSTANCE, Rank.TECHNOCRACY, Rank.TRADITIONS, new Chantry(), new Convention(),
+					Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST, Mage.TECHNOCRAT, Rank.NEṔHANDI,
+					Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER, Marauder.BACKRGOUND,
+					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION,
+					Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf(),
+					new Wraith(), Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES,
+					new Hunter(), Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL, Hunter.COMPACT,
+					Hunter.CONSPIRACY, Hunter.ORGANIZATION, new Changeling(), Changeling.ADHENE, Changeling.COURT,
+					Changeling.GALLAIN, Changeling.HOUSES, Changeling.HSIEN, Changeling.INANIMAE, Changeling.KITH,
+					Changeling.KITHAIN, Changeling.NUNNEHI, Changeling.SEELIEHOUSES, Changeling.THALLAIN,
+					Changeling.UNSEELIEHOUSES, new Beast(), Beast.FAMILIES, Beast.HUNGER));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
