@@ -13,7 +13,9 @@ public class Lines extends ArrayList<String> {
 		add("%s: %s".formatted(header, value.toLowerCase()));
 	}
 
-	public void add(String header, Table t) {
-		add(header, t.roll());
+	public String add(String header, Table t) {
+		var r = t.roll();
+		add(header, r);
+		return r;
 	}
 }
