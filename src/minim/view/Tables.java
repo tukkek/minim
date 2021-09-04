@@ -220,7 +220,8 @@ public class Tables {
 					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION,
 					Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf(),
 					new Wraith(), Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES,
-					new Hunter(), Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL));
+					new Hunter(), Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL, Hunter.COMPACT,
+					Hunter.CONSPIRACY, Hunter.ORGANIZATION));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));

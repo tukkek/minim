@@ -10,7 +10,16 @@ public class TableMap extends HashMap<String, Table> {
 			put(t);
 	}
 
+	public TableMap() {
+		super();
+	}
+
 	public void put(Table t) {
 		put(t.title, t);
+	}
+
+	public void put(List<Table> tables) {
+		for (var t : tables)
+			put(t);
 	}
 }

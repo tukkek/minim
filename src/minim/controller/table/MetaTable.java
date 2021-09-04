@@ -5,7 +5,8 @@ import java.util.List;
 public abstract class MetaTable extends Table {
 	public static class SimpleMetaTable extends MetaTable {
 		public SimpleMetaTable(String title, List<Table> tables) {
-			super(title, tables);
+			super(title);
+			this.tables.put(tables);
 		}
 
 		@Override
@@ -15,11 +16,10 @@ public abstract class MetaTable extends Table {
 		}
 	}
 
-	TableMap tables;
+	TableMap tables = new TableMap();
 
-	public MetaTable(String title, List<Table> tables) {
+	public MetaTable(String title) {
 		super(title);
-		this.tables = new TableMap(tables);
 	}
 
 	@Override
@@ -30,14 +30,17 @@ public abstract class MetaTable extends Table {
 	}
 
 	protected void add(int n, Table t) {
+		tables.put(t);
 		super.add(n, t.title);
 	}
 
 	protected void add(int from, int to, Table t) {
+		tables.put(t);
 		super.add(from, to, t.title);
 	}
 
 	protected void add(Table t) {
+		tables.put(t);
 		super.add(t.title);
 	}
 }

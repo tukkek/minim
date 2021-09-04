@@ -15,7 +15,7 @@ public class Wraith extends Table {
 			List.of("The host", "Children of the green", "Riders of the wheel"));
 	public static final Table RENEGADES = new SimpleTable("Wraith (faction, renegades)",
 			List.of("Protesters", "Idealists", "Outlaws", "Drop-outs"));
-	public static final Table FACTIONS = new MetaTable("Wraith (faction)", List.of(LEGIONS, HERETICS, RENEGADES)) {
+	public static final Table FACTIONS = new MetaTable("Wraith (faction)") {
 		@Override
 		public void build() {
 			add(2, LEGIONS);
