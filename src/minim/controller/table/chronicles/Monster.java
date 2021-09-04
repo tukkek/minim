@@ -16,6 +16,7 @@ public class Monster extends Table {
 		add(200, "Beast");
 		add(200, "Demon");
 		add(100, "Vampire");
+		add(50, "Hedge mage");
 		add(30, "Mage");
 		add(30, "Kue-jin");
 		add(10, "Sin-eater");

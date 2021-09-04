@@ -44,6 +44,7 @@ import minim.controller.table.chronicles.kindred.Generation;
 import minim.controller.table.chronicles.kindred.Kindred;
 import minim.controller.table.chronicles.mage.Rank;
 import minim.controller.table.chronicles.mage.Tradition;
+import minim.controller.table.chronicles.mage.npc.HedgeMage;
 import minim.controller.table.chronicles.mage.npc.Mage;
 import minim.controller.table.chronicles.mage.npc.Marauder;
 import minim.controller.table.chronicles.mage.social.Chantry;
@@ -212,7 +213,7 @@ public class Tables {
 					Tradition.INSTANCE, Rank.TECHNOCRACY, Rank.TRADITIONS, new Chantry(), new Convention(),
 					Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST, Mage.TECHNOCRAT, Rank.NEṔHANDI,
 					Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER, Marauder.BACKRGOUND,
-					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN));
+					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
