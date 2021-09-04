@@ -38,6 +38,7 @@ import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
 import minim.controller.table.chronicles.Monster;
+import minim.controller.table.chronicles.Wraith;
 import minim.controller.table.chronicles.kindred.Age;
 import minim.controller.table.chronicles.kindred.Clan;
 import minim.controller.table.chronicles.kindred.Generation;
@@ -216,7 +217,8 @@ public class Tables {
 					Convention.CONSTRUCT, new Mage(), Mage.TRADITIONALIST, Mage.TECHNOCRAT, Rank.NEṔHANDI,
 					Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER, Marauder.BACKRGOUND,
 					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, new HedgeMage(), HedgeMage.ORGANIZATION,
-					Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf()));
+					Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE, new Werewolf(),
+					new Wraith(), Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
