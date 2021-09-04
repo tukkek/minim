@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
+import minim.controller.table.Mummy;
 import minim.controller.table.Table;
 import minim.controller.table.adventure.Type;
 import minim.controller.table.adventure.dungeon.Dungeon;
@@ -233,7 +234,7 @@ public class Tables {
 			Beast.FAMILIES, Beast.HUNGER, new Demon(), Demon.FACTION, Demon.HOUSE, new Kuejin(), Kuejin.DHARMA,
 			Kuejin.HERETICAL, Kuejin.ORTHODOX, Kuejin.CHI, new Bound(), Bound.BURDEN, Bound.HAUNT, Bound.KEY,
 			new Promethean(), Promethean.LINEAGE, Promethean.REFINEMENT, Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN,
-			Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ, Athanor.ULGAN));
+			Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ, Athanor.ULGAN, new Mummy(), Mummy.DECREE, Mummy.GUILD));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));

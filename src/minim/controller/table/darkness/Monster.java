@@ -19,7 +19,7 @@ public class Monster extends Table {
 		add(50, "Hedge mage");
 		add(30, "Mage");
 		add(30, "Kue-jin");
-		add(10, "Bound");
+		add(10, "Sin-eater");
 		add(5, "Promethean");
 		add(1, "Mummy");
 	}
