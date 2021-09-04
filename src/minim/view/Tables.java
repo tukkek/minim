@@ -65,6 +65,8 @@ import minim.controller.table.darkness.Demon;
 import minim.controller.table.darkness.Hunter;
 import minim.controller.table.darkness.Kuejin;
 import minim.controller.table.darkness.Monster;
+import minim.controller.table.darkness.Promethean;
+import minim.controller.table.darkness.Promethean.Athanor;
 import minim.controller.table.darkness.Wraith;
 import minim.controller.table.darkness.kindred.Age;
 import minim.controller.table.darkness.kindred.Clan;
@@ -229,7 +231,9 @@ public class Tables {
 			Changeling.HOUSES, Changeling.HSIEN, Changeling.INANIMAE, Changeling.KITH, Changeling.KITHAIN,
 			Changeling.NUNNEHI, Changeling.SEELIEHOUSES, Changeling.THALLAIN, Changeling.UNSEELIEHOUSES, new Beast(),
 			Beast.FAMILIES, Beast.HUNGER, new Demon(), Demon.FACTION, Demon.HOUSE, new Kuejin(), Kuejin.DHARMA,
-			Kuejin.HERETICAL, Kuejin.ORTHODOX, Kuejin.CHI, new Bound(), Bound.BURDEN, Bound.HAUNT, Bound.KEY));
+			Kuejin.HERETICAL, Kuejin.ORTHODOX, Kuejin.CHI, new Bound(), Bound.BURDEN, Bound.HAUNT, Bound.KEY,
+			new Promethean(), Promethean.LINEAGE, Promethean.REFINEMENT, Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN,
+			Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ, Athanor.ULGAN));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, CHRONICLES));
