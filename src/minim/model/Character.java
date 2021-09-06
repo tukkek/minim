@@ -197,6 +197,6 @@ public class Character implements Unit, Serializable {
 	}
 
 	public String describehealth() {
-		return HEALTH.get(damage);
+		return this + ": " + HEALTH.get(damage).toLowerCase();
 	}
 }

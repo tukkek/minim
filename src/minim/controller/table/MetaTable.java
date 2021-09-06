@@ -16,7 +16,7 @@ public abstract class MetaTable extends Table {
 		}
 	}
 
-	TableMap tables = new TableMap();
+	public TableMap tables = new TableMap();
 
 	public MetaTable(String title) {
 		super(title);
@@ -27,6 +27,10 @@ public abstract class MetaTable extends Table {
 		var r = super.roll();
 		var t = tables.get(r);
 		return onroll(t, t == null ? r : t.roll());
+	}
+
+	public Table rolltable() {
+		return tables.get(super.roll());
 	}
 
 	protected String onroll(Table t, String result) {

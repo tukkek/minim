@@ -37,7 +37,7 @@ public class Wound extends Table {
 		EFFECTS.put(NECK, List.of("Muted for a couple of turns.", "Muted until end of combat.", "Permanently muted."));
 		EFFECTS.put(EYE,
 				List.of("Blinded for a couple of turns.", "Blinded until end of combat.", "Permanently blind."));
-		EFFECTS.put(EAR, List.of("Deaf for a couple of turns.", "Deaf until end of combat.", "Permanently dead."));
+		EFFECTS.put(EAR, List.of("Deaf for a couple of turns.", "Deaf until end of combat.", "Permanently deaf."));
 		EFFECTS.put(HEAD, List.of("Disoriented for a couple of turns.", "Disoriented until end of combat.",
 				"Permanently disoriented."));
 	}

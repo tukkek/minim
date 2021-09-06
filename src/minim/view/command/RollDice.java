@@ -30,8 +30,10 @@ public class RollDice {
 				if (raw.contains("-"))
 					bonus = -bonus;
 			}
-			var total = roll.stream().reduce(Integer::sum).orElseThrow() + bonus;
-			Output.print("Total: " + total + ".");
+			if (dice > 1 || bonus != 0) {
+				var total = roll.stream().reduce(Integer::sum).orElseThrow() + bonus;
+				Output.print("Total: " + total + ".");
+			}
 			Output.print("");
 		} catch (Exception e) {
 			return;

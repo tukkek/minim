@@ -88,6 +88,14 @@ import minim.controller.table.hexcrawl.Hex;
 import minim.controller.table.hexcrawl.PointOfInterest;
 import minim.controller.table.hexcrawl.Vegetation;
 import minim.controller.table.hexcrawl.Water;
+import minim.controller.table.innomine.Discord;
+import minim.controller.table.innomine.Role;
+import minim.controller.table.innomine.Song;
+import minim.controller.table.innomine.character.Angel;
+import minim.controller.table.innomine.character.Characters;
+import minim.controller.table.innomine.character.Fiends;
+import minim.controller.table.innomine.character.Reliever;
+import minim.controller.table.innomine.character.Soldier;
 import minim.controller.table.instant.InstantChallenge;
 import minim.controller.table.instant.InstantCharacter;
 import minim.controller.table.instant.InstantPlot;
@@ -105,6 +113,7 @@ import minim.controller.table.ironsworn.SettlementName;
 import minim.controller.table.ironsworn.SettlementTrouble;
 import minim.controller.table.ironsworn.WaterLocation;
 import minim.controller.table.misc.Quantity;
+import minim.controller.table.misc.RandomEncounter;
 import minim.controller.table.mythic.EventFocus;
 import minim.controller.table.mythic.EventMeaning;
 import minim.controller.table.mythic.Fate;
@@ -217,7 +226,8 @@ public class Tables {
 	static final Category WEATHER = new Category("Weather",
 			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
 					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
-	static final Category MISC = new Category("Miscellaneous", List.of(new Quantity()));
+	static final Category MISC = new Category("Miscellaneous",
+			List.of(new Quantity(), new RandomEncounter(), RandomEncounter.DELAY));
 	static final Category MONSTER = new Category("World of darkness (monsters)",
 			List.of(Wraith.INSTANCE, Hunter.INSTANCE, Werewolf.INSTANCE, Changeling.INSTANCE, Beast.INSTANCE,
 					Demon.INSTANCE, Kindred.URBAN, Kindred.RURAL, HedgeMage.INSTANCE, Mage.INSTANCE, Kuejin.INSTANCE,
@@ -240,9 +250,14 @@ public class Tables {
 			Bound.BURDEN, Bound.HAUNT, Bound.KEY, Promethean.INSTANCE, Promethean.LINEAGE, Promethean.REFINEMENT,
 			Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN, Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ,
 			Athanor.ULGAN, Mummy.INSTANCE, Mummy.DECREE, Mummy.GUILD));
+	static final Category INNOMINE = new Category("In nomine",
+			List.of(Angel.INSTANCE, Angel.CHOIR, new Characters(), Role.INSTANCE,
+					minim.controller.table.innomine.character.Demon.BAND,
+					minim.controller.table.innomine.character.Demon.INSTANCE, new Fiends(), Reliever.INSTANCE,
+					Soldier.GOD, Soldier.HELL, Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
-					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER));
+					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER, INNOMINE));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
