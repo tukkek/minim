@@ -33,7 +33,7 @@ public class Characters extends MetaTable {
 		public String roll() {
 			var l = new Lines();
 			define(l);
-			l.add("Role (status)", Role.INSTANCE);
+			l.add("Role", Role.INSTANCE);
 			if (minim.model.Character.roll(10) == 10)
 				l.add(Discord.TYPE.roll());
 			l.addAll(songs.roll(forces - 5));

@@ -88,6 +88,7 @@ import minim.controller.table.hexcrawl.Hex;
 import minim.controller.table.hexcrawl.PointOfInterest;
 import minim.controller.table.hexcrawl.Vegetation;
 import minim.controller.table.hexcrawl.Water;
+import minim.controller.table.innomine.Artifact;
 import minim.controller.table.innomine.Discord;
 import minim.controller.table.innomine.Role;
 import minim.controller.table.innomine.Song;
@@ -251,10 +252,11 @@ public class Tables {
 			Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN, Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ,
 			Athanor.ULGAN, Mummy.INSTANCE, Mummy.DECREE, Mummy.GUILD));
 	static final Category INNOMINE = new Category("In nomine",
-			List.of(Angel.INSTANCE, Angel.CHOIR, new Characters(), Role.INSTANCE,
+			List.of(Angel.INSTANCE, Angel.CHOIR, new Characters(), Role.INSTANCE, Role.FAME, Role.STATUS,
 					minim.controller.table.innomine.character.Demon.BAND,
 					minim.controller.table.innomine.character.Demon.INSTANCE, new Fiends(), Reliever.INSTANCE,
-					Soldier.GOD, Soldier.HELL, Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE));
+					Soldier.GOD, Soldier.HELL, Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE, new Artifact(),
+					Artifact.COMPASS, Artifact.RELIC, Artifact.TALISMAN, Artifact.VESSEL, Artifact.LEVEL));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER, INNOMINE));

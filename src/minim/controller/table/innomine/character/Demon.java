@@ -20,8 +20,8 @@ public class Demon extends minim.controller.table.innomine.character.Characters.
 	public static final Table BAND = new SimpleTable("Character (demon, band)",
 			List.of(BALSERAPH, DJINN, CALABIM, HABBALAH, LILIM, SHEDIM, IMPUDITES));
 	public static final Demon INSTANCE = new Demon();
+	public static final Map<String, String> TITLES = new HashMap<>();
 
-	static final Map<String, String> TITLES = new HashMap<>();
 	static final Fiends PLEDGE = new Fiends();
 
 	static {

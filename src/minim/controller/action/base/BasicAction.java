@@ -1,5 +1,8 @@
 package minim.controller.action.base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import minim.controller.Cancel;
 import minim.model.Unit;
 import minim.view.Output;
@@ -11,9 +14,15 @@ public class BasicAction extends Action {
 			"&perception", "&social" };
 	public static final String[] MENTAL = new String[] { "&art", "&cure", "&security", "&technology", "&knowledge",
 			"&mental" };
+	public static final List<String> SKILLS = new ArrayList<>(5 * 3);
 
-	private static final String[] DESCRIBERESULT = new String[] { "Terrible!", "Failure.", "Neutral.", "Success.",
-			"Amazing!" };
+	static {
+		for (var skills : List.of(PHYSICAL, SOCIAL, MENTAL))
+			for (var i = 0; i < 5; i++)
+				SKILLS.add(skills[i].replace("&", ""));
+	}
+
+	static final String[] DESCRIBERESULT = new String[] { "Terrible!", "Failure.", "Neutral.", "Success.", "Amazing!" };
 
 	protected String attribute;
 	protected String skill;
