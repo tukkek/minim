@@ -253,12 +253,6 @@ public class Character extends Table {
 	public String roll() {
 		var l = new Lines();
 		var balance = 0;
-		Collections.shuffle(this.advantages);
-		var advantages = this.advantages.subList(0, Math.min(this.advantages.size(), minim.model.Character.roll(5)));
-		l.add("Advantages", String.join(", ", advantages).toLowerCase());
-		for (var a : advantages) {
-			balance += Advantage.BALANCE.get(a);
-		}
 		Collections.shuffle(this.disadvantages);
 		var disadvantages = this.disadvantages.subList(0,
 				Math.min(this.disadvantages.size(), minim.model.Character.roll(5)));
@@ -266,9 +260,12 @@ public class Character extends Table {
 		for (var d : disadvantages) {
 			balance -= Disadvantage.BALANCE.get(d);
 		}
-		Collections.shuffle(this.skills);
-		var skills = this.skills.subList(0, Math.min(this.skills.size(), 1 + minim.model.Character.roll(3)));
-		l.add("Skills", String.join(", ", skills).toLowerCase());
+		Collections.shuffle(this.advantages);
+		var advantages = this.advantages.subList(0, Math.min(this.advantages.size(), minim.model.Character.roll(5)));
+		l.add("Advantages", String.join(", ", advantages).toLowerCase());
+		for (var a : advantages) {
+			balance += Advantage.BALANCE.get(a);
+		}
 		var mental = describe(balance);
 		if (mental != NORMAL) {
 			l.add("Mental balance", mental);
@@ -281,6 +278,9 @@ public class Character extends Table {
 		while (!(wealthmin <= wealth && wealth <= wealthmax))
 			wealth = minim.model.Character.roll(10);
 		l.add("Wealth", WEALTH.lines.get(wealth - 1));
+		Collections.shuffle(this.skills);
+		var skills = this.skills.subList(0, Math.min(this.skills.size(), 1 + minim.model.Character.roll(3)));
+		l.add("Skills", String.join(", ", skills).toLowerCase());
 		return l.toString();
 	}
 
