@@ -113,6 +113,13 @@ import minim.controller.table.ironsworn.Region;
 import minim.controller.table.ironsworn.SettlementName;
 import minim.controller.table.ironsworn.SettlementTrouble;
 import minim.controller.table.ironsworn.WaterLocation;
+import minim.controller.table.kult.Effect;
+import minim.controller.table.kult.character.Advantage;
+import minim.controller.table.kult.character.Disadvantage;
+import minim.controller.table.kult.character.NightChild;
+import minim.controller.table.kult.character.Profession;
+import minim.controller.table.kult.character.Secret;
+import minim.controller.table.kult.character.Skill;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
 import minim.controller.table.mythic.EventFocus;
@@ -257,9 +264,29 @@ public class Tables {
 					minim.controller.table.innomine.character.Demon.INSTANCE, new Fiends(), Reliever.INSTANCE,
 					Soldier.GOD, Soldier.HELL, Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE, new Artifact(),
 					Artifact.COMPASS, Artifact.RELIC, Artifact.TALISMAN, Artifact.VESSEL, Artifact.LEVEL));
+	static final Category KULT = new Category("Kult",
+			List.of(Effect.INSTANCE, Advantage.INSTANCE, Disadvantage.INSTANCE, Profession.INSTANCE, Secret.INSTANCE,
+					Skill.INSTANCE, minim.controller.table.kult.character.Character.ARCHETYPE,
+					minim.controller.table.kult.character.Character.AGENT,
+					minim.controller.table.kult.character.Character.ARTIST,
+					minim.controller.table.kult.character.Character.AVENGER,
+					minim.controller.table.kult.character.Character.COP,
+					minim.controller.table.kult.character.Character.CORPORATE,
+					minim.controller.table.kult.character.Character.DEALER,
+					minim.controller.table.kult.character.Character.FEMMEFATALE,
+					minim.controller.table.kult.character.Character.GANGMEMBER,
+					minim.controller.table.kult.character.Character.MUCKRAKER,
+					minim.controller.table.kult.character.Character.OUTSIDER,
+					minim.controller.table.kult.character.Character.ROCKER,
+					minim.controller.table.kult.character.Character.SAMURAI,
+					minim.controller.table.kult.character.Character.SCIENTIST,
+					minim.controller.table.kult.character.Character.STUDENT,
+					minim.controller.table.kult.character.Character.VETERAN,
+					minim.controller.table.kult.character.Character.PI, NightChild.INSTANCE, NightChild.LIMITATIONS,
+					NightChild.POWERS));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
-					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER, INNOMINE));
+					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER, INNOMINE, KULT));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
