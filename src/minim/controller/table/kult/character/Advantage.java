@@ -8,6 +8,7 @@ import minim.controller.table.SimpleTable;
 
 public class Advantage extends SimpleTable {
 	public static final Advantage INSTANCE = new Advantage();
+	public static final Map<String, Integer> BALANCE = new HashMap<>();
 	public static final String ARTISTIC = "Artistic talent";
 	public static final String HONOR = "Code of honor";
 	public static final String AWARENESS = "Awareness";
@@ -26,7 +27,24 @@ public class Advantage extends SimpleTable {
 	public static final String MATH = "Mathematical talent";
 	public static final String HONESTY = "Honesty";
 	public static final String ALTRUIST = "Altruist";
-	public static final Map<String, Integer> BALANCE = new HashMap<>();
+	public static final String ALERTNESS = AWARENESS;
+	public static final String MECHANIC = "Mechanically-inclined";
+	public static final String FORGIVING = "Forgiving";
+	public static final String MOTHERLINESS = "Motherliness";
+	public static final String GOAL = "Goal-driven";
+	public static final String STATUS = "Status";
+	public static final String FAITH = "Faith";
+	public static final String LARGESSE = "Largesse";
+	public static final String OPTIMIST = "Optimist";
+	public static final String MENTOR = "Mentor";
+	public static final String WILL = "Iron will";
+
+	Advantage() {
+		super("Character (advantage)",
+				List.of(ARTISTIC, HONOR, AWARENESS, FLEXIBILITY, SENSATE, ENDURANCE, INFLUENCE, EMPATHY, INTUITION,
+						LUCK, ANIMALS, LANGUAGES, CHIVALRY, PACIFISM, REPUTATION, MATH, HONESTY, ALTRUIST, MECHANIC,
+						FORGIVING, MOTHERLINESS, GOAL, STATUS, FAITH, LARGESSE, OPTIMIST, MENTOR, WILL));
+	}
 
 	static {
 		BALANCE.put(ALTRUIST, 5);
@@ -47,13 +65,18 @@ public class Advantage extends SimpleTable {
 		BALANCE.put(MATH, 10);
 		BALANCE.put(PACIFISM, 5);
 		BALANCE.put(SENSATE, 20);
+		BALANCE.put(MECHANIC, 10);
+		BALANCE.put(FORGIVING, 5);
+		BALANCE.put(MOTHERLINESS, 5);
+		BALANCE.put(GOAL, 5);
+		BALANCE.put(STATUS, 10);
+		BALANCE.put(FAITH, 5);
+		BALANCE.put(LARGESSE, 5);
+		BALANCE.put(OPTIMIST, 5);
+		BALANCE.put(MENTOR, 10);
+		BALANCE.put(WILL, 10);
 		for (var a : INSTANCE.lines)
 			if (BALANCE.get(a) == null)
 				throw new RuntimeException("No balance for " + a);
-	}
-
-	Advantage() {
-		super("Character (advantage)", List.of(ARTISTIC, HONOR, AWARENESS, FLEXIBILITY, SENSATE, ENDURANCE, INFLUENCE,
-				EMPATHY, INTUITION, LUCK, ANIMALS, LANGUAGES, CHIVALRY, PACIFISM, REPUTATION, MATH, HONESTY, ALTRUIST));
 	}
 }

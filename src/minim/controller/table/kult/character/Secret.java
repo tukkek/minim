@@ -9,20 +9,29 @@ import java.util.stream.Collectors;
 import minim.controller.table.SimpleTable;
 
 public class Secret extends SimpleTable {
+	public static final Map<String, List<String>> DISADVANTAGES = new HashMap<>();
+	public static final Secret INSTANCE = new Secret();
 	public static final String VICTIM = "Victim";
-	public static final String SUPERNATURAL_EXPERIENCE = "Supernatural experience";
+	public static final String SUPERNATURALEXPERIENCE = "Supernatural experience";
 	public static final String HAUNTED = "Haunted";
 	public static final String PESSESSED = "Possessed";
 	public static final String PACT = "Dark pact";
-	public static final String OCCULT_EXPERIENCE = "Occult experience";
+	public static final String OCCULTEXPERIENCE = "Occult experience";
 	public static final String INSANITY = "Insanity";
 	public static final String GUILTY = "Guilty";
 	public static final String KNOWLEDGE = "Knowledge";
 	public static final String FAMILY = "Family secret";
 	public static final String CURSE = "Curse";
-	public static final Secret INSTANCE = new Secret();
+	public static final String SURVIVOR = "Survivor friend";
+	public static final String GUARDIAN = "Guardian";
+	public static final String UPROOTED = "Uprooted";
+	public static final String CHOSEN = "Chosen";
+	public static final String INHERITOR = "Inheritor";
 
-	static final Map<String, List<String>> DISADVANTAGES = new HashMap<>();
+	Secret() {
+		super("Character (dark secret)", List.of(CURSE, FAMILY, KNOWLEDGE, GUILTY, INSANITY, OCCULTEXPERIENCE, PACT,
+				PESSESSED, HAUNTED, SUPERNATURALEXPERIENCE, VICTIM, SURVIVOR, GUARDIAN, UPROOTED, CHOSEN, INHERITOR));
+	}
 
 	static {
 		DISADVANTAGES.put(CURSE,
@@ -44,7 +53,7 @@ public class Secret extends SimpleTable {
 						Disadvantage.PARANOIA, Disadvantage.HAUNTED, Disadvantage.MANIA, Disadvantage.NIGHTMARES,
 						Disadvantage.ADDICTION, Disadvantage.SCHIZOPHRENIA, Disadvantage.NYMPHOMANIA,
 						Disadvantage.COMPULSION));
-		DISADVANTAGES.put(OCCULT_EXPERIENCE,
+		DISADVANTAGES.put(OCCULTEXPERIENCE,
 				List.of(Disadvantage.DEPRESSION, Disadvantage.DEATHWISH, Disadvantage.PHOBIA, Disadvantage.PARANOIA,
 						Disadvantage.HAUNTED, Disadvantage.WANTED, Disadvantage.NIGHTMARES, Disadvantage.ADDICTION,
 						Disadvantage.LUCK, Disadvantage.RATIONALIST, Disadvantage.SCHIZOPHRENIA,
@@ -59,7 +68,7 @@ public class Secret extends SimpleTable {
 				List.of(Disadvantage.DEPRESSION, Disadvantage.DEATHWISH, Disadvantage.PHOBIA, Disadvantage.CONSTRICTION,
 						Disadvantage.PARANOIA, Disadvantage.HAUNTED, Disadvantage.NIGHTMARES, Disadvantage.ADDICTION,
 						Disadvantage.RATIONALIST, Disadvantage.COMPULSION));
-		DISADVANTAGES.put(SUPERNATURAL_EXPERIENCE,
+		DISADVANTAGES.put(SUPERNATURALEXPERIENCE,
 				List.of(Disadvantage.DEPRESSION, Disadvantage.DEATHWISH, Disadvantage.PHOBIA, Disadvantage.CONSTRICTION,
 						Disadvantage.PARANOIA, Disadvantage.HAUNTED, Disadvantage.WANTED, Disadvantage.NIGHTMARES,
 						Disadvantage.ADDICTION, Disadvantage.LUCK, Disadvantage.RATIONALIST, Disadvantage.SCHIZOPHRENIA,
@@ -70,11 +79,6 @@ public class Secret extends SimpleTable {
 						Disadvantage.PERSECUTED, Disadvantage.NIGHTMARES, Disadvantage.LIAR, Disadvantage.ADDICTION,
 						Disadvantage.LUCK, Disadvantage.SCHIZOPHRENIA, Disadvantage.NYMPHOMANIA,
 						Disadvantage.COMPULSION));
-	}
-
-	Secret() {
-		super("Character (dark secret)", List.of(CURSE, FAMILY, KNOWLEDGE, GUILTY, INSANITY, OCCULT_EXPERIENCE, PACT,
-				PESSESSED, HAUNTED, SUPERNATURAL_EXPERIENCE, VICTIM));
 	}
 
 	public String roll(List<String> secrets, List<String> disadvantages) {
