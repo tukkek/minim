@@ -38,12 +38,13 @@ public class Advantage extends SimpleTable {
 	public static final String OPTIMIST = "Optimist";
 	public static final String MENTOR = "Mentor";
 	public static final String WILL = "Iron will";
+	public static final String MAGICAL = "Magical intuition";
 
 	Advantage() {
 		super("Character (advantage)",
 				List.of(ARTISTIC, HONOR, AWARENESS, FLEXIBILITY, SENSATE, ENDURANCE, INFLUENCE, EMPATHY, INTUITION,
 						LUCK, ANIMALS, LANGUAGES, CHIVALRY, PACIFISM, REPUTATION, MATH, HONESTY, ALTRUIST, MECHANIC,
-						FORGIVING, MOTHERLINESS, GOAL, STATUS, FAITH, LARGESSE, OPTIMIST, MENTOR, WILL));
+						FORGIVING, MOTHERLINESS, GOAL, STATUS, FAITH, LARGESSE, OPTIMIST, MENTOR, WILL, MAGICAL));
 	}
 
 	static {
@@ -75,6 +76,7 @@ public class Advantage extends SimpleTable {
 		BALANCE.put(OPTIMIST, 5);
 		BALANCE.put(MENTOR, 10);
 		BALANCE.put(WILL, 10);
+		BALANCE.put(MAGICAL, 20);
 		for (var a : INSTANCE.lines)
 			if (BALANCE.get(a) == null)
 				throw new RuntimeException("No balance for " + a);

@@ -120,6 +120,9 @@ import minim.controller.table.kult.character.NightChild;
 import minim.controller.table.kult.character.Profession;
 import minim.controller.table.kult.character.Secret;
 import minim.controller.table.kult.character.Skill;
+import minim.controller.table.kult.madness.Madness;
+import minim.controller.table.kult.madness.MentalChange;
+import minim.controller.table.kult.madness.PhysicalChange;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
 import minim.controller.table.mythic.EventFocus;
@@ -297,9 +300,12 @@ public class Tables {
 			minim.controller.table.kult.character.Character.HUSTLER,
 			minim.controller.table.kult.character.Character.MARTIAL,
 			minim.controller.table.kult.character.Character.PARAPSYCHOLOGIST,
-			minim.controller.table.kult.character.Character.SCHOLAR, NightChild.GENERIC, NightChild.LIMITATIONS,
+			minim.controller.table.kult.character.Character.SCHOLAR,
+			minim.controller.table.kult.character.Conjurer.OCCULTIST,
+			minim.controller.table.kult.character.Conjurer.PAGAN, NightChild.GENERIC, NightChild.LIMITATIONS,
 			NightChild.POWERS, NightChild.LORELEI, NightChild.NEPHILIM, NightChild.REVENANT, NightChild.SERAPHIM,
-			NightChild.WOLVEN, NightChild.INSTANCE));
+			NightChild.WOLVEN, NightChild.INSTANCE, PhysicalChange.INSTANCE, MentalChange.INSTANCE, Madness.POSITIVE,
+			Madness.NEGATIVE, Madness.NEUTRAL, Madness.SHOCK, Madness.POSSESSION, Skill.LORES));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
 					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER, INNOMINE, KULTCHARACTER));

@@ -1,11 +1,16 @@
 package minim.controller.table.kult.character;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import minim.controller.table.SimpleTable;
+import minim.controller.table.Table;
 
 public class Skill extends SimpleTable {
 	public static final Skill INSTANCE = new Skill();
+	public static final Table LORES = new SimpleTable("Character (skill, magic lore)",
+			List.of("Madness", "Space-time", "Dream", "Death", "Passion", "Reality").stream().map(l -> l + " magic")
+					.collect(Collectors.toList()));
 	public static final String MELEE = "Mêlée weapons";
 	public static final String POISONS = "Poisons";
 	public static final String DRUGS = "Drugs";
@@ -100,7 +105,7 @@ public class Skill extends SimpleTable {
 	public static final String HAUT = "Fine tastes";
 
 	Skill() {
-		super("Character (skills)",
+		super("Character (skill)",
 				List.of(MELEE, POISONS, DRUGS, GRAFFITI, HIDE, HANDGUN, DRIVE, IMPACT, CLIMB, SECURITY, IMMIGRANT,
 						UNARMED, RHETORIC, WORDLY, ESTIMATE, SNEAK, AUTOMATIC, DEMOLITION, DISGUISE, INFORMATION,
 						ACROBATICS, DODGE, INTERROGATION, SEARCH, SHADOW, COMPUTERS, DIPLOMACY, FORGERY, CONTACTS,

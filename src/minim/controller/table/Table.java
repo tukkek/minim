@@ -32,6 +32,10 @@ public abstract class Table {
 
 	public abstract void build();
 
+	protected int rolldie() {
+		return Character.roll(lines.size()) - 1;
+	}
+
 	public String roll() {
 		if (rebuild) {
 			lines.clear();
@@ -39,7 +43,7 @@ public abstract class Table {
 		} else if (lines.isEmpty()) {
 			build();
 		}
-		return lines.get(Character.roll(lines.size()) - 1);
+		return lines.get(rolldie());
 	}
 
 	protected void add(Collection<String> list) {
