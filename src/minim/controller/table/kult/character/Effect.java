@@ -1,4 +1,4 @@
-package minim.controller.table.kult;
+package minim.controller.table.kult.character;
 
 import minim.controller.table.Table;
 

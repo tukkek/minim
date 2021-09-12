@@ -1,4 +1,4 @@
-package minim.controller.table.kult.madness;
+package minim.controller.table.kult.character.madness;
 
 import minim.controller.table.Table;
 import minim.controller.table.kult.character.Disadvantage;

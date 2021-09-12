@@ -11,6 +11,8 @@ import minim.model.Character;
 /**
  * Built using semi-extensive real-world data.
  * 
+ * TODO simple height (something like average/tall/short)
+ * 
  * @author alex
  */
 public class WorldNpc extends Table {

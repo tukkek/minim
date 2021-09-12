@@ -18,4 +18,8 @@ public class Lines extends ArrayList<String> {
 		add(header, r);
 		return r;
 	}
+
+	public void add(Table t) {
+		add(t.roll());
+	}
 }

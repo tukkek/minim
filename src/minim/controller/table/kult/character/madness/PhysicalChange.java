@@ -1,4 +1,4 @@
-package minim.controller.table.kult.madness;
+package minim.controller.table.kult.character.madness;
 
 import java.util.List;
 

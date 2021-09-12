@@ -3,12 +3,13 @@ package minim.controller.table;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import minim.model.Character;
 
-public abstract class Table {
+public abstract class Table implements Iterable<String> {
 	public String title;
 	public List<String> lines = new ArrayList<>(0);
 
@@ -36,13 +37,17 @@ public abstract class Table {
 		return Character.roll(lines.size()) - 1;
 	}
 
-	public String roll() {
+	public void setup() {
 		if (rebuild) {
 			lines.clear();
 			build();
 		} else if (lines.isEmpty()) {
 			build();
 		}
+	}
+
+	public String roll() {
+		setup();
 		return lines.get(rolldie());
 	}
 
@@ -62,5 +67,10 @@ public abstract class Table {
 	public Set<String> getunique() {
 		roll();
 		return new HashSet<String>(lines);
+	}
+
+	@Override
+	public Iterator<String> iterator() {
+		return lines.iterator();
 	}
 }

@@ -113,16 +113,24 @@ import minim.controller.table.ironsworn.Region;
 import minim.controller.table.ironsworn.SettlementName;
 import minim.controller.table.ironsworn.SettlementTrouble;
 import minim.controller.table.ironsworn.WaterLocation;
-import minim.controller.table.kult.Effect;
 import minim.controller.table.kult.character.Advantage;
 import minim.controller.table.kult.character.Disadvantage;
+import minim.controller.table.kult.character.Effect;
 import minim.controller.table.kult.character.NightChild;
 import minim.controller.table.kult.character.Profession;
 import minim.controller.table.kult.character.Secret;
 import minim.controller.table.kult.character.Skill;
-import minim.controller.table.kult.madness.Madness;
-import minim.controller.table.kult.madness.MentalChange;
-import minim.controller.table.kult.madness.PhysicalChange;
+import minim.controller.table.kult.character.madness.Madness;
+import minim.controller.table.kult.character.madness.MentalChange;
+import minim.controller.table.kult.character.madness.PhysicalChange;
+import minim.controller.table.kult.setting.Being;
+import minim.controller.table.kult.setting.City;
+import minim.controller.table.kult.setting.Cult;
+import minim.controller.table.kult.setting.Dream;
+import minim.controller.table.kult.setting.Elysium;
+import minim.controller.table.kult.setting.Inferno;
+import minim.controller.table.kult.setting.Metropolis;
+import minim.controller.table.kult.setting.Portal;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
 import minim.controller.table.mythic.EventFocus;
@@ -306,9 +314,27 @@ public class Tables {
 			NightChild.POWERS, NightChild.LORELEI, NightChild.NEPHILIM, NightChild.REVENANT, NightChild.SERAPHIM,
 			NightChild.WOLVEN, NightChild.INSTANCE, PhysicalChange.INSTANCE, MentalChange.INSTANCE, Madness.POSITIVE,
 			Madness.NEGATIVE, Madness.NEUTRAL, Madness.SHOCK, Madness.POSSESSION, Skill.LORES));
-	static final List<Category> CATEGORIES = new ArrayList<>(
-			List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE, BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT,
-					WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC, DARKNESS, MONSTER, INNOMINE, KULTCHARACTER));
+	static final Category KULTSETTING = new Category("Kult (setting)",
+			List.of(Metropolis.INSTANCE, Being.INSTANCE, Being.ARCHONS, Inferno.ASTAROTH, Inferno.ANGELS,
+					Metropolis.CITADELS, Metropolis.LABYRINTH, Inferno.INSTANCE, Dream.INSTANCE, Elysium.INSTANCE,
+					Portal.INSTANCE, Portal.HIGHER, Portal.LOWER, new minim.controller.table.kult.setting.Artifact(),
+					minim.controller.table.kult.setting.Artifact.DESTINATION,
+					minim.controller.table.kult.setting.Artifact.LENSES,
+					minim.controller.table.kult.setting.Artifact.PASSWORD,
+					minim.controller.table.kult.setting.Artifact.PORTAL, Being.DEITIES, new City(), City.EXPOSED,
+					Being.BORDERLINER, City.UNDERGROUND, Metropolis.METROPOLITAN, Being.UNDEAD, Inferno.BEINGS,
+					Dream.BEING, Dream.SPEED, Dream.TYPE, Dream.PRINCE, Madness.DREAM, Madness.DREAMPORTAL,
+					Madness.DREAMSELF, Madness.TIME, Madness.HALLUCINATION, Madness.SPACE, Cult.TYPE, new Cult(),
+					Cult.CHARACTERISTIC, new minim.controller.table.kult.setting.Adventure(),
+					minim.controller.table.kult.setting.Adventure.BEGINNING,
+					minim.controller.table.kult.setting.Adventure.CHARACTERS,
+					minim.controller.table.kult.setting.Adventure.COMPLICATION,
+					minim.controller.table.kult.setting.Adventure.EVENT,
+					minim.controller.table.kult.setting.Adventure.MOTIVATION,
+					minim.controller.table.kult.setting.Adventure.PLOT));
+	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
+			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC,
+			DARKNESS, MONSTER, INNOMINE, KULTCHARACTER, KULTSETTING));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
