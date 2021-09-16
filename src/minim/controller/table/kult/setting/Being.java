@@ -26,7 +26,12 @@ public class Being extends MetaTable {
 			"Darthea (possesses humans and influence them into sexual acts, often into exhaustion and starvation)",
 			"Gynachide (dark-grey creatures with metallic teeths and nails that impregnate women with their offspring, as romantic, loyal and protective as they are alien)",
 			"Aetats (murderous \"time-police\" with distorded, long, curved bodies and eight legs - if perceived, can be thrown off by \"laying low\" long enough)",
-			"Aspecti (thin, flickering, color-changing, distorted Medusa-looking creatures with flowing space-perception, may appear to humans when ni the same wavelengthm, often causing madness and system shock)"));
+			"Aspecti (thin, flickering, color-changing, distorted Medusa-looking creatures with flowing space-perception, may appear to humans when ni the same wavelengthm, often causing madness and system shock)",
+			"The homeless (the Bag Lady)", "The police (well-armed and paranoid, prowling in vehicles)",
+			"Garbage symbiosis (semi-organic creature followed by smaller, suicidal compostats)", "Police stand-off",
+			"Gang brutality",
+			"Scavenger (usually found in an area with potential to find equipment, will usually avoid others but can also attack from stealth)",
+			"Soldier", "Human hunter (generally hostile, paranoid)", "Artillery barrage", "Hunting squad"));
 	public static final Table UNDEAD = new SimpleTable("Being (undead)", List.of(
 			"Undead (ghost on the borderline of death, by their own will or bound to something)",
 			"Corpophagus (usually a broken dead spirit, with deadly, inch-long corpophagi parasites in the vicinity)",

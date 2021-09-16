@@ -29,7 +29,13 @@ public class City extends MetaTable {
 		}
 	};
 	public static final Table UNDERGROUND = new SimpleTable("The City (underground)",
-			List.of("Sewers", "Subway", "Service tunnels", "Bomb shelter", "Military installation"));
+			List.of("Sewers", "Subway", "Service tunnels", "Bomb shelter", "Military base"));
+	public static final Table TRANSPORT = new SimpleTable("The city (transport)",
+			List.of("Taxi", "Car ride", "Road tunnel", "Night bus", "The subway", "Train station"));
+	public static final Table COMMUNICATION = new SimpleTable("The city (communication)",
+			List.of("Phone booth", "Grafitti"));
+	public static final Table INSTITUTION = new SimpleTable("The city (institution)",
+			List.of("Police station", "University", "Hospital"));
 
 	public City() {
 		super("The City");
@@ -38,12 +44,13 @@ public class City extends MetaTable {
 
 	@Override
 	public void build() {
-		add(EXPOSED);
+		for (var table : List.of(EXPOSED, Being.INSTANCE, UNDERGROUND, TRANSPORT, COMMUNICATION, INSTITUTION))
+			add(table);
 		add("Front to " + Metropolis.INSTANCE.roll());
 		add("Lictor residence of " + Being.ARCHONS.roll());
 		add("Hidden temple of " + Cult.TYPE.roll());
-		add(Being.INSTANCE);
-		add(UNDERGROUND);
 		add("Graveyeard, which may lead to " + Metropolis.CITYOFTHEDEAD);
+		add("Permanent portal to to " + Portal.INSTANCE.roll());
+		add("Real-world counterpart of " + Metropolis.LIVINGCITY.roll());
 	}
 }

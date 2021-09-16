@@ -232,10 +232,10 @@ public class UnitList {
 	}
 
 	public static String getname(String message, String previous) {
-		InputDialog d = new InputDialog(Display.getCurrent().getActiveShell(), message, message, previous, null);
+		var d = new InputDialog(Display.getCurrent().getActiveShell(), message, message, previous, null);
 		d.setBlockOnOpen(true);
 		d.open();
-		return d.getValue();
+		return d.getReturnCode() == InputDialog.OK ? d.getValue() : null;
 	}
 
 	@PersistState

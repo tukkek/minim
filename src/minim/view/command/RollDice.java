@@ -15,6 +15,8 @@ public class RollDice {
 	public void execute() {
 		try {
 			var raw = UnitList.getname("Enter roll:", "1d2+3");
+			if (raw == null)
+				return;
 			var input = Arrays.stream(raw.split("[d+-]")).map(i -> Integer.parseInt(i)).collect(Collectors.toList());
 			var dice = input.get(0);
 			var sides = input.get(1);

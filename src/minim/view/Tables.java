@@ -130,6 +130,7 @@ import minim.controller.table.kult.setting.Dream;
 import minim.controller.table.kult.setting.Elysium;
 import minim.controller.table.kult.setting.Inferno;
 import minim.controller.table.kult.setting.Metropolis;
+import minim.controller.table.kult.setting.Period;
 import minim.controller.table.kult.setting.Portal;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
@@ -331,7 +332,9 @@ public class Tables {
 					minim.controller.table.kult.setting.Adventure.COMPLICATION,
 					minim.controller.table.kult.setting.Adventure.EVENT,
 					minim.controller.table.kult.setting.Adventure.MOTIVATION,
-					minim.controller.table.kult.setting.Adventure.PLOT));
+					minim.controller.table.kult.setting.Adventure.PLOT, City.TRANSPORT, City.COMMUNICATION,
+					City.INSTITUTION, minim.controller.table.kult.setting.Artifact.CLOCKWORK, Metropolis.LIVINGCITY,
+					Metropolis.RUINS, Period.INSTANCE, Period.ANCIENT, Period.MODERN));
 	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
 			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC,
 			DARKNESS, MONSTER, INNOMINE, KULTCHARACTER, KULTSETTING));

@@ -6,10 +6,12 @@ import java.util.List;
 import minim.controller.table.MetaTable;
 import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
+import minim.controller.table.kult.character.madness.Madness;
 import minim.model.Character;
 
 public class Artifact extends MetaTable {
-	public static final Table LENSES = new SimpleTable("Artifact (lenses)", List.of("Eye-glass", "Enlargment lens"));
+	public static final Table LENSES = new SimpleTable("Artifact (lenses)",
+			List.of("Eye-glass", "Enlargment lens", "Camera", "Binocular"));
 	public static final String NONE = "None";
 	public static final Table PASSWORD = new SimpleTable("Artifact (portal, password)",
 			List.of(NONE, "Time-sensitive", "Password", "Ritual"));
@@ -40,6 +42,14 @@ public class Artifact extends MetaTable {
 			return r;
 		}
 	};
+	public static final Table CLOCKWORK = new SimpleTable("Artifact (clockwork)",
+			List.of("Large clock", "Wristwatch")) {
+		@Override
+		public String roll() {
+			var effect = Character.roll(3) == 1 ? Portal.INSTANCE : Madness.TIME;
+			return super.roll() + ", " + effect.roll();
+		}
+	};
 
 	public Artifact() {
 		super("Artifact");
@@ -54,7 +64,8 @@ public class Artifact extends MetaTable {
 		add(3, "Puzzle to %s".formatted(Character.roll(2) == 1 ? Inferno.INSTANCE.roll() : p));
 		add(4, Character.roll(2) == 1 ? "Statuette" : "Nepharite statuette");
 		add(5, LENSES);
-		add(6, "Camera");
-		add(7, "Mirror");
+		add(6, "Mirror");
+		add(7, CLOCKWORK);
+		add(8, "Software, " + Madness.NEUTRAL.roll());
 	}
 }
