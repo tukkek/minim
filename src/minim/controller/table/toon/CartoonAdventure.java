@@ -137,7 +137,9 @@ public class CartoonAdventure extends Table {
 		}
 	};
 
-	public CartoonAdventure() {
+	public static final CartoonAdventure SINGLETON = new CartoonAdventure();
+
+	CartoonAdventure() {
 		super("Cartoon adventure");
 	}
 

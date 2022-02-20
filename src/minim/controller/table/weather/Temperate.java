@@ -1,7 +1,9 @@
-package minim.controller.table.adventure.weather;
+package minim.controller.table.weather;
 
 public class Temperate extends Weather {
-	public Temperate() {
+	public static final Temperate SINGLETON = new Temperate();
+
+	Temperate() {
 		this("Weather (temperate)");
 	}
 

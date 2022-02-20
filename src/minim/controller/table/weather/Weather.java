@@ -1,4 +1,4 @@
-package minim.controller.table.adventure.weather;
+package minim.controller.table.weather;
 
 import java.util.List;
 
@@ -6,8 +6,11 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
 public abstract class Weather extends Table {
-	public static final Table SEASONS = new SimpleTable("Season (temperate)",
-			List.of("Summer", "Auturmn", "Winter", "Spring"));
+	public static final String SPRING = "Spring";
+	public static final String WINTER = "Winter";
+	public static final String AUTUMN = "Autumn";
+	public static final String SUMMER = "Summer";
+	public static final Table SEASONS = new SimpleTable("Season (temperate)", List.of(SUMMER, AUTUMN, WINTER, SPRING));
 
 	protected String normal = "Normal";
 	protected int normalodds = 70;

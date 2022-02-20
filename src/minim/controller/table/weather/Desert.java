@@ -1,7 +1,9 @@
-package minim.controller.table.adventure.weather;
+package minim.controller.table.weather;
 
 public class Desert extends Weather {
-	public Desert() {
+	public static final Desert SINGLETON = new Desert();
+
+	Desert() {
 		super("Weather (desert)");
 		normal = "Hot, calm";
 		abnormal1odds = 10;

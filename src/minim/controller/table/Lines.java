@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Lines extends ArrayList<String> {
 	@Override
 	public String toString() {
-		return String.join(".\n", this);
+		return String.join("\n", this);
 	}
 
 	public void add(String header, String value) {
@@ -15,11 +15,15 @@ public class Lines extends ArrayList<String> {
 
 	public String add(String header, Table t) {
 		var r = t.roll();
-		add(header, r);
+		add(header, r + ".");
 		return r;
 	}
 
 	public void add(Table t) {
 		add(t.roll());
+	}
+
+	public void add() {
+		add("");
 	}
 }

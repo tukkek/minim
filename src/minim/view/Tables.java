@@ -24,12 +24,6 @@ import minim.controller.table.adventure.dungeon.lore.Backstory;
 import minim.controller.table.adventure.dungeon.lore.Information;
 import minim.controller.table.adventure.dungeon.lore.Occupant;
 import minim.controller.table.adventure.dungeon.lore.Purpose;
-import minim.controller.table.adventure.weather.Cold;
-import minim.controller.table.adventure.weather.Desert;
-import minim.controller.table.adventure.weather.Temperate;
-import minim.controller.table.adventure.weather.TemperateSummer;
-import minim.controller.table.adventure.weather.TemperateWinter;
-import minim.controller.table.adventure.weather.Weather;
 import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
@@ -72,6 +66,7 @@ import minim.controller.table.darkness.werewolf.Werewolf;
 import minim.controller.table.falkenstein.Diary;
 import minim.controller.table.hexcrawl.Elevation;
 import minim.controller.table.hexcrawl.Hex;
+import minim.controller.table.hexcrawl.Hexcrawl;
 import minim.controller.table.hexcrawl.PointOfInterest;
 import minim.controller.table.hexcrawl.Vegetation;
 import minim.controller.table.hexcrawl.Water;
@@ -109,6 +104,7 @@ import minim.controller.table.kult.setting.Inferno;
 import minim.controller.table.kult.setting.Metropolis;
 import minim.controller.table.kult.setting.Period;
 import minim.controller.table.kult.setting.Portal;
+import minim.controller.table.misc.OneShot;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
 import minim.controller.table.toon.BadGuy;
@@ -120,6 +116,13 @@ import minim.controller.table.une.Mood;
 import minim.controller.table.une.Motivation;
 import minim.controller.table.une.Npc;
 import minim.controller.table.une.PowerLevel;
+import minim.controller.table.weather.Calendar;
+import minim.controller.table.weather.Cold;
+import minim.controller.table.weather.Desert;
+import minim.controller.table.weather.Temperate;
+import minim.controller.table.weather.TemperateSummer;
+import minim.controller.table.weather.TemperateWinter;
+import minim.controller.table.weather.Weather;
 import minim.controller.table.world.Personality;
 import minim.controller.table.world.WorldNpc;
 
@@ -136,8 +139,8 @@ public class Tables {
 		}
 	}
 
-	static final Category TOON = new Category("Adventure (cartoon)", List.of(new CartoonAdventure(), Location.SINGLETON,
-			BadGuy.SINGLETON, minim.controller.table.toon.Character.SINGLETON, Motive.SINGLETON,
+	static final Category TOON = new Category("Adventure (cartoon)", List.of(CartoonAdventure.SINGLETON,
+			Location.SINGLETON, BadGuy.SINGLETON, minim.controller.table.toon.Character.SINGLETON, Motive.SINGLETON,
 			minim.controller.table.toon.Object.SINGLETON, Location.ANYTOWN, Location.OUTERSPACE, Location.OUTSIDEOFTOWN,
 			Location.THECITY, CartoonAdventure.BATTLE, CartoonAdventure.CHASE, CartoonAdventure.MYSTERY,
 			CartoonAdventure.RESCUE, CartoonAdventure.SURVIVAL, CartoonAdventure.THEFT));
@@ -177,22 +180,24 @@ public class Tables {
 			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
 					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH, WorldNpc.SIMPLE));
 	static final Category HEXCRAWL = new Category("Adventure (hexcrawl)",
-			List.of(new Hex(), Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
-					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT));
+			List.of(Hex.SINGLETON, Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
+					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT,
+					Hexcrawl.SMALL, Hexcrawl.BIG));
 	static final Category COMBAT = new Category("Game master emulator (combat)",
 			List.of(Action.CAREFREE, Action.CAUTIOUS, Action.CERTAIN, Action.COWERING, Action.DARING, Action.TREMBLING,
 					ActionType.SINGLETON, Twist.SINGLETON, Wound.HIT, Wound.CRITICAL, Wound.DEADLY));
 	static final Category ADVENTURE = new Category("Adventure (fantasy)",
-			List.of(new Type(), Motif.SINGLETON, Map.SINGLETON, Grid.SINGLETON, new Dungeon(), Backstory.SINGLETON,
-					Purpose.SINGLETON, Occupant.SINGLETON, Information.CLUE, Information.RUMOR,
+			List.of(Type.SINGLETON, Motif.SINGLETON, Map.SINGLETON, Grid.SINGLETON, Dungeon.SINGLETON,
+					Backstory.SINGLETON, Purpose.SINGLETON, Occupant.SINGLETON, Information.CLUE, Information.RUMOR,
 					Information.RUMORCONTENT, Information.WRITING, Information.SINGLETON,
 					minim.controller.table.adventure.dungeon.Location.SINGLETON,
 					minim.controller.table.adventure.dungeon.Location.EXOTIC));
 	static final Category WEATHER = new Category("Weather",
-			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
-					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
+			List.of(Cold.SINGLETON, Desert.SINGLETON, Temperate.SINGLETON, TemperateSummer.SINGLETON,
+					TemperateWinter.SINGLETON, minim.controller.table.weather.Climate.SINGLETON, Weather.SEASONS,
+					Calendar.SINGLETON));
 	static final Category MISC = new Category("Widget",
-			List.of(new Quantity(), new RandomEncounter(), RandomEncounter.DELAY));
+			List.of(new Quantity(), new RandomEncounter(), RandomEncounter.DELAY, new OneShot()));
 	static final Category MONSTER = new Category("NPC (World of Darkness)",
 			List.of(Wraith.INSTANCE, Hunter.INSTANCE, Werewolf.INSTANCE, Changeling.INSTANCE, Beast.INSTANCE,
 					Demon.INSTANCE, Kindred.URBAN, Kindred.RURAL, HedgeMage.INSTANCE, Mage.INSTANCE, Kuejin.INSTANCE,

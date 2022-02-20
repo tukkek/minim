@@ -1,7 +1,9 @@
-package minim.controller.table.adventure.weather;
+package minim.controller.table.weather;
 
 public class TemperateWinter extends Temperate {
-	public TemperateWinter() {
+	public static final TemperateWinter SINGLETON = new TemperateWinter();
+
+	TemperateWinter() {
 		super("Weather (temperate, winter)");
 		normal = "Cold";
 		inclement = "Snow";

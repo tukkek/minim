@@ -12,6 +12,8 @@ import minim.controller.table.adventure.dungeon.lore.Purpose;
 import minim.model.Character;
 
 public class Dungeon extends Table {
+	public static final Dungeon SINGLETON = new Dungeon();
+
 	static final LinkedHashMap<String, Table> CHARACTERISTICS = new LinkedHashMap<>(3);
 	static final String FORMAT = "  %s: %s.";
 
@@ -25,7 +27,7 @@ public class Dungeon extends Table {
 		CHARACTERISTICS.put("Original occupant", Occupant.SINGLETON);
 	}
 
-	public Dungeon() {
+	Dungeon() {
 		super("Dungeon");
 	}
 
