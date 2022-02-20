@@ -152,7 +152,7 @@ public class Tables {
 			this.tables.addAll(Importance.BEARINGS.values());
 		}
 	};
-	static final Category BOLD = new Category("Game master emulator (Stories and deeds)",
+	static final Category BOLD = new Category("Game master emulator (Stories and Deeds)",
 			List.of(new ArcedWaylay(), new Connection(), Connection.ACTION, Connection.GERUND, Connection.SUBJECT,
 					Waylay.SINGLETON, Waylay.EASYFOES, Waylay.EPIC, Waylay.FACTIONAL, Waylay.HARDFOES, Waylay.HAVEN,
 					Waylay.KNOWLEDGE, Waylay.MODIFIER, Waylay.NATURAL, Waylay.PARTY, Waylay.PERSONAL, Waylay.PHYSICAL,
@@ -176,7 +176,7 @@ public class Tables {
 					InstantSetting.PLACE, InstantSetting.POPULATION, InstantSetting.SINGLETON, InstantSetting.TECH,
 					InstantSetting.TONE, Thing.DESCRIPTOR, Thing.SINGLETON, Trait.OTHER, Trait.RANKS, Trait.SINGLETON,
 					Trait.SKILL, Trait.ATTRIBUTE));
-	static final Category WORLD = new Category("NPC (real-world)",
+	static final Category WORLD = new Category("NPC (realistic)",
 			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
 					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH, WorldNpc.SIMPLE));
 	static final Category HEXCRAWL = new Category("Adventure (hexcrawl)",
