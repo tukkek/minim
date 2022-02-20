@@ -30,11 +30,6 @@ import minim.controller.table.adventure.weather.Temperate;
 import minim.controller.table.adventure.weather.TemperateSummer;
 import minim.controller.table.adventure.weather.TemperateWinter;
 import minim.controller.table.adventure.weather.Weather;
-import minim.controller.table.adventurecrafter.Adventure;
-import minim.controller.table.adventurecrafter.CharacterCrafter;
-import minim.controller.table.adventurecrafter.PlotPoint;
-import minim.controller.table.adventurecrafter.Plotline;
-import minim.controller.table.adventurecrafter.TurningPoint;
 import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
@@ -42,15 +37,6 @@ import minim.controller.table.combat.Action;
 import minim.controller.table.combat.ActionType;
 import minim.controller.table.combat.Twist;
 import minim.controller.table.combat.Wound;
-import minim.controller.table.conjectural.SceneTone;
-import minim.controller.table.conjectural.SceneTwist;
-import minim.controller.table.conjectural.Unexpectedly;
-import minim.controller.table.conjectural.YesNo;
-import minim.controller.table.conjectural.YesNoAdvantage;
-import minim.controller.table.conjectural.YesNoDisadvantage;
-import minim.controller.table.conjectural.loom.YesNoConflict;
-import minim.controller.table.conjectural.loom.YesNoEnding;
-import minim.controller.table.conjectural.loom.YesNoKnowledge;
 import minim.controller.table.cyberpunk.Enemy;
 import minim.controller.table.cyberpunk.Family;
 import minim.controller.table.cyberpunk.LifeEvent;
@@ -83,6 +69,7 @@ import minim.controller.table.darkness.mage.social.Convention;
 import minim.controller.table.darkness.mage.social.Labyrinth;
 import minim.controller.table.darkness.werewolf.Tribe;
 import minim.controller.table.darkness.werewolf.Werewolf;
+import minim.controller.table.falkenstein.Diary;
 import minim.controller.table.hexcrawl.Elevation;
 import minim.controller.table.hexcrawl.Hex;
 import minim.controller.table.hexcrawl.PointOfInterest;
@@ -90,12 +77,12 @@ import minim.controller.table.hexcrawl.Vegetation;
 import minim.controller.table.hexcrawl.Water;
 import minim.controller.table.innomine.Artifact;
 import minim.controller.table.innomine.Discord;
-import minim.controller.table.innomine.Role;
 import minim.controller.table.innomine.Song;
 import minim.controller.table.innomine.character.Angel;
 import minim.controller.table.innomine.character.Characters;
 import minim.controller.table.innomine.character.Fiends;
 import minim.controller.table.innomine.character.Reliever;
+import minim.controller.table.innomine.character.Role;
 import minim.controller.table.innomine.character.Soldier;
 import minim.controller.table.instant.InstantChallenge;
 import minim.controller.table.instant.InstantCharacter;
@@ -103,16 +90,6 @@ import minim.controller.table.instant.InstantPlot;
 import minim.controller.table.instant.InstantSetting;
 import minim.controller.table.instant.Thing;
 import minim.controller.table.instant.Trait;
-import minim.controller.table.ironsworn.ChallengeRank;
-import minim.controller.table.ironsworn.CharacterGenerator;
-import minim.controller.table.ironsworn.CombatAction;
-import minim.controller.table.ironsworn.MysticBackslash;
-import minim.controller.table.ironsworn.Oracles;
-import minim.controller.table.ironsworn.PlotTwist;
-import minim.controller.table.ironsworn.Region;
-import minim.controller.table.ironsworn.SettlementName;
-import minim.controller.table.ironsworn.SettlementTrouble;
-import minim.controller.table.ironsworn.WaterLocation;
 import minim.controller.table.kult.character.Advantage;
 import minim.controller.table.kult.character.Disadvantage;
 import minim.controller.table.kult.character.Effect;
@@ -134,14 +111,6 @@ import minim.controller.table.kult.setting.Period;
 import minim.controller.table.kult.setting.Portal;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
-import minim.controller.table.mythic.EventFocus;
-import minim.controller.table.mythic.EventMeaning;
-import minim.controller.table.mythic.Fate;
-import minim.controller.table.mythic.SceneChaos;
-import minim.controller.table.steampunk.Diary;
-import minim.controller.table.tarot.Character;
-import minim.controller.table.tarot.PlotGenerator;
-import minim.controller.table.tarot.TarotCard;
 import minim.controller.table.toon.BadGuy;
 import minim.controller.table.toon.CartoonAdventure;
 import minim.controller.table.toon.Location;
@@ -167,30 +136,12 @@ public class Tables {
 		}
 	}
 
-	static final Category CONJECTURAL = new Category("Conjectural GME",
-			List.of(new SceneTone(), SceneTwist.SINGLETON, YesNo.SINGLETON, new YesNoAdvantage(),
-					new YesNoDisadvantage(), new YesNoKnowledge(), Unexpectedly.SINGLETON, new YesNoConflict(),
-					new YesNoEnding()));
-	static final Category TOON = new Category("Cartoon adventure", List.of(new CartoonAdventure(), Location.SINGLETON,
+	static final Category TOON = new Category("Adventure (cartoon)", List.of(new CartoonAdventure(), Location.SINGLETON,
 			BadGuy.SINGLETON, minim.controller.table.toon.Character.SINGLETON, Motive.SINGLETON,
 			minim.controller.table.toon.Object.SINGLETON, Location.ANYTOWN, Location.OUTERSPACE, Location.OUTSIDEOFTOWN,
 			Location.THECITY, CartoonAdventure.BATTLE, CartoonAdventure.CHASE, CartoonAdventure.MYSTERY,
 			CartoonAdventure.RESCUE, CartoonAdventure.SURVIVAL, CartoonAdventure.THEFT));
-	static final Category TAROT = new Category("Tarot",
-			List.of(TarotCard.SINGLETON, TarotCard.MAJOR, TarotCard.CUPS, TarotCard.PENTACLES, TarotCard.SWORDS,
-					TarotCard.WANDS, new Character(), new PlotGenerator(), PlotGenerator.ACT1, PlotGenerator.ACT2,
-					PlotGenerator.ACT3));
-	static final Category MYTHIC = new Category("Mythic GME",
-			List.of(Fate.EVENODSS, Fate.IMPOSSIBLE, Fate.LIKELY, Fate.SURETHING, Fate.UNLIKELY, new EventFocus(),
-					EventMeaning.SINGLETON, EventMeaning.ACTION, EventMeaning.SUBJECT, SceneChaos.LOW,
-					SceneChaos.NORMAL, SceneChaos.HIGH));
-	static final Category IRONSWORN = new Category("Ironsworn GME",
-			List.of(new CharacterGenerator(), new minim.controller.table.ironsworn.Location(),
-					minim.controller.table.ironsworn.Location.DESCRIPTOR, Oracles.ACTION, Oracles.THEME, new Region(),
-					new WaterLocation(), new SettlementName(), new SettlementTrouble(), CharacterGenerator.DESCRIPTOR,
-					CharacterGenerator.GOAL, CharacterGenerator.ROLE, new CombatAction(), new MysticBackslash(),
-					new PlotTwist(), new ChallengeRank()));
-	static final Category UNE = new Category("Universal NPC emulator",
+	static final Category UNE = new Category("NPC (Universal NPC Emulator)",
 			List.of(Importance.SINGLETON, Importance.DEMEANOR, Importance.FOCUS, Mood.FRIENDLY, Mood.HOSTILE,
 					Mood.NEUTRAL, Motivation.SINGLETON, Motivation.NOUN, Motivation.VERB, new Npc(), Npc.MODIFIER,
 					Npc.NOUN, PowerLevel.SINGLETON)) {
@@ -198,12 +149,12 @@ public class Tables {
 			this.tables.addAll(Importance.BEARINGS.values());
 		}
 	};
-	static final Category BOLD = new Category("Stories and deeds",
+	static final Category BOLD = new Category("Game master emulator (Stories and deeds)",
 			List.of(new ArcedWaylay(), new Connection(), Connection.ACTION, Connection.GERUND, Connection.SUBJECT,
 					Waylay.SINGLETON, Waylay.EASYFOES, Waylay.EPIC, Waylay.FACTIONAL, Waylay.HARDFOES, Waylay.HAVEN,
 					Waylay.KNOWLEDGE, Waylay.MODIFIER, Waylay.NATURAL, Waylay.PARTY, Waylay.PERSONAL, Waylay.PHYSICAL,
 					Waylay.SOLUTION));
-	static final Category CYBERPUNK = new Category("Cyberpunk lifepath",
+	static final Category CYBERPUNK2020 = new Category("NPC (Cyberpunk 2020 lifepath)",
 			List.of(Enemy.ACTION, Enemy.DIRECTION, Enemy.FORCES, Enemy.WHO, Enemy.WHY, new Enemy(), Family.CHILDHOOD,
 					Family.NOPARENTS, Family.RANKING, Family.SINGLETON, Family.TRAGEDY, LifeEvent.BIGPROBLEMSBIGWINS,
 					LifeEvent.DISASTER, LifeEvent.FRIEND, LifeEvent.FRIENDSFOES, LifeEvent.LUCKY, LifeEvent.SINGLETON,
@@ -212,32 +163,26 @@ public class Tables {
 					LifepathMotivation.VALUED, LifepathMotivation.VALUES, Romance.FEELINGS, Romance.PROBLEMATIC,
 					Romance.TRAGIC, new Romance(), Sibling.AGE, Sibling.FEELINGS, Sibling.GENDER, Sibling.SINGLETON,
 					Style.AFFECTATION, Style.CLOTHES, Style.HAIR, Style.SINGLETON));
-	static final Category DIARY = new Category("Steampunk diary",
+	static final Category FALKENSTEIN = new Category("NPC (Castle Falkenstein diary questions)",
 			List.of(new Diary(), Diary.ALLEGIANCES, Diary.APPEARANCE, Diary.BACKGROUND, Diary.FAMILY, Diary.PERSONALITY,
 					Diary.PREFERENCES, Diary.ROMANCE, Diary.SKILLS));
-	static final Category ADVENTURECRAFTER = new Category("Adventure crafter",
-			List.of(new Adventure(), Plotline.SINGLETON, PlotPoint.ACTION, PlotPoint.META, PlotPoint.MYSTERY,
-					PlotPoint.PERSONAL, PlotPoint.SINGLETON, PlotPoint.SOCIAL, PlotPoint.TENSION, PlotPoint.THEME,
-					TurningPoint.SINGLETON, new minim.controller.table.adventurecrafter.Character(),
-					new CharacterCrafter(), CharacterCrafter.DESCRIPTOR, CharacterCrafter.IDENTITY,
-					CharacterCrafter.TRAIT));
-	static final Category INSTANT = new Category("Instant game",
+	static final Category INSTANT = new Category("Game master emulator (Instant game)",
 			List.of(new InstantChallenge(), InstantCharacter.FLAW, InstantCharacter.PEOPLE,
 					InstantCharacter.PERSONALITY, InstantCharacter.NORMAL, InstantCharacter.WEAK,
 					InstantCharacter.FLAMBOYANT, InstantPlot.ACTION, InstantPlot.OPPOSITION, InstantPlot.SINGLETON,
 					InstantSetting.PLACE, InstantSetting.POPULATION, InstantSetting.SINGLETON, InstantSetting.TECH,
 					InstantSetting.TONE, Thing.DESCRIPTOR, Thing.SINGLETON, Trait.OTHER, Trait.RANKS, Trait.SINGLETON,
 					Trait.SKILL, Trait.ATTRIBUTE));
-	static final Category WORLD = new Category("Real-world NPC",
+	static final Category WORLD = new Category("NPC (real-world)",
 			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
 					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH, WorldNpc.SIMPLE));
-	static final Category HEXCRAWL = new Category("Hexcrawl",
+	static final Category HEXCRAWL = new Category("Adventure (hexcrawl)",
 			List.of(new Hex(), Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
 					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT));
-	static final Category COMBAT = new Category("Combat",
+	static final Category COMBAT = new Category("Game master emulator (combat)",
 			List.of(Action.CAREFREE, Action.CAUTIOUS, Action.CERTAIN, Action.COWERING, Action.DARING, Action.TREMBLING,
 					ActionType.SINGLETON, Twist.SINGLETON, Wound.HIT, Wound.CRITICAL, Wound.DEADLY));
-	static final Category ADVENTURE = new Category("Adventure overview",
+	static final Category ADVENTURE = new Category("Adventure (fantasy)",
 			List.of(new Type(), Motif.SINGLETON, Map.SINGLETON, Grid.SINGLETON, new Dungeon(), Backstory.SINGLETON,
 					Purpose.SINGLETON, Occupant.SINGLETON, Information.CLUE, Information.RUMOR,
 					Information.RUMORCONTENT, Information.WRITING, Information.SINGLETON,
@@ -246,13 +191,13 @@ public class Tables {
 	static final Category WEATHER = new Category("Weather",
 			List.of(new Cold(), new Desert(), new Temperate(), new TemperateSummer(), new TemperateWinter(),
 					new minim.controller.table.adventure.weather.Type(), Weather.SEASONS));
-	static final Category MISC = new Category("Miscellaneous",
+	static final Category MISC = new Category("Widget",
 			List.of(new Quantity(), new RandomEncounter(), RandomEncounter.DELAY));
-	static final Category MONSTER = new Category("World of darkness (monsters)",
+	static final Category MONSTER = new Category("NPC (World of Darkness)",
 			List.of(Wraith.INSTANCE, Hunter.INSTANCE, Werewolf.INSTANCE, Changeling.INSTANCE, Beast.INSTANCE,
 					Demon.INSTANCE, Kindred.URBAN, Kindred.RURAL, HedgeMage.INSTANCE, Mage.INSTANCE, Kuejin.INSTANCE,
 					Bound.INSTANCE, Promethean.INSTANCE, Mummy.INSTANCE, Monster.INSTANCE));
-	static final Category DARKNESS = new Category("World of darkness", List.of(Monster.INSTANCE, Clan.ANARCH,
+	static final Category DARKNESS = new Category("Setting (World of Darkness)", List.of(Monster.INSTANCE, Clan.ANARCH,
 			Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN, Generation.INSTANCE,
 			minim.controller.table.darkness.kindred.Type.INSTANCE, Age.INSTANCE, Kindred.RURAL, Kindred.URBAN,
 			minim.controller.table.darkness.mage.Faction.INSTANCE, Tradition.INSTANCE, Rank.TECHNOCRACY,
@@ -270,13 +215,14 @@ public class Tables {
 			Bound.BURDEN, Bound.HAUNT, Bound.KEY, Promethean.INSTANCE, Promethean.LINEAGE, Promethean.REFINEMENT,
 			Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN, Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ,
 			Athanor.ULGAN, Mummy.INSTANCE, Mummy.DECREE, Mummy.GUILD));
-	static final Category INNOMINE = new Category("In nomine",
-			List.of(Angel.INSTANCE, Angel.CHOIR, new Characters(), Role.INSTANCE, Role.FAME, Role.STATUS,
-					minim.controller.table.innomine.character.Demon.BAND,
+	static final Category INNOMINE = new Category("Setting (In Nomine)",
+			List.of(Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE, new Artifact(), Artifact.COMPASS,
+					Artifact.RELIC, Artifact.TALISMAN, Artifact.VESSEL, Artifact.LEVEL));
+	static final Category INNOMINENPC = new Category("NPC (In Nomine)",
+			List.of(Angel.INSTANCE, Angel.CHOIR, new Characters(), minim.controller.table.innomine.character.Demon.BAND,
 					minim.controller.table.innomine.character.Demon.INSTANCE, new Fiends(), Reliever.INSTANCE,
-					Soldier.GOD, Soldier.HELL, Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE, new Artifact(),
-					Artifact.COMPASS, Artifact.RELIC, Artifact.TALISMAN, Artifact.VESSEL, Artifact.LEVEL));
-	static final Category KULTCHARACTER = new Category("Kult (character)", List.of(Effect.INSTANCE, Advantage.INSTANCE,
+					Soldier.GOD, Soldier.HELL, Role.INSTANCE, Role.FAME, Role.STATUS));
+	static final Category KULTCHARACTER = new Category("NPC (Kult)", List.of(Effect.INSTANCE, Advantage.INSTANCE,
 			Disadvantage.INSTANCE, Profession.INSTANCE, Secret.INSTANCE, Skill.INSTANCE,
 			minim.controller.table.kult.character.Character.ARCHETYPE,
 			minim.controller.table.kult.character.Character.AGENT,
@@ -315,7 +261,7 @@ public class Tables {
 			NightChild.POWERS, NightChild.LORELEI, NightChild.NEPHILIM, NightChild.REVENANT, NightChild.SERAPHIM,
 			NightChild.WOLVEN, NightChild.INSTANCE, PhysicalChange.INSTANCE, MentalChange.INSTANCE, Madness.POSITIVE,
 			Madness.NEGATIVE, Madness.NEUTRAL, Madness.SHOCK, Madness.POSSESSION, Skill.LORES));
-	static final Category KULTSETTING = new Category("Kult (setting)",
+	static final Category KULTSETTING = new Category("Setting (Kult)",
 			List.of(Metropolis.INSTANCE, Being.INSTANCE, Being.ARCHONS, Inferno.ASTAROTH, Inferno.ANGELS,
 					Metropolis.CITADELS, Metropolis.LABYRINTH, Inferno.INSTANCE, Dream.INSTANCE, Elysium.INSTANCE,
 					Portal.INSTANCE, Portal.HIGHER, Portal.LOWER, new minim.controller.table.kult.setting.Artifact(),
@@ -335,9 +281,9 @@ public class Tables {
 					minim.controller.table.kult.setting.Adventure.PLOT, City.TRANSPORT, City.COMMUNICATION,
 					City.INSTITUTION, minim.controller.table.kult.setting.Artifact.CLOCKWORK, Metropolis.LIVINGCITY,
 					Metropolis.RUINS, Period.INSTANCE, Period.ANCIENT, Period.MODERN));
-	static final List<Category> CATEGORIES = new ArrayList<>(List.of(CONJECTURAL, TOON, TAROT, MYTHIC, IRONSWORN, UNE,
-			BOLD, CYBERPUNK, DIARY, ADVENTURECRAFTER, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER, MISC,
-			DARKNESS, MONSTER, INNOMINE, KULTCHARACTER, KULTSETTING));
+	static final List<Category> CATEGORIES = new ArrayList<>(
+			List.of(TOON, UNE, BOLD, CYBERPUNK2020, FALKENSTEIN, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER,
+					MISC, DARKNESS, MONSTER, INNOMINE, INNOMINENPC, KULTCHARACTER, KULTSETTING));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));

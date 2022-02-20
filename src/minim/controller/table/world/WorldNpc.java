@@ -32,8 +32,8 @@ public class WorldNpc extends Table {
 			add(1, "Child");
 			add(1, "Teenager");
 			add(4, "Adult");
-			add(2, "Middle-aged");
-			add(1, "Elderly");
+			add(2, "Middle-aged adult");
+			add(1, "Elder");
 		}
 	};
 	static public final Table SEX = new SimpleTable("Sex", List.of("Male", "Female"));
@@ -133,9 +133,9 @@ public class WorldNpc extends Table {
 	@Override
 	public String roll() {
 		var basic = new ArrayList<String>(3);
-		basic.add(AGE.roll());
-		basic.add(RACE.roll());
 		basic.add(SEX.roll());
+		basic.add(RACE.roll());
+		basic.add(AGE.roll());
 		var details = new ArrayList<String>(4);
 		for (var table : List.of(RELIGION, SEXUALITY, DISABILITY, MENTALISSUE, HEALTH)) {
 			var line = table.roll();

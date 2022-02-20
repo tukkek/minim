@@ -1,4 +1,4 @@
-package minim.controller.table.innomine;
+package minim.controller.table.innomine.character;
 
 import minim.controller.table.Table;
 

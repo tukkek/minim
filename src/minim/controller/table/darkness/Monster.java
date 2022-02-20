@@ -12,7 +12,7 @@ public class Monster extends MetaTable {
 	public static final Table INSTANCE = new Monster();
 
 	Monster() {
-		super("Monster");
+		super("NPC");
 	}
 
 	@Override

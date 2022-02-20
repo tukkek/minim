@@ -4,7 +4,6 @@ import minim.controller.table.Lines;
 import minim.controller.table.MetaTable;
 import minim.controller.table.Table;
 import minim.controller.table.innomine.Discord;
-import minim.controller.table.innomine.Role;
 import minim.controller.table.innomine.Song;
 
 public class Characters extends MetaTable {

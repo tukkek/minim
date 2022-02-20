@@ -1,4 +1,4 @@
-package minim.controller.table.steampunk;
+package minim.controller.table.falkenstein;
 
 import java.util.List;
 
