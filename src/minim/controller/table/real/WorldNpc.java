@@ -1,4 +1,4 @@
-package minim.controller.table.world;
+package minim.controller.table.real;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,8 @@ public class WorldNpc extends Table {
 	static final String ABLE = "Able";
 	static final String NEUROTYPICAL = "Neurotypical";
 	static final String HEALTHY = "Healthy";
-	static final Set<String> TYPICAL = Set.of(ATHEIST, STRAIGHT, ABLE, NEUROTYPICAL, HEALTHY);
+	static final String INTERMEDIATE = "Intermediate";
+	static final Set<String> TYPICAL = Set.of(ATHEIST, STRAIGHT, ABLE, NEUROTYPICAL, HEALTHY, INTERMEDIATE);
 
 	static public final Table AGE = new Table("Age") {
 		@Override
@@ -114,6 +115,15 @@ public class WorldNpc extends Table {
 		}
 	};
 
+	public static final Table CHRONOTYPE = new Table("Chronotype") {
+		@Override
+		public void build() {
+			add(2, "Early bird");
+			add(3, "Night owl");
+			add(10 - this.lines.size(), INTERMEDIATE);
+		}
+	};
+
 	protected boolean simple = false;
 
 	public WorldNpc() {
@@ -137,7 +147,7 @@ public class WorldNpc extends Table {
 		basic.add(RACE.roll());
 		basic.add(AGE.roll());
 		var details = new ArrayList<String>(4);
-		for (var table : List.of(RELIGION, SEXUALITY, DISABILITY, MENTALISSUE, HEALTH)) {
+		for (var table : List.of(RELIGION, SEXUALITY, DISABILITY, MENTALISSUE, HEALTH, CHRONOTYPE)) {
 			var line = table.roll();
 			if (!TYPICAL.contains(line))
 				details.add(line.toLowerCase());

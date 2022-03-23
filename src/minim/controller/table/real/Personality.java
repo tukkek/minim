@@ -1,4 +1,4 @@
-package minim.controller.table.world;
+package minim.controller.table.real;
 
 import java.util.List;
 import java.util.stream.Collectors;

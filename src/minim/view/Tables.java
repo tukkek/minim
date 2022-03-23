@@ -107,6 +107,8 @@ import minim.controller.table.kult.setting.Portal;
 import minim.controller.table.misc.OneShot;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
+import minim.controller.table.real.Personality;
+import minim.controller.table.real.WorldNpc;
 import minim.controller.table.toon.BadGuy;
 import minim.controller.table.toon.CartoonAdventure;
 import minim.controller.table.toon.Location;
@@ -123,8 +125,6 @@ import minim.controller.table.weather.Temperate;
 import minim.controller.table.weather.TemperateSummer;
 import minim.controller.table.weather.TemperateWinter;
 import minim.controller.table.weather.Weather;
-import minim.controller.table.world.Personality;
-import minim.controller.table.world.WorldNpc;
 
 public class Tables {
 	static class Category {
@@ -178,7 +178,8 @@ public class Tables {
 					Trait.SKILL, Trait.ATTRIBUTE));
 	static final Category WORLD = new Category("NPC (realistic)",
 			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
-					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH, WorldNpc.SIMPLE));
+					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH, WorldNpc.SIMPLE,
+					WorldNpc.CHRONOTYPE));
 	static final Category HEXCRAWL = new Category("Adventure (hexcrawl)",
 			List.of(Hex.SINGLETON, Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
 					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT,
