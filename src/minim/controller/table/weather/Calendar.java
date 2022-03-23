@@ -1,13 +1,17 @@
 package minim.controller.table.weather;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import minim.controller.table.Table;
 
 public class Calendar extends Table {
+
 	public static final Calendar SINGLETON = new Calendar();
 
 	static final HashMap<String, Table> CLIMATES = new HashMap<>();
+	static final int DAYS = 30;
+	static final int COLUMNS = 4;
 
 	static {
 		CLIMATES.put(Climate.DESERT, Desert.SINGLETON);
@@ -35,8 +39,13 @@ public class Calendar extends Table {
 			c = Weather.SEASONS.roll();
 		Table t = CLIMATES.get(c);
 		var s = "%s\n".formatted(c);
-		for (var i = 1; i <= 30; i++) {
-			s += "Day %s - %s\n".formatted(i, t.roll());
+		var dates = new ArrayList<String>(30);
+		for (var i = 1; i <= DAYS; i++)
+			dates.add("%s. %s".formatted(i, t.roll()));
+		for (var i = 0; i < dates.size(); i += COLUMNS) {
+			for (var d : dates.subList(i, Math.min(i + COLUMNS, dates.size())))
+				s += d + " ";
+			s += "\n";
 		}
 		return s;
 	}
