@@ -19,6 +19,7 @@ public class Character implements Unit, Serializable {
 	public static final Random RANDOM = new Random();
 	public static final List<String> HEALTH = Arrays
 			.asList(new String[] { "Unhurt", "Scratched", "Hurt", "Wounded (-1)", "Injured (-2)", "Dead" });
+	public static final String[] QUALITY = new String[] { "terrrible", "poor", "mediocre", "good", "amazing" };
 
 	public class ConfirmDeathDialog extends LazyInputDialog {
 		public ConfirmDeathDialog(Character c) {
@@ -36,7 +37,7 @@ public class Character implements Unit, Serializable {
 		Integer previous;
 
 		public StatDialog(String prompt, String stat, boolean multiple, Integer previous) {
-			super(prompt, multiple, Arrays.asList(new String[] { "terrrible", "poor", "mediocre", "good", "amazing" }));
+			super(prompt, multiple, Arrays.asList(QUALITY));
 			this.previous = previous;
 			title = name;
 			numbered = true;

@@ -124,9 +124,11 @@ public class WorldNpc extends Table {
 		}
 	};
 
+	public static final WorldNpc SINGLETON = new WorldNpc();
+
 	protected boolean simple = false;
 
-	public WorldNpc() {
+	WorldNpc() {
 		super("NPC");
 	}
 

@@ -104,6 +104,7 @@ import minim.controller.table.kult.setting.Inferno;
 import minim.controller.table.kult.setting.Metropolis;
 import minim.controller.table.kult.setting.Period;
 import minim.controller.table.kult.setting.Portal;
+import minim.controller.table.misc.Journey;
 import minim.controller.table.misc.OneShot;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
@@ -177,9 +178,9 @@ public class Tables {
 					InstantSetting.TONE, Thing.DESCRIPTOR, Thing.SINGLETON, Trait.OTHER, Trait.RANKS, Trait.SINGLETON,
 					Trait.SKILL, Trait.ATTRIBUTE));
 	static final Category WORLD = new Category("NPC (realistic)",
-			List.of(new WorldNpc(), WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY, WorldNpc.RELIGION,
-					WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH, WorldNpc.SIMPLE,
-					WorldNpc.CHRONOTYPE));
+			List.of(WorldNpc.SINGLETON, WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY,
+					WorldNpc.RELIGION, WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH,
+					WorldNpc.SIMPLE, WorldNpc.CHRONOTYPE));
 	static final Category HEXCRAWL = new Category("Adventure (hexcrawl)",
 			List.of(Hex.SINGLETON, Hex.NEXT, Elevation.SINGLETON, Elevation.NEXT, PointOfInterest.SINGLETON,
 					PointOfInterest.TYPES, Vegetation.SINGLETON, Vegetation.NEXT, Water.SINGLETON, Water.NEXT,
@@ -287,9 +288,10 @@ public class Tables {
 					minim.controller.table.kult.setting.Adventure.PLOT, City.TRANSPORT, City.COMMUNICATION,
 					City.INSTITUTION, minim.controller.table.kult.setting.Artifact.CLOCKWORK, Metropolis.LIVINGCITY,
 					Metropolis.RUINS, Period.INSTANCE, Period.ANCIENT, Period.MODERN));
+	static final Category JOURNEY = new Category("Adventure (journey)", List.of(new Journey()));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(TOON, UNE, BOLD, CYBERPUNK2020, FALKENSTEIN, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER,
-					MISC, DARKNESS, MONSTER, INNOMINE, INNOMINENPC, KULTCHARACTER, KULTSETTING));
+					MISC, DARKNESS, MONSTER, INNOMINE, INNOMINENPC, KULTCHARACTER, KULTSETTING, JOURNEY));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));

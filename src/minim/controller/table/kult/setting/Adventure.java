@@ -1,5 +1,7 @@
 package minim.controller.table.kult.setting;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import minim.controller.table.Lines;
@@ -49,13 +51,18 @@ public class Adventure extends Table {
 		l.add("Motivation", MOTIVATION);
 		l.add("Characters", CHARACTERS);
 		l.add("Beginning", BEGINNING);
-		var r = List.of(Character.roll(5), Character.roll(5));
-		var events = Math.max(r.get(0), r.get(1));
+		var r = new ArrayList<>(List.of(Character.roll(5), Character.roll(5)));
+		r.sort(null);
+		var complications = r.get(0);
+		var events = r.get(1);
+		var story = new ArrayList<Table>(events + complications);
 		for (int i = 0; i < events; i++)
-			l.add("Event", EVENT);
-		var complications = Math.min(r.get(0), r.get(1));
+			story.add(EVENT);
 		for (int i = 0; i < complications; i++)
-			l.add("Complication", COMPLICATION);
+			story.add(COMPLICATION);
+		Collections.shuffle(story);
+		for (var s : story)
+			l.add(s == EVENT ? "Event" : "Complication", s);
 		return l.toString();
 	}
 }
