@@ -24,6 +24,8 @@ import minim.controller.table.adventure.dungeon.lore.Backstory;
 import minim.controller.table.adventure.dungeon.lore.Information;
 import minim.controller.table.adventure.dungeon.lore.Occupant;
 import minim.controller.table.adventure.dungeon.lore.Purpose;
+import minim.controller.table.adventure.journey.Journey;
+import minim.controller.table.adventure.journey.JourneyHelpers;
 import minim.controller.table.bold.ArcedWaylay;
 import minim.controller.table.bold.Connection;
 import minim.controller.table.bold.Waylay;
@@ -48,6 +50,7 @@ import minim.controller.table.darkness.Kuejin;
 import minim.controller.table.darkness.Monster;
 import minim.controller.table.darkness.Promethean;
 import minim.controller.table.darkness.Promethean.Athanor;
+import minim.controller.table.darkness.WodArtifact;
 import minim.controller.table.darkness.Wraith;
 import minim.controller.table.darkness.kindred.Age;
 import minim.controller.table.darkness.kindred.Clan;
@@ -86,8 +89,10 @@ import minim.controller.table.instant.InstantSetting;
 import minim.controller.table.instant.Thing;
 import minim.controller.table.instant.Trait;
 import minim.controller.table.kult.character.Advantage;
+import minim.controller.table.kult.character.Conjurer;
 import minim.controller.table.kult.character.Disadvantage;
 import minim.controller.table.kult.character.Effect;
+import minim.controller.table.kult.character.KultCharacter;
 import minim.controller.table.kult.character.NightChild;
 import minim.controller.table.kult.character.Profession;
 import minim.controller.table.kult.character.Secret;
@@ -101,10 +106,11 @@ import minim.controller.table.kult.setting.Cult;
 import minim.controller.table.kult.setting.Dream;
 import minim.controller.table.kult.setting.Elysium;
 import minim.controller.table.kult.setting.Inferno;
+import minim.controller.table.kult.setting.KultAdventure;
+import minim.controller.table.kult.setting.KultArtifact;
 import minim.controller.table.kult.setting.Metropolis;
 import minim.controller.table.kult.setting.Period;
 import minim.controller.table.kult.setting.Portal;
-import minim.controller.table.misc.Journey;
 import minim.controller.table.misc.OneShot;
 import minim.controller.table.misc.Quantity;
 import minim.controller.table.misc.RandomEncounter;
@@ -145,7 +151,7 @@ public class Tables {
 			minim.controller.table.toon.Object.SINGLETON, Location.ANYTOWN, Location.OUTERSPACE, Location.OUTSIDEOFTOWN,
 			Location.THECITY, CartoonAdventure.BATTLE, CartoonAdventure.CHASE, CartoonAdventure.MYSTERY,
 			CartoonAdventure.RESCUE, CartoonAdventure.SURVIVAL, CartoonAdventure.THEFT));
-	static final Category UNE = new Category("NPC (Universal NPC Emulator)",
+	static final Category UNE = new Category("Character (Universal NPC Emulator)",
 			List.of(Importance.SINGLETON, Importance.DEMEANOR, Importance.FOCUS, Mood.FRIENDLY, Mood.HOSTILE,
 					Mood.NEUTRAL, Motivation.SINGLETON, Motivation.NOUN, Motivation.VERB, new Npc(), Npc.MODIFIER,
 					Npc.NOUN, PowerLevel.SINGLETON)) {
@@ -158,7 +164,7 @@ public class Tables {
 					Waylay.SINGLETON, Waylay.EASYFOES, Waylay.EPIC, Waylay.FACTIONAL, Waylay.HARDFOES, Waylay.HAVEN,
 					Waylay.KNOWLEDGE, Waylay.MODIFIER, Waylay.NATURAL, Waylay.PARTY, Waylay.PERSONAL, Waylay.PHYSICAL,
 					Waylay.SOLUTION));
-	static final Category CYBERPUNK2020 = new Category("NPC (Cyberpunk 2020 lifepath)",
+	static final Category CYBERPUNK2020 = new Category("Character (Cyberpunk 2020 lifepath)",
 			List.of(Enemy.ACTION, Enemy.DIRECTION, Enemy.FORCES, Enemy.WHO, Enemy.WHY, new Enemy(), Family.CHILDHOOD,
 					Family.NOPARENTS, Family.RANKING, Family.SINGLETON, Family.TRAGEDY, LifeEvent.BIGPROBLEMSBIGWINS,
 					LifeEvent.DISASTER, LifeEvent.FRIEND, LifeEvent.FRIENDSFOES, LifeEvent.LUCKY, LifeEvent.SINGLETON,
@@ -167,7 +173,7 @@ public class Tables {
 					LifepathMotivation.VALUED, LifepathMotivation.VALUES, Romance.FEELINGS, Romance.PROBLEMATIC,
 					Romance.TRAGIC, new Romance(), Sibling.AGE, Sibling.FEELINGS, Sibling.GENDER, Sibling.SINGLETON,
 					Style.AFFECTATION, Style.CLOTHES, Style.HAIR, Style.SINGLETON));
-	static final Category FALKENSTEIN = new Category("NPC (Castle Falkenstein diary questions)",
+	static final Category FALKENSTEIN = new Category("Character (Castle Falkenstein diary questions)",
 			List.of(new Diary(), Diary.ALLEGIANCES, Diary.APPEARANCE, Diary.BACKGROUND, Diary.FAMILY, Diary.PERSONALITY,
 					Diary.PREFERENCES, Diary.ROMANCE, Diary.SKILLS));
 	static final Category INSTANT = new Category("Game master emulator (Instant game)",
@@ -177,7 +183,7 @@ public class Tables {
 					InstantSetting.PLACE, InstantSetting.POPULATION, InstantSetting.SINGLETON, InstantSetting.TECH,
 					InstantSetting.TONE, Thing.DESCRIPTOR, Thing.SINGLETON, Trait.OTHER, Trait.RANKS, Trait.SINGLETON,
 					Trait.SKILL, Trait.ATTRIBUTE));
-	static final Category WORLD = new Category("NPC (realistic)",
+	static final Category WORLD = new Category("Character (realistic)",
 			List.of(WorldNpc.SINGLETON, WorldNpc.RACE, WorldNpc.SEX, WorldNpc.AGE, WorldNpc.SEXUALITY,
 					WorldNpc.RELIGION, WorldNpc.DISABILITY, WorldNpc.MENTALISSUE, Personality.INSTANCE, WorldNpc.HEALTH,
 					WorldNpc.SIMPLE, WorldNpc.CHRONOTYPE));
@@ -200,101 +206,80 @@ public class Tables {
 					Calendar.SINGLETON));
 	static final Category MISC = new Category("Widget",
 			List.of(new Quantity(), new RandomEncounter(), RandomEncounter.DELAY, new OneShot()));
-	static final Category MONSTER = new Category("NPC (World of Darkness)",
-			List.of(Wraith.INSTANCE, Hunter.INSTANCE, Werewolf.INSTANCE, Changeling.INSTANCE, Beast.INSTANCE,
-					Demon.INSTANCE, Kindred.URBAN, Kindred.RURAL, HedgeMage.INSTANCE, Mage.INSTANCE, Kuejin.INSTANCE,
-					Bound.INSTANCE, Promethean.INSTANCE, Mummy.INSTANCE, Monster.INSTANCE));
-	static final Category DARKNESS = new Category("Setting (World of Darkness)", List.of(Monster.INSTANCE, Clan.ANARCH,
-			Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT, Clan.URBAN, Generation.INSTANCE,
-			minim.controller.table.darkness.kindred.Type.INSTANCE, Age.INSTANCE, Kindred.RURAL, Kindred.URBAN,
-			minim.controller.table.darkness.mage.Faction.INSTANCE, Tradition.INSTANCE, Rank.TECHNOCRACY,
-			Rank.TRADITIONS, new Chantry(), new Convention(), Convention.CONSTRUCT, Mage.INSTANCE, Mage.TRADITIONALIST,
-			Mage.TECHNOCRAT, Rank.NEṔHANDI, Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER,
-			Marauder.BACKRGOUND, Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, HedgeMage.INSTANCE,
-			HedgeMage.ORGANIZATION, Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER, Tribe.PURE, Tribe.INSTANCE,
-			Werewolf.INSTANCE, Wraith.INSTANCE, Wraith.FACTIONS, Wraith.GUILDS, Wraith.HERETICS, Wraith.LEGIONS,
-			Wraith.RENEGADES, Hunter.INSTANCE, Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL, Hunter.COMPACT,
-			Hunter.CONSPIRACY, Hunter.ORGANIZATION, Changeling.INSTANCE, Changeling.ADHENE, Changeling.COURT,
-			Changeling.GALLAIN, Changeling.HOUSES, Changeling.HSIEN, Changeling.INANIMAE, Changeling.KITH,
-			Changeling.KITHAIN, Changeling.NUNNEHI, Changeling.SEELIEHOUSES, Changeling.THALLAIN,
-			Changeling.UNSEELIEHOUSES, Beast.INSTANCE, Beast.FAMILIES, Beast.HUNGER, Demon.INSTANCE, Demon.FACTION,
-			Demon.HOUSE, Kuejin.INSTANCE, Kuejin.DHARMA, Kuejin.HERETICAL, Kuejin.ORTHODOX, Kuejin.CHI, Bound.INSTANCE,
-			Bound.BURDEN, Bound.HAUNT, Bound.KEY, Promethean.INSTANCE, Promethean.LINEAGE, Promethean.REFINEMENT,
-			Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN, Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ,
-			Athanor.ULGAN, Mummy.INSTANCE, Mummy.DECREE, Mummy.GUILD));
+	static final Category WODNPC = new Category("Character (World of Darkness)",
+			List.of(Hunter.INSTANCE, Hunter.CREED, Hunter.MERCY, Hunter.VISION, Hunter.ZEAL, Hunter.COMPACT,
+					Hunter.CONSPIRACY, Hunter.ORGANIZATION, HedgeMage.INSTANCE, HedgeMage.ORGANIZATION, Bound.INSTANCE,
+					Bound.BURDEN, Bound.HAUNT, Bound.KEY));
+	static final Category WODMONSTER = new Category("Character (World of Darkness, monster)",
+			List.of(Monster.INSTANCE, Clan.ANARCH, Clan.CAMARILLA, Clan.INDEPENDENT, Clan.RURAL, Clan.SABBAT,
+					Clan.URBAN, Generation.INSTANCE, minim.controller.table.darkness.kindred.Type.INSTANCE,
+					Age.INSTANCE, Kindred.RURAL, Kindred.URBAN, minim.controller.table.darkness.mage.Faction.INSTANCE,
+					Tradition.INSTANCE, Rank.TECHNOCRACY, Rank.TRADITIONS, new Chantry(), new Convention(),
+					Convention.CONSTRUCT, Mage.INSTANCE, Mage.TRADITIONALIST, Mage.TECHNOCRAT, Rank.NEṔHANDI,
+					Mage.NEPHANDI, new Labyrinth(), Labyrinth.FACTION, Rank.MARAUDER, Marauder.BACKRGOUND,
+					Marauder.INSTANCE, Rank.ORPHAN, Mage.ORPHAN, Werewolf.AUSPICE, Tribe.FORSAKEN, Tribe.OTHER,
+					Tribe.PURE, Tribe.INSTANCE, Werewolf.INSTANCE, Wraith.INSTANCE, Wraith.FACTIONS, Wraith.GUILDS,
+					Wraith.HERETICS, Wraith.LEGIONS, Wraith.RENEGADES, Changeling.INSTANCE, Changeling.ADHENE,
+					Changeling.COURT, Changeling.GALLAIN, Changeling.HOUSES, Changeling.HSIEN, Changeling.INANIMAE,
+					Changeling.KITH, Changeling.KITHAIN, Changeling.NUNNEHI, Changeling.SEELIEHOUSES,
+					Changeling.THALLAIN, Changeling.UNSEELIEHOUSES, Beast.INSTANCE, Beast.FAMILIES, Beast.HUNGER,
+					Demon.INSTANCE, Demon.FACTION, Demon.HOUSE, Kuejin.INSTANCE, Kuejin.DHARMA, Kuejin.HERETICAL,
+					Kuejin.ORTHODOX, Kuejin.CHI, Promethean.INSTANCE, Promethean.LINEAGE, Promethean.REFINEMENT,
+					Promethean.TRANSMUTATION, Athanor.FRANKENSTEIN, Athanor.GALATEA, Athanor.OSIRIS, Athanor.TAMMUZ,
+					Athanor.ULGAN, Mummy.INSTANCE, Mummy.DECREE, Mummy.GUILD));
 	static final Category INNOMINE = new Category("Setting (In Nomine)",
-			List.of(Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE, new Artifact(), Artifact.COMPASS,
+			List.of(Discord.INSTANCE, Discord.TYPE, Song.INSTANCE, Song.TYPE, Artifact.INSTANCE, Artifact.COMPASS,
 					Artifact.RELIC, Artifact.TALISMAN, Artifact.VESSEL, Artifact.LEVEL));
-	static final Category INNOMINENPC = new Category("NPC (In Nomine)",
-			List.of(Angel.INSTANCE, Angel.CHOIR, new Characters(), minim.controller.table.innomine.character.Demon.BAND,
+	static final Category INNOMINENPC = new Category("Character (In Nomine)",
+			List.of(Angel.INSTANCE, Angel.CHOIR, Characters.INSTANCE,
+					minim.controller.table.innomine.character.Demon.BAND,
 					minim.controller.table.innomine.character.Demon.INSTANCE, new Fiends(), Reliever.INSTANCE,
 					Soldier.GOD, Soldier.HELL, Role.INSTANCE, Role.FAME, Role.STATUS));
-	static final Category KULTCHARACTER = new Category("NPC (Kult)", List.of(Effect.INSTANCE, Advantage.INSTANCE,
-			Disadvantage.INSTANCE, Profession.INSTANCE, Secret.INSTANCE, Skill.INSTANCE,
-			minim.controller.table.kult.character.Character.ARCHETYPE,
-			minim.controller.table.kult.character.Character.AGENT,
-			minim.controller.table.kult.character.Character.ARTIST,
-			minim.controller.table.kult.character.Character.AVENGER,
-			minim.controller.table.kult.character.Character.COP,
-			minim.controller.table.kult.character.Character.CORPORATE,
-			minim.controller.table.kult.character.Character.DEALER,
-			minim.controller.table.kult.character.Character.FEMMEFATALE,
-			minim.controller.table.kult.character.Character.GANGMEMBER,
-			minim.controller.table.kult.character.Character.MUCKRAKER,
-			minim.controller.table.kult.character.Character.OUTSIDER,
-			minim.controller.table.kult.character.Character.ROCKER,
-			minim.controller.table.kult.character.Character.SAMURAI,
-			minim.controller.table.kult.character.Character.SCIENTIST,
-			minim.controller.table.kult.character.Character.STUDENT,
-			minim.controller.table.kult.character.Character.VETERAN, minim.controller.table.kult.character.Character.PI,
-			minim.controller.table.kult.character.Character.ESCAPEE,
-			minim.controller.table.kult.character.Character.HACKER,
-			minim.controller.table.kult.character.Character.HOMEMAKER,
-			minim.controller.table.kult.character.Character.PRODIGY,
-			minim.controller.table.kult.character.Character.ACTIVIST,
-			minim.controller.table.kult.character.Character.ARISTOCRAT,
-			minim.controller.table.kult.character.Character.ATHLETE,
-			minim.controller.table.kult.character.Character.CAREGIVER,
-			minim.controller.table.kult.character.Character.CELEBRITY,
-			minim.controller.table.kult.character.Character.CLERGY,
-			minim.controller.table.kult.character.Character.DOCTOR,
-			minim.controller.table.kult.character.Character.FUGITIVE, minim.controller.table.kult.character.Character.X,
-			minim.controller.table.kult.character.Character.HUSTLER,
-			minim.controller.table.kult.character.Character.MARTIAL,
-			minim.controller.table.kult.character.Character.PARAPSYCHOLOGIST,
-			minim.controller.table.kult.character.Character.SCHOLAR,
-			minim.controller.table.kult.character.Conjurer.OCCULTIST,
-			minim.controller.table.kult.character.Conjurer.PAGAN, NightChild.GENERIC, NightChild.LIMITATIONS,
-			NightChild.POWERS, NightChild.LORELEI, NightChild.NEPHILIM, NightChild.REVENANT, NightChild.SERAPHIM,
-			NightChild.WOLVEN, NightChild.INSTANCE, PhysicalChange.INSTANCE, MentalChange.INSTANCE, Madness.POSITIVE,
-			Madness.NEGATIVE, Madness.NEUTRAL, Madness.SHOCK, Madness.POSSESSION, Skill.LORES));
+	static final Category KULTCHARACTER = new Category("Character (Kult)",
+			List.of(Effect.INSTANCE, Advantage.INSTANCE, Disadvantage.INSTANCE, Profession.INSTANCE, Secret.INSTANCE,
+					Skill.INSTANCE, Skill.LORES, KultCharacter.ARCHETYPE));
+	static final Category KULTARCHETYPE = new Category("Character (Kult, archetype)",
+			List.of(KultCharacter.AGENT, KultCharacter.ARTIST, KultCharacter.AVENGER, KultCharacter.COP,
+					KultCharacter.CORPORATE, KultCharacter.DEALER, KultCharacter.FEMMEFATALE, KultCharacter.GANGMEMBER,
+					KultCharacter.MUCKRAKER, KultCharacter.OUTSIDER, KultCharacter.ROCKER, KultCharacter.SAMURAI,
+					KultCharacter.SCIENTIST, KultCharacter.STUDENT, KultCharacter.VETERAN, KultCharacter.PI,
+					KultCharacter.ESCAPEE, KultCharacter.HACKER, KultCharacter.HOMEMAKER, KultCharacter.PRODIGY,
+					KultCharacter.ACTIVIST, KultCharacter.ARISTOCRAT, KultCharacter.ATHLETE, KultCharacter.CAREGIVER,
+					KultCharacter.CELEBRITY, KultCharacter.CLERGY, KultCharacter.DOCTOR, KultCharacter.FUGITIVE,
+					KultCharacter.X, KultCharacter.HUSTLER, KultCharacter.MARTIAL, KultCharacter.PARAPSYCHOLOGIST,
+					KultCharacter.SCHOLAR, Conjurer.OCCULTIST, Conjurer.PAGAN));
+	static final Category KULTBEING = new Category("Character (Kult, being)",
+			List.of(Being.INSTANCE, Being.ARCHONS, Inferno.ASTAROTH, Inferno.ANGELS, Being.DEITIES, Being.BORDERLINER,
+					Being.UNDEAD, Dream.PRINCE, Dream.BEING, Inferno.BEING, Metropolis.METROPOLITAN, NightChild.GENERIC,
+					NightChild.LIMITATIONS, NightChild.POWERS, NightChild.LORELEI, NightChild.NEPHILIM,
+					NightChild.REVENANT, NightChild.SERAPHIM, NightChild.WOLVEN, NightChild.INSTANCE));
+	static final Category KULTADVENTURE = new Category("Adventure (Kult)",
+			List.of(new KultAdventure(), KultAdventure.BEGINNING, KultAdventure.CHARACTERS, KultAdventure.COMPLICATION,
+					KultAdventure.EVENT, KultAdventure.MOTIVATION, KultAdventure.PLOT));
 	static final Category KULTSETTING = new Category("Setting (Kult)",
-			List.of(Metropolis.INSTANCE, Being.INSTANCE, Being.ARCHONS, Inferno.ASTAROTH, Inferno.ANGELS,
-					Metropolis.CITADELS, Metropolis.LABYRINTH, Inferno.INSTANCE, Dream.INSTANCE, Elysium.INSTANCE,
-					Portal.INSTANCE, Portal.HIGHER, Portal.LOWER, new minim.controller.table.kult.setting.Artifact(),
-					minim.controller.table.kult.setting.Artifact.DESTINATION,
-					minim.controller.table.kult.setting.Artifact.LENSES,
-					minim.controller.table.kult.setting.Artifact.PASSWORD,
-					minim.controller.table.kult.setting.Artifact.PORTAL, Being.DEITIES, new City(), City.EXPOSED,
-					Being.BORDERLINER, City.UNDERGROUND, Metropolis.METROPOLITAN, Being.UNDEAD, Inferno.BEINGS,
-					Dream.BEING, Dream.SPEED, Dream.TYPE, Dream.PRINCE, Madness.DREAM, Madness.DREAMPORTAL,
-					Madness.DREAMSELF, Madness.TIME, Madness.HALLUCINATION, Madness.SPACE, Cult.TYPE, new Cult(),
-					Cult.CHARACTERISTIC, new minim.controller.table.kult.setting.Adventure(),
-					minim.controller.table.kult.setting.Adventure.BEGINNING,
-					minim.controller.table.kult.setting.Adventure.CHARACTERS,
-					minim.controller.table.kult.setting.Adventure.COMPLICATION,
-					minim.controller.table.kult.setting.Adventure.EVENT,
-					minim.controller.table.kult.setting.Adventure.MOTIVATION,
-					minim.controller.table.kult.setting.Adventure.PLOT, City.TRANSPORT, City.COMMUNICATION,
-					City.INSTITUTION, minim.controller.table.kult.setting.Artifact.CLOCKWORK, Metropolis.LIVINGCITY,
-					Metropolis.RUINS, Period.INSTANCE, Period.ANCIENT, Period.MODERN));
-	static final Category JOURNEY = new Category("Adventure (journey)", List.of(new Journey()));
+			List.of(KultArtifact.INSTANCE, KultArtifact.DESTINATION, KultArtifact.LENSES, KultArtifact.PASSWORD,
+					KultArtifact.PORTAL, Cult.TYPE, Cult.INSTANCE, Cult.CHARACTERISTIC, KultArtifact.CLOCKWORK,
+					Period.INSTANCE, Period.ANCIENT, Period.MODERN));
+	static final Category KULTLOCATION = new Category("Setting (Kult, location)",
+			List.of(Metropolis.INSTANCE, Metropolis.CITADELS, Metropolis.LABYRINTH, Inferno.INSTANCE, Dream.INSTANCE,
+					Elysium.INSTANCE, Portal.INSTANCE, Portal.HIGHER, Portal.LOWER, new City(), City.EXPOSED,
+					City.UNDERGROUND, Dream.SPEED, Dream.TYPE, City.TRANSPORT, City.COMMUNICATION, City.INSTITUTION,
+					Metropolis.LIVINGCITY, Metropolis.RUINS));
+	static final Category KULTMADNESS = new Category("Setting (Kult, madness)",
+			List.of(Madness.DREAM, Madness.DREAMPORTAL, Madness.DREAMSELF, Madness.TIME, Madness.HALLUCINATION,
+					Madness.SPACE, Madness.POSITIVE, Madness.NEGATIVE, Madness.NEUTRAL, Madness.SHOCK,
+					Madness.POSSESSION, PhysicalChange.INSTANCE, MentalChange.INSTANCE));
+	static final Category WODSETTING = new Category("Setting (World of darkness)",
+			List.of(WodArtifact.SINGLETON, WodArtifact.MAGE, WodArtifact.VAMPIRE, WodArtifact.WRAITH));
+	static final Category JOURNEY = new Category("Adventure (Journey)",
+			List.of(new Journey(), JourneyHelpers.CHARACTER, JourneyHelpers.ENEMY, JourneyHelpers.REWARD));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(TOON, UNE, BOLD, CYBERPUNK2020, FALKENSTEIN, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER,
-					MISC, DARKNESS, MONSTER, INNOMINE, INNOMINENPC, KULTCHARACTER, KULTSETTING, JOURNEY));
+					MISC, WODMONSTER, WODNPC, INNOMINE, INNOMINENPC, KULTCHARACTER, KULTSETTING, JOURNEY, KULTBEING,
+					KULTADVENTURE, KULTMADNESS, KULTLOCATION, KULTARCHETYPE, WODSETTING));
 
 	static {
-		CATEGORIES.sort((a, b) -> a.title.compareTo(b.title));
+		CATEGORIES.sort((a, b) -> a.title.compareToIgnoreCase(b.title));
 	}
 
 	@Inject

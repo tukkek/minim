@@ -2,8 +2,8 @@ package minim.controller.table.kult.character;
 
 import java.util.List;
 
-public class Conjurer extends Character {
-	public static final Character OCCULTIST = new Conjurer("Character (archetype, conjurer, burnt-out occultist)",
+public class Conjurer extends KultCharacter {
+	public static final KultCharacter OCCULTIST = new Conjurer("Character (archetype, conjurer, burnt-out occultist)",
 			List.of(Disadvantage.REPUTATION, Disadvantage.CURSE, Disadvantage.PERSECUTED, Disadvantage.CONSTRICTION,
 					Disadvantage.HAUNTED, Disadvantage.WANTED, Disadvantage.NIGHTMARES, Disadvantage.ADDICTION,
 					Disadvantage.MEDIUM),
@@ -14,7 +14,7 @@ public class Conjurer extends Character {
 					Profession.CONSULTANT, Profession.CLERGY),
 			4, 4, List.of(Skill.OCCULTISM, Skill.LANGUAGES, Skill.PSYCHOLOGY, Skill.CONTACTS, Skill.MEDITATION,
 					Skill.WRITING, Skill.RHETORIC));
-	public static final Character PAGAN = new Conjurer("Character (archetype, conjurer, new-age pagan)",
+	public static final KultCharacter PAGAN = new Conjurer("Character (archetype, conjurer, new-age pagan)",
 			List.of(Disadvantage.REPUTATION, Disadvantage.FANATICISM, Disadvantage.CURSE, Disadvantage.HAUNTED,
 					Disadvantage.INTOLERANCE, Disadvantage.NIGHTMARES, Disadvantage.MEDIUM, Disadvantage.PERSECUTED),
 			List.of(Advantage.EMPATHY, Advantage.AWARENESS, Advantage.INTUITION, Advantage.ANIMALS),

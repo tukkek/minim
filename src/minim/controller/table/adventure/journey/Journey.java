@@ -1,4 +1,4 @@
-package minim.controller.table.misc;
+package minim.controller.table.adventure.journey;
 
 import java.util.ArrayList;
 import java.util.Arrays;

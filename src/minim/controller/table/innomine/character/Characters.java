@@ -40,7 +40,9 @@ public class Characters extends MetaTable {
 		}
 	}
 
-	public Characters() {
+	public static final Table INSTANCE = new Characters();
+
+	Characters() {
 		super("Character");
 	}
 

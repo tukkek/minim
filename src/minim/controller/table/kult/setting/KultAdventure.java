@@ -9,7 +9,7 @@ import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 import minim.model.Character;
 
-public class Adventure extends Table {
+public class KultAdventure extends Table {
 	public static final Table PLOT = new SimpleTable("Adventure (plot)",
 			List.of("Stop a bad thing from happening", "Find someone", "Find something", "Revenge", "Solve a riddle",
 					"Travel", "Gather information and wisdom", "Expose and stop a cult", "Make something happen",
@@ -35,7 +35,7 @@ public class Adventure extends Table {
 					"Adversary", "Loyalty changes", "Separated", "Illusion shatters", "More complexity", "New enemies",
 					"New friends", "New information", "Lies", "Outsiders"));
 
-	public Adventure() {
+	public KultAdventure() {
 		super("Adventure");
 	}
 

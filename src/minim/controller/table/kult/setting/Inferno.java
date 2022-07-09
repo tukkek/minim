@@ -16,7 +16,7 @@ public class Inferno extends Table {
 					"Samael, the Avenger", "Gamaliel, the Perverted", NAHEMOTH));
 	public static final String HELL = "Hell (a sinner's personal purgatory, ruled by a nepharite, always metaphysically super-imposed to the sinner's place of death)";
 	public static final String RAZIDE = "Razide of %s (tall, half-living humanoids with a black iron and glass exoskeleton, yellow-red eyes and a metal jaw)";
-	public static final Table BEINGS = new Table("Being (inferno)") {
+	public static final Table BEING = new Table("Being (inferno)") {
 		@Override
 		public void build() {
 			for (var a : ANGELS)
@@ -37,7 +37,7 @@ public class Inferno extends Table {
 				"Sixth circle", "Seventh circle", "Eigth circle", "Ninth circle"))
 			add(10, circle);
 		add(10, HELL);
-		add(BEINGS.lines);
+		add(BEING.lines);
 		for (var a : ANGELS)
 			add(1, "Black palace of %s (dark labyrinths down into the deep undeerground)".formatted(a));
 		add(1, "Dead sun (terrifying black sun that is rarely glimpsed in Inferno's starless sky)");

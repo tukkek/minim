@@ -24,8 +24,9 @@ public class Cult extends Table {
 			"Perversion cult (deranged group that seeks out to fulfill their dark carnal desires)"));
 	public static final Table CHARACTERISTIC = new SimpleTable("Cult (characteristic)",
 			List.of("Minimal", "Low", "Average", "High", "Extreme"));
+	public static final Table INSTANCE = new Cult();
 
-	public Cult() {
+	Cult() {
 		super("Cult");
 	}
 

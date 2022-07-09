@@ -9,7 +9,7 @@ import minim.controller.table.Table;
 import minim.controller.table.kult.character.madness.Madness;
 import minim.model.Character;
 
-public class Artifact extends MetaTable {
+public class KultArtifact extends MetaTable {
 	public static final Table LENSES = new SimpleTable("Artifact (lenses)",
 			List.of("Eye-glass", "Enlargment lens", "Camera", "Binocular"));
 	public static final String NONE = "None";
@@ -50,8 +50,9 @@ public class Artifact extends MetaTable {
 			return super.roll() + ", " + effect.roll();
 		}
 	};
+	public static final Table INSTANCE = new KultArtifact();
 
-	public Artifact() {
+	KultArtifact() {
 		super("Artifact");
 		rebuild = true;
 	}

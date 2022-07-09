@@ -53,7 +53,9 @@ public class Artifact extends MetaTable {
 		}
 	};
 
-	public Artifact() {
+	public static final Table INSTANCE = new Artifact();
+
+	Artifact() {
 		super("Artifact");
 	}
 

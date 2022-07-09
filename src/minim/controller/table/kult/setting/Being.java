@@ -41,7 +41,7 @@ public class Being extends MetaTable {
 	public static final Table INSTANCE = new Being();
 
 	Being() {
-		super("Being (city)");
+		super("Being");
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import minim.controller.table.MetaTable.SimpleMetaTable;
 import minim.controller.table.SimpleTable;
 import minim.controller.table.Table;
 
-public class NightChild extends Character {
+public class NightChild extends KultCharacter {
 	public static final String BLOODTHIRST = "Bloodthirst";
 	public static final String SYMBOLBOUND = "Symbol bondage";
 	public static final String TOMBBOUND = "Tomb bondage";
