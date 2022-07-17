@@ -33,6 +33,15 @@ import minim.controller.table.combat.Action;
 import minim.controller.table.combat.ActionType;
 import minim.controller.table.combat.Twist;
 import minim.controller.table.combat.Wound;
+import minim.controller.table.conjectural.SceneTone;
+import minim.controller.table.conjectural.SceneTwist;
+import minim.controller.table.conjectural.Unexpectedly;
+import minim.controller.table.conjectural.YesNo;
+import minim.controller.table.conjectural.YesNoAdvantage;
+import minim.controller.table.conjectural.YesNoDisadvantage;
+import minim.controller.table.conjectural.loom.YesNoConflict;
+import minim.controller.table.conjectural.loom.YesNoEnding;
+import minim.controller.table.conjectural.loom.YesNoKnowledge;
 import minim.controller.table.cyberpunk.Enemy;
 import minim.controller.table.cyberpunk.Family;
 import minim.controller.table.cyberpunk.LifeEvent;
@@ -273,10 +282,14 @@ public class Tables {
 			List.of(WodArtifact.SINGLETON, WodArtifact.MAGE, WodArtifact.VAMPIRE, WodArtifact.WRAITH));
 	static final Category JOURNEY = new Category("Adventure (Journey)",
 			List.of(new Journey(), JourneyHelpers.CHARACTER, JourneyHelpers.ENEMY, JourneyHelpers.REWARD));
+	static final Category CONJECTURAL = new Category("Game master emulator (Conjectural)",
+			List.of(new SceneTone(), SceneTwist.SINGLETON, YesNo.SINGLETON, new YesNoAdvantage(),
+					new YesNoDisadvantage(), new YesNoKnowledge(), Unexpectedly.SINGLETON, new YesNoConflict(),
+					new YesNoEnding()));
 	static final List<Category> CATEGORIES = new ArrayList<>(
 			List.of(TOON, UNE, BOLD, CYBERPUNK2020, FALKENSTEIN, INSTANT, WORLD, HEXCRAWL, COMBAT, ADVENTURE, WEATHER,
 					MISC, WODMONSTER, WODNPC, INNOMINE, INNOMINENPC, KULTCHARACTER, KULTSETTING, JOURNEY, KULTBEING,
-					KULTADVENTURE, KULTMADNESS, KULTLOCATION, KULTARCHETYPE, WODSETTING));
+					KULTADVENTURE, KULTMADNESS, KULTLOCATION, KULTARCHETYPE, WODSETTING, CONJECTURAL));
 
 	static {
 		CATEGORIES.sort((a, b) -> a.title.compareToIgnoreCase(b.title));
