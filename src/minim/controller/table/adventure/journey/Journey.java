@@ -1,5 +1,7 @@
 package minim.controller.table.adventure.journey;
 
+import static java.util.stream.Collectors.joining;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -64,8 +66,8 @@ public class Journey extends Table {
 		LinkedList<String> spades = new LinkedList<>(MINOR);
 		LinkedList<String> cups = new LinkedList<>(MINOR);
 		LinkedList<String> coins = new LinkedList<>(MINOR);
-		LinkedList<String> court = new LinkedList<>(List.of("Summon", "Refusal", "Aid", "Threshold", "Trials",
-				"Atonement", "Apotheosis", "Boon", "Flight", "Rescue", "Return", "Transcendence"));
+		LinkedList<String> court = new LinkedList<>(List.of("Summon", "Refuse", "Aid", "Reach", "Try", "Atone",
+				"Worship", "Win", "Flee", "Rescue", "Return to", "Transcend"));
 		LinkedList<String> major = new LinkedList<>(MAJOR.keySet());
 
 		public Deck() {
@@ -85,43 +87,57 @@ public class Journey extends Table {
 	}
 
 	String characterize(String character, Deck d) {
-		String format = "%s (%s body, %s mind, %s soul, %s wealth).";
-		return format.formatted(character, d.clubs.pop(), d.spades.pop(), d.cups.pop(), d.coins.pop());
+		var b = d.clubs.pop() + " body";
+		var m = d.spades.pop() + " mind";
+		var s = d.cups.pop() + " soul";
+		var w = d.coins.pop() + " wealth";
+		var traits = Stream.of(b, m, s, w).filter(t -> !t.contains("mediocre")).collect(joining(", "));
+		if (traits.isEmpty())
+			traits = "mediocre";
+		return "%s (%s)".formatted(character, traits);
 	}
 
 	@Override
 	public String roll() {
 		var l = new Lines();
 		var d = new Deck();
-		l.add("Protagonist", characterize(MAJOR.get(d.major.pop()), d));
-		l.add();
+		l.add("Protagonist", characterize(MAJOR.get(d.major.pop()), d) + ".");
+//		l.add();
 		var characters = new ArrayList<String>(ALIGNMENTS.size());
 		for (var a : ALIGNMENTS) {
-			var character = a + " " + MAJOR.get(d.major.pop()).toLowerCase();
-			l.add(characterize(character, d));
-			characters.add(character);
-		}
-		l.add();
-		Collections.shuffle(PAGES);
-		for (var p : PAGES.subList(0, 2)) {
-			var faction = new ArrayList<>(p.stream().map(i -> characters.get(i - 1)).toList());
-			faction.remove(3);
-			l.add("Faction: %s.".formatted(String.join(", ", faction)));
+			var character = a.toLowerCase() + " " + MAJOR.get(d.major.pop()).toLowerCase();
+			// l.add(characterize(character, d));
+			characters.add(characterize(character, d));
 		}
 		l.add();
 		l.add("Stages:");
 		var numerals = new LinkedList<>(NUMERALS);
 		while (!d.court.isEmpty()) {
-			String beat = "- %s. %s (%s).".formatted(numerals.poll(), d.court.pop(), d.major.pop().toLowerCase());
-			Collections.shuffle(PAGES);
-			var character = PAGES.get(0).stream().map(i -> i - 1).filter(i -> characters.get(i) != null).findAny()
-					.orElse(null);
-			if (character != null) {
-				var c = characters.get(character);
-				characters.set(character, null);
-				beat += " %s.".formatted(c);
+			String beat = "- %s. %s %s".formatted(numerals.poll(), d.court.pop(), d.major.pop().toLowerCase());
+			/*
+			 * Collections.shuffle(PAGES); var character = PAGES.get(0).stream().map(i -> i
+			 * - 1).filter(i -> characters.get(i) != null).findAny() .orElse(null);
+			 */
+			var character = -1;
+			while (Character.roll() % 2 == 1 && character < characters.size() - 1) {
+				character += 1;
 			}
+			if (character >= 0) {
+				var c = characters.get(character);
+//				characters.set(character, null);
+				beat += ": %s.".formatted(c);
+			} else
+				beat += ".";
 			l.add(beat);
+		}
+		l.add();
+		Collections.shuffle(PAGES);
+		for (var p : PAGES.subList(0, 2)) {
+			String lines = l.toString();
+			var faction = p.stream().map(i -> characters.get(i - 1)).map(c -> c.substring(0, c.indexOf((" ("))))
+					.filter(c -> lines.contains(c)).toList();
+			if (faction.size() >= 2)
+				l.add("Faction: %s.".formatted(String.join(", ", faction)));
 		}
 		return l.toString();
 	}
