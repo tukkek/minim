@@ -7,7 +7,7 @@ import minim.controller.Cancel;
 import minim.model.Unit;
 import minim.view.Output;
 
-public class BasicAction extends Action {
+public class RolledAction extends Action {
 	public static final String[] PHYSICAL = new String[] { "&brawl", "&coordination", "&shooting", "sp&orts", "s&teal",
 			"&physical" };
 	public static final String[] SOCIAL = new String[] { "&animals", "&coercion", "c&ommunication", "&languages",
@@ -27,7 +27,7 @@ public class BasicAction extends Action {
 	protected String attribute;
 	protected String skill;
 
-	public BasicAction(String attribute, String skill, Unit u) {
+	public RolledAction(String attribute, String skill, Unit u) {
 		super(u);
 		this.attribute = attribute;
 		this.skill = skill.replaceAll("&", "");

@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import minim.controller.Cancel;
-import minim.controller.action.base.BasicAction;
+import minim.controller.action.base.RolledAction;
 import minim.model.Character;
 import minim.model.Unit;
 import minim.view.Output;
 import minim.view.UnitList;
 import minim.view.dialog.LazyInputDialog;
 
-public class Attack extends BasicAction {
+public class Attack extends RolledAction {
 	public static final String[] ATTACKS = new String[] { "&brawl", "&fire",
 			"&shooting", };
 	public static final String[] FUMBLES = new String[] {

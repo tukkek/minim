@@ -41,7 +41,7 @@ import minim.controller.action.ModifyGroup;
 import minim.controller.action.RemoveUnit;
 import minim.controller.action.attack.Attack;
 import minim.controller.action.base.Action;
-import minim.controller.action.base.BasicAction;
+import minim.controller.action.base.RolledAction;
 import minim.model.Character;
 import minim.model.Group;
 import minim.model.Unit;
@@ -179,16 +179,16 @@ public class UnitList {
 			addmenuitem(s, b, attack, new Attack(s, u));
 		}
 		final Menu physical = addsubmenu(menu, "&Physical");
-		for (String s : BasicAction.PHYSICAL) {
-			addmenuitem(s, b, physical, new BasicAction("physical", s, u));
+		for (String s : RolledAction.PHYSICAL) {
+			addmenuitem(s, b, physical, new RolledAction("physical", s, u));
 		}
 		final Menu social = addsubmenu(menu, "&Social");
-		for (String s : BasicAction.SOCIAL) {
-			addmenuitem(s, b, social, new BasicAction("social", s, u));
+		for (String s : RolledAction.SOCIAL) {
+			addmenuitem(s, b, social, new RolledAction("social", s, u));
 		}
 		final Menu mental = addsubmenu(menu, "&Mental");
-		for (String s : BasicAction.MENTAL) {
-			addmenuitem(s, b, mental, new BasicAction("mental", s, u));
+		for (String s : RolledAction.MENTAL) {
+			addmenuitem(s, b, mental, new RolledAction("mental", s, u));
 		}
 		if (u instanceof Group) {
 			final Menu group = addsubmenu(menu, "&Group");

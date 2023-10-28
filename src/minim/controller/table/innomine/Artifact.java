@@ -2,7 +2,7 @@ package minim.controller.table.innomine;
 
 import java.util.ArrayList;
 
-import minim.controller.action.base.BasicAction;
+import minim.controller.action.base.RolledAction;
 import minim.controller.table.MetaTable;
 import minim.controller.table.Table;
 import minim.controller.table.innomine.character.Angel;
@@ -12,7 +12,7 @@ public class Artifact extends MetaTable {
 	public static final Table TALISMAN = new Table("Artifact (talisman)") {
 		@Override
 		public void build() {
-			for (var s : BasicAction.SKILLS)
+			for (var s : RolledAction.SKILLS)
 				add("Talisman of %s (skill bonus)".formatted(s.toLowerCase()));
 		}
 	};
