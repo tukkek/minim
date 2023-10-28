@@ -11,8 +11,7 @@ public class Output {
 	public static Output singleton;
 
 	Composite layout;
-
-	private Text text;
+	Text text;
 
 	@PostConstruct
 	public void createControls(Composite parent) {

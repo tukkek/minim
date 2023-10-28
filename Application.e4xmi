@@ -14,8 +14,8 @@
             <handlers xmi:id="_1pajIKwjEem48f5TO4OC0w" elementId="minim2.handler.0" contributionURI="bundleclass://minim/minim.view.command.ClearOutput" command="_f1RawIxLEeeInLn4CU4p0g"/>
             <handlers xmi:id="_9ErPALGuEemrv93eDPRZ5g" elementId="minim.handler.rolldice" contributionURI="bundleclass://minim/minim.view.command.RollDice" command="_6LvTALGuEemrv93eDPRZ5g"/>
             <toolbar xmi:id="_rMgOMIxKEeeInLn4CU4p0g" elementId="minim.toolbar.1">
-              <children xsi:type="menu:HandledToolItem" xmi:id="_wYkqcIxKEeeInLn4CU4p0g" elementId="minim.handledtoolitem.clear" label="Clear" command="_f1RawIxLEeeInLn4CU4p0g"/>
               <children xsi:type="menu:HandledToolItem" xmi:id="_1TUykLGuEemrv93eDPRZ5g" elementId="minim.handledtoolitem.roll" label="Roll dice" command="_6LvTALGuEemrv93eDPRZ5g"/>
+              <children xsi:type="menu:HandledToolItem" xmi:id="_wYkqcIxKEeeInLn4CU4p0g" elementId="minim.handledtoolitem.clear" label="Clear" command="_f1RawIxLEeeInLn4CU4p0g"/>
             </toolbar>
           </children>
         </children>
