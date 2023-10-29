@@ -15,6 +15,7 @@ import minim.model.Group;
 import minim.view.Output;
 import minim.view.UnitList;;
 
+/** @see #ENABLED */
 public class BalanceTest{
   public static final SelectionListener HANDLER=new SelectionAdapter(){
     @Override
@@ -23,13 +24,16 @@ public class BalanceTest{
     };
   };
   static final String REPORT="%sx%s versus %sx%s: %s%% resources spent.";
-  public static final boolean ENABLED=false;
+  static final boolean STANDARD=false;
+  static final boolean EXTENDED=false;
+  public static final boolean ENABLED=STANDARD||EXTENDED;
 
   static final List<String> STATS=List.of("physical","brawl","weapon","armor",
       "social","perception");
   static final List<String> REPORTS=new ArrayList<>();
   static final int ITERATIONS=100;
-  static final List<Integer> FOES=List.of(1,5);
+  static final List<List<Integer>> TESTS=List.of(List.of(1,1),List.of(5,1),
+      List.of(5,5));
 
   static class Fight{
     List<Character> friends=new ArrayList<>(1);
@@ -93,10 +97,17 @@ public class BalanceTest{
   static void run(){
     try{
       REPORTS.clear();
-      for (var nfoes : FOES) for (var friendl=5; friendl>=2; friendl--){
-        for (var foel=friendl-1; foel>=2; foel--) test(1,friendl,nfoes,foel);
-        REPORTS.add("");
-      }
+      if(STANDARD)
+        for (var t : TESTS) for (var friendl=5; friendl>=2; friendl--){
+          for (var foel=friendl-1; foel>=2; foel--)
+            test(t.get(0),friendl,t.get(1),foel);
+          REPORTS.add("");
+        }
+      if(EXTENDED) for (var friendl=2; friendl<=4; friendl++)
+        for (var nfriends=2; nfriends<=3; nfriends++)
+          for (var foel=1; foel<=5; foel++)
+            for (var nfoes : List.of(1,2,3,5,10))
+              test(nfriends,friendl,nfoes,foel);
       for (var r : REPORTS) Output.print(r);
     }catch (Cancel e){
       Output.singleton.clear();
