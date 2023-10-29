@@ -24,7 +24,7 @@ public class ChangeName extends SimpleAction {
 		String name = UnitList.getname(prompt, u.getname());
 		if (name != null) {
 			u.setname(name);
-			this.unitsView.updateunits();
+			this.unitsView.update();
 		}
 	}
 }
