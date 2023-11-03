@@ -334,14 +334,13 @@ public class Tables{
       List.of(new SceneTone(),SceneTwist.SINGLETON,YesNo.SINGLETON,
           new YesNoAdvantage(),new YesNoDisadvantage(),new YesNoKnowledge(),
           Unexpectedly.SINGLETON,new YesNoConflict(),new YesNoEnding()));
-  static final Category FANTASY=new Category("Character (fantasy)",
-      List.of(new FantasyCharacter(),FantasyCharacter.CHAOTIC,
-          FantasyCharacter.NEUTRAL,FantasyCharacter.LAWFUL,
-          FantasyCharacter.MAGICAL,FantasyCharacter.HYBRID,
-          FantasyCharacter.MARTIAL,FantasyCharacter.ALIGNMENT,
-          FantasyCharacter.ETHICS,FantasyCharacter.MORALS,FantasyCharacter.KIT,
-          FantasyCharacter.FIGHTER,FantasyCharacter.WIZARD,
-          FantasyCharacter.CLERIC,FantasyCharacter.RACE));
+  static final Category FANTASY=new Category("Character (fantasy)",List.of(
+      new FantasyCharacter(),FantasyCharacter.CHAOTIC,FantasyCharacter.NEUTRAL,
+      FantasyCharacter.LAWFUL,FantasyCharacter.MAGICAL,FantasyCharacter.HYBRID,
+      FantasyCharacter.MARTIAL,FantasyCharacter.ALIGNMENT,
+      FantasyCharacter.ETHICS,FantasyCharacter.MORALS,FantasyCharacter.KIT,
+      FantasyCharacter.FIGHTER,FantasyCharacter.WIZARD,FantasyCharacter.CLERIC,
+      FantasyCharacter.RACE,FantasyCharacter.LEVEL));
   static final List<Category> CATEGORIES=new ArrayList<>(
       List.of(TOON,UNE,BOLD,CYBERPUNK2020,FALKENSTEIN,INSTANT,WORLD,HEXCRAWL,
           COMBAT,ADVENTURE,WEATHER,MISC,WODMONSTER,WODNPC,INNOMINE,INNOMINENPC,

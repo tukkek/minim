@@ -29,26 +29,26 @@ public class FantasyCharacter extends Table{
     }
   }
 
-  public static final String NAME="Fantasy character (%s)";
-  public static final Table MAGICAL=new SimpleTable(
-      NAME.formatted("magic-user"),List.of("Cleric","Wizard","Druid"));
-  public static final Table HYBRID=new SimpleTable(NAME.formatted("hybrid"),
+  public static final Table MAGICAL=new SimpleTable("Class (by type, magical)",
+      List.of("Cleric","Wizard","Druid"));
+  public static final Table HYBRID=new SimpleTable("Class (by type, hybrid)",
       List.of("Paladin","Ranger","Bard"));
-  public static final Table MARTIAL=new SimpleTable(NAME.formatted("martial"),
+  public static final Table MARTIAL=new SimpleTable("Class (by type, martial)",
       List.of("Monk","Fighter","Rogue"));
   public static final List<Table> TYPES=List.of(MAGICAL,HYBRID,MARTIAL);
-  public static final Table LAWFUL=new SimpleTable(NAME.formatted("lawful"),
+  public static final Table LAWFUL=new SimpleTable("Class (by ethics, lawful)",
       TYPES.stream().map(t -> t.lines.get(0)).toList());
-  public static final Table NEUTRAL=new SimpleTable(NAME.formatted("neutral"),
+  public static final Table NEUTRAL=new SimpleTable(
+      "Class (by ethics, neutral)",
       TYPES.stream().map(t -> t.lines.get(1)).toList());
-  public static final Table CHAOTIC=new SimpleTable(NAME.formatted("chaotic"),
+  public static final Table CHAOTIC=new SimpleTable(
+      "Class (by ethics, chaotic)",
       TYPES.stream().map(t -> t.lines.get(2)).toList());
-  public static final SimpleTable ETHICS=new SimpleTable(
-      NAME.formatted("alignment, ethics"),
+  public static final SimpleTable ETHICS=new SimpleTable("Alignment (ethics)",
       List.of("Lawful","Neutral","Chaotic"));
-  public static final SimpleTable MORALS=new SimpleTable(
-      NAME.formatted("alignment, morals"),List.of("Good","Neutral","Evil"));
-  public static final Table ALIGNMENT=new Table(NAME.formatted("alignment")){
+  public static final SimpleTable MORALS=new SimpleTable("Alignment (morals)",
+      List.of("Good","Neutral","Evil"));
+  public static final Table ALIGNMENT=new Table("Alignment"){
     @Override
     public void build(){
       // don't
@@ -61,29 +61,34 @@ public class FantasyCharacter extends Table{
       return describe(e,m);
     }
   };
-  public static final Table FIGHTER=new SimpleTable(
-      NAME.formatted("kit, fighter"),List.of(MARTIAL.lines.get(1),"Barbarian"));
-  public static final Table WIZARD=new SimpleTable(
-      NAME.formatted("kit, wizard"),
+  public static final Table FIGHTER=new SimpleTable("Class (kit, fighter)",
+      List.of(MARTIAL.lines.get(1),"Barbarian"));
+  public static final Table WIZARD=new SimpleTable("Class (kit, wizard)",
       List.of(MAGICAL.lines.get(1),"Sorcerer","Abjurer","Conjurer","Diviner",
           "Enchanter","Evoker","Illusionist","Necromancer","Transmuter"));
-  public static final Table CLERIC=new SimpleTable(
-      NAME.formatted("kit, cleric"),
-      List.of(MAGICAL.lines.get(0),"Air-god cleric","Animal-god cleric",
-          "Chaos-god cleric","Death-god cleric","Destruction-god cleric",
-          "Earth-god cleric","Evil-god cleric","Fire-god cleric",
-          "Good-god cleric","Healing-god cleric","Knowledge-god cleric",
-          "Law-god cleric","Luck-god cleric","Magic-god cleric",
-          "Plant-god cleric","Protection-god cleric","Strength-god cleric",
-          "Sun-god cleric","Travel-god cleric","Trickery-god cleric",
-          "War-god cleric","Water-god cleric"));
+  public static final Table CLERIC=new SimpleTable("Class (kit, cleric)",
+      List.of(MAGICAL.lines.get(0),"Air cleric","Animal cleric","Chaos cleric",
+          "Death cleric","Destruction cleric","Earth cleric","Evil cleric",
+          "Fire cleric","Good cleric","Healing cleric","Knowledge cleric",
+          "Law cleric","Luck cleric","Magic cleric","Plant cleric",
+          "Protection cleric","Strength cleric","Sun cleric","Travel cleric",
+          "Trickery cleric","War cleric","Water cleric"));
   public static final List<Table> KITS=List.of(FIGHTER,WIZARD,CLERIC);
-  public static final Kit KIT=new Kit(NAME.formatted("kit"),TYPES);
-  public static final Table RACE=new SimpleTable(NAME.formatted("race"),
+  public static final Kit KIT=new Kit("Class",TYPES);
+  public static final Table RACE=new SimpleTable("Race",
       List.of("Human","Dwarf","Elf","Gnome","Half-elf","Half-orc","Halfling"));
+  public static final Table LEVEL=new Table("Level"){
+    @Override
+    public void build(){
+      add(100,"Low-level");
+      add(30,"Mid-level");
+      add(6,"High-level");
+      add(1,"Epic-level");
+    }
+  };
 
   public FantasyCharacter(){
-    super(NAME.substring(0,NAME.length()-5));
+    super("Character");
   }
 
   @Override
@@ -114,10 +119,10 @@ public class FantasyCharacter extends Table{
     while (!validate(r,e,LAWFUL,ETHICS.lines.get(2))
         ||!validate(r,e,CHAOTIC,ETHICS.lines.get(0)))
       e=ETHICS.roll();
-    r=swap(r);
-    var race=RACE.roll();
-    var m=MORALS.roll();
-    var alignment=describe(e,m);
-    return "%s %s %s".formatted(alignment,race.toLowerCase(),r.toLowerCase());
+    var l=LEVEL.roll();
+    var alignment=describe(e,MORALS.roll()).toLowerCase();
+    var race=RACE.roll().toLowerCase();
+    r=swap(r).toLowerCase();
+    return "%s %s %s %s".formatted(l,alignment,race,r);
   }
 }
