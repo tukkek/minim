@@ -51,4 +51,8 @@ public abstract class MetaTable extends Table {
 		tables.put(t);
 		super.add(t.title);
 	}
+
+  public void add(List<Table> types){
+    for (var t : types) add(t);
+  }
 }
