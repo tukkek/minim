@@ -10,6 +10,10 @@ import minim.controller.table.Table;
  * Based on the Dungeons and dragons third edition's system reference document
  * (open game license).
  * 
+ * TODO the kits here would make great NPC templates, starting at
+ * average-attributes 2 (weak) and then +1 to everything forh eac of: average,
+ * strong, epic.
+ * 
  * @author alex
  */
 public class FantasyCharacter extends Table{
@@ -61,19 +65,49 @@ public class FantasyCharacter extends Table{
       return describe(e,m);
     }
   };
+  public static final Table MONK=new SimpleTable("Class (kit, monk)",
+      List.of(MARTIAL.lines.get(0),"Ninja","Acrobat","Drunken master","Dervish",
+          "Brawler","Samurai","Tattooist","Kinetic psionic","Metabolic psionic",
+          "Teleporting psionic"));
   public static final Table FIGHTER=new SimpleTable("Class (kit, fighter)",
-      List.of(MARTIAL.lines.get(1),"Barbarian"));
-  public static final Table WIZARD=new SimpleTable("Class (kit, wizard)",
-      List.of(MAGICAL.lines.get(1),"Sorcerer","Abjurer","Conjurer","Diviner",
-          "Enchanter","Evoker","Illusionist","Necromancer","Transmuter"));
+      List.of(MARTIAL.lines.get(1),"Barbarian","Duelist","Gladiator",
+          "Field commander","Dragoon","Viking","Knight","Breaker","Defender",
+          "Dual-wielder"));
+  public static final Table ROGUE=new SimpleTable("Class (kit, rogue)",
+      List.of(MARTIAL.lines.get(2),"Assassin","Infiltrator","Swashbuckler",
+          "Dungeoneer","Poison-master","Cutpurse","Saboteur","Thug"));
+  public static final Table PALADIN=new SimpleTable("Class (kit, paladin)",
+      List.of(HYBRID.lines.get(0),"Demon-hunter","Witch-hunter","Exorcist",
+          "Evangelist","Guardian","Justicar","Unholy knight"));
+  public static final Table RANGER=new SimpleTable("Class (kit, ranger)",
+      List.of(HYBRID.lines.get(1),"Warden","Archer","Hunter","Trapper",
+          "Pathfinder","Rider","Mageblade"));
+  public static final Table BARD=new SimpleTable("Class (kit, bard)",
+      List.of(HYBRID.lines.get(2),"Loremaster","Diplomat","Navigator","Spy",
+          "Orator","Gambler","Trickster","Jester","Juggler","Mime","Dancer",
+          "Ministrel","Troubadour","Artificer","Gadgeteer","Apothecary",
+          "Runesmith"));
+  // TODO plant, vermin and eather sound druid-like, can't think of kits though
   public static final Table CLERIC=new SimpleTable("Class (kit, cleric)",
-      List.of(MAGICAL.lines.get(0),"Air cleric","Animal cleric","Chaos cleric",
-          "Death cleric","Destruction cleric","Earth cleric","Evil cleric",
-          "Fire cleric","Good cleric","Healing cleric","Knowledge cleric",
-          "Law cleric","Luck cleric","Magic cleric","Plant cleric",
-          "Protection cleric","Strength cleric","Sun cleric","Travel cleric",
-          "Trickery cleric","War cleric","Water cleric"));
-  public static final List<Table> KITS=List.of(FIGHTER,WIZARD,CLERIC);
+      List.of(MAGICAL.lines.get(0),"Chaos cleric","Curses cleric",
+          "Dream cleric","Glory cleric","Control cleric","Healing cleric",
+          "Law cleric","Luck cleric","Madness cleric","Manipulation cleric",
+          "Sacrifice cleric","Sun cleric","Vermin cleric","Weather cleric",
+          "Wealth cleric"));
+  public static final Table WIZARD=new SimpleTable("Class (kit, wizard)",
+      List.of(MAGICAL.lines.get(1),"Air mage","Cold mage","Dimensional mage",
+          "Earth mage","Electricity mage","Fire mage","Magma mage","Metal mage",
+          "Mud mage","Shadow mage","Smoke mage","Steam mage","Time mage",
+          "Water mage","Celestial warlock","Draconic warlock","Fey warlock",
+          "Infernal warlock","Vampiric warlock","Shapeshifter warlock",
+          "Animist wizard","Banishment wizard","Counter-spell wizard",
+          "Demonologist wizard","Divination wizard","Illusionist wizard",
+          "Necromancer wizard","Transmutation wizard"));
+  public static final Table DRUID=new SimpleTable("Class (kit, druid)",
+      List.of(MAGICAL.lines.get(2),"Geomancer","Cultist","Werewolf","Werebear",
+          "Wereboar","Werebat","Apiarist","Beastmaster","Shaman"));
+  public static final List<Table> KITS=List.of(FIGHTER,WIZARD,CLERIC,ROGUE,
+      DRUID,PALADIN,RANGER,BARD,MONK);
   public static final Kit KIT=new Kit("Class",TYPES);
   public static final Table RACE=new SimpleTable("Race",
       List.of("Human","Dwarf","Elf","Gnome","Half-elf","Half-orc","Halfling"));

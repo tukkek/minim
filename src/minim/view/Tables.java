@@ -340,7 +340,9 @@ public class Tables{
       FantasyCharacter.MARTIAL,FantasyCharacter.ALIGNMENT,
       FantasyCharacter.ETHICS,FantasyCharacter.MORALS,FantasyCharacter.KIT,
       FantasyCharacter.FIGHTER,FantasyCharacter.WIZARD,FantasyCharacter.CLERIC,
-      FantasyCharacter.RACE,FantasyCharacter.LEVEL));
+      FantasyCharacter.RACE,FantasyCharacter.LEVEL,FantasyCharacter.ROGUE,
+      FantasyCharacter.DRUID,FantasyCharacter.PALADIN,FantasyCharacter.RANGER,
+      FantasyCharacter.BARD,FantasyCharacter.MONK));
   static final List<Category> CATEGORIES=new ArrayList<>(
       List.of(TOON,UNE,BOLD,CYBERPUNK2020,FALKENSTEIN,INSTANT,WORLD,HEXCRAWL,
           COMBAT,ADVENTURE,WEATHER,MISC,WODMONSTER,WODNPC,INNOMINE,INNOMINENPC,
