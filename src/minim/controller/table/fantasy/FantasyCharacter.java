@@ -87,13 +87,11 @@ public class FantasyCharacter extends Table{
           "Orator","Gambler","Trickster","Jester","Juggler","Mime","Dancer",
           "Ministrel","Troubadour","Artificer","Gadgeteer","Apothecary",
           "Runesmith"));
-  // TODO plant, vermin and eather sound druid-like, can't think of kits though
   public static final Table CLERIC=new SimpleTable("Class (kit, cleric)",
       List.of(MAGICAL.lines.get(0),"Chaos cleric","Curses cleric",
           "Dream cleric","Glory cleric","Control cleric","Healing cleric",
           "Law cleric","Luck cleric","Madness cleric","Manipulation cleric",
-          "Sacrifice cleric","Sun cleric","Vermin cleric","Weather cleric",
-          "Wealth cleric"));
+          "Sacrifice cleric","Sun cleric","Wealth cleric"));
   public static final Table WIZARD=new SimpleTable("Class (kit, wizard)",
       List.of(MAGICAL.lines.get(1),"Air mage","Cold mage","Dimensional mage",
           "Earth mage","Electricity mage","Fire mage","Magma mage","Metal mage",
@@ -104,8 +102,9 @@ public class FantasyCharacter extends Table{
           "Demonologist wizard","Divination wizard","Illusionist wizard",
           "Necromancer wizard","Transmutation wizard"));
   public static final Table DRUID=new SimpleTable("Class (kit, druid)",
-      List.of(MAGICAL.lines.get(2),"Geomancer","Cultist","Werewolf","Werebear",
-          "Wereboar","Werebat","Apiarist","Beastmaster","Shaman"));
+      List.of(MAGICAL.lines.get(2),"Weathermancer","Floramancer","Cultist",
+          "Werewolf","Werebear","Wereboar","Werebat","Apiarist","Beastmaster",
+          "Vermin-lord","Shaman"));
   public static final List<Table> KITS=List.of(FIGHTER,WIZARD,CLERIC,ROGUE,
       DRUID,PALADIN,RANGER,BARD,MONK);
   public static final Kit KIT=new Kit("Class",TYPES);
