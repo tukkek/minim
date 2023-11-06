@@ -77,6 +77,7 @@ import minim.controller.table.darkness.werewolf.Tribe;
 import minim.controller.table.darkness.werewolf.Werewolf;
 import minim.controller.table.falkenstein.Diary;
 import minim.controller.table.fantasy.FantasyCharacter;
+import minim.controller.table.fantasy.SimpleCharacter;
 import minim.controller.table.hexcrawl.Elevation;
 import minim.controller.table.hexcrawl.Hex;
 import minim.controller.table.hexcrawl.Hexcrawl;
@@ -342,7 +343,9 @@ public class Tables{
       FantasyCharacter.FIGHTER,FantasyCharacter.WIZARD,FantasyCharacter.CLERIC,
       FantasyCharacter.RACE,FantasyCharacter.LEVEL,FantasyCharacter.ROGUE,
       FantasyCharacter.DRUID,FantasyCharacter.PALADIN,FantasyCharacter.RANGER,
-      FantasyCharacter.BARD,FantasyCharacter.MONK));
+      FantasyCharacter.BARD,FantasyCharacter.MONK,new SimpleCharacter(),
+      SimpleCharacter.LOW,SimpleCharacter.MID,SimpleCharacter.HIGH,
+      SimpleCharacter.EPIC));
   static final List<Category> CATEGORIES=new ArrayList<>(
       List.of(TOON,UNE,BOLD,CYBERPUNK2020,FALKENSTEIN,INSTANT,WORLD,HEXCRAWL,
           COMBAT,ADVENTURE,WEATHER,MISC,WODMONSTER,WODNPC,INNOMINE,INNOMINENPC,

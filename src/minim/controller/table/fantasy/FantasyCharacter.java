@@ -110,13 +110,15 @@ public class FantasyCharacter extends Table{
   public static final Kit KIT=new Kit("Class",TYPES);
   public static final Table RACE=new SimpleTable("Race",
       List.of("Human","Dwarf","Elf","Gnome","Half-elf","Half-orc","Halfling"));
+  public static List<String> TIERS=List.of("Low-level","Mid-level","High-level",
+      "Epic-level");
   public static final Table LEVEL=new Table("Level"){
     @Override
     public void build(){
-      add(100,"Low-level");
-      add(30,"Mid-level");
-      add(6,"High-level");
-      add(1,"Epic-level");
+      add(100,TIERS.get(0));
+      add(30,TIERS.get(1));
+      add(6,TIERS.get(2));
+      add(1,TIERS.get(3));
     }
   };
 
