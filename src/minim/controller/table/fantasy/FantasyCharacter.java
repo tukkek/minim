@@ -107,7 +107,7 @@ public class FantasyCharacter extends Table{
           "Vermin-lord","Shaman"));
   public static final List<Table> KITS=List.of(FIGHTER,WIZARD,CLERIC,ROGUE,
       DRUID,PALADIN,RANGER,BARD,MONK);
-  public static final Kit KIT=new Kit("Class",TYPES);
+  public static final Kit KIT=new Kit("Class (kit)",TYPES);
   public static final Table RACE=new SimpleTable("Race",
       List.of("Human","Dwarf","Elf","Gnome","Half-elf","Half-orc","Halfling"));
   public static List<String> TIERS=List.of("Low-level","Mid-level","High-level",
