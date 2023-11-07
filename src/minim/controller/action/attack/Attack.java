@@ -20,13 +20,16 @@ public class Attack extends RolledAction{
   static final Map<String,String> FUMBLES=new HashMap<String,String>();
 
   static{
-    FUMBLES.put("falls","floored");
-    FUMBLES.put("moves back",null);
-    FUMBLES.put("is disarmed","disardmed");
-    FUMBLES.put("is now grappling","grappling");
+    FUMBLES.put("begins grappling","grappling");
+    FUMBLES.put("is disarmed","disarmed");
     FUMBLES.put("is stunned","stunned");
-    FUMBLES.put("interacts with environment",null);
     FUMBLES.put("is shaken","shaken");
+    FUMBLES.put("falls","fallen");
+    FUMBLES.put("is disabled","disabled"); // only "minor" actions next round
+    FUMBLES.put("is pinned","pinned"); // cannot move
+    FUMBLES.put("interacts with ally (or enemy)",null);
+    FUMBLES.put("interacts with environment",null);
+    FUMBLES.put("moves back",null);
   }
 
   public class TargetDialog extends LazyInputDialog{
