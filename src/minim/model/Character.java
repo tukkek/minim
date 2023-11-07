@@ -78,9 +78,10 @@ public class Character implements Unit,Serializable{
     }
   }
 
-  public String name;
   public Map<String,Integer> stats=new HashMap<>();
+  public List<String> state=new ArrayList<>(0);
   public int damage=0;
+  public String name;
 
   public Character(String name){
     this.name=name;
@@ -181,5 +182,9 @@ public class Character implements Unit,Serializable{
 
   public String describehealth(){
     return this + ": " + HEALTH.get(damage).toLowerCase();
+  }
+
+  public static String roll(List<String> choices){
+    return choices.get(roll(choices.size()-1));
   }
 }

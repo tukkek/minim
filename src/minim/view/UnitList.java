@@ -18,6 +18,8 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MenuAdapter;
+import org.eclipse.swt.events.MenuEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -49,8 +51,37 @@ import minim.model.Group;
 import minim.model.Unit;
 
 public class UnitList{
-  public class Show extends SimpleAction{
+  private final class RememberUnit extends MenuAdapter{
+    private final Unit u;
 
+    private RememberUnit(Unit u){
+      this.u=u;
+    }
+
+    @Override
+    public void menuShown(MenuEvent e){
+      last=u;
+    }
+  }
+
+  public class RemoveEffect extends SelectionAdapter{
+    Character character;
+    String status;
+
+    public RemoveEffect(Character c,String s){
+      character=c;
+      status=s;
+      // TODO Auto-generated constructor stub
+    }
+
+    @Override
+    public void widgetSelected(SelectionEvent e){
+      character.state.remove(status);
+      update();
+    }
+  }
+
+  public class Show extends SimpleAction{
     public Show(Unit u){
       super(u);
       // TODO Auto-generated constructor stub
@@ -138,6 +169,7 @@ public class UnitList{
             .determine(new ArrayList<Character>(all.values()));
         var units=new ArrayList<Unit>(all.keySet());
         units.sort(Comparator.comparing(u -> characters.indexOf(all.get(u))));
+        last=units.get(0);
         UnitList.this.units.removeAll(units);
         UnitList.this.units.addAll(units);
         update();
@@ -171,6 +203,8 @@ public class UnitList{
   public static UnitList singleton;
 
   public ArrayList<Unit> units=new ArrayList<>();
+  static Unit last;
+
   Composite unitsarea;
   Composite layout;
 
@@ -207,12 +241,24 @@ public class UnitList{
     var s=unitsarea.getShell();
     for (var w : unitsarea.getChildren()) w.dispose();
     for (var i=0; i<units.size(); i++){
+      var parent=new Composite(unitsarea,SWT.NONE);
+      var l=new FillLayout();
+      parent.setLayout(l);
       var u=units.get(i);
-      var b=new Button(unitsarea,SWT.NONE);
+      var b=new Button(parent,SWT.NONE);
       var label=u.getname();
       if(i<ACCELERATORS.size()) label="&" + ACCELERATORS.get(i) + " " + label;
       b.setText(label);
-      var icon=u instanceof Character?"krusader.png":"kuser.png";
+      if(last==u) b.setFocus();
+      var icon="kuser.png";
+      if(u instanceof Character c){
+        icon="krusader.png";
+        for (var status : c.state){
+          var effect=new Button(parent,SWT.NONE);
+          effect.setText(status);
+          effect.addSelectionListener(new RemoveEffect(c,status));
+        }
+      }
       b.setImage(getImage("icons" + File.separator + icon));
       var m=addmenu(b,u);
       b.addSelectionListener(new ShowMenu(m,b));
@@ -231,6 +277,7 @@ public class UnitList{
 
   Menu addmenu(Button b,Unit u){
     final var menu=new Menu(b);
+    menu.addMenuListener(new RememberUnit(u));
     b.setMenu(menu);
     if(u instanceof Group){
       final var group=addsubmenu(menu,"&Group");
