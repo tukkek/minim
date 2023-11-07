@@ -2,6 +2,9 @@ package minim.view;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -40,11 +43,62 @@ import minim.controller.action.RemoveUnit;
 import minim.controller.action.attack.Attack;
 import minim.controller.action.base.Action;
 import minim.controller.action.base.RolledAction;
+import minim.controller.action.base.SimpleAction;
 import minim.model.Character;
 import minim.model.Group;
 import minim.model.Unit;
 
 public class UnitList{
+  public class Show extends SimpleAction{
+
+    public Show(Unit u){
+      super(u);
+      // TODO Auto-generated constructor stub
+    }
+
+    @Override
+    public void run() throws Cancel{
+      var g=(Group) unit;
+      var hidden=g.group.stream().filter(unit -> !units.contains(unit))
+          .toList();
+      units.addAll(hidden);
+      update();
+    }
+  }
+
+  public class Hide extends SimpleAction{
+    public Hide(Unit u){
+      super(u);
+    }
+
+    @Override
+    public void run() throws Cancel{
+      var g=(Group) unit;
+      units.removeAll(g.group);
+      update();
+    }
+  }
+
+  public class Move extends SimpleAction{
+    int delta;
+
+    public Move(Unit u,int d){
+      super(u);
+      delta=d;
+    }
+
+    @Override
+    public void run() throws Cancel{
+      var i=units.indexOf(unit);
+      var to=delta==+1?i+2:i-1;
+      if(!(0<=to&&to<=units.size())) return;
+      units.add(to,unit);
+      if(delta==-1) i+=1;
+      units.remove(i);
+      update();
+    }
+  }
+
   public class AddCharacter extends SelectionAdapter{
     @Override
     public void widgetSelected(SelectionEvent e){
@@ -73,8 +127,20 @@ public class UnitList{
     @Override
     public void widgetSelected(SelectionEvent e){
       try{
-        var all=getcharacters();
-        if(!all.isEmpty()) new DetermineOrder(null).determine(all);
+        var all=new HashMap<Unit,Character>(units.size());
+        for (var u : units){
+          var g=u instanceof Group?(Group) u:null;
+          if(g!=null&&g.group.size()==0) continue;
+          all.put(u,g==null?(Character) u:g.group.get(0));
+        }
+        if(all.isEmpty()) return;
+        var characters=new DetermineOrder(null)
+            .determine(new ArrayList<Character>(all.values()));
+        var units=new ArrayList<Unit>(all.keySet());
+        units.sort(Comparator.comparing(u -> characters.indexOf(all.get(u))));
+        UnitList.this.units.removeAll(units);
+        UnitList.this.units.addAll(units);
+        update();
       }catch (Cancel e1){
         return;
       }
@@ -122,7 +188,7 @@ public class UnitList{
     if(!BalanceTest.ENABLED){
       addbutton(add,"Add &character",new AddCharacter());
       addbutton(add,"Add &group",new AddGroup());
-      addbutton(add,"Determine &order",new DetermineAll());
+      addbutton(add,"&Determine order",new DetermineAll());
     }else addbutton(add,"Test balance",BalanceTest.HANDLER);
     new Label(layout,SWT.NONE);
     unitsarea=new Composite(layout,SWT.NONE);
@@ -166,6 +232,14 @@ public class UnitList{
   Menu addmenu(Button b,Unit u){
     final var menu=new Menu(b);
     b.setMenu(menu);
+    if(u instanceof Group){
+      final var group=addsubmenu(menu,"&Group");
+      var g=(Group) u;
+      addmenuitem("Determine &order",b,group,new DetermineOrder(g));
+      addmenuitem("Modify &group",b,group,new ModifyGroup(this,g));
+      addmenuitem("Hide members",b,group,new Hide(g));
+      addmenuitem("Show members",b,group,new Show(g));
+    }
     final var attack=addsubmenu(menu,"&Attack");
     for (String s : Attack.ATTACKS) addmenuitem(s,b,attack,new Attack(s,u));
     final var physical=addsubmenu(menu,"&Physical");
@@ -177,14 +251,10 @@ public class UnitList{
     final var mental=addsubmenu(menu,"&Mental");
     for (String s : RolledAction.MENTAL)
       addmenuitem(s,b,mental,new RolledAction("mental",s,u));
-    if(u instanceof Group){
-      final var group=addsubmenu(menu,"&Group");
-      var g=(Group) u;
-      addmenuitem("Determine &order",b,group,new DetermineOrder(g));
-      addmenuitem("Modify &group",b,group,new ModifyGroup(this,g));
-    }
-    addmenuitem("Modify &damage",b,menu,new ModifyDamage(u));
-    addmenuitem("Change &name",b,menu,new ChangeName(this,u));
+    addmenuitem("Modify &wounds",b,menu,new ModifyDamage(u));
+    addmenuitem("Move &up",b,menu,new Move(u,-1));
+    addmenuitem("Move &down",b,menu,new Move(u,+1));
+    addmenuitem("Re&name",b,menu,new ChangeName(this,u));
     addmenuitem("&Remove",b,menu,new RemoveUnit(this,u));
     return menu;
   }
@@ -226,5 +296,15 @@ public class UnitList{
   @PersistState
   public void stop(){
     StateManager.save(UnitList.class,units);
+  }
+
+  public List<Character> getall(){
+    var targets=new HashSet<Character>();
+    for (var u : UnitList.singleton.units)
+      if(u instanceof Group g) targets.addAll(g.group);
+      else targets.add((Character) u);
+    var sorted=new ArrayList<>(targets);
+    sorted.sort(Comparator.comparing(s -> s.toString()));
+    return sorted;
   }
 }

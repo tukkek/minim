@@ -18,8 +18,8 @@ public class Character implements Unit,Serializable{
   public static final Random RANDOM=new Random();
   public static final List<String> HEALTH=List.of("Unhurt","Scratched","Hurt",
       "Wounded (-1)","Injured (-2)","Dead");
-  public static final List<String> QUALITY=List.of("terrrible","poor",
-      "mediocre","good","amazing");
+  public static final List<String> QUALITY=List.of("Terrrible","Poor",
+      "Mediocre","Good","Amazing");
 
   public class ConfirmDeathDialog extends LazyInputDialog{
     public ConfirmDeathDialog(Character c){
@@ -30,6 +30,11 @@ public class Character implements Unit,Serializable{
 
     public boolean confirm() throws Cancel{
       return getvalue()==0;
+    }
+
+    @Override
+    protected boolean isselected(Object o,int i){
+      return i==0;
     }
   }
 
@@ -57,20 +62,19 @@ public class Character implements Unit,Serializable{
 
   public static class ModifierDialog extends LazyInputDialog{
     public ModifierDialog(String title){
-      super("Select the appropriate modifier:",false,Arrays.asList(new String[]
-      {"Very difficult","Difficult","Normal","Easy","Very easy"}));
+      super("Select the appropriate modifier:",true,
+          List.of("Very difficult (-2)","Difficult (-1)","Normal","Easy (+1)",
+              "Very easy (+2)"));
       this.title=title;
       numbered=true;
     }
 
     @Override
     public int getvalue() throws Cancel{
-      return super.getvalue()-2;
-    }
-
-    @Override
-    protected boolean isselected(Object s,int i){
-      return i==2;
+      getselection();
+      var bonus=0;
+      for (var i=0; i<choices.size(); i++) if(result.contains(i)) bonus+=i-2;
+      return bonus;
     }
   }
 
@@ -115,7 +119,7 @@ public class Character implements Unit,Serializable{
     modifier=bind(-2,modifier,+2);
     var t=bind(1,getstat(statistic)+modifier,6);
     var r=roll();
-    if(r<t) return +1;
+    if(r==1||r<t) return +1;
     if(r==t) return 0;
     return -1;
   }

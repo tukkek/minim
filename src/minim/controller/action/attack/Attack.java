@@ -1,10 +1,8 @@
 package minim.controller.action.attack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import minim.controller.BalanceTest;
 import minim.controller.Cancel;
 import minim.controller.action.base.RolledAction;
 import minim.model.Character;
@@ -15,7 +13,7 @@ import minim.view.dialog.LazyInputDialog;
 
 public class Attack extends RolledAction{
   public static final String[] ATTACKS=new String[]
-  {"&brawl","&fire","&shooting",};
+  {"&brawl","&shooting",};
   public static final String[] FUMBLES=new String[]
   {"is distracted (attackers get +1 to hit until next turn)",
       "falls to the ground","moves back","is disarmed or drops an item",
@@ -36,7 +34,7 @@ public class Attack extends RolledAction{
     }
 
     @Override
-    public ArrayList<Integer> getselection() throws Cancel{
+    public List<Integer> getselection() throws Cancel{
       var selection=super.getselection();
       if(selection.isEmpty()) throw new Cancel();
       return selection;
@@ -71,49 +69,42 @@ public class Attack extends RolledAction{
   public Character target;
 
   Character lasttarget;
-  Boolean damage;
 
   public Attack(String skill,Unit u){
     super("physical",skill,u);
   }
 
   @Override
-  protected void prepare(){
-    damage=null;
-  }
-
-  @Override
   public int run(Character c) throws Cancel{
     var result=super.run(c);
-    if(result==0){
-      fumble(gettarget(c));
-      return result;
-    }else if(result==-2) fumble(c);
-    else if(result>0){
-      if(damage==null)
-        damage=BalanceTest.ENABLED||new ApplyDamageDialog(skill).applydamage();
-      if(!damage) return result;
-      target=gettarget(c);
-      final var weapon=c.getstat("weapon",false);
-      final var armor=target.getstat("armor",false);
-      var damage=result+weapon-armor;
-      damage=Math.max(1,damage);
-      target.damage(damage);
-      final var health=target.describehealth().toLowerCase();
-      Output.print(target + " is " + health + ".");
+    if(result==-2){
+      fumble(c.toString());
+      return -2;
     }
+    if(result==-1) return -1;
+    if(result==0){
+      fumble("target");
+      return 0;
+    }
+    target=gettarget(c);
+    var weapon=c.getstat("weapon",false);
+    var armor=target.getstat("armor",false);
+    var damage=result+weapon-armor;
+    if(damage<1) damage=1;
+    target.damage(damage);
+    Output.print(target.describehealth().toLowerCase());
     return result;
   }
 
-  void fumble(Character c){
+  void fumble(String target){
     final var fumble=Character.RANDOM.nextInt(FUMBLES.length);
-    Output.print(c + " " + FUMBLES[fumble] + ".");
+    Output.print(target + " " + FUMBLES[fumble] + ".");
   }
 
   Character gettarget(Character attacker) throws Cancel{
     if(target!=null) return target;
-    var targets=UnitList.singleton.getcharacters();
-    lasttarget=new TargetDialog(attacker,targets).gettarget();
+    var all=UnitList.singleton.getall();
+    lasttarget=new TargetDialog(attacker,all).gettarget();
     return lasttarget;
   }
 }

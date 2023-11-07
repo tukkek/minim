@@ -9,16 +9,6 @@
         <children xsi:type="basic:Part" xmi:id="_5rUQ8LM3Eemjj_beKdeyzg" elementId="minim.part.tables" contributionURI="bundleclass://minim/minim.view.Tables" label="Tables" iconURI="platform:/plugin/minim/bin/folder_home2.png"/>
       </children>
       <children xsi:type="basic:PartSashContainer" xmi:id="_eWLfAIwpEee8yupzolVhbQ" elementId="minim.partsashcontainer.1">
-        <children xsi:type="basic:PartStack" xmi:id="_khULkIwpEee8yupzolVhbQ" elementId="minim.partstack.1">
-          <children xsi:type="basic:Part" xmi:id="_fJEUgIwpEee8yupzolVhbQ" elementId="minim.part.output" contributionURI="bundleclass://minim/minim.view.Output" label="Output" iconURI="platform:/plugin/minim/icons/kiriki_16.png">
-            <handlers xmi:id="_1pajIKwjEem48f5TO4OC0w" elementId="minim2.handler.0" contributionURI="bundleclass://minim/minim.view.command.ClearOutput" command="_f1RawIxLEeeInLn4CU4p0g"/>
-            <handlers xmi:id="_9ErPALGuEemrv93eDPRZ5g" elementId="minim.handler.rolldice" contributionURI="bundleclass://minim/minim.view.command.RollDice" command="_6LvTALGuEemrv93eDPRZ5g"/>
-            <toolbar xmi:id="_rMgOMIxKEeeInLn4CU4p0g" elementId="minim.toolbar.1">
-              <children xsi:type="menu:HandledToolItem" xmi:id="_1TUykLGuEemrv93eDPRZ5g" elementId="minim.handledtoolitem.roll" label="Roll dice" command="_6LvTALGuEemrv93eDPRZ5g"/>
-              <children xsi:type="menu:HandledToolItem" xmi:id="_wYkqcIxKEeeInLn4CU4p0g" elementId="minim.handledtoolitem.clear" label="Clear" command="_f1RawIxLEeeInLn4CU4p0g"/>
-            </toolbar>
-          </children>
-        </children>
         <children xsi:type="basic:PartStack" xmi:id="_lKDmkIwpEee8yupzolVhbQ" elementId="minim.partstack.2">
           <children xsi:type="basic:Part" xmi:id="_ffbmEIwpEee8yupzolVhbQ" elementId="minim.part.notepad" contributionURI="bundleclass://minim/minim.view.Notepad" label="Notepad" iconURI="platform:/plugin/minim/icons/korganizer.png">
             <handlers xmi:id="_hqFFkAO2Eeyu1oHgscIxLA" elementId="minim.handler.enlarge" contributionURI="bundleclass://minim/minim.view.command.notepad.EnlargeFont" command="_1N-tkAO3Eeyu1oHgscIxLA"/>
@@ -28,6 +18,16 @@
               <children xsi:type="menu:HandledToolItem" xmi:id="_7JVhoAPLEeyu1oHgscIxLA" elementId="minim.handledtoolitem.export" label="Export" command="_08m5oAPLEeyu1oHgscIxLA"/>
               <children xsi:type="menu:HandledToolItem" xmi:id="_s9e3AAO3Eeyu1oHgscIxLA" elementId="minim.handledtoolitem.enlargefont" label="+" command="_1N-tkAO3Eeyu1oHgscIxLA"/>
               <children xsi:type="menu:HandledToolItem" xmi:id="_KUf0UAO4Eeyu1oHgscIxLA" elementId="minim.handledtoolitem.shrinkfont" label="-" command="_N3wfsAO4Eeyu1oHgscIxLA"/>
+            </toolbar>
+          </children>
+        </children>
+        <children xsi:type="basic:PartStack" xmi:id="_khULkIwpEee8yupzolVhbQ" elementId="minim.partstack.1">
+          <children xsi:type="basic:Part" xmi:id="_fJEUgIwpEee8yupzolVhbQ" elementId="minim.part.output" contributionURI="bundleclass://minim/minim.view.Output" label="Output" iconURI="platform:/plugin/minim/icons/kiriki_16.png">
+            <handlers xmi:id="_1pajIKwjEem48f5TO4OC0w" elementId="minim2.handler.0" contributionURI="bundleclass://minim/minim.view.command.ClearOutput" command="_f1RawIxLEeeInLn4CU4p0g"/>
+            <handlers xmi:id="_9ErPALGuEemrv93eDPRZ5g" elementId="minim.handler.rolldice" contributionURI="bundleclass://minim/minim.view.command.RollDice" command="_6LvTALGuEemrv93eDPRZ5g"/>
+            <toolbar xmi:id="_rMgOMIxKEeeInLn4CU4p0g" elementId="minim.toolbar.1">
+              <children xsi:type="menu:HandledToolItem" xmi:id="_1TUykLGuEemrv93eDPRZ5g" elementId="minim.handledtoolitem.roll" label="Roll dice" command="_6LvTALGuEemrv93eDPRZ5g"/>
+              <children xsi:type="menu:HandledToolItem" xmi:id="_wYkqcIxKEeeInLn4CU4p0g" elementId="minim.handledtoolitem.clear" label="Clear" command="_f1RawIxLEeeInLn4CU4p0g"/>
             </toolbar>
           </children>
         </children>

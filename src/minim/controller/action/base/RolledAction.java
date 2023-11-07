@@ -22,8 +22,8 @@ public class RolledAction extends Action{
       for (var i=0; i<5; i++) SKILLS.add(skills[i].replace("&",""));
   }
 
-  static final String[] DESCRIBERESULT=new String[]
-  {"Terrible!","Failure.","Neutral.","Success.","Amazing!"};
+  static final List<String> RESULT=List.of("Terrible!","Failure.",
+      "Neutral.","Success.","Amazing!");
 
   protected String attribute;
   protected String skill;
@@ -38,7 +38,7 @@ public class RolledAction extends Action{
   @Override
   public int run(minim.model.Character c) throws Cancel{
     final var result=c.roll(attribute,skill,this);
-    Output.print(c + " rolls " + skill + ". " + DESCRIBERESULT[result+2]);
+    Output.print(c + " rolls " + skill + ". " + RESULT.get(result+2));
     return result;
   }
 }

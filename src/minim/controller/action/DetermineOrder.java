@@ -11,7 +11,6 @@ import minim.controller.action.base.SimpleAction;
 import minim.model.Character;
 import minim.model.Group;
 import minim.view.Output;
-import minim.view.UnitList;
 
 public class DetermineOrder extends SimpleAction{
   Group g;
@@ -41,10 +40,6 @@ public class DetermineOrder extends SimpleAction{
       return perceptions.get(a)-perceptions.get(b);
     });
     var result="Initiative order:\n";
-    var u=UnitList.singleton;
-    u.units.removeAll(group);
-    u.units.addAll(0,group);
-    u.update();
     for (Character c : group){
       var roll=Minim.DEBUG?" (" + initiatives.get(c) + ")":"";
       result+="  " + c + roll + "\n";
