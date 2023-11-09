@@ -23,17 +23,20 @@ export class Action{
   
   async act(unit){
     let result=0
-    let text=[]
+    let rolls=[]
     for(let s of this.skills){
+      s=s.toLowerCase()
       let r=await unit.roll(s)
-      text.push(`${s} ${unitm.roll}/${unit.skills.get(s.toLowerCase())}`)
+      rolls.push(`${s} ${unitm.roll}/${unit.skills.get(s)}`)
       result+=r
     }
-    text=[text.map((t,i)=>i==0?t:t.toLowerCase()).join(', ')+'.']
     let o=OUTCOME.get(result).toLowerCase()
-    o+=result==-2||result==+2?'!':'.'
-    text.push(`${unit.name}'s ${this.name.toLowerCase()}: ${o}`)
-    output.say(text.join('<br/>'))
+    if(result==-2||result==+2) o+='!'
+    o=`<strong>${o}</strong>`
+    let dice=rolls.join(', ').toLowerCase()
+    dice=`<small>${dice}</small>`
+    let n=`<strong>${unit.name}</strong>`
+    output.say(`${n}'s ${this.name.toLowerCase()}: ${o} (${dice}).`) //TODO template
     return result
   }
   
@@ -50,7 +53,7 @@ export class GroupAction extends Action{
 
 class Order extends Action{
   constructor(){
-    super('Determine order',['Physical','Social'])
+    super('Determine order',['Social','Physical'])
   }
   
   async act(unit){
