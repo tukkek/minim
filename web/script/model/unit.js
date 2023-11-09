@@ -9,6 +9,7 @@ export var values=new Map([
   ['Social',['Animals','Coercion','Communication','Languages','Perception']]
 ])
 export var units=[]
+export var roll=-1//last roll
 
 export class Unit{
   constructor(n){
@@ -58,15 +59,20 @@ export class Unit{
     skill=skill.toLowerCase()
     let value=this.skills.get(skill)
     if(value) return Promise.resolve(value)
-    return await new dialog.Skill(this,skill).input()
+    value=await new dialog.Skill(this,skill).input()
+    this.skills.set(skill,value)
+    db.store()
+    return value
   }
   
   async roll(skill){
     skill=await this.get(skill)
-    let r=rpg.roll(1,6)
-    if(r==6) return -1
-    if(r==1) return +1
-    if(r==skill) return +0
-    return r<skill?+1:-1
+    roll=rpg.roll(1,6)
+    if(roll==6) return -1
+    if(roll==1) return +1
+    if(roll==skill) return +0
+    return roll<skill?+1:-1
   }
+  
+  toString(){return this.name}
 }

@@ -1,5 +1,5 @@
 #dialog.hidden,#dialog .hidden{
-  display:none;
+  display:none!important;
 }
 #dialog{
   position:fixed;
@@ -12,8 +12,15 @@
   background-color:slategray;
   display:grid;
   grid-gap:1em;
+  min-width:20em;
 }
-#dialog input{
+#dialog .search{
+  display:grid;
+  grid-template-columns:min-content auto;
+  grid-gap:1em;
+  align-items:center;
+}
+#dialog .search hinput{
   border-radius:1em;
   padding-left:1em;
 }

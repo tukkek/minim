@@ -14,12 +14,11 @@ export function setup(){
 export async function open(){
   let actions=new Map()
   let u=units.active
-  for(let a of ACTIONS) if(a.validate(u)) 
+  for(let a of ACTIONS) if(a.validate(u))
     actions.set(a.name,a)
   let d=new dialog.Dialog(`${u.name}'s action?`,actions)
   let action=await d.input()
   ACTIONS.splice(ACTIONS.indexOf(action),1)
   ACTIONS.splice(0,0,action)
-  alert([u.name,action.name])
-  //TODO action.act(units.active)
+  action.act(units.active)
 }

@@ -5,12 +5,20 @@ const SEARCH=VIEW.querySelector('input')
 const CHOICES=VIEW.querySelector('.choices')
 const CHOICE=CHOICES.querySelector('template#choice').content.childNodes[0]
 const TITLE=VIEW.querySelector('.title')
+const PROFICIENCY=new Map([
+  ['Terrible',1],
+  ['Bad',2],
+  ['Mediocre',3],
+  ['Good',4],
+  ['Exceptional',5],
+])
 
 var active=false
 
 export class Dialog{
   constructor(t='',choices=false){
     this.choices=choices||new Map()
+    this.search=true
     this.title=t
   }
   
@@ -32,7 +40,7 @@ export class Dialog{
     }
   }
   
-  search(){
+  filter(){
     let choices=Array.from(CHOICES.querySelectorAll('.choice'))
     let query=SEARCH.value.trim().toLowerCase()
     for(let c of choices){
@@ -57,6 +65,7 @@ export class Dialog{
       return
     }
     let choices=Array.from(CHOICES.querySelectorAll('.choice'))
+    choices=choices.filter(c=>!c.classList.contains('hidden'))
     let i=choices.indexOf(s)
     if(key=='ArrowDown'&&s&&i<choices.length-1){
       this.select(choices[i+1])
@@ -66,6 +75,9 @@ export class Dialog{
       this.select(choices[i-1])
       return
     }
+    if(this.search) return
+    i=parseInt(key)
+    if(!isNaN(i)&&0<i&&i<=choices.length) this.select(choices[i-1])
   }
 
   close(choice){
@@ -87,22 +99,29 @@ export class Dialog{
   open(){
     active=this
     SEARCH.value=''
-    SEARCH.onkeyup=e=>{if(e.key.indexOf('Arrow')<0) this.search()}
+    SEARCH.onkeyup=e=>{if(e.key.indexOf('Arrow')<0) this.filter()}
+    SEARCH.parentNode.classList.toggle('hidden',!this.search)
     VIEW.querySelector('.close').onclick=()=>this.close()
     TITLE.textContent=this.title
     this.populate()
-    this.search()
+    this.filter()
     VIEW.classList.remove('hidden')
-    SEARCH.focus()
+    if(this.search) SEARCH.focus()
     setTimeout(()=>input.listen(press),100)
   }
 }
 
 export class Skill extends Dialog{
   constructor(u,s){
-    super()
-    this.unit=u
+    super(`${u.name}'s ${s}?`,PROFICIENCY)
+    this.search=false
     this.skill=s
+    this.unit=u
+  }
+  
+  open(){
+    super.open()
+    this.select(VIEW.querySelectorAll('.choice')[2])
   }
 }
 
