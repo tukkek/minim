@@ -52,11 +52,18 @@ class Order extends Action{
   constructor(){
     super('Determine order',['Physical','Social'])
   }
+  
+  async act(unit){
+    let roll=await super.act(unit)
+    let s=await unit.get('social')
+    let p=await unit.get('physical')
+    return roll*100+s*10+p
+  }
 }
 
-class Modify extends Action{
+class Change extends Action{
   constructor(s){
-    super('Modify '+s.toLowerCase())
+    super('Change '+s.toLowerCase())
     this.skill=s.toLowerCase()
   }
   
@@ -77,10 +84,10 @@ export function setup(){
   let values=unitm.values
   for(let v of values.keys()){
     actions.push(new Action(v+ ' test',[v,v]))
-    actions.push(new Modify(v))
+    actions.push(new Change(v))
     for(let skill of values.get(v)){
       actions.push(new Action(skill+' test',[v,skill]))
-      actions.push(new Modify(skill))
+      actions.push(new Change(skill))
     }
   }
 }

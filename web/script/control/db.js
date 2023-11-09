@@ -28,7 +28,7 @@ export async function setup(){
   groups=data.groups
   units.mapToClass(unit.Unit)
   groups.mapToClass(group.Group)
-  setInterval(save,1000)
+  setInterval(save,1000/3)
 }
 
 export async function store(){dirty=true}

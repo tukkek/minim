@@ -99,9 +99,17 @@ export class Dialog{
   }
   
   open(){
+    if(active) throw 'Cannot open another dialog!'
+    let a=document.activeElement
+    if(a) a.blur()
     active=this
     SEARCH.value=''
-    SEARCH.onkeyup=e=>{if(e.key.indexOf('Arrow')<0) this.filter()}
+    SEARCH.onkeyup=e=>{
+      let k=e.key
+      if(k!='Backspace'&&k.length!=1) return
+      this.filter()
+      e.stopPropagation()
+    }
     SEARCH.parentNode.classList.toggle('hidden',!this.search)
     VIEW.querySelector('.close').onclick=()=>this.close()
     TITLE.textContent=this.title
@@ -111,7 +119,7 @@ export class Dialog{
     if(this.search) SEARCH.focus()
     let d=this.default
     if(d>=0) this.select(VIEW.querySelectorAll('.choice')[d])
-    setTimeout(()=>input.listen(press),100)
+    input.listen(press)
   }
 }
 

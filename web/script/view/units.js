@@ -38,7 +38,7 @@ class Rename extends action.Action{
 
 class Regroup extends action.GroupAction{
   constructor(){
-    super('Modify group')
+    super('Regroup')
   }
   
   async apply(unit){
@@ -72,7 +72,7 @@ class Regroup extends action.GroupAction{
       i.checked=current.length==0||current.find(c=>c==u.name)
       members.appendChild(m)
       if(first){
-        setTimeout(()=>i.focus(),100)
+        setTimeout(()=>i.focus(),200)
         first=false
       }
     }
@@ -161,17 +161,48 @@ function press(key){
   units[focus].focus()
 }
 
+function invite(){
+  let a=document.activeElement
+  if(a) a.blur()
+  new unitm.Unit(prompt('Unit name:')).add()
+  update()
+}
+
+function group(){
+  let a=document.activeElement
+  if(a) a.blur()
+  let g=new groupm.Group(prompt('Group name:'))
+  g.add()
+  update()
+  regroup.act(g)
+}
+
+async function order(){
+  let a=document.activeElement
+  if(a) a.blur()
+  let views=Array.from(VIEW.querySelectorAll('.unit'))
+  let units=views.map(u=>u.unit)
+  let order=new Map()
+  for(let u of units) order.set(u,await u.order())
+  for(let u of units) console.log(u.name,order.get(u))
+  units.sort((a,b)=>order.get(b)-order.get(a))
+  for(let v of views) v.remove()
+  for(let u of units){
+    VIEW.appendChild(views.find(v=>v.unit==u))
+  }
+}
+
+function derive(){
+  let a=document.activeElement
+  if(a) a.blur()
+  //TODO
+}
+
 export async function setup(){
   update()
   input.listen(press)
-  VIEW.querySelector('.invite').onclick=()=>{
-    new unitm.Unit(prompt('Unit name:')).add()
-    update()
-  }
-  VIEW.querySelector('.group').onclick=()=>{
-    let g=new groupm.Group(prompt('Group name:'))
-    g.add()
-    update()
-    regroup.act(g)
-  }
+  VIEW.querySelector('.invite').onclick=invite
+  VIEW.querySelector('.group').onclick=group
+  VIEW.querySelector('.order').onclick=order
+  VIEW.querySelector('.derive').onclick=derive
 }

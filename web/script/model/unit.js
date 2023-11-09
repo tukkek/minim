@@ -1,5 +1,6 @@
 import * as db from '../control/db.js'
 import * as rpg from '../control/rpg.js'
+import * as action from '../control/action.js'
 import * as dialog from '../view/dialog.js'
 import * as group from './group.js'
 
@@ -59,10 +60,11 @@ export class Unit{
     skill=skill.toLowerCase()
     let value=this.skills.get(skill)
     if(value) return Promise.resolve(value)
-    value=await new dialog.Skill(this,skill).input()
+    let d=new dialog.Skill(this,skill)
+    value=await d.input()
     this.skills.set(skill,value)
     db.store()
-    return value
+    return Promise.resolve(value)
   }
   
   async roll(skill){
@@ -75,4 +77,6 @@ export class Unit{
   }
   
   toString(){return this.name}
+  
+  async order(){return await action.order.act(this)}
 }
