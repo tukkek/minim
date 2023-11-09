@@ -55,7 +55,10 @@ function open(){
 function help(){
   let commands=Array.from(document.querySelectorAll('*[accesskey]'))
   commands=commands.map(c=>`${c.getAttribute('accesskey')} = ${c.textContent}`)
-  let help=`Many functions can be accessed via keyboard keys (including in dialog boxes). For example:
+  let help=
+    `Many functions can be accessed via keyboard keys!
+    Same advice goes for units and on dialogs.
+    For example:
     
     ${commands.join('\n')}`
   say(help.replaceAll('\n','<br/>'))
@@ -64,6 +67,6 @@ function help(){
 export function setup(){
   PARENT.querySelector('.clear').onclick=()=>VIEW.innerHTML=''
   ROLL.querySelector('button').onclick=roll
-  PARENT.querySelector('.roll').onclick=()=>open()
+  PARENT.querySelector('.roll').onclick=()=>setTimeout(open,100)
   PARENT.querySelector('.help').onclick=()=>help()
 }

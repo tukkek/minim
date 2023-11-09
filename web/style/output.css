@@ -23,9 +23,17 @@
   grid-auto-flow:column;
   grid-gap:1em;
 }
-#output .bar .controls>div{
+#output .bar .controls>button{
   text-decoration:underline;
   cursor:pointer;
+  border:none;
+  background-color:transparent;
+  font-size:1em;
+  padding:0;
+}
+#output .bar .controls>button:focus{
+  background-color:gold;
+  outline:none;
 }
 #output .text{
   overflow:scroll;

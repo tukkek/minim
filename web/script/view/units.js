@@ -148,7 +148,7 @@ function press(key){
     return
   }
   key=key.toLowerCase()
-  let units=Array.from(VIEW.querySelectorAll(`button[accesskey="${key}"]`))
+  let units=Array.from(document.querySelectorAll(`*[accesskey="${key}"]`))
   if(units.length==0) return
   if(units.length==1){
     let b=units[0]
