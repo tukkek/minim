@@ -43,10 +43,11 @@ export class Dialog{
   
   filter(){
     let choices=Array.from(CHOICES.querySelectorAll('.choice'))
-    let query=SEARCH.value.trim().toLowerCase()
+    let query=SEARCH.value.trim().toLowerCase().split(' ')
     for(let c of choices){
       let label=c.textContent.toLowerCase()
-      let hide=query.length>0&&!label.includes(query)
+      let hide=false
+      for(let q of query) if(!label.includes(q)) hide=true
       c.classList.toggle('hidden',hide)
     }
     let s=choices.find(r=>r.classList.contains('selected'))
