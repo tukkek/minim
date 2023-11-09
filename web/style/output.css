@@ -1,0 +1,50 @@
+#output{
+  border:.1em solid black;
+  border-radius:2em;
+  padding-left:1em;
+  display:grid;
+  grid-template-rows:auto auto;
+  align-content:start;
+}
+#output .hidden{
+  display:none;
+}
+#output .bar{
+  display:grid;
+  grid-auto-flow:column;
+  justify-content:space-between;
+}
+#output .bar h2{
+  margin-bottom:.2em;
+}
+#output .bar .controls{
+  padding:1em;
+  display:grid;
+  grid-auto-flow:column;
+  grid-gap:1em;
+}
+#output .bar .controls>div{
+  text-decoration:underline;
+  cursor:pointer;
+}
+#output .text{
+  overflow:scroll;
+  padding-bottom:1em;
+}
+#output #roll{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background-color:slategray;
+  padding:1em;
+  border-radius:1em;
+  text-decoration:none!important;
+  text-align:center;
+}
+#output #roll input{
+  background-color:slategray;
+  text-align:center;
+  margin:1em .2em;
+  font-size:1.2em;
+}

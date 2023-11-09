@@ -1,0 +1,10 @@
+html,body{
+  height:99%;
+}
+#layout{
+  display:grid;
+  grid-template:"a b" 50%
+                "a c" 50% / 30% 70%;
+  width:100%;
+  height:100%;
+}

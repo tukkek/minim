@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<title>Minim companion</title>
+
+<link rel='stylesheet' href='style/units.css'>
+<link rel='stylesheet' href='style/actions.css'>
+<link rel='stylesheet' href='style/minim.css'>
+<link rel='stylesheet' href='style/output.css'>
+<link rel='stylesheet' href='style/notes.css'>
+
+<div id='layout'>
+  <div id='units'>
+    <h2>Units</h2>
+    <div class='controls'>
+      <button class='invite'>Add unit</button>
+      <button class='group'>Add group</button>
+      <button class='order' accesskey='d'>Determine order</button>
+    </div>
+    <template id='unit'><div class='unit'>
+      <button class='name'></button>
+      <div class='effects'>
+        <template id='effect'><button class='effect'></button></template>
+      </div>
+    </div></template>
+    <div class='hidden' id='grouper'>
+      Select the units that form <span class='group'></span>:
+      <div class='members'>
+        <template id='member'>
+          <label class='member'><input type='checkbox'/><span></span></label>
+        </template>
+      </div>
+      <button>Select</button>
+    </div>
+  </div>
+  <textarea id='notes'>Write your notes here :D</textarea>
+  <div id='output'>
+    <div class='bar'>
+      <h3>Output</h3>
+      <div class='controls'>
+        <div class='roll'>Roll dice</div>
+        <div class='hidden' id='roll'>
+          What's your dice pool?
+          <div><input type='number' min='1' step='1' size='3'/><input type='number' min='1' step='1' size='3'/><input type='number' min='1' step='1' size='3'/></div>
+          <button>Roll</button>
+        </div>
+        <div class='clear'>Clear</div>
+      </div>
+    </div>
+    <div class='text'></div>
+  </div>
+</div>
+
+<div class='hidden' id='actions'>
+  <div class='active'>Active unit: <span></span>.</div>
+  <div>Search action: <input type='textbox'/></div>
+  <template id='action'><div class='action'></div></template>
+  <div class='results'>
+    <template id='result'><div class='result'></div></template>
+  </div>
+  <button class='close'>Close</button>
+</div>
+
+<script type='module'>
+  import * as minim from './script/control/minim.js'
+  minim.setup()
+</script>

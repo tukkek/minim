@@ -1,0 +1,53 @@
+#units{
+  grid-area:a;
+  padding:0 1em;
+}
+#units .hidden{
+  display:none;
+}
+#units h2{
+  text-align:center;
+}
+#units .controls{
+  display:grid;
+  grid-auto-flow:column;
+  margin-bottom:2em;
+}
+#units .unit{
+  display:flex;
+  justify-content:center;
+  margin:1em;
+}
+#units .unit button.name{
+  padding:0 1em;
+  font-weight:bold;
+}
+#units .unit button:focus-visible{
+  background-color:gold;
+  outline:none;
+  border-color:transparent;
+  border-radius:.2em;
+}
+#units #grouper{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background-color:slategray;
+  padding:1em;
+  border-radius:2em;
+}
+#units #grouper .group{
+  font-weight:bold;
+}
+#units #grouper .members{
+  background-color:white;
+  margin:1em;
+  border-radius:1em;
+  text-align:center;
+  display:grid;
+}
+#units #grouper button{
+  width:100%;
+  text-align:center;
+}

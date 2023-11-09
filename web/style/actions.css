@@ -1,0 +1,38 @@
+#actions.hidden,#actions .hidden{
+  display:none;
+}
+#actions{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  padding:1em;
+  border-radius:2em;
+  border:.2em gray solid;
+  background-color:slategray;
+  display:grid;
+  grid-gap:1em;
+}
+#actions input{
+  border-radius:1em;
+  padding-left:1em;
+}
+#actions .results{
+  font-size:small;
+  background-color:white;
+  padding:1em;
+  border-radius:1em;
+  height:10em;
+  overflow-y:scroll;
+  text-align:center;
+}
+#actions .results .result.selected{
+  text-decoration:underline;
+  cursor:pointer;
+}
+#actions .active{
+  text-align:center;
+}
+#actions .active span{
+  font-weight:bold;
+}
