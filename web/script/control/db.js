@@ -8,6 +8,17 @@ export var units=false
 
 var data=new Dexie("minim");
 var notes=false
+var dirty=false
+
+async function save(){
+  if(!dirty) return
+  dirty=false
+  await notes.put({title:'notes',body:notesm.notes.value})
+  await units.toCollection().delete()
+  await units.bulkPut(unit.units)
+  await groups.toCollection().delete()
+  await groups.bulkPut(group.groups)
+}
 
 export async function setup(){
 //   data.delete()
@@ -17,15 +28,10 @@ export async function setup(){
   groups=data.groups
   units.mapToClass(unit.Unit)
   groups.mapToClass(group.Group)
+  setInterval(save,1000)
 }
 
-export async function store(){
-  await notes.put({title:'notes',body:notesm.notes.value})
-  await units.toCollection().delete()
-  await units.bulkPut(unit.units)
-  await groups.toCollection().delete()
-  await groups.bulkPut(group.groups)
-}
+export async function store(){dirty=true}
 
 export async function restore(){
   let b=await notes.get({title:'notes'})
