@@ -1,7 +1,9 @@
 //TODO modify attack group
 import * as output from '../view/output.js'
+import * as dialog from '../view/dialog.js'
 import * as unitm from '../model/unit.js'
 import * as group from '../model/group.js'
+import * as db from './db.js'
 
 const OUTCOME=new Map([
   [-2,'Terrible'],
@@ -48,7 +50,7 @@ export class GroupAction extends Action{
 
 class Order extends Action{
   constructor(){
-    super('Determine order',['physical','social'])
+    super('Determine order',['Physical','Social'])
   }
 }
 
@@ -59,9 +61,12 @@ class Modify extends Action{
   }
   
   async act(unit){
-    let s=this.skill
-    unit.skills.delete(s)
-    await unit.roll(s)
+    let d=new dialog.Skill(unit,this.skill)
+    let s=unit.skills.get(this.skill)
+    if(s) d.default=s-1
+    s=await d.input()
+    unit.skills.set(this.skill,s)
+    db.store()
   }
 }
 

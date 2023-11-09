@@ -20,6 +20,7 @@ export class Dialog{
     this.choices=choices||new Map()
     this.search=true
     this.title=t
+    this.default=-1
   }
   
   select(choice){
@@ -107,6 +108,8 @@ export class Dialog{
     this.filter()
     VIEW.classList.remove('hidden')
     if(this.search) SEARCH.focus()
+    let d=this.default
+    if(d>=0) this.select(VIEW.querySelectorAll('.choice')[d])
     setTimeout(()=>input.listen(press),100)
   }
 }
@@ -117,11 +120,7 @@ export class Skill extends Dialog{
     this.search=false
     this.skill=s
     this.unit=u
-  }
-  
-  open(){
-    super.open()
-    this.select(VIEW.querySelectorAll('.choice')[2])
+    this.default=2
   }
 }
 
