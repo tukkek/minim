@@ -1,3 +1,4 @@
+//TODO modify attack group
 import * as output from '../view/output.js'
 import * as unit from '../model/unit.js'
 import * as group from '../model/group.js'
