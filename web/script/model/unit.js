@@ -13,6 +13,7 @@ export class Unit{
     if(!n) throw 'unit needs name'
     this.name=n
     this.effects=[]
+    this.hidden=false
   }
   
   affect(effect){this.effects.push(effect)}

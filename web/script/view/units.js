@@ -81,9 +81,22 @@ class Regroup extends action.GroupAction{
   }
 }
 
+class Hide extends action.GroupAction{
+  constructor(name='Hide members',h=true){
+    super(name)
+    this.hide=h
+  }
+  
+  act(group){
+    for(let m of group.members) m.hidden=this.hide
+    update()
+    db.store()
+  }
+}
+
 export var regroup=new Regroup()
 export var active=false
-export var actions=[new Remove(),new Rename(),regroup]
+export var actions=[new Remove(),new Rename(),regroup,new Hide(),new Hide('Show members',false)]
 
 function get(unit){
   return Array.from(VIEW.querySelectorAll('.unit')).find(u=>u.unit.name==unit.name)
@@ -96,6 +109,7 @@ function act(unit,button=false){
 }
 
 function draw(unit){
+  if(unit.hidden) return
   let parent=get(unit)
   if(!parent){
     parent=UNIT.cloneNode(true)
