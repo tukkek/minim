@@ -116,7 +116,7 @@ function draw(unit){
     VIEW.appendChild(parent)
   }
   let b=parent.querySelector('button')
-  b.onclick=()=>act(unit,b)
+  b.onclick=()=>setTimeout(()=>act(unit,b),100)
   b.textContent=unit.name
   b.setAttribute('accesskey',unit.name[0].toLowerCase())
   parent.unit=unit

@@ -30,8 +30,9 @@
   background-color:transparent;
   font-size:1em;
   padding:0;
+  transition:.2s;
 }
-#output .bar .controls>button:focus{
+#output .bar .controls>button:focus-visible{
   background-color:gold;
   outline:none;
 }
