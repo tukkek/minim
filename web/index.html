@@ -3,7 +3,7 @@
 <title>Minim companion</title>
 
 <link rel='stylesheet' href='style/units.css'>
-<link rel='stylesheet' href='style/actions.css'>
+<link rel='stylesheet' href='style/dialog.css'>
 <link rel='stylesheet' href='style/minim.css'>
 <link rel='stylesheet' href='style/output.css'>
 <link rel='stylesheet' href='style/notes.css'>
@@ -52,12 +52,12 @@
   </div>
 </div>
 
-<div class='hidden' id='actions'>
-  <div class='active'>Active unit: <span></span>.</div>
-  <div>Search action: <input type='textbox'/></div>
+<div class='hidden' id='dialog'>
+  <div class='title'></div>
+  <div>Search: <input type='textbox'/></div>
   <template id='action'><div class='action'></div></template>
-  <div class='results'>
-    <template id='result'><div class='result'></div></template>
+  <div class='choices'>
+    <template id='choice'><div class='choice'></div></template>
   </div>
   <button class='close'>Close</button>
 </div>

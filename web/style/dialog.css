@@ -1,7 +1,7 @@
-#actions.hidden,#actions .hidden{
+#dialog.hidden,#dialog .hidden{
   display:none;
 }
-#actions{
+#dialog{
   position:fixed;
   left:50%;
   top:50%;
@@ -13,11 +13,11 @@
   display:grid;
   grid-gap:1em;
 }
-#actions input{
+#dialog input{
   border-radius:1em;
   padding-left:1em;
 }
-#actions .results{
+#dialog .choices{
   font-size:small;
   background-color:white;
   padding:1em;
@@ -26,13 +26,11 @@
   overflow-y:scroll;
   text-align:center;
 }
-#actions .results .result.selected{
+#dialog .choices .choice.selected{
   text-decoration:underline;
   cursor:pointer;
 }
-#actions .active{
+#dialog .title{
   text-align:center;
-}
-#actions .active span{
   font-weight:bold;
 }

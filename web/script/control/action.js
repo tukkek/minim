@@ -11,7 +11,11 @@ export class Action{
   
   toString(){return this.name}
   
-  act(unit){output.say([unit.name,this.name])}
+  act(unit){
+    let result=0
+    for(let r of this.rolls) result+=unit.roll(r)
+    return result
+  }
   
   validate(unit){return true}
 }
@@ -24,7 +28,14 @@ export class GroupAction extends Action{
   validate(unit){return unit instanceof group.Group}
 }
 
-export var actions=[]
+class Order extends Action{
+  constructor(){
+    super('Determine order',['physical','social'])
+  }
+}
+
+export var order=new Order()
+export var actions=[order]
 
 export function setup(){
   let values=unit.values
