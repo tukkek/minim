@@ -21,7 +21,7 @@ function close(){
 function roll(){
   close()
   let rolling=POOL.map(p=>parseInt(p.value))
-  if(rolling.includes(NaN)) return
+  if(rolling.includes(NaN)||rolling.slice(0,2).includes(0)) return
   pool=rolling
   let roll=Array.from(new Array(pool[0]),()=>rpg.roll(1,pool[1]))
   let high=-Number.MAX_VALUE
@@ -52,8 +52,18 @@ function open(){
   POOL[0].select()
 }
 
+function help(){
+  let commands=Array.from(document.querySelectorAll('*[accesskey]'))
+  commands=commands.map(c=>`${c.getAttribute('accesskey')} = ${c.textContent}`)
+  let help=`Many functions can be accessed via keyboard keys (including in dialog boxes). For example:
+    
+    ${commands.join('\n')}`
+  say(help.replaceAll('\n','<br/>'))
+}
+
 export function setup(){
   PARENT.querySelector('.clear').onclick=()=>VIEW.innerHTML=''
   ROLL.querySelector('button').onclick=roll
   PARENT.querySelector('.roll').onclick=()=>open()
+  PARENT.querySelector('.help').onclick=()=>help()
 }
