@@ -37,6 +37,10 @@ export class Action{
   toString(){return this.name}
   
   validate(unit){return !this.grouponly||unit instanceof group.Group}
+  
+  async prepare(){return Promise.resolve()}
+  
+  async finish(){return Promise.resolve()}
 }
 
 class Test extends Action{
@@ -51,15 +55,27 @@ class Test extends Action{
     let rolls=[]
     for(let s of this.skills){
       s=s.toLowerCase()
-      let r=await unit.roll(s)
-      rolls.push(`${s} ${unitm.roll}/${unit.skills.get(s)}`)
-      result+=r
+      result+=await unit.roll(s)
+      rolls.push(`${s} ${unitm.roll}/${unit.skills.get(s)}+${bonus}`)
     }
     let o=OUTCOME.get(result).toLowerCase()
     if(result==-2||result==+2) o+='!'
     let dice=rolls.join(', ').toLowerCase()
     output.test(unit,this,o,dice)
     return Promise.resolve(result)
+  }
+  
+  async prepare(){
+    let d=new dialog.Bonus()
+    bonus=await d.input()
+    console.log('bonus',bonus)//TODO
+    return Promise.resolve(bonus)
+  }
+  
+  async finish(){
+    bonus=0
+    console.log('bonus',bonus)//TODO
+    return Promise.resolve(bonus)
   }
 }
 
@@ -141,6 +157,7 @@ class Change extends Action{
 
 export var order=new Order()
 export var actions=[order,new Attack('Brawl'),new Attack('Shooting')]
+export var bonus=0
 
 var change=['weapon','armor','life']
 

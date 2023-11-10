@@ -13,6 +13,13 @@ const PROFICIENCY=new Map([
   ['Good',4],
   ['Exceptional',5],
 ])
+const BONUSES=new Map([
+  ['Trivial (+2)',+2],
+  ['Easy (+1)',+1],
+  ['Normal (+0)',+0],
+  ['Hard (-1)',-1],
+  ['Impossible (-2)',-2],
+])
 
 var active=false
 
@@ -137,6 +144,14 @@ export class Target extends Dialog{
     super('Select target:')
     for(let u of unit.units)
       this.choices.set(u.name,u)
+  }
+}
+
+export class Bonus extends Dialog{
+  constructor(){
+    super('Apply bonus:',BONUSES)
+    this.search=false
+    this.default=2
   }
 }
 

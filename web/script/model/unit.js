@@ -76,8 +76,11 @@ export class Unit{
     return Promise.resolve(value)
   }
   
-  async roll(skill){//TODO bonus
+  async roll(skill){
     skill=await this.get(skill)
+    skill+=action.bonus
+    if(skill<1) skill=1
+    else if(skill>5) skill=5
     roll=rpg.roll(1,6)
     if(roll==6) return -1
     if(roll==1) return +1
