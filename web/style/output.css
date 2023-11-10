@@ -57,3 +57,12 @@
   margin:1em .2em;
   font-size:1.2em;
 }
+#output .text>div{
+  margin-bottom:1em;
+}
+#output .text .test .unit,#output .text .test .outcome{
+  font-weight:bold;
+}
+#output .text .test .dice{
+  font-size:small;
+}

@@ -184,7 +184,6 @@ async function order(){
   let units=views.map(u=>u.unit)
   let order=new Map()
   for(let u of units) order.set(u,await u.order())
-  for(let u of units) console.log(u.name,order.get(u))
   units.sort((a,b)=>order.get(b)-order.get(a))
   for(let v of views) v.remove()
   for(let u of units){

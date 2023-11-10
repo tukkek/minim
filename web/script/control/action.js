@@ -32,11 +32,8 @@ export class Action{
     }
     let o=OUTCOME.get(result).toLowerCase()
     if(result==-2||result==+2) o+='!'
-    o=`<strong>${o}</strong>`
     let dice=rolls.join(', ').toLowerCase()
-    dice=`<small>${dice}</small>`
-    let n=`<strong>${unit.name}</strong>`
-    output.say(`${n}'s ${this.name.toLowerCase()}: ${o} (${dice}).`) //TODO template
+    output.test(unit,this,o,dice)
     return result
   }
   

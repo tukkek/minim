@@ -5,12 +5,20 @@ const PARENT=document.querySelector('#output')
 const VIEW=PARENT.querySelector('.text')
 const ROLL=PARENT.querySelector('#roll')
 const POOL=Array.from(PARENT.querySelectorAll('input'))
+const MESSAGE=VIEW.querySelector('template#message').content.children[0]
+const TEST=VIEW.querySelector('template#test').content.children[0]
 
 var pool=[1,6,+0]
 
-export function say(text){
-  VIEW.innerHTML+=text+'<br/><br/>'
+function append(c){
+  VIEW.appendChild(c)
   VIEW.scrollTo(0,VIEW.scrollHeight)
+}
+
+export function say(html){
+  let m=MESSAGE.cloneNode(true)
+  m.innerHTML=html
+  append(m)
 }
 
 function close(){
@@ -62,6 +70,16 @@ function help(){
     
     ${commands.join('\n')}`
   say(help.replaceAll('\n','<br/>'))
+}
+
+function text(node,q,t){node.querySelector(q).textContent=t}
+
+export function test(unit,action,outcome,dice){
+  let t=TEST.cloneNode(true)
+  let fields=[['.unit',unit.name],['.action',action.name.toLowerCase()],
+              ['.outcome',outcome],['.dice span',dice]]
+  for(let f of fields) text(t,f[0],f[1])
+  append(t)
 }
 
 export function setup(){
