@@ -1,9 +1,9 @@
-//TODO attack
 import * as output from '../view/output.js'
 import * as dialog from '../view/dialog.js'
 import * as unitm from '../model/unit.js'
 import * as group from '../model/group.js'
 import * as db from './db.js'
+import * as rpg from './rpg.js'
 
 const OUTCOME=new Map([
   [-2,'Terrible'],
@@ -12,6 +12,18 @@ const OUTCOME=new Map([
   [+1,'Success'],
   [+2,'Amazing'],
 ])
+const FUMBLE=[
+  ['begins grappling','grappling'],
+  ['is disarmed','disarmed'],
+  ['is stunned','stunned'],
+  ['is shaken','shaken'],
+  ['falls','fallen'],
+  ['is disabled','disabled'], // only 'minor' actions next round
+  ['is pinned','pinned'], // cannot move
+  ['interacts with ally (or enemy)',false],
+  ['interacts with environment',false],
+  ['moves back',false],
+]
 
 export class Action{
   constructor(n){
@@ -62,7 +74,51 @@ class Order extends Test{
     let roll=await super.act(unit)
     let s=await unit.get('social')
     let p=await unit.get('physical')
-    return roll*100+s*10+p
+    return Promise.resolve(roll*100+s*10+p)
+  }
+}
+
+class Attack extends Test{
+  constructor(skill){
+    super('',['Physical',skill])
+    this.name=skill+' attack'
+  }
+  
+  fumble(unit){
+    let f=rpg.choose(FUMBLE)
+    output.say(`${unit.name} ${f[0]}.`)
+    if(f[1]) unit.affect(f[1])
+    db.store()
+  }
+  
+  async target(){
+    let d=new dialog.Target()
+    let target=await d.input()
+    return Promise.resolve(target)
+  }
+  
+  async act(unit,target=false){
+    let outcome=await super.act(unit)
+    if(outcome==-2){
+      this.fumble(unit)
+    }else if(outcome==-1){
+      //fail
+    }else if(outcome==0){
+      if(!target) target=await this.target()
+      this.fumble(target)
+    }else if(outcome>=+1){
+      if(!target) target=await this.target()
+      let w=await unit.get('weapon')
+      let a=await target.get('armor')
+      target.hit(w-a)
+      if(target.life>0&&outcome==+2){
+        let next=await this.act(unit,target)
+        if(next>=+1) return Promise.resolve(+2)
+      }
+      let s=target.status.toLowerCase()
+      output.say(`${target} is ${s}!`)
+    }
+    return Promise.resolve(outcome)
   }
 }
 
@@ -84,16 +140,19 @@ class Change extends Action{
 }
 
 export var order=new Order()
-export var actions=[order]
+export var actions=[order,new Attack('Brawl'),new Attack('Shooting')]
+
+var change=['weapon','armor','life']
 
 export function setup(){
   let values=unitm.values
   for(let v of values.keys()){
     actions.push(new Test(v,[v,v]))
-    actions.push(new Change(v))
+    change.push(v)
     for(let skill of values.get(v)){
       actions.push(new Test(skill,[v,skill]))
-      actions.push(new Change(skill))
+      change.push(skill)
     }
   }
+  actions.push(...change.map(c=>new Change(c)))
 }

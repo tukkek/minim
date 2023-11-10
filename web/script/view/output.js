@@ -82,8 +82,10 @@ export function test(unit,action,outcome,dice){
   append(t)
 }
 
+export function clear(){VIEW.innerHTML=''}
+
 export function setup(){
-  PARENT.querySelector('.clear').onclick=()=>VIEW.innerHTML=''
+  PARENT.querySelector('.clear').onclick=clear
   ROLL.querySelector('button').onclick=roll
   PARENT.querySelector('.roll').onclick=()=>setTimeout(open,100)
   PARENT.querySelector('.help').onclick=()=>help()

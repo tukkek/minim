@@ -4,6 +4,15 @@ import * as action from '../control/action.js'
 import * as dialog from '../view/dialog.js'
 import * as group from './group.js'
 
+const STATUS=new Map([
+  [5,'Unharmed'],
+  [4,'Scratched'],
+  [3,'Hurt'],
+  [2,'Wounded'],
+  [1,'Dying'],
+  [0,'Dead']
+])
+
 export var values=new Map([
   ['Physical',['Brawl','Coordination','Shooting','Sports','Steal']],
   ['Mental',['Art','Cure','Security','Technology','Knowledge']],
@@ -15,10 +24,10 @@ export var roll=-1//last roll
 export class Unit{
   constructor(n){
     if(!n) throw 'unit needs name'
-    this.name=n
-    this.effects=[]
+    this.skills=new Map([['life',5]])
     this.hidden=false
-    this.skills=new Map()
+    this.effects=[]
+    this.name=n
   }
   
   affect(effect){this.effects.push(effect)}
@@ -28,7 +37,7 @@ export class Unit{
     let i=effects.indexOf(effect)
     if(i<0) return
     effects.splice(i,1)
-    this.save()
+    db.store()
   }
   
   add(){
@@ -67,7 +76,7 @@ export class Unit{
     return Promise.resolve(value)
   }
   
-  async roll(skill){
+  async roll(skill){//TODO bonus
     skill=await this.get(skill)
     roll=rpg.roll(1,6)
     if(roll==6) return -1
@@ -81,4 +90,18 @@ export class Unit{
   async order(){return await action.order.act(this)}
   
   async act(action){Promise.resolve(await action.act(this))}
+  
+  hit(hits){
+    if(hits<1) hits=1
+    let s=this.skills
+    let l=s.get('life')
+    l-=hits
+    if(l<0) l=0
+    s.set('life',l)
+    if(l==0) this.remove()
+  }
+  
+  get life(){return this.skills.get('life')}
+  
+  get status(){return STATUS.get(this.life)}
 }

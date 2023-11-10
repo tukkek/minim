@@ -2,6 +2,7 @@ import * as db from '../control/db.js'
 import * as input from '../control/input.js'
 import * as action from '../control/action.js'
 import * as actionsm from './actions.js'
+import * as output from './output.js'
 import * as unitm from '../model/unit.js'
 import * as groupm from '../model/group.js'
 
@@ -104,10 +105,12 @@ function get(unit){
   return Array.from(VIEW.querySelectorAll('.unit')).find(u=>u.unit.name==unit.name)
 }
 
-function act(unit,button=false){
+async function act(unit,button=false){
   if(button) button.focus()
   active=unit
-  setTimeout(()=>actionsm.open(),100)
+  output.clear()
+  await actionsm.open()
+  update()
 }
 
 function draw(unit){
@@ -128,7 +131,10 @@ function draw(unit){
   if(unit.effects) for(let e of unit.effects){
     let effect=EFFECT.cloneNode(true)
     effect.textContent=e
-    effect.onclick=()=>unit.end(e)
+    effect.onclick=()=>{
+      unit.end(e)
+      update()
+    }
     effects.appendChild(effect)
   }
 }

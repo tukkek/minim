@@ -19,6 +19,6 @@ export async function open(){
   let action=await d.input()
   ACTIONS.splice(ACTIONS.indexOf(action),1)
   ACTIONS.splice(0,0,action)
-  u.act(action)
-  return Promise.resolve()  
+  await u.act(action)
+  return Promise.resolve()
 }

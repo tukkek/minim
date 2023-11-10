@@ -1,4 +1,5 @@
 import * as input from '../control/input.js'
+import * as unit from '../model/unit.js'
 
 const VIEW=document.querySelector('#dialog')
 const SEARCH=VIEW.querySelector('input')
@@ -127,9 +128,15 @@ export class Skill extends Dialog{
   constructor(u,s){
     super(`${u.name}'s ${s}?`,PROFICIENCY)
     this.search=false
-    this.skill=s
-    this.unit=u
     this.default=2
+  }
+}
+
+export class Target extends Dialog{
+  constructor(){
+    super('Select target:')
+    for(let u of unit.units)
+      this.choices.set(u.name,u)
   }
 }
 
