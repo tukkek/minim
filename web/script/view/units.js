@@ -36,9 +36,10 @@ class Rename extends action.Action{
   }
 }
 
-class Regroup extends action.GroupAction{
+class Regroup extends action.Action{
   constructor(){
     super('Regroup')
+    this.grouponly=true
   }
   
   async apply(unit){
@@ -81,10 +82,11 @@ class Regroup extends action.GroupAction{
   }
 }
 
-class Hide extends action.GroupAction{
+class Hide extends action.Action{
   constructor(name='Hide members',h=true){
     super(name)
     this.hide=h
+    this.grouponly=true
   }
   
   act(group){

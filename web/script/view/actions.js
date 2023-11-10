@@ -1,4 +1,3 @@
-//TODO determine order, templates
 import * as action from '../control/action.js'
 import * as units from './units.js'
 import * as dialog from './dialog.js'
@@ -20,5 +19,6 @@ export async function open(){
   let action=await d.input()
   ACTIONS.splice(ACTIONS.indexOf(action),1)
   ACTIONS.splice(0,0,action)
-  action.act(units.active)
+  u.act(action)
+  return Promise.resolve()  
 }

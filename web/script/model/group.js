@@ -1,5 +1,6 @@
 import * as db from '../control/db.js'
 import * as rpg from '../control/rpg.js'
+import * as actionm from '../control/action.js'
 import * as unit from './unit.js'
 
 export var groups=[]
@@ -37,4 +38,10 @@ export class Group{
   }
   
   async order(){return await rpg.choose(this.members).order()}
+  
+  async act(action){
+    if(action.group) for(let m of this.members) await m.act(action)
+    else await action.act(this)
+    return Promise.resolve()
+  }
 }

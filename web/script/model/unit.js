@@ -79,4 +79,6 @@ export class Unit{
   toString(){return this.name}
   
   async order(){return await action.order.act(this)}
+  
+  async act(action){Promise.resolve(await action.act(this))}
 }
