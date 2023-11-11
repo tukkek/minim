@@ -38,6 +38,9 @@
   border-radius:.2em;
   border-style:outset;
 }
+#units .unit .effect{
+  font-size:small;
+}
 #units #grouper{
   position:fixed;
   top:50%;

@@ -138,6 +138,17 @@ async function act(unit,button=false){
   update()
 }
 
+function affect(text,unit){
+  let parent=get(unit).querySelector('.effects')
+  let e=EFFECT.cloneNode(true)
+  e.textContent=text
+  e.onclick=()=>{
+    unit.end(text)
+    update()
+  }
+  parent.appendChild(e)
+}
+
 function draw(unit){
   if(unit.hidden) return
   let parent=get(unit)
@@ -151,17 +162,11 @@ function draw(unit){
   b.setAttribute('accesskey',unit.name[0].toLowerCase())
   parent.unit=unit
   parent.trash=false
-  let effects=parent.querySelector('.effects')
-  for(let e of effects.querySelectorAll('.effect')) e.remove()
-  if(unit.effects) for(let e of unit.effects){
-    let effect=EFFECT.cloneNode(true)
-    effect.textContent=e
-    effect.onclick=()=>{
-      unit.end(e)
-      update()
-    }
-    effects.appendChild(effect)
-  }
+  for(let e of parent.querySelectorAll('.effect')) e.remove()
+  let s=unit.status
+  if(s) affect(s.toLowerCase(),unit)
+  let effects=unit.effects
+  if(effects) for(let e of effects) affect(e,unit)
 }
 
 async function update(){
