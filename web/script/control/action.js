@@ -131,6 +131,7 @@ class Attack extends Test{
       }
       let s=target.status.toLowerCase()
       output.say(`${target} is ${s}!`)
+      db.store()
     }
     return Promise.resolve(outcome)
   }
