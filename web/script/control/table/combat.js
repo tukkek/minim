@@ -108,8 +108,7 @@ const DARING = new Action("Combat, action, daring", +5);
 const CAREFREE = new Action("Combat, action, carefree", +6);
 
 
-export var tables=[new Action()]
-  .concat([HIT,CRITICAL,DEADLY])
+export var tables=[HIT,CRITICAL,DEADLY]
   .concat([twist,actiontype])
   .concat([TREMBLING,COWERING,CAUTIOUS,CERTAIN,DARING,CAREFREE])
 

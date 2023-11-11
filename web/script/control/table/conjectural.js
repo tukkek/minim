@@ -1,13 +1,13 @@
 import * as table from './table.js'
 import * as rpg from '../rpg.js'
 
-const FIRST = new table.Table("",["NPC",
+const FIRST = new table.Table("internal",["NPC",
     "PC",
     "Organization",
     "Physical event",
     "Emotional event",
     "Item"]) 
-const SECOND = new table.Table("",["Appears",
+const SECOND = new table.Table("internal",["Appears",
     "Alters the location",
     "Helps the hero",
     "Hinders the hero",

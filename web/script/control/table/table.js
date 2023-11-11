@@ -2,6 +2,7 @@ import * as rpg from '../rpg.js'
 
 export class Table{
   constructor(n,lines=[]){
+    if(!n) throw new Error('Table needs name')
     this.lines=lines//[string,Table...]
     this.name=n
     this.end='.'
