@@ -103,7 +103,7 @@ class Attack extends Test{
   }
   
   fumble(unit){
-    let f=rpg.choose(FUMBLE)
+    let f=rpg.pick(FUMBLE)
     output.say(`${unit.name} ${f[0]}.`)
     if(f[1]) unit.affect(f[1])
     db.store()

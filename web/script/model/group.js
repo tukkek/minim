@@ -37,7 +37,7 @@ export class Group{
     return members
   }
   
-  async order(){return await rpg.choose(this.members).order()}
+  async order(){return await rpg.pick(this.members).order()}
   
   async act(action){
     if(action.group) for(let m of this.members) await m.act(action)

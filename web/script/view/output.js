@@ -1,5 +1,6 @@
 import * as input from '../control/input.js'
 import * as rpg from '../control/rpg.js'
+import * as dialog from './dialog.js'
 
 const PARENT=document.querySelector('#output')
 const VIEW=PARENT.querySelector('.text')
@@ -92,5 +93,6 @@ export function setup(){
   ROLL.querySelector('button').onclick=roll
   PARENT.querySelector('.roll').onclick=()=>setTimeout(open,100)
   PARENT.querySelector('.help').onclick=()=>help()
+  PARENT.querySelector('.tables').onclick=()=>new dialog.Tables().input()
   help()
 }

@@ -1,5 +1,7 @@
 import * as input from '../control/input.js'
+import * as tables from '../control/table/tables.js'
 import * as unit from '../model/unit.js'
+import * as output from './output.js'
 
 const VIEW=document.querySelector('#dialog')
 const SEARCH=VIEW.querySelector('input')
@@ -161,6 +163,19 @@ export class Template extends Dialog{
     for(let t of unit.templates) choices.set(t.name,t)
     this.add='Create new template'
     choices.set(this.add,this.add)
+  }
+}
+
+export class Tables extends Dialog{
+  constructor(){
+    super('Select a table:')
+    for(let t of tables.tables) this.choices.set(t.name,t)
+  }
+  
+  async input(){
+    let table=await super.input()
+    output.clear()
+    output.say(table.roll())
   }
 }
 
