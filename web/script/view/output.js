@@ -7,6 +7,13 @@ const ROLL=PARENT.querySelector('#roll')
 const POOL=Array.from(PARENT.querySelectorAll('input'))
 const MESSAGE=VIEW.querySelector('template#message').content.children[0]
 const TEST=VIEW.querySelector('template#test').content.children[0]
+const HELP=`
+  Welcome to the Minim Companion! You can read the full Minim rules <a href='https://github.com/tukkek/minim/' target='_blank'>here</a>.
+
+  <strong>Units</strong> are individual characters in your game - click on them to perform actions! <strong>Templates</strong> are units that have the same skills (for example: "Rat 1", "Rat 2")... <strong>Groups</strong> are sets of units that can perform actions together (for example: helps to have the whole group "Player party" test Perception at the same time). Templates and groups have some actions not available to plain units (like Hide Members, Regroup and Remove Template).
+
+  Many functions can be accessed via keyboard keys, including units and dialog choices! For example:
+  %commands`.trim()
 
 var pool=[1,6,+0]
 
@@ -61,15 +68,11 @@ function open(){
 }
 
 function help(){
+  clear()
   let commands=Array.from(document.querySelectorAll('*[accesskey]'))
-  commands=commands.map(c=>`${c.getAttribute('accesskey')} = ${c.textContent}`)
-  let help=
-    `Many functions can be accessed via keyboard keys!
-    Same advice goes for units and on dialogs.
-    For example:
-    
-    ${commands.join('\n')}`
-  say(help.replaceAll('\n','<br/>'))
+  commands=commands.map(c=>`<strong>${c.getAttribute('accesskey')}</strong> for ${c.textContent}`)
+  let h=HELP.replace('%commands',commands.join(', ')).replaceAll('\n','<br/>')
+  say(`<small>${h}</small>`)
 }
 
 function text(node,q,t){node.querySelector(q).textContent=t}
@@ -89,4 +92,5 @@ export function setup(){
   ROLL.querySelector('button').onclick=roll
   PARENT.querySelector('.roll').onclick=()=>setTimeout(open,100)
   PARENT.querySelector('.help').onclick=()=>help()
+  help()
 }

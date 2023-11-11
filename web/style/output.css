@@ -39,6 +39,8 @@
 #output .text{
   overflow:scroll;
   padding-bottom:1em;
+  text-align:justify;
+  margin-right:1em;
 }
 #output #roll{
   position:fixed;
