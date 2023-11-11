@@ -3,6 +3,7 @@ import * as input from '../control/input.js'
 import * as action from '../control/action.js'
 import * as actionsm from './actions.js'
 import * as output from './output.js'
+import * as dialog from './dialog.js'
 import * as unitm from '../model/unit.js'
 import * as groupm from '../model/group.js'
 
@@ -40,8 +41,9 @@ class Rename extends action.Action{
 class Regroup extends action.Action{
   constructor(){
     super('Regroup')
-    this.grouponly=true
   }
+  
+  validate(unit){return unit instanceof groupm.Group}
   
   async apply(unit){
     let names=[]
@@ -87,8 +89,9 @@ class Hide extends action.Action{
   constructor(name='Hide members',h=true){
     super(name)
     this.hide=h
-    this.grouponly=true
   }
+  
+  validate(unit){return unit instanceof groupm.Group}
   
   act(group){
     for(let m of group.members) m.hidden=this.hide
@@ -97,9 +100,21 @@ class Hide extends action.Action{
   }
 }
 
+class RemoveTemplate extends action.Action{
+  constructor(){
+    super('Remove template')
+  }
+  
+  validate(unit){return unit.template}
+  
+  act(unit){unit.template.remove()}
+}
+
 export var regroup=new Regroup()
 export var active=false
-export var actions=[new Remove(),new Rename(),regroup,new Hide(),new Hide('Show members',false)]
+export var actions=[new Remove(),new Rename(),
+                    regroup,new Hide(),new Hide('Show members',false),
+                    new RemoveTemplate()]
 
 function get(unit){
   return Array.from(VIEW.querySelectorAll('.unit')).find(u=>u.unit.name==unit.name)
@@ -199,10 +214,15 @@ async function order(){
   }
 }
 
-function derive(){
+async function derive(){
   let a=document.activeElement
   if(a) a.blur()
-  //TODO
+  let d=new dialog.Template()
+  let template=await d.input()
+  if(template==d.add) new unitm.Template(prompt('Template name')).add()
+  else template.derive().add()
+  update()
+  return Promise.resolve()
 }
 
 export async function setup(){

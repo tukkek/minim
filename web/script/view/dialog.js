@@ -20,6 +20,7 @@ const BONUSES=new Map([
   ['Hard (-1)',-1],
   ['Impossible (-2)',-2],
 ])
+const NONE=new Object()
 
 var active=false
 
@@ -58,8 +59,6 @@ export class Dialog{
       for(let q of query) if(!label.includes(q)) hide=true
       c.classList.toggle('hidden',hide)
     }
-    let s=choices.find(r=>r.classList.contains('selected'))
-    if(s&&!s.classList.contains('hidden')) return
     let first=choices.find(r=>!r.classList.contains('hidden'))
     if(first) this.select(first)
   }
@@ -90,12 +89,12 @@ export class Dialog{
     if(!isNaN(i)&&0<i&&i<=choices.length) this.select(choices[i-1])
   }
 
-  close(choice){
+  close(choice=NONE){
     input.deafen(press)
     VIEW.classList.add('hidden')
     active=false
-    if(choice) this.accept(choice)
-    else this.reject('Dialog closed')
+    if(choice==NONE) this.reject('Dialog closed')
+    else this.accept(choice)
   }
   
   input(){
@@ -127,7 +126,7 @@ export class Dialog{
     if(this.search) SEARCH.focus()
     let d=this.default
     if(d>=0) this.select(VIEW.querySelectorAll('.choice')[d])
-    input.listen(press)
+    setTimeout(()=>input.listen(press),200)
   }
 }
 
@@ -152,6 +151,16 @@ export class Bonus extends Dialog{
     super('Apply bonus:',BONUSES)
     this.search=false
     this.default=2
+  }
+}
+
+export class Template extends Dialog{
+  constructor(){
+    super('Select template to derive:')
+    let choices=this.choices
+    for(let t of unit.templates) choices.set(t.name,t)
+    this.add='Create new template'
+    choices.set(this.add,this.add)
   }
 }
 

@@ -29,14 +29,13 @@ export class Action{
   constructor(n){
     this.name=n
     this.group=false//see group.Group#act()
-    this.grouponly=false
   }
   
   act(unit){throw 'unimplemented'}
   
   toString(){return this.name}
   
-  validate(unit){return !this.grouponly||unit instanceof group.Group}
+  validate(unit){return true}
   
   async prepare(){return Promise.resolve()}
   
@@ -56,7 +55,8 @@ class Test extends Action{
     for(let s of this.skills){
       s=s.toLowerCase()
       result+=await unit.roll(s)
-      rolls.push(`${s} ${unitm.roll}/${unit.skills.get(s)}+${bonus}`)
+      let value=await unit.get(s)
+      rolls.push(`${s} ${unitm.roll}≤${value}+${bonus}`)
     }
     let o=OUTCOME.get(result).toLowerCase()
     if(result==-2||result==+2) o+='!'
@@ -68,13 +68,11 @@ class Test extends Action{
   async prepare(){
     let d=new dialog.Bonus()
     bonus=await d.input()
-    console.log('bonus',bonus)//TODO
     return Promise.resolve(bonus)
   }
   
   async finish(){
     bonus=0
-    console.log('bonus',bonus)//TODO
     return Promise.resolve(bonus)
   }
 }
@@ -146,6 +144,8 @@ class Change extends Action{
   }
   
   async act(unit){
+    let t=unit.template
+    if(t) unit=t
     let d=new dialog.Skill(unit,this.skill)
     let s=unit.skills.get(this.skill)
     if(s) d.default=s-1

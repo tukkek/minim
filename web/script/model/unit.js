@@ -18,13 +18,15 @@ export var values=new Map([
   ['Mental',['Art','Cure','Security','Technology','Knowledge']],
   ['Social',['Animals','Coercion','Communication','Languages','Perception']]
 ])
+export var templates=[]
 export var units=[]
 export var roll=-1//last roll
 
 export class Unit{
-  constructor(n){
+  constructor(n,t=false){
     if(!n) throw 'unit needs name'
     this.skills=new Map([['life',5]])
+    this.templatename=t&&t.name
     this.hidden=false
     this.effects=[]
     this.name=n
@@ -65,8 +67,15 @@ export class Unit{
     db.store()
   }
   
+  get template(){return this.templatename&&templates.find(t=>t.name==this.templatename)}
+  
   async get(skill){
     skill=skill.toLowerCase()
+    let t=this.template
+    if(t&&skill!='life'){
+      let value=await t.get(skill)
+      return Promise.resolve(value)
+    }
     let value=this.skills.get(skill)
     if(value) return Promise.resolve(value)
     let d=new dialog.Skill(this,skill)
@@ -107,4 +116,31 @@ export class Unit{
   get life(){return this.skills.get('life')}
   
   get status(){return STATUS.get(this.life)}
+}
+
+export class Template extends Unit{
+  constructor(name){
+    super(name)
+  }
+  
+  add(){
+    templates.push(this)
+    db.store()
+  }
+  
+  derive(){
+    let name=false
+    for(let i=1;!name;i++){
+      name=`${this.name} ${i}`
+      if(units.find(u=>u.name==name)) name=false
+    }
+    return new Unit(name,this)
+  }
+  
+  remove(){
+    templates.splice(templates.indexOf(this),1)
+    for(let u of units.filter(u=>u.templatename==this.name))
+      u.remove()
+    db.store()
+  }
 }
