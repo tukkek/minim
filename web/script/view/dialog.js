@@ -175,7 +175,7 @@ export class Tables extends Dialog{
   async input(){
     let table=await super.input()
     output.clear()
-    output.say(table.roll())
+    output.say(table.roll()+table.end)
   }
 }
 
