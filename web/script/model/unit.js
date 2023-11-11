@@ -12,7 +12,11 @@ const STATUS=new Map([
   [1,'Dying'],
   [0,'Dead']
 ])
-
+const PENALTIES=new Map([
+  [1,-2],
+  [2,-1]
+])
+  
 export var values=new Map([
   ['Physical',['Brawl','Coordination','Shooting','Sports','Steal']],
   ['Mental',['Art','Cure','Security','Technology','Knowledge']],
@@ -88,8 +92,15 @@ export class Unit{
     return Promise.resolve(value)
   }
   
+  async modify(){
+    let l=await this.get('life')
+    let p=PENALTIES.get(l)
+    return Promise.resolve(p||-0)
+  }
+  
   async roll(skill){
     skill=await this.get(skill)
+    skill+=await this.modify()
     skill+=action.bonus
     if(skill<1) skill=1
     else if(skill>5) skill=5

@@ -50,13 +50,17 @@ class Test extends Action{
   }
   
   async act(unit){
+    let m=await unit.modify()
     let result=0
     let rolls=[]
     for(let s of this.skills){
       s=s.toLowerCase()
       result+=await unit.roll(s)
       let value=await unit.get(s)
-      rolls.push(`${s} ${unitm.roll}≤${value}+${bonus}`)
+      let b=bonus
+      let target=value+bonus+m
+      if(b>=0) b='+'+b
+      rolls.push(`${s} ${unitm.roll}≤${target}=${value}${b}-${Math.abs(m)}`)
     }
     let o=OUTCOME.get(result).toLowerCase()
     if(result==-2||result==+2) o+='!'
