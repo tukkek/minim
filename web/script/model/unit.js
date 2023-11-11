@@ -32,7 +32,10 @@ export class Unit{
     this.name=n
   }
   
-  affect(effect){this.effects.push(effect)}
+  affect(effect){
+    this.effects.push(effect)
+    db.store()
+  }
   
   end(effect){
     let effects=this.effects

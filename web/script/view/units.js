@@ -110,11 +110,21 @@ class RemoveTemplate extends action.Action{
   act(unit){unit.template.remove()}
 }
 
+class AddEffect extends action.Action{
+  constructor(){
+    super('Add effect')
+  }
+  
+  validate(unit){return Array.isArray(unit.effects)}
+  
+  act(unit){unit.affect(prompt('Add what effect?'))}
+}
+
 export var regroup=new Regroup()
 export var active=false
 export var actions=[new Remove(),new Rename(),
                     regroup,new Hide(),new Hide('Show members',false),
-                    new RemoveTemplate()]
+                    new RemoveTemplate(),new AddEffect()]
 
 function get(unit){
   return Array.from(VIEW.querySelectorAll('.unit')).find(u=>u.unit.name==unit.name)
