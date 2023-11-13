@@ -100,3 +100,22 @@ const MAGE = new table.Table("Darkness, artifact, mage",
 const ARTIFACT = new table.Table("Darkness, artifact", [VAMPIRE, WRAITH, MAGE])
 
 tables.push(...[VAMPIRE, WRAITH, MAGE,ARTIFACT])
+
+const HOUSE = new table.Table("Darkness, demon, houses",
+    ["Devils", "Scourges", "Malefactors", "Fiends", "Defilers", "Devourers", "Slayers"])
+const FACTION = new table.Table("Darkness, demon, factions",
+    ["Faustian", "Cryptics", "Luciferans", "Raveners", "Reconcilers"])
+class Demon extends table.Table {
+	constructor() {
+		super("Darkness, demon");
+	}
+
+	roll() {
+		return [
+      "House: "+ HOUSE,
+      "Faction: "+ FACTION
+    ].join('<br/>')
+	}
+}
+
+tables.push(...[HOUSE,FACTION,new Demon()])
