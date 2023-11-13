@@ -169,7 +169,7 @@ export class Template extends Dialog{
 export class Tables extends Dialog{
   constructor(filter=true){
     super('Select a table:')
-    for(let t of tables.tables) 
+    for(let t of tables.tables)
       if(!filter||t.name.split(',').length<3)
         this.choices.set(t.name,t)
   }
