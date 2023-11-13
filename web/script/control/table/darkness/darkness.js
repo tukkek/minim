@@ -265,3 +265,111 @@ class Kuejin extends table.Table {
 }
 
 tables.push(...[ORTHODOX,HERETICAL,DHARMA,CHI,new Kuejin()])
+
+var Athanor={
+  FRANKENSTEIN:new table.Table("Darkness, promethean, athanor, frankenstein",
+      ["Basilisk", "Caladrius", "Griffon", "Lion", "Manticore"]),
+  GALATEA : new table.Table("Darkness, promethean, athanor, galatea",
+      ["Dove", "Gorgon", "Seraph", "Swan", "Unicorn"]),
+   OSIRIS : new table.Table("Darkness, promethean, athanor, osiris",
+      ["Ant", "Dragon", "Eagle", "Eel", "Honeybee", "Owl", "Sphinx"]),
+   TAMMUZ : new table.Table("Darkness, promethean, athanor, tammuz",
+      ["Cerberus", "Crab", "Humbaba", "Pelican", "Phoenix"]),
+   ULGAN : new table.Table("Darkness, promethean, athanor, ulgan",
+      ["Chimera", "Crane", "Dragon", "Fox", "La llorona", "Raven", "Salamander", "Toad"])
+}
+tables.push(...[Athanor.FRANKENSTEIN,Athanor.GALATEA,Athanor.OSIRIS,Athanor.TAMMUZ,Athanor.ULGAN])
+
+const FRANKENSTEIN = "Frankenstein";
+const GALATEA = "Galatea";
+const OSIRIS = "Osiris";
+const TAMMUZ = "Tammuz";
+const ULGAN = "Ulgan";
+const LINEAGE = new table.Table("Darkness, promethean, lineage",
+  [FRANKENSTEIN, GALATEA, OSIRIS, TAMMUZ, ULGAN])
+const AES = "Aes (aid)";
+const ARGENTUM = "Argentum (mystery)";
+const COBALUS = "Cobalus (impurity)";
+const MERCURIUS = "Mercurius (pyros)";
+const PHOSPORUM = "Phosporum (ephemerality)";
+const CENTIMANTI = "Centimanti (flux)";
+const REFINEMENT = new table.Table("Darkness, promethean, simple refinement")
+for (let r of ["Aurum (mortality)", "Coprum (self)", "Ferrum (corpus)", "Plumbum (Source)",
+    "Stannum (torment)"])
+  REFINEMENT.add(r, 100);
+for (let r of [AES, ARGENTUM, COBALUS, MERCURIUS, PHOSPORUM])
+  REFINEMENT.add(r, 10);
+REFINEMENT.add(CENTIMANTI, 1);
+const TRANSMUTATION = new table.Table("Darkness, promethean, transmutations",
+  ["Consortium", "Corporeum", "Deception", "Disquietism", "Electrification", "Mesmerism",
+      "Metamorphosis", "Saturminus", "Sensorium", "Vitality", "Vulcanus"])
+tables.push(...[LINEAGE,REFINEMENT,TRANSMUTATION])
+
+const COMPLEX = new Map();
+COMPLEX.set(AES, "Benefice");
+COMPLEX.set(ARGENTUM, "Spiritus");
+COMPLEX.set(COBALUS, "Contamination");
+COMPLEX.set(MERCURIUS, "Alchemicus");
+COMPLEX.set(PHOSPORUM, "Luciferius");
+COMPLEX.set(CENTIMANTI, "Flux");
+const ATHANOR = new Map();
+ATHANOR.set(FRANKENSTEIN, Athanor.FRANKENSTEIN);
+ATHANOR.set(GALATEA, Athanor.GALATEA);
+ATHANOR.set(OSIRIS, Athanor.OSIRIS);
+ATHANOR.set(TAMMUZ, Athanor.TAMMUZ);
+ATHANOR.set(ULGAN, Athanor.ULGAN);
+const DISQUIET = new Map();
+DISQUIET.set(FRANKENSTEIN, "makes them the scapegoat of the Disquieted");
+DISQUIET.set(GALATEA, "mix of of revulsion and lustful obsession");
+DISQUIET.set(OSIRIS, "sparks an obsessive curiousity about the Promethean.");
+DISQUIET.set(TAMMUZ, "disrupts communication between the Promethean and the Disquieted");
+DISQUIET.set(ULGAN, "causes intense paranoia");
+class Promethean extends table.Table {
+	constructor() {
+		super("Darkness, promethean");
+	}
+
+  roll() {
+		let l = []
+		let lineage = l.push("Lineage: "+ LINEAGE);
+		let r = l.push("Refinement: "+ REFINEMENT);
+		let t = COMPLEX.get(r);
+		if (!t)
+			t = TRANSMUTATION.roll();
+		else
+			t += " (complex)";
+		l.push("Transmutation: "+ t.toLowerCase())
+		l.push("Athanor: "+ ATHANOR.get(lineage))
+		l.push("Disquiet: "+ DISQUIET.get(lineage))
+		return l.join('<br/>')
+	}
+}
+
+tables.push(new Promethean())
+
+class Monster extends table.Table {
+	constructor() {
+		super("Darkness, NPC");
+		/*TODO
+    this.add(  Wraith.INSTANCE,500);
+		this.add( Hunter.INSTANCE,500);
+		this.add( Werewolf.INSTANCE,300);
+		this.add( Changeling.INSTANCE,300);
+		this.add( Beast.INSTANCE,200);
+		this.add( Demon.INSTANCE,200);
+		this.add(Kindred.URBAN,100);
+		this.add( HedgeMage.INSTANCE,50);
+		this.add( Mage.INSTANCE,30);
+		this.add( Kuejin.INSTANCE,30);
+		this.add( Bound.INSTANCE,10);
+		this.add( Promethean.INSTANCE,5);
+		this.add( Mummy.INSTANCE);*/
+	}
+
+	roll(){
+    let t=rpg.pick(this.lines)
+		return t.name + ":<br/>" + t
+	}
+}
+
+tables.push(new Monster())
