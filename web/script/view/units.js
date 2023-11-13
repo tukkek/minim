@@ -185,7 +185,6 @@ function press(key){
     else if(key=='Escape') GROUPER.classList.add('hidden')
     return
   }
-  key=key.toLowerCase()
   let units=Array.from(document.querySelectorAll(`*[accesskey="${key}"]`))
   if(units.length==0) return
   if(units.length==1){

@@ -93,6 +93,7 @@ export function setup(){
   ROLL.querySelector('button').onclick=roll
   PARENT.querySelector('.roll').onclick=()=>setTimeout(open,100)
   PARENT.querySelector('.help').onclick=()=>help()
-  PARENT.querySelector('.tables').onclick=()=>new dialog.Tables().input()
+  PARENT.querySelector('.tables').onclick=()=>new dialog.Tables(true).input()
+  PARENT.querySelector('.alltables').onclick=()=>new dialog.Tables(false).input()
   help()
 }

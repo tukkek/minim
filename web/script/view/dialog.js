@@ -167,9 +167,11 @@ export class Template extends Dialog{
 }
 
 export class Tables extends Dialog{
-  constructor(){
+  constructor(filter=true){
     super('Select a table:')
-    for(let t of tables.tables) this.choices.set(t.name,t)
+    for(let t of tables.tables) 
+      if(!filter||t.name.split(',').length<3)
+        this.choices.set(t.name,t)
   }
   
   async input(){
