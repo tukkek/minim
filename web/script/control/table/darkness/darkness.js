@@ -119,3 +119,26 @@ class Demon extends table.Table {
 }
 
 tables.push(...[HOUSE,FACTION,new Demon()])
+
+const BURDEN = new table.Table("Darkness, bound, burden",
+  ["Abiding", "Bereaved", "Hungry", "Kindly", "Vengeful"])
+const HAUNT = new table.Table("Darkness, bound, haunt", ["Boneyard", "Caul", "Curse", "Dirge",
+  "Marionette", "Memoria", "Oracle", "Pit", "Rage", "Shroud", "Tomb", "Void", "Well"])
+const KEY = new table.Table("Darkness, bound, key", ["Beasts", "Blood", "Chance", "Cold wind",
+  "Deep waters", "Disease", "Grave dirt", "Pyre flame", "Stillness"])
+
+class Bound extends table.Table {
+	constructor() {
+		super("Darkness, bound");
+	}
+
+  roll() {
+		return [
+      "Burden: "+ BURDEN,
+      "Haunt: "+ HAUNT,
+      "Key: "+ KEY
+    ].join('<br/>')
+	}
+}
+
+tables.push(...[BURDEN,HAUNT,KEY,new Bound()])
