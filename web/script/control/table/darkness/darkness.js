@@ -2,6 +2,7 @@ import * as kindred from './kindred.js'
 import * as mage from './mage.js'
 import * as werewolf from './werewolf.js'
 import * as table from '../table.js'
+import * as rpg from '../../rpg.js'
 
 export var tables=[kindred,mage,werewolf].flatMap(t=>t.tables)
                     
@@ -142,3 +143,60 @@ class Bound extends table.Table {
 }
 
 tables.push(...[BURDEN,HAUNT,KEY,new Bound()])
+
+const SIDHE = "Sidhe";
+const KITHAIN = new table.Table("Darkness, changeling, kith, kithain",
+  ["Boggasn", "Eshu", "Nockers", "Pooka", "Redcaps", "Satyrs", SIDHE, "Sluagh", "Trolls"])
+const GALLAIN = new table.Table("Darkness, changeling, kith, gallain",
+  ["Clurichaun", "Ghille dhu", "Korred", "Merfolk", "Morganed", "Piskies", "River Hags", "Selkies",
+      "Swan maidens", "Wichtel", "Wolpertinger"])
+const ADHENE = new table.Table("Darkness, changeling, kith, adhene",
+  ["Acheri", "Aonides", "Fir-bholg", "Fuath", "Keremet", "Moirae", "Naraka"])
+const HSIEN = new table.Table("Darkness, changeling, kith, hsien", ["Chu-ih-yu", "Chu Jung",
+  "Fu Hsi", "Hanumen", "Heng Po", "Hou-chi", "Komuko", "Nyan", "Suijen", "Tanuki"])
+const INANIMAE = new table.Table("Darkness, changeling, kith, inanimae",
+  ["Glomes", "Kuberas", "Mannikins", "Ondines", "Parosemes", "Solimonds"])
+const NUNNEHI = new table.Table("Darkness, changeling, kith, nunnehi",
+  ["Canotili", "Inua", "Kachina", "May-may-gway-shi", "Nanehi", "Nümüzo'ho", "Pu'gwis", "Rock Giant",
+      "Surem", "Thought-crafter", "Tunghat", "Water Baby", "Yunwi Amai'yine'hi", "Yunwi Tsundsi"])
+const THALLAIN = new table.Table("Darkness, changeling, kith, thallain",
+  ["Aithu", "Beastie", "Bodach", "Boggart", "Bogie", "Ghast", "Goblin", "Huaka'i Po", "Kelpies",
+      "Lurks", "Mandragora", "Murdhuacha", "Nasties", "Night Hag", "Ogre", "Sevartal", "Skinwalker",
+      "Spriggan", "Weeping Wights"])
+const KITH = new table.Table("Darkness, changeling, kith",
+  [KITHAIN, GALLAIN, ADHENE, HSIEN, INANIMAE, NUNNEHI, THALLAIN])
+const SEELIE = "Seelie";
+const UNSEELIE = "Unseelie";
+const COURT = new table.Table("Darkness, changeling, court")
+COURT.add(SEELIE, 5);
+COURT.add(UNSEELIE, 5);
+COURT.add("Shadow", 1);
+
+tables.push(...[KITHAIN,GALLAIN,ADHENE,HSIEN,INANIMAE,NUNNEHI,THALLAIN,KITH,COURT])
+
+const SEELIEHOUSES = new table.Table("Darkness, changeling, house, seelie",
+  ["Beaumayn", "Dougal", "Eiluned", "Fiona", "Gwydion", "Liam", "Scathach"])
+const UNSEELIEHOUSES = new table.Table("Darkness, changeling, house, unseelie",
+  ["Aesin", "Ailil", "Balor", "Daireann", "Leanhaun", "Varich", "Scathach"])
+const HOUSES = new table.Table("Darkness, changeling, house", [SEELIEHOUSES, UNSEELIEHOUSES])
+
+class Changeling extends table.Table {
+	constructor() {
+		super("Darkness, changeling");
+	}
+
+	 roll() {
+		let l = []
+		let k = l.push("Kith: "+ KITH)
+		let c = l.push("Court: "+ COURT);
+		if (k == SIDHE || rpg.roll(1,10) == 10) {
+			if (c == SEELIE)
+				l.push("House: "+ SEELIEHOUSES);
+			else
+				l.push("House: "+ UNSEELIEHOUSES);
+		}
+		return l.join('<br/>')
+	}
+}
+
+tables.push(...[SEELIEHOUSES,UNSEELIEHOUSES,HOUSES,new Changeling()])
