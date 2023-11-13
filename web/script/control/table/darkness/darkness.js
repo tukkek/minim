@@ -347,23 +347,43 @@ class Promethean extends table.Table {
 
 tables.push(new Promethean())
 
+const DECREE = new table.Table("Darkness, mummy, decree",
+    ["Heart", "Spirit", "Essence", "Name", "Shadow"])
+const GUILD = new table.Table("Darkness, mummy, guild", ["Engravers of amulets",
+    "First alchemists", "Inscribers of texts", "Sheperds of the shell", "Builders of effigies"])
+class Mummy extends table.Table{
+	constructor() {
+		super("Darkness, mummy");
+	}
+
+  roll() {
+		return [
+      "Decree: "+ DECREE,
+      "Guild: "+ GUILD
+    ].join('<br/>')
+	}
+}
+var mummy=new Mummy()
+tables.push(...[DECREE,GUILD,mummy])
+
+
 class Monster extends table.Table {
 	constructor() {
 		super("Darkness, NPC");
-		/*TODO
-    this.add(  Wraith.INSTANCE,500);
-		this.add( Hunter.INSTANCE,500);
-		this.add( Werewolf.INSTANCE,300);
-		this.add( Changeling.INSTANCE,300);
-		this.add( Beast.INSTANCE,200);
-		this.add( Demon.INSTANCE,200);
-		this.add(Kindred.URBAN,100);
-		this.add( HedgeMage.INSTANCE,50);
-		this.add( Mage.INSTANCE,30);
-		this.add( Kuejin.INSTANCE,30);
-		this.add( Bound.INSTANCE,10);
-		this.add( Promethean.INSTANCE,5);
-		this.add( Mummy.INSTANCE);*/
+    this.add( wraith,500);
+		this.add( hunter,500);
+		this.add( werewolf.werewolf,300);
+		this.add( changeling,300);
+		this.add( beast,200);
+		this.add( demon,200);
+		this.add(kindred.urban,50);
+		this.add(kindred.rural,50);
+		this.add( mage.hedgemage,50);
+		this.add( mage.mage,30);
+		this.add( kuejin,30);
+		this.add( bound,10);
+		this.add( promethean,5);
+		this.add( mummy,1);
 	}
 
 	roll(){
