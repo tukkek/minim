@@ -9,11 +9,17 @@ export class Table{
   }
   
   roll(){
-    let p=rpg.pick(this.lines)
-    return p.roll?p.roll():p
+    try{
+      let p=rpg.pick(this.lines)
+      return p.roll?p.roll():p
+    }catch(e){
+      console.log(this.name,e)
+    }
   }
   
   add(l,count=1){for(let i=0;i<count;i++) this.lines.push(l)}
   
   toString(){return this.roll()}
+  
+  get unique(){return new Set(this.lines)}
 }

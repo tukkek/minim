@@ -4,8 +4,9 @@ import * as bold from './bold.js'
 import * as combat from './combat.js'
 import * as conjectural from './conjectural.js'
 import * as cyberpunk from './cyberpunk.js'
+import * as darkness from './darkness/darkness.js'
 
-export var tables=[adungeon,type,bold,combat,conjectural,cyberpunk]
+export var tables=[adungeon,type,bold,combat,conjectural,cyberpunk,darkness]
 
 export function setup(){
   tables=tables.flatMap(t=>t.tables)
