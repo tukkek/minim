@@ -200,3 +200,39 @@ class Changeling extends table.Table {
 }
 
 tables.push(...[SEELIEHOUSES,UNSEELIEHOUSES,HOUSES,new Changeling()])
+
+const MERCY = new table.Table("Darkness, hunter, creed, mercy",
+    ["Innocents", "Martyrs", "Redeemers"])
+const VISION = new table.Table("Darkness, hunter, creed, vision",
+    ["Hermits", "Visionaries", "Waywards"])
+const ZEAL = new table.Table("Darkness, hunter, creed, zeal",
+    ["Avengers", "Defenders", "Judges"])
+const CREED = new table.Table("Darkness, hunter, creed", [MERCY, VISION, ZEAL])
+const COMPACT = new table.Table("Darkness, hunter, organization, compact",
+    ["Ahl al-Jabal", "Ashwood Abbey", "The Bear Lodge", "Barrett Commission", "Division Six",
+        "Habibti Ma", "The Hunt Club", "The Illuminated Brotherhood", "Keepers of the Source", "Long Night",
+        "Loyalists of Thule", "Maiden's Blood Sisterhood", "Network Zero", "Night Watch", "Null Mysteriis",
+        "The Promethean Brotherhood", "Talbot Group", "The Union", "Utopia Now"])
+const CONSPIRACY = new table.Table("Darkness, hunter, organization, conspiracy",
+    ["Aegis Kai Doru", "Ascending Ones", "The Cainite Heresy", "The Cheiron Group",
+        "The Faithful of Shulpae", "Knights of Saint Adrian", "The Knights of Saint George", "Les Mystères",
+        "Lucifuge", "Malleus Maleficarum", "Task Force: VALKYRIE", "Vanguard Serial Crimes Unit"])
+const ORGANIZATION = new table.Table("Darkness, hunter, organization")
+ORGANIZATION.add(CONSPIRACY);
+ORGANIZATION.add(COMPACT,2);
+ORGANIZATION.add("Independent cell", 4);
+
+class Hunter extends table.Table {
+	constructor() {
+		super("Darkness, hunter");
+	}
+
+	roll() {
+		return [
+      "Creed: "+ CREED,
+      "Organization: "+ORGANIZATION
+    ].join('<br/>')
+	}
+}
+
+tables.push(...[MERCY,VISION,ZEAL,CREED,COMPACT,CONSPIRACY,ORGANIZATION,new Hunter()])
