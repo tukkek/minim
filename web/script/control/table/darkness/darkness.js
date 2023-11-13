@@ -236,3 +236,32 @@ class Hunter extends table.Table {
 }
 
 tables.push(...[MERCY,VISION,ZEAL,CREED,COMPACT,CONSPIRACY,ORGANIZATION,new Hunter()])
+
+const ORTHODOX = new table.Table("Darkness, kue-jin, dharma, orthodox",
+    ["Devil-tiger", "Song of shadow", "Resplendent crane", "Thrashing dragon", "Thousand whispers"])
+const HERETICAL = new table.Table("Darkness, kue-jin, dharma, heretical",
+    ["Spirit of the living earth", "Face of the gods", "Flame of the rising phoenix",
+        "Tempest of inward focus"])
+const DHARMA = new table.Table("Darkness, kue-jin, dharma")
+DHARMA.add("Scorpion eater", 1);
+DHARMA.add(HERETICAL,2);
+DHARMA.add(ORTHODOX,4);
+const CHI = new table.Table("Darkness, kue-jin, chi")
+CHI.add("Yin (black)", 2);
+CHI.add("Yang (scarlet)", 2);
+CHI.add("P'o (demon)", 1);
+
+class Kuejin extends table.Table {
+	constructor() {
+		super("Darkness, kue-jin");
+	}
+
+	roll() {
+		return [
+      "Dharma: "+ DHARMA,
+      "Chi: "+ CHI
+    ].join('<br/>')
+	}
+}
+
+tables.push(...[ORTHODOX,HERETICAL,DHARMA,CHI,new Kuejin()])
