@@ -114,14 +114,13 @@ class Kindred extends table.Table {
 	}
 
 	 roll() {
-		return `${g}`
-		
-		[type, this.clan, generation, age]
+		return [type, this.clan, generation, age]
 				.map(t => TRAITS.get(t) + ": " + t.roll().toLowerCase() + ".").join("<br/>");
 	}
 }
 
-var urban = new Kindred("Darkness, kindred, urban", URBAN);
-var rural = new Kindred("Darkness, kindred, rural", RURAL);
+export var urban = new Kindred("Darkness, kindred, urban", URBAN);
+export var rural = new Kindred("Darkness, kindred, rural", RURAL);
+export var kindred = new table.Table("Darkness, kindred", [rural,urban]);
 
-export var tables=[age,CAMARILLA,SABBAT,INDEPENDENT,ANARCH,URBAN,RURAL,type,generation,urban,rural]
+export var tables=[age,CAMARILLA,SABBAT,INDEPENDENT,ANARCH,URBAN,RURAL,type,generation,urban,rural,kindred]

@@ -47,8 +47,6 @@ ORPHAN.add("Lone apprentice", 1);
 ORPHAN.add("Lone disciple", 2);
 ORPHAN.add("Lone adept", 1);
 
-
-
 const LARGEGROUP = "Large group";
 const ORGANIZATION = new table.Table("Darkness, mage, NPC, hedge mage, organization",
   ["Loner", "Small group", LARGEGROUP]);
@@ -127,12 +125,13 @@ class Orphan extends table.Table{
   }
 }
 
+export var hedgemage=new HedgeMage()
 var traditionalist=new Traditionalist()
 var technocrat=new Technocrat()
 var nephandi=new Nephandi()
 var orphan=new Orphan()
 
-tables.push(...[new HedgeMage(),traditionalist,technocrat,nephandi,orphan])
+tables.push(...[hedgemage,traditionalist,technocrat,nephandi,orphan])
 
 const FACTIONS = new Map()
 FACTIONS.set("Traditions", traditionalist);
@@ -158,7 +157,8 @@ BACKRGOUND.add("Former technocrat", 2);
 BACKRGOUND.add("Former nephandi", 1);
 BACKRGOUND.add("Former orphan", 3);
 
-tables.push(...[new Mage(),BACKRGOUND])
+export var mage=new Mage()
+tables.push(...[mage,BACKRGOUND])
 
 class Marauder extends table.Table {
 	constructor() {

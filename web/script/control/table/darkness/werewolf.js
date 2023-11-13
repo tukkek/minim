@@ -38,4 +38,6 @@ class Werewolf extends table.Table {
 	}
 }
 
-export var tables=[AUSPICE,FORSAKEN,PURE,OTHER,tribe,new Werewolf()]
+export var werewolf=new Werewolf()
+
+export var tables=[AUSPICE,FORSAKEN,PURE,OTHER,tribe,werewolf]

@@ -26,7 +26,8 @@ class Beast extends table.Table {
 	}
 }
 
-tables.push(...[FAMILIES,HUNGER,new Beast()])
+var beast=new Beast()
+tables.push(...[FAMILIES,HUNGER,beast])
 
 const LEGIONS = new table.Table("Darkness, wraith, faction, hierarchy legions",
   ["Emerald legion", "Legion of fate", "Grim legion", "Iron legion", "Legion of paupers",
@@ -59,7 +60,9 @@ class Wraith extends table.Table {
 	}
 }
 
-tables.push(...[LEGIONS,HERETICS,RENEGADES,FACTIONS,GUILDS,new Wraith()])
+var wraith=new Wraith()
+
+tables.push(...[LEGIONS,HERETICS,RENEGADES,FACTIONS,GUILDS,wraith])
 
 const VAMPIRE = new table.Table("Darkness, artifact, vampire", ["Ankaran Sarcophagus",
     "Eye of Hazimel", "Enochian Sarcophagus", "Enosch Sarcophagus", "Lamp of Constantine", "Sargon Fragment",
@@ -119,7 +122,8 @@ class Demon extends table.Table {
 	}
 }
 
-tables.push(...[HOUSE,FACTION,new Demon()])
+var demon=new Demon()
+tables.push(...[HOUSE,FACTION,demon])
 
 const BURDEN = new table.Table("Darkness, bound, burden",
   ["Abiding", "Bereaved", "Hungry", "Kindly", "Vengeful"])
@@ -142,7 +146,8 @@ class Bound extends table.Table {
 	}
 }
 
-tables.push(...[BURDEN,HAUNT,KEY,new Bound()])
+var bound=new Bound()
+tables.push(...[BURDEN,HAUNT,KEY,bound])
 
 const SIDHE = "Sidhe";
 const KITHAIN = new table.Table("Darkness, changeling, kith, kithain",
@@ -199,7 +204,9 @@ class Changeling extends table.Table {
 	}
 }
 
-tables.push(...[SEELIEHOUSES,UNSEELIEHOUSES,HOUSES,new Changeling()])
+var changeling=new Changeling()
+
+tables.push(...[SEELIEHOUSES,UNSEELIEHOUSES,HOUSES,changeling])
 
 const MERCY = new table.Table("Darkness, hunter, creed, mercy",
     ["Innocents", "Martyrs", "Redeemers"])
@@ -235,7 +242,9 @@ class Hunter extends table.Table {
 	}
 }
 
-tables.push(...[MERCY,VISION,ZEAL,CREED,COMPACT,CONSPIRACY,ORGANIZATION,new Hunter()])
+var hunter=new Hunter()
+
+tables.push(...[MERCY,VISION,ZEAL,CREED,COMPACT,CONSPIRACY,ORGANIZATION,hunter])
 
 const ORTHODOX = new table.Table("Darkness, kue-jin, dharma, orthodox",
     ["Devil-tiger", "Song of shadow", "Resplendent crane", "Thrashing dragon", "Thousand whispers"])
@@ -264,7 +273,8 @@ class Kuejin extends table.Table {
 	}
 }
 
-tables.push(...[ORTHODOX,HERETICAL,DHARMA,CHI,new Kuejin()])
+var kuejin=new Kuejin()
+tables.push(...[ORTHODOX,HERETICAL,DHARMA,CHI,kuejin])
 
 var Athanor={
   FRANKENSTEIN:new table.Table("Darkness, promethean, athanor, frankenstein",
@@ -345,7 +355,8 @@ class Promethean extends table.Table {
 	}
 }
 
-tables.push(new Promethean())
+var promethean=new Promethean()
+tables.push(promethean)
 
 const DECREE = new table.Table("Darkness, mummy, decree",
     ["Heart", "Spirit", "Essence", "Name", "Shadow"])
@@ -376,8 +387,7 @@ class Monster extends table.Table {
 		this.add( changeling,300);
 		this.add( beast,200);
 		this.add( demon,200);
-		this.add(kindred.urban,50);
-		this.add(kindred.rural,50);
+		this.add(kindred.kindred,100);
 		this.add( mage.hedgemage,50);
 		this.add( mage.mage,30);
 		this.add( kuejin,30);
