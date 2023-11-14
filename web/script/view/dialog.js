@@ -32,6 +32,7 @@ export class Dialog{
     this.search=true
     this.title=t
     this.default=-1
+    VIEW.removeAttribute('name')
   }
   
   select(choice){
@@ -130,6 +131,8 @@ export class Dialog{
     if(d>=0) this.select(VIEW.querySelectorAll('.choice')[d])
     setTimeout(()=>input.listen(press),200)
   }
+  
+  name(n){VIEW.setAttribute('name',n)}
 }
 
 export class Skill extends Dialog{
@@ -172,6 +175,7 @@ export class Tables extends Dialog{
     for(let t of tables.tables)
       if(!filter||t.name.split(',').length<3)
         this.choices.set(t.name,t)
+    this.name('tables')
   }
   
   async input(){

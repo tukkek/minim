@@ -69,7 +69,7 @@ const RESULTS = ["No, plus...", NO, "No, however...", "Yes, however...", YES,
 ;
 class YesNo extends table.Table {
 	constructor() {
-		super("Conjectural, yes-no, simple",RESULTS);
+		super("Conjectural, yes-no",RESULTS);
 	}
 
   expand(roll) {
@@ -89,7 +89,7 @@ var yesno=new YesNo()
 
 class YesNoAdvantage extends table.Table {
 	 constructor() {
-		super("Conjectural, yes-no, simple, advantage");
+		super("Conjectural, yes-no (advantage)");
 	}
 
   roll() {
@@ -107,7 +107,7 @@ class YesNoAdvantage extends table.Table {
 
  class YesNoDisadvantage extends table.Table {
 	 constructor() {
-		super("Conjectural, yes-no, simple, disadvantage");
+		super("Conjectural, yes-no (disadvantage)");
 	}
 
 	 roll() {
@@ -157,7 +157,7 @@ class YesNoLoom extends table.Table {
 
  class YesNoConflict extends YesNoLoom {
   constructor() {
-		super("Conjectural, yes-no, conflict");
+		super("Conjectural, yes-no, loom, conflict");
 		this.add(NO_AND_UNEXPECTEDLY);
 		this.add(NO_BUT);
 		this.add(NO_AND,20);
@@ -172,7 +172,7 @@ class YesNoLoom extends table.Table {
 
 class YesNoEnding extends YesNoLoom {
 	 constructor() {
-		super("Conjectural, yes-no, ending");
+		super("Conjectural, yes-no, loom, ending");
     this.add(NO_AND_UNEXPECTEDLY,2-1);
 		this.add(NO_BUT,6-3);
 		this.add(NO_AND,10-7);
@@ -186,7 +186,7 @@ class YesNoEnding extends YesNoLoom {
 
 class YesNoKnowledge extends YesNoLoom {
 	 constructor() {
-		super("Conjectural, yes-no, knowledge");
+		super("Conjectural, yes-no, loom, knowledge");
 		this.add(NO_AND_UNEXPECTEDLY,5);
 		this.add(NO_BUT,10-6);
 		this.add(NO_AND,20-10);

@@ -1,5 +1,4 @@
 import * as adungeon from './adventure/dungeon.js'
-import * as type from './adventure/type.js'
 import * as hexcrawl from './adventure/hexcrawl.js'
 import * as oneshot from './adventure/oneshot.js'
 import * as cartoon from './adventure/cartoon.js'
@@ -20,7 +19,7 @@ import * as darkness from './darkness/darkness.js'
 import * as kult from './kult/kult.js'
 
 export var tables=[
-  adungeon,type,bold,combat,conjectural,cyberpunk,darkness,
+  adungeon,bold,combat,conjectural,cyberpunk,darkness,
   falkenstein,fantasy,hexcrawl,nomine,instant,kult,oneshot,
   weather,cartoon,real,journey,misc,une
 ]

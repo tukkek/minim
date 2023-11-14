@@ -5,19 +5,19 @@ export var tables=[]
 
 const KETHER = "Kether, the Ruler";
 const MALKUTH = "Malkuth, the Rebel";
-const ARCHONS = new table.Table("Kult, being, archons", [KETHER, "Binah, the Black Madonna",
+const ARCHONS = new table.Table("Kult, character, archons", [KETHER, "Binah, the Black Madonna",
   "Geburah, the Judge", "Tiphareth, the Spider", "Netzach, the Victor", MALKUTH])
-const ASTAROTH = new table.Table("Kult, being, Astaroth form",
+const ASTAROTH = new table.Table("Kult, character, Astaroth form",
     ["Antichrist, the Warlord", "The Seducer", "The Beast"])
 const NAHEMOTH = "Nahemoth, the Defiled";
-const ANGELS = new table.Table("Kult, being, Angels of Death",
+const ANGELS = new table.Table("Kult, character, Angels of Death",
     ["Thaumiel, the unjust ruler", "Chagidiel, the Bloodstained Patriarch",
         "Sathariel, the Devastating Mother", "Gamichicoth, the False Rescuer", "Golab, the Torturer",
         "Togarini, Protector of the Death Conjurers", "Hareb-Sepap, the Raven of the Battlefields",
         "Samael, the Avenger", "Gamaliel, the Perverted", NAHEMOTH])
 const HELL = "Hell (a sinner's personal purgatory, ruled by a nepharite, always metaphysically super-imposed to the sinner's place of death)";
 const RAZIDE = "Razide of %s (tall, half-living humanoids with a black iron and glass exoskeleton, yellow-red eyes and a metal jaw)";
-const BEING = new table.Table("Kult, being, Inferno")
+const BEING = new table.Table("Kult, character, Inferno")
 for (let a of ANGELS.lines)
   BEING.add(RAZIDE.replace('%s',a));
 BEING.add("Nepharite (run personal hells for sinners, shape-changing but usually mutilated humans)");
@@ -88,7 +88,7 @@ for (let a of ARCHONS.lines) {
 for (let a of MISSINGARCHONS)
   CITADELS.add(`Abandoned citadel, ${a}`, 10);
 const PLATOON = "Platoon (more tired and hopeless than hostile, has an insane leader)";
-const LABYRINTH = new table.Table("Kult, Metropolis underground", [
+const LABYRINTH = new table.Table("Kult, Metropolis, underground", [
   "Hatching chamber (for Razide larvae, black worms coming out of blackeggs in low-ceiling, bare-rock rooms deep in Metropolis and near Inferno)",
   "Ktonor (eternally-dark-city underneath where the formless Blind Bull guards the entrance to the Inner Labyrinth)",
   "Metromorte (all encompassing subway necro-train)",
@@ -119,7 +119,7 @@ const RUINS = new table.Table("Kult, Metropolis, The Ruins", ["Wrecking yard rui
   "Urban swamp (pavement decays into a mud-like substance)", PLATOON])
 const AZGHOUL = "Azghoul (humanity's name-bound, armed and fully-armored ancient slaves";
 const UNDEADSERVANT = "Undead servant of the Dead Gods (looking for a victim to bring to the City of the Dead)";
-const METROPOLITAN = new table.Table("Kult, being, metropolitan", [
+const METROPOLITAN = new table.Table("Kult, character, metropolitan", [
   "Metropolitan human (feral hunter-scavenger, often lost from our world)", AZGHOUL,
   "Wolven (semi-reptilian dire-wolves)", "Ferroco (largy, clumsy camouflaging felines)",
   "Techrones (meek spider-like humans made of steel and plastic, carrying industrial tools for Mechine City maintenance)",
@@ -132,9 +132,9 @@ const MACHINECITY = "The Machine City (one huge factory that goes for thousands 
 
 tables.push(...[CITADELS,LABYRINTH,LIVINGCITY,RUINS,METROPOLITAN])
 
-const DEITIES = new table.Table("Kult, being, deity",
+const DEITIES = new table.Table("Kult, character, deity",
   [ARCHONS, ASTAROTH, ANGELS])
-const BORDERLINER = new table.Table("Kult, being, borderliner", ["Borderliner human",
+const BORDERLINER = new table.Table("Kult, character, borderliner", ["Borderliner human",
   "Nachtkäfer (giant, insect-like portal-dwellers)", "Child of the underworld (mole people)",
   "Razid larvae (eats organic matter, phase through inorganic matter)",
   "Psilocites (eyeless giants with metal exo-skeletons and atrophied appendages)", AZGHOUL,
@@ -153,7 +153,7 @@ const BORDERLINER = new table.Table("Kult, being, borderliner", ["Borderliner hu
   "Gang brutality",
   "Scavenger (usually found in an area with potential to find equipment, will usually avoid others but can also attack from stealth)",
   "Soldier", "Human hunter (generally hostile, paranoid)", "Artillery barrage", "Hunting squad"])
-const UNDEAD = new table.Table("Kult, being, undead", [
+const UNDEAD = new table.Table("Kult, character, undead", [
   "Undead (ghost on the borderline of death, by their own will or bound to something)",
   "Corpophagus (usually a broken dead spirit, with deadly, inch-long corpophagi parasites in the vicinity)",
   "Living dead (usually insane and aggressive, unless very recent)",
@@ -184,7 +184,7 @@ tables.push(metropolis)
 
 class Being extends table.Table {
 	constructor() {
-		super("Kult, being");
+		super("Kult, character");
 	}
 	
 	roll(){
@@ -368,11 +368,11 @@ const DREAMTYPE = new table.Table("Kult, dream, type")
 DREAMTYPE.add(NORMAL, 10);
 DREAMTYPE.add("Nightmare", 10);
 DREAMTYPE.add("Precognitive (about something that will happen in the future)", 1);
-const DREAMBEING = new table.Table("Kult, being, dream", [
+const DREAMBEING = new table.Table("Kult, character, dream", [
   "Dream wanderer (a freely-wandering human who transferred his whole life force into dreams, often serves of a Dream Prince)",
   "Ichtyrian (a long shell with red eyes and large jaw with 20 spider legs, can devour people in dreams and reality at the same time)",
   "Psyphagus (usually inhabiting their own dreams, they are shadow-looking dreamers who lost access to their bodies and are looking to subdue someone in their dream and take over their body)"]);
-const PRINCE = new table.Table("Kult, being, dream prince", [
+const PRINCE = new table.Table("Kult, character, dream prince", [
   "Hammad al-Sufi, oldest prince with a rock-city empire ranging from the Vortex to the Middle-East waking world",
   "Deride Aristides, prince from the future with an empire of cyberpunk cities, cyberspace, space-ships and space-stations",
   "Aaron Greenberg, rules over a fascist dream of military law and bureaucracy, often bringing waking people as inhabitants",

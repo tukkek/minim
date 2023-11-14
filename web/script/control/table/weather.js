@@ -6,7 +6,7 @@ const SPRING = "Spring";
 const WINTER = "Winter";
 const AUTUMN = "Autumn";
 const SUMMER = "Summer";
-const SEASONS = new table.Table("Weather, season, temperate", [SUMMER, AUTUMN, WINTER, SPRING]);
+const SEASONS = new table.Table("Weather, calendar,  season", [SUMMER, AUTUMN, WINTER, SPRING]);
 
 tables.push(SEASONS)
 
@@ -41,7 +41,7 @@ class Weather extends table.Table {
 }
 
 class Temperate extends Weather {
-	constructor(name="Weather, temperate") {
+	constructor(name="Weather, calendar,  temperate") {
 		super(name);
 		this.normal = "Temperate";
 		this.abnormal1 = "Heat wave";
@@ -55,7 +55,7 @@ var temperate=new Temperate()
 
 class TemperateWinter extends Temperate {
 	constructor() {
-		super("Weather, temperate, winter");
+		super("Weather, calendar,  temperate, winter");
 		this.normal = "Cold";
 		this.inclement = "Snow";
 		this.storm = "Snowstorm";
@@ -66,7 +66,7 @@ var temperatewinter=new TemperateWinter()
 
 class TemperateSummer extends Temperate {
 	constructor() {
-		super("Weather, temperate, summer");
+		super("Weather, calendar,  temperate, summer");
 		this.normal = "Warm";
 	}
 }
@@ -74,7 +74,7 @@ var temperatesummer=new TemperateSummer()
 
 class Desert extends Weather {
 	constructor() {
-		super("Weather, desert");
+		super("Weather, calendar,  desert");
 		this.normal = "Hot, calm";
 		this.abnormal1odds = 10;
 		this.abnormal1 = "Hot, windy";
@@ -88,7 +88,7 @@ var desert=new Desert()
 
 class Cold extends Weather {
 	constructor() {
-		super("Weather, cold");
+		super("Weather, calendar,  cold");
 		this.normal = "Cold, calm";
 		this.abnormal1odds = 3;
 		this.abnormal1 = "Heat wave";
@@ -110,7 +110,7 @@ const COLD = "Cold";
 
 class Climate extends table.Table {
 	constructor() {
-		super("Weather, climate");
+		super("Weather, calendar,  climate");
 		this.add(COLD, 1 * 2);
 		this.add(FOURSEASONS, 2 * 2);
 		this.add(PERMANENTSUMMER, 1);

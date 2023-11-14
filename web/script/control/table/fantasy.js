@@ -10,30 +10,30 @@ class Kit extends table.Table{
     return s?swap(r):r;
   }
 }
-const MAGICAL=new table.Table("Fantasy character, class, by type, magical",
+const MAGICAL=new table.Table("Fantasy, character, class, by type, magical",
   ["Cleric","Wizard","Druid"])
-const HYBRID=new table.Table("Fantasy character, class, by type, hybrid",
+const HYBRID=new table.Table("Fantasy, character, class, by type, hybrid",
   ["Paladin","Ranger","Bard"])
-const MARTIAL=new table.Table("Fantasy character, class, by type, martial",
+const MARTIAL=new table.Table("Fantasy, character, class, by type, martial",
   ["Monk","Fighter","Rogue"])
 const TYPES=[MAGICAL,HYBRID,MARTIAL]
-const LAWFUL=new table.Table("Fantasy character, class, by ethics, lawful",
+const LAWFUL=new table.Table("Fantasy, character, class, by ethics, lawful",
   TYPES.map(t => t.lines[0]))
 const NEUTRAL=new table.Table(
-  "Fantasy character, class, by ethics, neutral",
+  "Fantasy, character, class, by ethics, neutral",
   TYPES.map(t => t.lines[1]))
 const CHAOTIC=new table.Table(
-  "Fantasy character, class, by ethics, chaotic",
+  "Fantasy, character, class, by ethics, chaotic",
   TYPES.map(t => t.lines[2]))
-const ETHICS=new table.Table("Fantasy character, alignment, ethics",
+const ETHICS=new table.Table("Fantasy, character, alignment, ethics",
   ["Lawful","Neutral","Chaotic"])
-const MORALS=new table.Table("Fantasy character, alignment, morals",
+const MORALS=new table.Table("Fantasy, character, alignment, morals",
   ["Good","Neutral","Evil"])
 
 
 class Alignment extends table.Table{
   constructor(){
-    super("Fantasy character, alignment")
+    super("Fantasy, character, alignment")
   }
   
   roll(){
@@ -45,34 +45,34 @@ class Alignment extends table.Table{
 
 export var tables=[MAGICAL,HYBRID,MARTIAL,LAWFUL,NEUTRAL,CHAOTIC,ETHICS,MORALS,new Alignment()]
 
-const MONK=new table.Table("Fantasy character, class, kit, monk",
+const MONK=new table.Table("Fantasy, character, class, kit, monk",
   [MARTIAL.lines[0],"Ninja","Acrobat","Drunken master","Dervish",
       "Brawler","Samurai","Tattooist","Kinetic psionic","Metabolic psionic",
       "Teleporting psionic"])
-const FIGHTER=new table.Table("Fantasy character, class, kit, fighter",
+const FIGHTER=new table.Table("Fantasy, character, class, kit, fighter",
   [MARTIAL.lines[1],"Barbarian","Duelist","Gladiator",
       "Field commander","Dragoon","Viking","Knight","Breaker","Defender",
       "Dual-wielder"])
-const ROGUE=new table.Table("Fantasy character, class, kit, rogue",
+const ROGUE=new table.Table("Fantasy, character, class, kit, rogue",
   [MARTIAL.lines[2],"Assassin","Infiltrator","Swashbuckler",
       "Dungeoneer","Poison-master","Cutpurse","Saboteur","Thug"])
-const PALADIN=new table.Table("Fantasy character, class, kit, paladin",
+const PALADIN=new table.Table("Fantasy, character, class, kit, paladin",
   [HYBRID.lines[0],"Demon-hunter","Witch-hunter","Exorcist",
       "Evangelist","Guardian","Justicar","Unholy knight"])
-const RANGER=new table.Table("Fantasy character, class, kit, ranger",
+const RANGER=new table.Table("Fantasy, character, class, kit, ranger",
   [HYBRID.lines[1],"Warden","Archer","Hunter","Trapper",
       "Pathfinder","Rider","Mageblade"])
-const BARD=new table.Table("Fantasy character, class, kit, bard",
+const BARD=new table.Table("Fantasy, character, class, kit, bard",
   [HYBRID.lines[2],"Loremaster","Diplomat","Navigator","Spy",
       "Orator","Gambler","Trickster","Jester","Juggler","Mime","Dancer",
       "Ministrel","Troubadour","Artificer","Gadgeteer","Apothecary",
       "Runesmith"])
-const CLERIC=new table.Table("Fantasy character, class, kit, cleric",
+const CLERIC=new table.Table("Fantasy, character, class, kit, cleric",
   [MAGICAL.lines[0],"Chaos cleric","Curses cleric",
       "Dream cleric","Glory cleric","Control cleric","Healing cleric",
       "Law cleric","Luck cleric","Madness cleric","Manipulation cleric",
       "Sacrifice cleric","Sun cleric","Wealth cleric"])
-const WIZARD=new table.Table("Fantasy character, class, kit, wizar)",
+const WIZARD=new table.Table("Fantasy, character, class, kit, wizard",
   [MAGICAL.lines[1],"Air mage","Cold mage","Dimensional mage",
       "Earth mage","Electricity mage","Fire mage","Magma mage","Metal mage",
       "Mud mage","Shadow mage","Smoke mage","Steam mage","Time mage",
@@ -81,18 +81,18 @@ const WIZARD=new table.Table("Fantasy character, class, kit, wizar)",
       "Animist wizard","Banishment wizard","Counter-spell wizard",
       "Demonologist wizard","Divination wizard","Illusionist wizard",
       "Necromancer wizard","Transmutation wizard"])
-const DRUID=new table.Table("Fantasy character, class, kit, druid",
+const DRUID=new table.Table("Fantasy, character, class, kit, druid",
   [MAGICAL.lines[2],"Weathermancer","Floramancer","Cultist",
       "Werewolf","Werebear","Wereboar","Werebat","Apiarist","Beastmaster",
       "Vermin-lord","Shaman"])
 const KITS=[FIGHTER,WIZARD,CLERIC,ROGUE,
   DRUID,PALADIN,RANGER,BARD,MONK];
-const KIT=new Kit("Fantasy character, class, kit",TYPES);
-const RACE=new table.Table("Fantasy character, race",
+const KIT=new Kit("Fantasy, character, class, kit",TYPES);
+const RACE=new table.Table("Fantasy, character, race",
   ["Human","Dwarf","Elf","Gnome","Half-elf","Half-orc","Halfling"])
 const TIERS=["Low-level","Mid-level","High-level",
   "Epic-level"];
-const LEVEL=new table.Table("Fantasy character, level")
+const LEVEL=new table.Table("Fantasy, character, level")
 LEVEL.add(TIERS[0],100);
 LEVEL.add(TIERS[1],30);
 LEVEL.add(TIERS[2],6);
@@ -113,7 +113,7 @@ function swap(kit){
 
 class FantasyCharacter extends table.Table{
    constructor(){
-    super("Fantasy character");
+    super("Fantasy, character");
   }
 
   validate(kit,ethic,ethics,forrbidden){
@@ -136,15 +136,15 @@ class FantasyCharacter extends table.Table{
  
 tables.push(new FantasyCharacter())
 
-const LOW=new table.Table("Fantasy character, simple, low-level",
+const LOW=new table.Table("Fantasy, character, simple, low-level",
   ["Adept","Aristocrat","Commoner","Expert","Warrior"])
-const MID=new table.Table("Fantasy character, simple, mid-level",
+const MID=new table.Table("Fantasy, character, simple, mid-level",
   ["Sorcerer (Adept/Aristocrat)","Shaman (Adept/Commoner)",
       "Bard (Adept/Expert)","Cleric (Adept/Warrior)",
       "Explorer (Aristocrat/Commoner)","Spy (Aristocrat/Expert)",
       "Duelist (Aristocrat/Warrior)","Rogue (Commoner/Expert)",
       "Barbarian (Commoner/Warrior)","Thug (Expert/Warrior)"])
-const HIGH=new table.Table("Fantasy character, simple, high-level",
+const HIGH=new table.Table("Fantasy, character, simple, high-level",
   ["Druid (Adept/Aristocrat/Commoner)",
       "Wizard (Adept/Aristocrat/Expert)",
       "Paladin (Adept/Aristocrat/Warrior)","Dancer (Adept/Commoner/Expert)",
@@ -153,7 +153,7 @@ const HIGH=new table.Table("Fantasy character, simple, high-level",
       "Warden (Aristocrat/Commoner/Warrior)",
       "Assassin (Aristocrat/Expert/Warrior)",
       "Monk (Commoner/Expert/Warrior)"])
-const EPIC=new table.Table("Fantasy character, simple, epic-level",
+const EPIC=new table.Table("Fantasy, character, simple, epic-level",
   ["Magi (Adept/Aristocrat/Commoner/Expert)",
       "Bishop (Adept/Aristocrat/Commoner/Warrior)",
       "Samurai (Adept/Aristocrat/Expert/Warrior)",

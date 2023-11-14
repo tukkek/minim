@@ -67,27 +67,27 @@ const ROWS = 3;
 var connection=new Connection()
 
 
-const EASYFOES = new table.Table("Bold, waylay, easy foes",
+const EASYFOES = new table.Table("Bold, arced waylay, waylay, easy foes",
   ["Animals", "Mooks", "Mob", "Bandits", "Deputies"])
-const HARDFOES = new table.Table("Bold, waylay, hard foes",
+const HARDFOES = new table.Table("Bold, arced waylay, waylay, hard foes",
   ["Bounty hunter", "Soldiers", "Monster", "Villain", "Horror"])
-const KNOWLEDGE = new table.Table("Bold, waylay, knowledge",
+const KNOWLEDGE = new table.Table("Bold, arced waylay, waylay, knowledge",
   ["Ascetic", "Research", "Occult", "Enigma", "Science"])
-const PHYSICAL = new table.Table("Bold, waylay, physical",
+const PHYSICAL = new table.Table("Bold, arced waylay, waylay, physical",
   ["Pursuit", "Trap", "Struggle", "Illness", "Labor"])
-const FACTIONAL = new table.Table("Bold, waylay, factional",
+const FACTIONAL = new table.Table("Bold, arced waylay, waylay, factional",
   ["Army", "Invader", "Holdings", "Authority", "Rebels"])
-const HAVEN = new table.Table("Bold, waylay, haven",
+const HAVEN = new table.Table("Bold, arced waylay, waylay, haven",
   ["Festival", "Hermit", "Tavern", "Hamlet", "Conclave"])
-const PARTY = new table.Table("Bold, waylay, party",
+const PARTY = new table.Table("Bold, arced waylay, waylay, party",
   ["Misunderstanding", "Accusations", "Power play", "Friend-in-need", "Disappearance"])
-const PERSONAL = new table.Table("Bold, waylay, personal",
+const PERSONAL = new table.Table("Bold, arced waylay, waylay, personal",
   ["Traitor", "Lover", "Death", "Relative", "Rival"])
-const EPIC = new table.Table("Bold, waylay, epic",
+const EPIC = new table.Table("Bold, arced waylay, waylay, epic",
   ["Heaven / hell", "Afterlife", "Myth", "Otherworldly", "The strange"])
-const NATURAL = new table.Table("Bold, waylay, natural",
+const NATURAL = new table.Table("Bold, arced waylay, waylay, natural",
   ["Weather", "Straying / lost", "Social environ", "Deprivation", "The wild"])
-const MODIFIER = new table.Table("Bold, waylay, modifier",
+const MODIFIER = new table.Table("Bold, arced waylay, waylay, modifier",
   ["futile", "impassioned", "hesitant", "benign", "revered", "pedantic", "grim", "common", "bitter",
       "impassioned", "perceiving", "selfish", "prohibited", "brusque", "prosperous", "depraved",
       "comforting", "hopeless", "waning", "regimental", "harsh", "leeching", "tranquil", "inclusive",
@@ -104,7 +104,7 @@ const MODIFIER = new table.Table("Bold, waylay, modifier",
 
 class Solution extends table.Table{
   constructor(){
-    super("Bold, waylay, solution",[false,"legendary help", "act of nature", "the people", "enemy help", "avoidance",
+    super("Bold, arced waylay, waylay, solution",[false,"legendary help", "act of nature", "the people", "enemy help", "avoidance",
 					"scarce-used ability", "personal resources", "close friend", "strong attribute", "favored ability",
 					"favored skill", "on accident", "weak attribute", "counteraction", "faction intervention",
 					"the authority", "fate", "change of heart", "deus ex"])
@@ -119,7 +119,7 @@ var solution=new Solution()
 
 class Waylay extends table.Table {
 	constructor() {
-		super("Bold, waylay",[EASYFOES, HARDFOES, KNOWLEDGE, PHYSICAL, FACTIONAL, HAVEN, PARTY, PERSONAL, EPIC, NATURAL]);
+		super("Bold, arced waylay, waylay",[EASYFOES, HARDFOES, KNOWLEDGE, PHYSICAL, FACTIONAL, HAVEN, PARTY, PERSONAL, EPIC, NATURAL]);
 	}
 
   roll(solutionp=true) {

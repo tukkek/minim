@@ -6,10 +6,10 @@ export var tables=[]
 
 const NORMAL = "Normal";
 
-const WEALTH = new table.Table("Kult, character, living standard",
+const WEALTH = new table.Table("Kult, mundane character, living standard",
 			["Destitude", "Poor", "Low income", "Lower middle-class", "Middle-class", "Upper middle-class",
 					"Well-off", "Very well-off", "Rich", "Extremely rich"]);
-const LORES = new table.Table("Kult, character, skill, magic lore",
+const LORES = new table.Table("Kult, mundane character, skill, magic lore",
     ["Madness", "Space-time", "Dream", "Death", "Passion", "Reality"].map(l => l + " magic"))
 
 tables.push(...[WEALTH,LORES])
@@ -109,7 +109,7 @@ const HAUT = "Fine tastes";
 
 class Skill extends table.Table {
 	constructor() {
-		super("Kult, character, skill",
+		super("Kult, mundane character, skill",
 				[MELEE, POISONS, DRUGS, GRAFFITI, HIDE, HANDGUN, DRIVE, IMPACT, CLIMB, SECURITYSKILL, IMMIGRANT,
 						UNARMED, RHETORIC, WORDLY, ESTIMATE, SNEAK, AUTOMATIC, DEMOLITION, DISGUISE, INFORMATION,
 						ACROBATICS, DODGE, INTERROGATION, SEARCH, SHADOW, COMPUTERS, DIPLOMACY, FORGERY, CONTACTS,
@@ -158,7 +158,7 @@ const MAGICAL = "Magical intuition";
 
 class Advantage extends table.Table {
 	constructor() {
-		super("Kult, character, advantage",
+		super("Kult, mundane character, advantage",
 				[ARTISTIC, HONOR, AWARENESS, FLEXIBILITY, SENSATE, ENDURANCE, INFLUENCE, EMPATHY, INTUITION,
 						LUCK, ANIMALS, LANGUAGEGIFT, CHIVALRY, PACIFISM, REPUTATION, MATH, HONESTY, ALTRUIST, MECHANIC,
 						FORGIVING, MOTHERLINESS, GOAL, STATUS, FAITH, LARGESSE, OPTIMIST, MENTOR, WILL, MAGICAL])
@@ -257,7 +257,7 @@ const AMNESIA = "Partial amnesia";
       
 class Disadvantage extends table.Table {
 	constructor() {
-		super("Kult, character, disadvantage",
+		super("Kult, mundane character, disadvantage",
 				[DEPRESSION, BADREPUTATION, DEATHWISH, PHOBIA, CONSTRICTION, PARANOIA, PERSECUTED, NIGHTMARES,
 						ADDICTION, LIAR, SCHIZOPHRENIA, RATIONALIST, NYMPHOMANIA, COMPULSION, REVENGE, ENEMY, BADLUCK,
 						WANTED, HAUNTED, MANIA, FANATICISM, INTOLERANCE, TOUCHY, EGOTIST, MAIMED, GREED, GAMBLER, CURSE,
@@ -474,7 +474,7 @@ class KultCharacter extends table.Table {
 
 class Secret extends table.Table {
 	constructor() {
-		super("Kult, character, dark secret", [CURSE, FAMILY, KNOWLEDGE, GUILTY, INSANITY, OCCULTEXPERIENCE, PACT,
+		super("Kult, mundane character, dark secret", [CURSE, FAMILY, KNOWLEDGE, GUILTY, INSANITY, OCCULTEXPERIENCE, PACT,
 				PESSESSED, HAUNTED, SUPERNATURALEXPERIENCE, VICTIM, SURVIVOR, GUARDIAN, UPROOTED, CHOSEN, INHERITOR])
 	}
 
@@ -554,7 +554,7 @@ const LIBRARIAN = "Librarian";
 
 class Profession extends table.Table {
 	constructor() {
-		super("Kult, character, profession",
+		super("Kult, mundane character, profession",
 				[UNEMPLOYED, CRIMINAL, WORKER, LANDLORD, PI, JOURNALIST, ARTIST, SECURITY, SPECOPS, INTELLIGENCE,
 						BUSINESSMAN, ECONOMIST, ENGINEER, CONSULTANT, LAWYER, STUDENT, SCIENTIST, BODYGUARD, DETECTIVE,
 						WRITER, MUSICIAN, BOUNCER, ROLLINGSTONE, TECHNICIAN, PROGRAMMER, HOUSEWIFE, RADICAL, DIPLOMAT,
@@ -566,7 +566,7 @@ class Profession extends table.Table {
 var profession=new Profession()
 tables.push(profession)
 
-const GANGMEMBER = new KultCharacter("Kult, character, archetype, gang member",
+const GANGMEMBER = new KultCharacter("Kult, mundane character, archetype, gang member",
   [REPUTATION, DEATHWISH, ENEMY, REVENGE,
       FANATICISM, CONSTRICTION, INTOLERANCE, WANTED,
       TOUCHY, LIAR, MANIA, ADDICTION,
@@ -577,7 +577,7 @@ const GANGMEMBER = new KultCharacter("Kult, character, archetype, gang member",
   [DANCING, MELEE, POISONS, DRUGS, GRAFFITI, HIDE, IMMIGRANT,
       BURGLARY, CLIMB, IMPACT, DRIVE, HANDGUN, SNEAK, UNARMED,
       RHETORIC, WORDLY, ESTIMATE])
-const AVENGER = new KultCharacter("Kult, character, archetype, avenger",
+const AVENGER = new KultCharacter("Kult, mundane character, archetype, avenger",
   [LUCK, REPUTATION, DEATHWISH, MAIMED,
       DEPRESSION, ADDICTION, FANATICISM, LIAR,
       MANIA, ENEMY, COMPULSION, PARANOIA,
@@ -587,7 +587,7 @@ const AVENGER = new KultCharacter("Kult, character, archetype, avenger",
   [AUTOMATIC, BURGLARY, CLIMB, MELEE, DEMOLITION, DISGUISE,
       DRIVE, DODGE, FALLING, INFORMATION, HANDGUN, HIDE, IMPACT,
       INTERROGATION, UNARMED, SEARCH, SHADOW, SNEAK])
-const DEALER = new KultCharacter("Kult, character, archetype, dealer",
+const DEALER = new KultCharacter("Kult, mundane character, archetype, dealer",
   [REPUTATION, DEATHWISH, ENEMY, REVENGE,
       GREED, TOUCHY, LIAR, ADDICTION,
       RATIONALIST, EGOTIST, GAMBLER],
@@ -598,7 +598,7 @@ const DEALER = new KultCharacter("Kult, character, archetype, dealer",
   [COMPUTERS, DIPLOMACY, MELEE, FRENCH, FORGERY, INFORMATION,
       ITALIAN, CONTACTS, DRIVE, SEARCH, HANDGUN, SNEAK,
       GAMBLING, UNARMED, GERMAN, RHETORIC, WORDLY, ESTIMATE])
-const FEMMEFATALE = new KultCharacter("Kult, character, archetype, femme fatale",
+const FEMMEFATALE = new KultCharacter("Kult, mundane character, archetype, femme fatale",
   [DEPRESSION, REPUTATION, DEATHWISH, ENEMY,
       REVENGE, CONSTRICTION, GREED, TOUCHY,
       MANIA, ADDICTION, NYMPHOMANIA, LIAR,
@@ -612,7 +612,7 @@ const FEMMEFATALE = new KultCharacter("Kult, character, archetype, femme fatale"
       DISGUISE, POISONS, DRUGS, INFORMATION, CONTACTS, DRIVE,
       HANDGUN, ACTING, GAMBLING, UNARMED, RHETORIC, WORDLY,
       ESTIMATE])
-const PIARCHETYPE = new KultCharacter("Kult, character, archetype, private investigator",
+const PIARCHETYPE = new KultCharacter("Kult, mundane character, archetype, private investigator",
   [DEPRESSION, REPUTATION, DEATHWISH, ENEMY,
       REVENGE, CURSE, CONSTRICTION, PARANOIA,
       GREED, LIAR, ADDICTION, RATIONALIST,
@@ -624,7 +624,7 @@ const PIARCHETYPE = new KultCharacter("Kult, character, archetype, private inves
   [AUTOMATIC, FORENSICS, MELEE, ELECTRONICS, PHOTOGRAPHY,
       INTERROGATION, DISGUISE, HIDE, INFORMATION, DRIVE, HANDGUN,
       SHADOW, SNEAK, NIGHT, UNARMED, WORDLY])
-const VETERAN = new KultCharacter("Kult, character, archetype, veteran",
+const VETERAN = new KultCharacter("Kult, mundane character, archetype, veteran",
   [DEPRESSION, DEATHWISH, PHOBIA, CONSTRICTION,
       PARANOIA, WANTED, TOUCHY, LIAR,
       ADDICTION, COMPULSION],
@@ -635,7 +635,7 @@ const VETERAN = new KultCharacter("Kult, character, archetype, veteran",
       HIDE, THROWING, CLIMB, DRIVE, MECHANICS, PILOTING,
       HANDGUN, RADIO, SWIM, SNEAK, DEMOLITION, UNARMED, HEAVY,
       SURVIVAL])
-const AGENT = new KultCharacter("Kult, character, archetype, secret agent",
+const AGENT = new KultCharacter("Kult, mundane character, archetype, secret agent",
   [DEPRESSION, DEATHWISH, ENEMY, REVENGE,
       CONSTRICTION, PARANOIA, LIAR, NIGHTMARES,
       ADDICTION, RATIONALIST, GAMBLER],
@@ -650,7 +650,7 @@ const AGENT = new KultCharacter("Kult, character, archetype, secret agent",
       PILOTING, HANDGUN, RADIO, RIDING, RUSSIAN, SWIM,
       SEAMANSHIP, SHADOW, SNEAK, GAMBLING, DIVING, DEMOLITION,
       NIGHT, UNARMED, GERMAN, WORDLY])
-const CORPORATE = new KultCharacter("Kult, character, archetype, corporate",
+const CORPORATE = new KultCharacter("Kult, mundane character, archetype, corporate",
   [DEPRESSION, ENEMY, PHOBIA, CONSTRICTION,
       GREED, INTOLERANCE, LIAR, ADDICTION,
       RATIONALIST, EGOTIST, GAMBLER, COMPULSION],
@@ -663,14 +663,14 @@ const CORPORATE = new KultCharacter("Kult, character, archetype, corporate",
   [ACCOUNTING, COMPUTERS, DIPLOMACY, ECONOMICS, ETIQUETTE, FRENCH,
       FORGERY, INFORMATION, LAW, CONTACTS, HANDGUN, GERMAN,
       RHETORIC, ESTIMATE, WORDLY])
-const STUDENTARCHETYPE = new KultCharacter("Kult, character, archetype, student",
+const STUDENTARCHETYPE = new KultCharacter("Kult, mundane character, archetype, student",
   [DEPRESSION, CONSTRICTION, PARANOIA, LIAR,
       MANIA, ADDICTION, RATIONALIST],
   [FLEXIBILITY, MATH, LANGUAGES],
   [GUILTY, FAMILY, KNOWLEDGE, VICTIM], [STUDENT], 2, 4,
   [COMPUTERS, FRENCH, SEDUCTION, SPORT, INFORMATION, CONTACTS,
       WRITING, RHETORIC, WORDLY])
-const SCIENTISTARCHETYPE = new KultCharacter("Kult, character, archetype, scientist",
+const SCIENTISTARCHETYPE = new KultCharacter("Kult, mundane character, archetype, scientist",
   [REPUTATION, DEATHWISH, ENEMY, FANATICISM,
       CONSTRICTION, PARANOIA, INTOLERANCE, WANTED,
       TOUCHY, MANIA, ADDICTION, RATIONALIST,
@@ -680,7 +680,7 @@ const SCIENTISTARCHETYPE = new KultCharacter("Kult, character, archetype, scient
   [SCIENTIST], 5, 7,
   [COMPUTERS, ELECTRONICS, POISONS, DRUGS, HUMANITIES, PSYCHOLOGY,
       INFORMATION, CHEMISTRY, CONTACTS, MEDICINE, SCIENCE])
-const SAMURAI = new KultCharacter("Kult, character, archetype, city samurai",
+const SAMURAI = new KultCharacter("Kult, mundane character, archetype, city samurai",
   [REPUTATION, DEATHWISH, ENEMY, REVENGE,
       GREED, INTOLERANCE, WANTED, TOUCHY,
       LIAR, ADDICTION, EGOTIST],
@@ -691,7 +691,7 @@ const SAMURAI = new KultCharacter("Kult, character, archetype, city samurai",
       AID, RIFLE, HIDE, BURGLARY, THROWING, CLIMB, CONTACTS,
       IMPACT, DRIVE, SEARCH, WHIPS, CHAINS, HANDGUN, SWIM,
       SHADOW, MELEE, SNEAK, NIGHT, UNARMED, WORDLY])
-const MUCKRAKER = new KultCharacter("Kult, character, archetype, muck-raker",
+const MUCKRAKER = new KultCharacter("Kult, mundane character, archetype, muck-raker",
   [DEPRESSION, REPUTATION, ENEMY, REVENGE,
       FANATICISM, WANTED, TOUCHY, MANIA,
       ADDICTION, RATIONALIST, EGOTIST],
@@ -701,7 +701,7 @@ const MUCKRAKER = new KultCharacter("Kult, character, archetype, muck-raker",
   [FORENSICS, COMPUTERS, PHOTOGRAPHY, FORGERY, DISGUISE, BURGLARY,
       INFORMATION, HANDGUN, WRITING, SHADOW, SNEAK, RHETORIC,
       WORDLY])
-const COP = new KultCharacter("Kult, character, archetype, cop",
+const COP = new KultCharacter("Kult, mundane character, archetype, cop",
   [DEATHWISH, ENEMY, REVENGE, FANATICISM,
       CONSTRICTION, INTOLERANCE, TOUCHY, NIGHTMARES,
       ADDICTION, RATIONALIST, COMPULSION],
@@ -710,7 +710,7 @@ const COP = new KultCharacter("Kult, character, archetype, cop",
   [AUTOMATIC, FORENSICS, INTERROGATION, DISGUISE, RIFLE, SPORT,
       BURGLARY, INFORMATION, DRIVE, HANDGUN, HUMANITIES, UNARMED,
       SHADOW, SNEAK])
-const ARTISTARCHETYPE = new KultCharacter("Kult, character, archetype, artist",
+const ARTISTARCHETYPE = new KultCharacter("Kult, mundane character, archetype, artist",
   [DEPRESSION, FANATICISM, CURSE, CONSTRICTION,
       TOUCHY, MANIA, MANICDEPRESSIVE, NIGHTMARES,
       ADDICTION, SCHIZOPHRENIA, COMPULSION],
@@ -719,7 +719,7 @@ const ARTISTARCHETYPE = new KultCharacter("Kult, character, archetype, artist",
   secret.lines, [ARTIST, WRITER, MUSICIAN], 3, 5,
   [ACTING, WRITING, CRAFT, DANCING, CONTACTS, ART,
       PHOTOGRAPHY, MUSIC, RHETORIC, WORDLY])
-const ROCKER = new KultCharacter("Kult, character, archetype, rock musician",
+const ROCKER = new KultCharacter("Kult, mundane character, archetype, rock musician",
   [DEPRESSION, REPUTATION, DEATHWISH, CURSE,
       TOUCHY, MANIA, NIGHTMARES, ADDICTION,
       NYMPHOMANIA, COMPULSION],
@@ -727,7 +727,7 @@ const ROCKER = new KultCharacter("Kult, character, archetype, rock musician",
   [CURSE, KNOWLEDGE, VICTIM, PACT, INSANITY, GUILTY],
   [MUSICIAN], 6, 8, [ACROBATICS, DANCING, POETRY, POISONS,
       DRUGS, MUSIC, MARKETING, ACTING, GAMBLING, WORDLY])
-const OUTSIDER = new KultCharacter("Kult, character, archetype, outsider",
+const OUTSIDER = new KultCharacter("Kult, mundane character, archetype, outsider",
   [DEPRESSION, REPUTATION, DEATHWISH, ENEMY,
       REVENGE, CURSE, PERSECUTED, CONSTRICTION,
       PARANOIA, WANTED, TOUCHY, ADDICTION,
@@ -742,7 +742,7 @@ const OUTSIDER = new KultCharacter("Kult, character, archetype, outsider",
       CONTACTS, MECHANICS, WHIPS, CHAINS, HANDGUN, MUSIC,
       SHADOW, GAMBLING, SNEAK, NIGHT, MARKETING, WORDLY,
       SURVIVAL])
-const ESCAPEE = new KultCharacter("Kult, character, archetype, asylum escapee",
+const ESCAPEE = new KultCharacter("Kult, mundane character, archetype, asylum escapee",
   [ANXIETY, DEPRESSION, ADDICTION, HAUNTED,
       HAUNTED, SELFESTEEM, MANICDEPRESSIVE, MARTYR,
       COMPULSION, REVENGE, PARANOIA, SCHIZOPHRENIA,
@@ -753,7 +753,7 @@ const ESCAPEE = new KultCharacter("Kult, character, archetype, asylum escapee",
   [HANDGUN, SNEAK, SWIM, HIDE, SEARCH, COMPUTERS,
       ELECTRONICS, POISONS, DRUGS, OCCULTISM, DISGUISE, ACTING,
       FORGERY, BURGLARY, DRIVE])
-const HACKER = new KultCharacter("Kult, character, archetype, hacker",
+const HACKER = new KultCharacter("Kult, mundane character, archetype, hacker",
   [DEPRESSION, PHOBIA, TOUCHY, NIGHTMARES,
       ADDICTION, LUCK, RATIONALIST, NEGLIGENT],
   [INFLUENCE, MATH, MECHANIC], [FAMILY, GUILTY],
@@ -761,7 +761,7 @@ const HACKER = new KultCharacter("Kult, character, archetype, hacker",
   [COMPUTERS, ELECTRONICS, ETIQUETTE, PHOTOGRAPHY, INFORMATION,
       CODE, DRIVE, SCIENCE, WRITING, LANGUAGES, SECURITYSKILL,
       HUMANITIES, CONTACTS])
-const HOMEMAKER = new KultCharacter("Kult, character, archetype, homemaker",
+const HOMEMAKER = new KultCharacter("Kult, mundane character, archetype, homemaker",
   [HYGIENE, ADDICTION, FANATICISM, INTOLERANCE,
       MANICDEPRESSIVE, COMPULSION, CONSTRICTION,
       NIGHTMARES, PARANOIA, PHOBIA, RATIONALIST,
@@ -773,14 +773,14 @@ const HOMEMAKER = new KultCharacter("Kult, character, archetype, homemaker",
   [SEARCH, DANCING, CRAFT, SPORT, ACCOUNTING, AID, COOKING,
       MEDITATION, DIPLOMACY, ETIQUETTE, INTERROGATION, CONTACTS,
       ACTING, PHOTOGRAPHY, DRIVE, MECHANICS])
-const PRODIGY = new KultCharacter("Kult, character, archetype, prodigy",
+const PRODIGY = new KultCharacter("Kult, mundane character, archetype, prodigy",
   [TOUCHY, INEPT], [MATH, MECHANIC],
   [FAMILY, VICTIM],
   [SCIENTIST, PROGRAMMER, TECHNICIAN, CONSULTANT], 4, 6,
   [COMPUTERS, ADMINISTRATION, WRITING, INSTRUCTION, ACCOUNTING,
       ELECTRONICS, INFORMATION, CRYPTOGRAPHY, LANGUAGES, ETIQUETTE,
       RHETORIC, SCIENCE, SOCIALSKILL])
-const ACTIVIST = new KultCharacter("Kult, character, archetype, activist",
+const ACTIVIST = new KultCharacter("Kult, mundane character, archetype, activist",
   [REPUTATION, BRASH, DOMINEERING, FANATICISM,
       MARTYR, COMPULSION],
   [ALTRUIST, HONOR, FLEXIBILITY, GOAL, EMPATHY],
@@ -788,7 +788,7 @@ const ACTIVIST = new KultCharacter("Kult, character, archetype, activist",
   [BURGLARY, BUREAUCRACY, COMPUTERS, INFORMATION, LAW, WORDLY,
       CONTACTS, PHOTOGRAPHY, RHETORIC, WRITING, SOCIALSKILL, MEDICINE,
       TRIVIA])
-const ARISTOCRAT = new KultCharacter("Kult, character, archetype, aristocrat",
+const ARISTOCRAT = new KultCharacter("Kult, mundane character, archetype, aristocrat",
   [CURSE, ADDICTION, EGOTIST, INTOLERANCE,
       REACTIONARY, DEPRESSION, TANTALIZING, VAIN],
   [CHIVALRY, HONOR, LANGUAGES, REPUTATION,
@@ -798,7 +798,7 @@ const ARISTOCRAT = new KultCharacter("Kult, character, archetype, aristocrat",
   [ADMINISTRATION, CAROUSING, DANCING, DIPLOMACY, DRIVE, ESTIMATE,
       ETIQUETTE, GAMBLING, HAUT, LANGUAGES, CONTACTS, SOCIALSKILL,
       STYLE])
-const ATHLETEARCHETYPE = new KultCharacter("Kult, character, archetype, athlete",
+const ATHLETEARCHETYPE = new KultCharacter("Kult, mundane character, archetype, athlete",
   [REPUTATION, BRASH, ADDICTION, EGOTIST,
       GREED, COMPULSION, RIVAL, TANTALIZING,
       TOUCHY],
@@ -808,7 +808,7 @@ const ATHLETEARCHETYPE = new KultCharacter("Kult, character, archetype, athlete"
   [ATHLETE, COACH, TRAINER], 8, 10,
   [ACROBATICS, CLIMB, DANCING, DODGE, DRIVE, GAMBLING,
       CONTACTS, SPORT, THROWING, UNARMED])
-const CAREGIVER = new KultCharacter("Kult, character, archetype, caregiver",
+const CAREGIVER = new KultCharacter("Kult, mundane character, archetype, caregiver",
   [CYNIC, DEBT, DEPENDENT, DEPRESSION,
       MARTYR, COMPULSION, PARANOIA],
   [ALTRUIST, EMPATHY, FAITH, FORGIVING, REPUTATION,
@@ -816,7 +816,7 @@ const CAREGIVER = new KultCharacter("Kult, character, archetype, caregiver",
   [GUILTY, SUPERNATURALEXPERIENCE, SURVIVOR, UPROOTED, VICTIM],
   [SOCIAL, NANNY, GOVERNESS, PARENT, NURSE], 3,
   7, [MEDICINE, BUREAUCRACY, WORDLY, PSYCHOLOGY, CONTACTS])
-const CELEBRITY = new KultCharacter("Kult, character, archetype, celebrity",
+const CELEBRITY = new KultCharacter("Kult, mundane character, archetype, celebrity",
   [REPUTATION, EGOTIST, GREED, MANICDEPRESSIVE,
       RIVAL, TANTALIZING, TOUCHY, VAIN],
   [ARTISTIC, REPUTATION, LUCK, STATUS],
@@ -824,7 +824,7 @@ const CELEBRITY = new KultCharacter("Kult, character, archetype, celebrity",
   [WRITER, MUSICIAN, MODEL, TV], 8, 10,
   [ACTING, CAROUSING, WRITING, DRIVE, HAUT, CONTACTS, MUSIC,
       RHETORIC, SEDUCTION, STYLE])
-const CLERGYARCHETYPE = new KultCharacter("Kult, character, archetype, clergy",
+const CLERGYARCHETYPE = new KultCharacter("Kult, mundane character, archetype, clergy",
   [DEPRESSION, ADDICTION, HAUNTED, MARTYR,
       COMPULSION, NYMPHOMANIA],
   [ALTRUIST, HONOR, EMPATHY, FORGIVING, INFLUENCE,
@@ -834,14 +834,14 @@ const CLERGYARCHETYPE = new KultCharacter("Kult, character, archetype, clergy",
   [CLERGY, MONK, SOCIAL, TEACHER], 2, 4,
   [PSYCHOLOGY, ETIQUETTE, INFORMATION, LANGUAGES, MEDITATION,
       SOCIALSKILL, CONTACTS, RHETORIC, WRITING])
-const DOCTOR = new KultCharacter("Kult, character, archetype, doctor",
+const DOCTOR = new KultCharacter("Kult, mundane character, archetype, doctor",
   [DEBT, EGOTIST, GREED, RATIONALIST,
       GAMBLER, NYMPHOMANIA],
   [REPUTATION, INFLUENCE], [GUILTY, SURVIVOR],
   [PHYSICIAN, SCIENTIST, PSYCHIATRIST], 7, 9,
   [MEDICINE, FORENSICS, COMPUTERS, WORDLY, CONTACTS, SCIENCE,
       POISONS, DRUGS])
-const FUGITIVE = new KultCharacter("Kult, character, archetype, fugitive",
+const FUGITIVE = new KultCharacter("Kult, mundane character, archetype, fugitive",
   [ANXIETY, LUCK, CURSE, CYNIC,
       DEPRESSION, PERSECUTED, BLAMED, MISTAKEN,
       ENEMY, PARANOIA, RIVAL],
@@ -849,7 +849,7 @@ const FUGITIVE = new KultCharacter("Kult, character, archetype, fugitive",
   [CURSE, FAMILY, KNOWLEDGE, GUILTY, VICTIM],
   [WORKER], 1, 3, [SECURITYSKILL, WORDLY, CLIMB, DISGUISE,
       DODGE, HIDE, SNEAK, UNARMED, SURVIVAL])
-const X = new KultCharacter("Kult, character, archetype, generation X",
+const X = new KultCharacter("Kult, mundane character, archetype, generation X",
   [CYNIC, ANXIETY, LUCK, BLACKSHEEP,
       DEBT, DEPRESSION, ADDICTION, SELFESTEEM,
       SCHIZOPHRENIA, TOUCHY],
@@ -860,7 +860,7 @@ const X = new KultCharacter("Kult, character, archetype, generation X",
   [CAROUSING, WORDLY, COMPUTERS, DANCING, DRIVE, INFORMATION,
       ART, MUSIC, POISONS, DRUGS, SPORT, WRITING, SOCIALSKILL,
       SCIENCE])
-const HUSTLER = new KultCharacter("Kult, character, archetype, hustler",
+const HUSTLER = new KultCharacter("Kult, mundane character, archetype, hustler",
   [LUCK, CYNIC, DEPRESSION, ADDICTION,
       FORGOTTEN, SELFESTEEM, PERSECUTED],
   [ANIMALS, FLEXIBILITY, ENDURANCE],
@@ -869,7 +869,7 @@ const HUSTLER = new KultCharacter("Kult, character, archetype, hustler",
   [UNEMPLOYED, PROSTITUTE, ODDJOBS, LANDLORD], 1, 3,
   [CAROUSING, WORDLY, SEDUCTION, HIDE, SEARCH, SNEAK,
       UNARMED, CONTACTS, SURVIVAL])
-const MARTIAL = new KultCharacter("Kult, character, archetype, martial artist",
+const MARTIAL = new KultCharacter("Kult, mundane character, archetype, martial artist",
   [BRASH, DEATHWISH, EGOTIST, FANATICISM,
       COMPULSION, REVENGE, RIVAL, TOUCHY],
   [ALERTNESS, ANIMALS, HONOR, ENDURANCE, FAITH,
@@ -878,7 +878,7 @@ const MARTIAL = new KultCharacter("Kult, character, archetype, martial artist",
   [COACH, MONK, WORKER], 2, 4,
   [MEDICINE, CLIMB, INSTRUCTION, THROWING, MELEE, UNARMED,
       MEDITATION, SOCIALSKILL, NIGHT, SPORT, MELEE])
-const PARAPSYCHOLOGIST = new KultCharacter("Kult, character, archetype, parapsychologist",
+const PARAPSYCHOLOGIST = new KultCharacter("Kult, mundane character, archetype, parapsychologist",
   [LUCK, REPUTATION, BLACKSHEEP, HAUNTED,
       COMPULSION, TOUCHY, MEDIUM],
   [FLEXIBILITY, GOAL, AWARENESS, INTUITION, MATH,
@@ -888,7 +888,7 @@ const PARAPSYCHOLOGIST = new KultCharacter("Kult, character, archetype, parapsyc
   [MEDICINE, COMPUTERS, ELECTRONICS, PSYCHOLOGY, INFORMATION,
       LANGUAGES, MEDITATION, CONTACTS, OCCULTISM, PHOTOGRAPHY,
       RHETORIC, WRITING])
-const SCHOLAR = new KultCharacter("Kult, character, archetype, scholar",
+const SCHOLAR = new KultCharacter("Kult, mundane character, archetype, scholar",
   [DEPRESSION, EGOTIST, FANATICISM, INTOLERANCE,
       RATIONALIST],
   [HONOR, FLEXIBILITY, LANGUAGES, MATH],
@@ -907,7 +907,7 @@ class Conjurer extends KultCharacter {
 	}
 }
 
-const OCCULTIST = new Conjurer("Kult, character, archetype, conjurer, burnt-out occultist",
+const OCCULTIST = new Conjurer("Kult, mundane character, archetype, conjurer, burnt-out occultist",
     [REPUTATION, CURSE, PERSECUTED, CONSTRICTION,
         HAUNTED, WANTED, NIGHTMARES, ADDICTION,
         MEDIUM],
@@ -918,7 +918,7 @@ const OCCULTIST = new Conjurer("Kult, character, archetype, conjurer, burnt-out 
         CONSULTANT, CLERGY],
     4, 4, [OCCULTISM, LANGUAGES, PSYCHOLOGY, CONTACTS, MEDITATION,
         WRITING, RHETORIC]);
-const PAGAN = new Conjurer("Kult, character, archetype, conjurer, new-age pagan",
+const PAGAN = new Conjurer("Kult, mundane character, archetype, conjurer, new-age pagan",
     [REPUTATION, FANATICISM, CURSE, HAUNTED,
         INTOLERANCE, NIGHTMARES, MEDIUM, PERSECUTED],
     [EMPATHY, AWARENESS, INTUITION, ANIMALS],
@@ -945,7 +945,7 @@ const SHAPECHANGE = "Uncontrolled shape change";
 const INHUMAN = "Inhuman appearance";
 const SOULTHIRST = "Soul thirst";
 const STARS = "Controlled by stars";
-const LIMITATIONS = new table.Table("Kult, character, child of the night, limitations",
+const LIMITATIONS = new table.Table("Kult, mundane character, child of the night, limitations",
     [BLOODTHIRST, SYMBOLBOUND, TOMBBOUND, HUNTER, CANNIBAL, CONTROLLED, FIRE, ELECTRICITY, HOLYSYMBOL,
         SILVER, IRON, COPPER, SUNLIGHT, SHAPECHANGE, INHUMAN, SOULTHIRST, STARS])
 tables.push(LIMITATIONS)
@@ -968,7 +968,7 @@ const TELEKINESIS = "Telekinesis";
 const TELEPATHY = "Telepathy";
 const ENDURANCEPOWER = "Infinite endurance";
 const NOFOOD = "Never needs food or drink";
-const POWERS = new table.Table("Kult, character, child of the night, powers",
+const POWERS = new table.Table("Kult, mundane character, child of the night, powers",
     [COMMANDING, ETERNAL, ABILITY, POISON, VISION, WEAPONS, FIREIMMUNE, ELECTRICITYIMMUNE, RADIATION,
         WEAPONSIMMUNITY, FAST, REGENERATION, SKIN, SENSES, TELEKINESIS, TELEPATHY, ENDURANCEPOWER, NOFOOD])
 tables.push(POWERS)
@@ -989,7 +989,7 @@ class NightChild extends KultCharacter {
 	}
 }
 
-export const GENERIC = new NightChild("Kult, character, child of the night, archetype, generic",
+export const GENERIC = new NightChild("Kult, mundane character, child of the night, archetype, generic",
     secret.lines, POWERS.lines, LIMITATIONS.lines,
     [DEPRESSION, REPUTATION, DEATHWISH, ENEMY,
         REVENGE, CURSE, PERSECUTED, CONSTRICTION,
@@ -998,13 +998,13 @@ export const GENERIC = new NightChild("Kult, character, child of the night, arch
     [AWARENESS, INTUITION, SENSATE, ENDURANCEPOWER],
     [UNEMPLOYED, WORKER, STUDENT, BOUNCER], 1, 7,
     skill.lines);
-const LORELEI = new NightChild("Kult, character, child of the night, archetype, lorelei",
+const LORELEI = new NightChild("Kult, mundane character, child of the night, archetype, lorelei",
     [GUILTY], [ABILITY, ETERNAL], [CONTROLLED, SOULTHIRST],
     [COMPULSION, ANIMAL, EGOTIST, NYMPHOMANIA,
         TANTALIZING, VAIN],
     [ENDURANCEPOWER, AWARENESS], profession.lines, 6, 10,
     [WORDLY, DANCING, ETIQUETTE, CONTACTS, STYLE])
-const NEPHILIM = new NightChild("Kult, character, child of the night, archetype, nephilim",
+const NEPHILIM = new NightChild("Kult, mundane character, child of the night, archetype, nephilim",
     [CURSE, OCCULTEXPERIENCE, GUILTY, UPROOTED],
     [VISION, WEAPONS, WEAPONSIMMUNITY, SKIN, SENSES, ABILITY, FAST],
     [INHUMAN, IRON, SILVER, COPPER, ELECTRICITY],
@@ -1014,7 +1014,7 @@ const NEPHILIM = new NightChild("Kult, character, child of the night, archetype,
     [UNEMPLOYED, CRIMINAL], 1, 1,
     [BURGLARY, WORDLY, DISGUISE, ETIQUETTE, CONTACTS, POISONS,
         DRUGS, SURVIVAL, SHADOW, SNEAK, UNARMED])
-const REVENANT = new NightChild("Kult, character, child of the night, archetype, revenant",
+const REVENANT = new NightChild("Kult, mundane character, child of the night, archetype, revenant",
     [CHOSEN, CURSE, INSANITY, VICTIM, UPROOTED],
     [ABILITY, SKIN, NOFOOD, REGENERATION],
     [CONTROLLED, FIRE, ELECTRICITY, HOLYSYMBOL, TOMBBOUND, INHUMAN],
@@ -1022,7 +1022,7 @@ const REVENANT = new NightChild("Kult, character, child of the night, archetype,
         REVENGE, TOUCHY],
     [ENDURANCEPOWER, INTUITION, SENSATE], [UNEMPLOYED], 1, 1,
     [WORDLY, SURVIVAL, SHADOW, SNEAK, UNARMED])
-const SERAPHIM = new NightChild("Kult, character, child of the night, archetype, seraphim",
+const SERAPHIM = new NightChild("Kult, mundane character, child of the night, archetype, seraphim",
     [KNOWLEDGE, INSANITY, PACT], [WEAPONS, ETERNAL, FAST, ABILITY, VISION],
     [ELECTRICITY, IRON],
     [COMPULSION, TANTALIZING, AMNESIA, WANTED,
@@ -1031,7 +1031,7 @@ const SERAPHIM = new NightChild("Kult, character, child of the night, archetype,
         SENSATE],
     [UNEMPLOYED], 1, 1, [MELEE, LANGUAGES, SEDUCTION,
         PSYCHOLOGY, INTERROGATION, CONTACTS])
-const WOLVEN = new NightChild("Kult, character, child of the night, archetype, wolven",
+const WOLVEN = new NightChild("Kult, mundane character, child of the night, archetype, wolven",
     [INHERITOR, VICTIM, GUILTY, UPROOTED],
     [WEAPONSIMMUNITY, FAST, SENSES, POISON, WEAPONS, ABILITY, VISION],
     [SILVER, HUNTER, SHAPECHANGE, INHUMAN, STARS],
@@ -1039,7 +1039,7 @@ const WOLVEN = new NightChild("Kult, character, child of the night, archetype, w
         CYNIC, DEPRESSION, WANTED],
     [ALERTNESS, ANIMALS, ENDURANCEPOWER, INTUITION],
     profession.lines, 1, 10, [CONTACTS, SNEAK, SURVIVAL, UNARMED])
-const CHILDOFTHENIGHT = new table.Table("Kult, character, child of the night",
+const CHILDOFTHENIGHT = new table.Table("Kult, mundane character, child of the night",
     [GENERIC, LORELEI, NEPHILIM, REVENANT, SERAPHIM, WOLVEN])
 tables.push(...CHILDOFTHENIGHT.lines.concat([CHILDOFTHENIGHT]))
 
@@ -1063,7 +1063,7 @@ BADBALANCE.set(STARS, 10);
 for (var p of POWERS.lines)
   GOODBALANCE.set(p, 0);
 
-export const ARCHETYPE = new table.Table("Kult, character",
+export const ARCHETYPE = new table.Table("Kult, mundane character",
   [GANGMEMBER, AVENGER, DEALER, FEMMEFATALE, PIARCHETYPE, VETERAN, AGENT, CORPORATE, STUDENTARCHETYPE, SCIENTISTARCHETYPE,
       SAMURAI, MUCKRAKER, COP, ARTISTARCHETYPE, ROCKER, OUTSIDER, ESCAPEE, HACKER, HOMEMAKER, PRODIGY, ACTIVIST,
       ARISTOCRAT, ATHLETEARCHETYPE, CAREGIVER, CELEBRITY, CLERGYARCHETYPE, DOCTOR, FUGITIVE, X, HUSTLER, MARTIAL,

@@ -3,7 +3,7 @@ import * as rpg from '../../rpg.js'
 
 class Age extends table.Table {
 	constructor() {
-		super("Darkness, kindred, age");
+		super("Darkness, character, kindred, age");
 	}
 
 	roll() {
@@ -21,7 +21,7 @@ class Age extends table.Table {
 
 const ANTITRIBU = "antitribu";
 
-const CAMARILLA = new table.Table("Darkness, kindred, clan,  camarilla") 
+const CAMARILLA = new table.Table("Darkness, character, kindred, clan,  camarilla") 
 CAMARILLA.add( "Ventrue",10);
 CAMARILLA.add( "Toreador",10);
 CAMARILLA.add( "Tremere",8);
@@ -29,18 +29,18 @@ CAMARILLA.add( "Nosferatu",9);
 CAMARILLA.add( "Malkavian",7);
 CAMARILLA.add( "Lasombra",6);
 
-const INDEPENDENT = new table.Table("Darkness, kindred, clan,  independent") 
+const INDEPENDENT = new table.Table("Darkness, character, kindred, clan,  independent") 
 INDEPENDENT.add("Giovanni",4);
 INDEPENDENT.add("Ravnos",3);
 
-const SABBAT = new table.Table("Darkness, kindred, clan,  sabbat")
+const SABBAT = new table.Table("Darkness, character, kindred, clan,  sabbat")
 SABBAT.add( "Assamite",3);
 SABBAT.add( "Tzimisce",6);
 let antitribu = Array.from(CAMARILLA.unique)
 antitribu.push(...INDEPENDENT.unique)
 for (let a of antitribu) SABBAT.add(a + " " + ANTITRIBU);
 
-const ANARCH = new table.Table("Darkness, kindred, clan,  anarch") 
+const ANARCH = new table.Table("Darkness, character, kindred, clan,  anarch") 
 ANARCH.add("Brujah",20);
 ANARCH.add("Gangrel",8);
 ANARCH.add( "Setites",3);
@@ -67,12 +67,12 @@ class Clan extends table.Table {
 	 roll() {return FACTIONS.get(super.roll()).roll()}
 }
 
-const URBAN = new Clan("Darkness, kindred, clan, urban", 4, 2);
-const RURAL = new Clan("Darkness, kindred, clan, rural", 2, 4);
+const URBAN = new Clan("Darkness, character, kindred, clan, urban", 4, 2);
+const RURAL = new Clan("Darkness, character, kindred, clan, rural", 2, 4);
 
 class Generation extends table.Table {
 	constructor() {
-		super("Darkness, kindred, generation");
+		super("Darkness, character, kindred, generation");
 		this.add("4th", 3);
 		this.add("5th", 6);
 		this.add("6th", 10);
@@ -89,7 +89,7 @@ class Generation extends table.Table {
 
 class Type extends table.Table {
 	constructor() {
-		super("Darkness, kindred, type");
+		super("Darkness, character, kindred, type");
 		this.add("Vampire", 7);
 		this.add("Ghoul", 2);
 		this.add("Revenant", 1);
@@ -119,8 +119,8 @@ class Kindred extends table.Table {
 	}
 }
 
-export var urban = new Kindred("Darkness, kindred, urban", URBAN);
-export var rural = new Kindred("Darkness, kindred, rural", RURAL);
-export var kindred = new table.Table("Darkness, kindred", [rural,urban]);
+export var urban = new Kindred("Darkness, character, kindred, urban", URBAN);
+export var rural = new Kindred("Darkness, character, kindred, rural", RURAL);
+export var kindred = new table.Table("Darkness, character, kindred", [rural,urban]);
 
 export var tables=[age,CAMARILLA,SABBAT,INDEPENDENT,ANARCH,URBAN,RURAL,type,generation,urban,rural,kindred]

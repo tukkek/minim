@@ -5,7 +5,7 @@ export var tables=[]
 
 class Tradition extends table.Table {
 	constructor() {
-		super("Darkness, mage, tradition");
+		super("Darkness, character, mage, tradition");
 		this.add("Order of Hermes", 2);
 		this.lines.push(...["Akashic broterhood", "Celestial chorus", "Dreamspeakers", "Verbena", "Cult of ecstacy",
 				"Virtual adepts", "Sons of ether", "Euthanatos"])
@@ -14,7 +14,7 @@ class Tradition extends table.Table {
 
 class Faction extends table.Table {
 	constructor() {
-		super("Darkness, mage, faction");
+		super("Darkness, character, mage, faction");
 		this.add("Traditions", 3);
 		this.add("Technocracy", 4);
 		this.add("Marauders", 1);
@@ -38,24 +38,24 @@ var faction=new Faction()
 
 tables.push(...[tradition,faction])
 
-const TRADITIONS = new Rank("Darkness, mage, rank, traditions");
-const TECHNOCRACY = new Rank("Darkness, mage, rank, technoracy");
-const NEPHANDI = new Rank("Darkness, mage, rank, nephandi", 1, 4, 4, 2);
-const MARAUDER = new Rank("Darkness, mage, rank, marauder", 1, 4, 4, 2);
-const ORPHAN = new Rank("Darkness, mage, rank, orphan", 1, 3, 2, 1)
+const TRADITIONS = new Rank("Darkness, character, mage, rank, traditions");
+const TECHNOCRACY = new Rank("Darkness, character, mage, rank, technoracy");
+const NEPHANDI = new Rank("Darkness, character, mage, rank, nephandi", 1, 4, 4, 2);
+const MARAUDER = new Rank("Darkness, character, mage, rank, marauder", 1, 4, 4, 2);
+const ORPHAN = new Rank("Darkness, character, mage, rank, orphan", 1, 3, 2, 1)
 ORPHAN.add("Lone apprentice", 1);
 ORPHAN.add("Lone disciple", 2);
 ORPHAN.add("Lone adept", 1);
 
 const LARGEGROUP = "Large group";
-const ORGANIZATION = new table.Table("Darkness, mage, NPC, hedge mage, organization",
+const ORGANIZATION = new table.Table("Darkness, character, mage, NPC, hedge mage, organization",
   ["Loner", "Small group", LARGEGROUP]);
 
 tables.push(...[TRADITIONS,TECHNOCRACY,NEPHANDI,MARAUDER,ORPHAN,ORGANIZATION])
 
 class HedgeMage extends table.Table {
 	constructor() {
-		super("Darkness, mage, NPC, hedge mage");
+		super("Darkness, character, mage, NPC, hedge mage");
 	}
 
 	 roll() {
@@ -73,7 +73,7 @@ class HedgeMage extends table.Table {
 
 class Traditionalist extends table.Table {
   constructor(){
-    super("Darkness, mage, NPC, traditionalist")
+    super("Darkness, character, mage, NPC, traditionalist")
   }
   
   roll() {
@@ -87,7 +87,7 @@ class Traditionalist extends table.Table {
 
 class Technocrat extends table.Table {
   constructor(){
-    super("Darkness, mage, NPC, technocrat")
+    super("Darkness, character, mage, NPC, technocrat")
   }
   
   roll() {
@@ -97,7 +97,7 @@ class Technocrat extends table.Table {
 
 class Nephandi extends table.Table{
   constructor(){
-    super('Darkness, mage, NPC, nephandi')
+    super('Darkness, character, mage, NPC, nephandi')
   }
 
   roll() {
@@ -117,7 +117,7 @@ class Nephandi extends table.Table{
 
 class Orphan extends table.Table{
   constructor(){
-    super("Darkness, mage, NPC, orphan")
+    super("Darkness, character, mage, NPC, orphan")
   }
   
   roll() {
@@ -142,7 +142,7 @@ FACTIONS.set("Orphans", orphan);
 
 class Mage extends table.Table {
 	constructor() {
-		super("Darkness, mage");
+		super("Darkness, character, mage");
 	}
 
 	roll() {
@@ -151,7 +151,7 @@ class Mage extends table.Table {
 	}
 }
 
-const BACKRGOUND = new table.Table("Darkness, mage, NPC, marauder, background")
+const BACKRGOUND = new table.Table("Darkness, character, mage, NPC, marauder, background")
 BACKRGOUND.add("Former traditionalist", 4);
 BACKRGOUND.add("Former technocrat", 2);
 BACKRGOUND.add("Former nephandi", 1);
@@ -162,7 +162,7 @@ tables.push(...[mage,BACKRGOUND])
 
 class Marauder extends table.Table {
 	constructor() {
-		super("Darkness, mage, NPC, marauder");
+		super("Darkness, character, mage, NPC, marauder");
 	}
 
   roll() {
@@ -177,7 +177,7 @@ class Marauder extends table.Table {
 	}
 }
 
-const FACTION = new table.Table("Darkness, mage, social, nephandi labyrinth, type")
+const FACTION = new table.Table("Darkness, character, mage, social, nephandi labyrinth, type")
 FACTION.add("Infernal", 4);
 FACTION.add("Wyrm", 3);
 FACTION.add("Deep Umbra", 1);
@@ -185,7 +185,7 @@ FACTION.add("Freelance", 2);
 
 class Labyrinth extends table.Table {
   constructor() {
-		super("Darkness, mage, social, nephandi labyrinth");
+		super("Darkness, character, mage, social, nephandi labyrinth");
 	}
 
 	roll() {
@@ -199,7 +199,7 @@ class Labyrinth extends table.Table {
 
 class Chantry extends table.Table {
   constructor() {
-		super("Darkness, mage, social, tradtitions chantry");
+		super("Darkness, character, mage, social, tradtitions chantry");
 	}
 
 	rolltype() {
@@ -251,7 +251,7 @@ class Chantry extends table.Table {
 
 class Construct extends table.Table{
   constructor(){
-    super("Darkness, mage, social, technocracy convention, construct")
+    super("Darkness, character, mage, social, technocracy convention, construct")
   }
   
   roll() {
@@ -265,7 +265,7 @@ class Construct extends table.Table{
 
 class Convention extends table.Table {
 	constructor() {
-		super("Darkness, mage, social, technocracy convention");
+		super("Darkness, character, mage, social, technocracy convention");
 	}
 
 	roll() {

@@ -6,15 +6,15 @@ import * as rpg from '../../rpg.js'
 
 export var tables=[kindred,mage,werewolf].flatMap(t=>t.tables)
                     
-const FAMILIES = new table.Table("Darkness, beast, family", ["Anakim, giants", "Eshmaki, lurkers",
+const FAMILIES = new table.Table("Darkness, character, beast, family", ["Anakim, giants", "Eshmaki, lurkers",
     "Inguma, outsiders", "Makara, leviathans", "Namtaru, gorgoms", "Talassii, captors", "Ugallu, raptors"])
-const HUNGER = new table.Table("Darkness, beast, hunger",
+const HUNGER = new table.Table("Darkness, character, beast, hunger",
     ["Predator (prey)", "Tyrant (power)", "Nemesies (punishment)", "Ravager (ruin)",
         "Collectors (hoard)", "Whispers (secrets)", "Enablers (transgression)"])
 
 class Beast extends table.Table {
 	constructor() {
-		super("Darkness, beast");
+		super("Darkness, character, beast");
 	}
 
 	roll() {
@@ -29,26 +29,26 @@ class Beast extends table.Table {
 export var beast=new Beast()
 tables.push(...[FAMILIES,HUNGER,beast])
 
-const LEGIONS = new table.Table("Darkness, wraith, faction, hierarchy legions",
+const LEGIONS = new table.Table("Darkness, character, wraith, faction, hierarchy legions",
   ["Emerald legion", "Legion of fate", "Grim legion", "Iron legion", "Legion of paupers",
       "Penitent legion", "Silent legion", "Skeletal legion"])
-const HERETICS = new table.Table("Darkness, wraith, faction, heretics",
+const HERETICS = new table.Table("Darkness, character, wraith, faction, heretics",
   ["The host", "Children of the green", "Riders of the wheel"])
-const RENEGADES = new table.Table("Darkness, wraith, faction, renegades",
+const RENEGADES = new table.Table("Darkness, character, wraith, faction, renegades",
   ["Protesters", "Idealists", "Outlaws", "Drop-outs"])
-const FACTIONS = new table.Table("Darkness, wraith, faction")
+const FACTIONS = new table.Table("Darkness, character, wraith, faction")
 FACTIONS.add(LEGIONS,2);
 FACTIONS.add(HERETICS);
 FACTIONS.add(RENEGADES);
 FACTIONS.add("Ferrymen", 1);
 
-const GUILDS = new table.Table("Darkness, wraith, guilds",
+const GUILDS = new table.Table("Darkness, character, wraith, guilds",
   ["Alchemists", "Artificers", "Chanteur", "Harbingers", "Haunters", "Masquers", "Mnemoi", "Monitors",
       "Oracles", "Pardoners", "Proctors", "Sandmen", "Solicitors", "Sppoks", "Usurers"])
 
 class Wraith extends table.Table {
 	constructor() {
-		super("Darkness, wraith");
+		super("Darkness, character, wraith");
 	}
 
   roll() {
@@ -105,13 +105,13 @@ export const ARTIFACT = new table.Table("Darkness, artifact", [VAMPIRE, WRAITH, 
 
 tables.push(...[VAMPIRE, WRAITH, MAGE,ARTIFACT])
 
-const HOUSE = new table.Table("Darkness, demon, houses",
+const HOUSE = new table.Table("Darkness, character, demon, houses",
     ["Devils", "Scourges", "Malefactors", "Fiends", "Defilers", "Devourers", "Slayers"])
-const FACTION = new table.Table("Darkness, demon, factions",
+const FACTION = new table.Table("Darkness, character, demon, factions",
     ["Faustian", "Cryptics", "Luciferans", "Raveners", "Reconcilers"])
 class Demon extends table.Table {
 	constructor() {
-		super("Darkness, demon");
+		super("Darkness, character, demon");
 	}
 
 	roll() {
@@ -125,16 +125,16 @@ class Demon extends table.Table {
 var demon=new Demon()
 tables.push(...[HOUSE,FACTION,demon])
 
-const BURDEN = new table.Table("Darkness, bound, burden",
+const BURDEN = new table.Table("Darkness, character, bound, burden",
   ["Abiding", "Bereaved", "Hungry", "Kindly", "Vengeful"])
-const HAUNT = new table.Table("Darkness, bound, haunt", ["Boneyard", "Caul", "Curse", "Dirge",
+const HAUNT = new table.Table("Darkness, character, bound, haunt", ["Boneyard", "Caul", "Curse", "Dirge",
   "Marionette", "Memoria", "Oracle", "Pit", "Rage", "Shroud", "Tomb", "Void", "Well"])
-const KEY = new table.Table("Darkness, bound, key", ["Beasts", "Blood", "Chance", "Cold wind",
+const KEY = new table.Table("Darkness, character, bound, key", ["Beasts", "Blood", "Chance", "Cold wind",
   "Deep waters", "Disease", "Grave dirt", "Pyre flame", "Stillness"])
 
 class Bound extends table.Table {
 	constructor() {
-		super("Darkness, bound");
+		super("Darkness, character, bound");
 	}
 
   roll() {
@@ -150,44 +150,44 @@ var bound=new Bound()
 tables.push(...[BURDEN,HAUNT,KEY,bound])
 
 const SIDHE = "Sidhe";
-const KITHAIN = new table.Table("Darkness, changeling, kith, kithain",
+const KITHAIN = new table.Table("Darkness, character, changeling, kith, kithain",
   ["Boggasn", "Eshu", "Nockers", "Pooka", "Redcaps", "Satyrs", SIDHE, "Sluagh", "Trolls"])
-const GALLAIN = new table.Table("Darkness, changeling, kith, gallain",
+const GALLAIN = new table.Table("Darkness, character, changeling, kith, gallain",
   ["Clurichaun", "Ghille dhu", "Korred", "Merfolk", "Morganed", "Piskies", "River Hags", "Selkies",
       "Swan maidens", "Wichtel", "Wolpertinger"])
-const ADHENE = new table.Table("Darkness, changeling, kith, adhene",
+const ADHENE = new table.Table("Darkness, character, changeling, kith, adhene",
   ["Acheri", "Aonides", "Fir-bholg", "Fuath", "Keremet", "Moirae", "Naraka"])
-const HSIEN = new table.Table("Darkness, changeling, kith, hsien", ["Chu-ih-yu", "Chu Jung",
+const HSIEN = new table.Table("Darkness, character, changeling, kith, hsien", ["Chu-ih-yu", "Chu Jung",
   "Fu Hsi", "Hanumen", "Heng Po", "Hou-chi", "Komuko", "Nyan", "Suijen", "Tanuki"])
-const INANIMAE = new table.Table("Darkness, changeling, kith, inanimae",
+const INANIMAE = new table.Table("Darkness, character, changeling, kith, inanimae",
   ["Glomes", "Kuberas", "Mannikins", "Ondines", "Parosemes", "Solimonds"])
-const NUNNEHI = new table.Table("Darkness, changeling, kith, nunnehi",
+const NUNNEHI = new table.Table("Darkness, character, changeling, kith, nunnehi",
   ["Canotili", "Inua", "Kachina", "May-may-gway-shi", "Nanehi", "Nümüzo'ho", "Pu'gwis", "Rock Giant",
       "Surem", "Thought-crafter", "Tunghat", "Water Baby", "Yunwi Amai'yine'hi", "Yunwi Tsundsi"])
-const THALLAIN = new table.Table("Darkness, changeling, kith, thallain",
+const THALLAIN = new table.Table("Darkness, character, changeling, kith, thallain",
   ["Aithu", "Beastie", "Bodach", "Boggart", "Bogie", "Ghast", "Goblin", "Huaka'i Po", "Kelpies",
       "Lurks", "Mandragora", "Murdhuacha", "Nasties", "Night Hag", "Ogre", "Sevartal", "Skinwalker",
       "Spriggan", "Weeping Wights"])
-const KITH = new table.Table("Darkness, changeling, kith",
+const KITH = new table.Table("Darkness, character, changeling, kith",
   [KITHAIN, GALLAIN, ADHENE, HSIEN, INANIMAE, NUNNEHI, THALLAIN])
 const SEELIE = "Seelie";
 const UNSEELIE = "Unseelie";
-const COURT = new table.Table("Darkness, changeling, court")
+const COURT = new table.Table("Darkness, character, changeling, court")
 COURT.add(SEELIE, 5);
 COURT.add(UNSEELIE, 5);
 COURT.add("Shadow", 1);
 
 tables.push(...[KITHAIN,GALLAIN,ADHENE,HSIEN,INANIMAE,NUNNEHI,THALLAIN,KITH,COURT])
 
-const SEELIEHOUSES = new table.Table("Darkness, changeling, house, seelie",
+const SEELIEHOUSES = new table.Table("Darkness, character, changeling, house, seelie",
   ["Beaumayn", "Dougal", "Eiluned", "Fiona", "Gwydion", "Liam", "Scathach"])
-const UNSEELIEHOUSES = new table.Table("Darkness, changeling, house, unseelie",
+const UNSEELIEHOUSES = new table.Table("Darkness, character, changeling, house, unseelie",
   ["Aesin", "Ailil", "Balor", "Daireann", "Leanhaun", "Varich", "Scathach"])
-const HOUSES = new table.Table("Darkness, changeling, house", [SEELIEHOUSES, UNSEELIEHOUSES])
+const HOUSES = new table.Table("Darkness, character, changeling, house", [SEELIEHOUSES, UNSEELIEHOUSES])
 
 class Changeling extends table.Table {
 	constructor() {
-		super("Darkness, changeling");
+		super("Darkness, character, changeling");
 	}
 
 	 roll() {
@@ -208,30 +208,30 @@ var changeling=new Changeling()
 
 tables.push(...[SEELIEHOUSES,UNSEELIEHOUSES,HOUSES,changeling])
 
-const MERCY = new table.Table("Darkness, hunter, creed, mercy",
+const MERCY = new table.Table("Darkness, character, hunter, creed, mercy",
     ["Innocents", "Martyrs", "Redeemers"])
-const VISION = new table.Table("Darkness, hunter, creed, vision",
+const VISION = new table.Table("Darkness, character, hunter, creed, vision",
     ["Hermits", "Visionaries", "Waywards"])
-const ZEAL = new table.Table("Darkness, hunter, creed, zeal",
+const ZEAL = new table.Table("Darkness, character, hunter, creed, zeal",
     ["Avengers", "Defenders", "Judges"])
-const CREED = new table.Table("Darkness, hunter, creed", [MERCY, VISION, ZEAL])
-const COMPACT = new table.Table("Darkness, hunter, organization, compact",
+const CREED = new table.Table("Darkness, character, hunter, creed", [MERCY, VISION, ZEAL])
+const COMPACT = new table.Table("Darkness, character, hunter, organization, compact",
     ["Ahl al-Jabal", "Ashwood Abbey", "The Bear Lodge", "Barrett Commission", "Division Six",
         "Habibti Ma", "The Hunt Club", "The Illuminated Brotherhood", "Keepers of the Source", "Long Night",
         "Loyalists of Thule", "Maiden's Blood Sisterhood", "Network Zero", "Night Watch", "Null Mysteriis",
         "The Promethean Brotherhood", "Talbot Group", "The Union", "Utopia Now"])
-const CONSPIRACY = new table.Table("Darkness, hunter, organization, conspiracy",
+const CONSPIRACY = new table.Table("Darkness, character, hunter, organization, conspiracy",
     ["Aegis Kai Doru", "Ascending Ones", "The Cainite Heresy", "The Cheiron Group",
         "The Faithful of Shulpae", "Knights of Saint Adrian", "The Knights of Saint George", "Les Mystères",
         "Lucifuge", "Malleus Maleficarum", "Task Force: VALKYRIE", "Vanguard Serial Crimes Unit"])
-const ORGANIZATION = new table.Table("Darkness, hunter, organization")
+const ORGANIZATION = new table.Table("Darkness, character, hunter, organization")
 ORGANIZATION.add(CONSPIRACY);
 ORGANIZATION.add(COMPACT,2);
 ORGANIZATION.add("Independent cell", 4);
 
 class Hunter extends table.Table {
 	constructor() {
-		super("Darkness, hunter");
+		super("Darkness, character, hunter");
 	}
 
 	roll() {
@@ -246,23 +246,23 @@ export var hunter=new Hunter()
 
 tables.push(...[MERCY,VISION,ZEAL,CREED,COMPACT,CONSPIRACY,ORGANIZATION,hunter])
 
-const ORTHODOX = new table.Table("Darkness, kue-jin, dharma, orthodox",
+const ORTHODOX = new table.Table("Darkness, character, kue-jin, dharma, orthodox",
     ["Devil-tiger", "Song of shadow", "Resplendent crane", "Thrashing dragon", "Thousand whispers"])
-const HERETICAL = new table.Table("Darkness, kue-jin, dharma, heretical",
+const HERETICAL = new table.Table("Darkness, character, kue-jin, dharma, heretical",
     ["Spirit of the living earth", "Face of the gods", "Flame of the rising phoenix",
         "Tempest of inward focus"])
-const DHARMA = new table.Table("Darkness, kue-jin, dharma")
+const DHARMA = new table.Table("Darkness, character, kue-jin, dharma")
 DHARMA.add("Scorpion eater", 1);
 DHARMA.add(HERETICAL,2);
 DHARMA.add(ORTHODOX,4);
-const CHI = new table.Table("Darkness, kue-jin, chi")
+const CHI = new table.Table("Darkness, character, kue-jin, chi")
 CHI.add("Yin (black)", 2);
 CHI.add("Yang (scarlet)", 2);
 CHI.add("P'o (demon)", 1);
 
 class Kuejin extends table.Table {
 	constructor() {
-		super("Darkness, kue-jin");
+		super("Darkness, character, kue-jin");
 	}
 
 	roll() {
@@ -277,15 +277,15 @@ var kuejin=new Kuejin()
 tables.push(...[ORTHODOX,HERETICAL,DHARMA,CHI,kuejin])
 
 var Athanor={
-  FRANKENSTEIN:new table.Table("Darkness, promethean, athanor, frankenstein",
+  FRANKENSTEIN:new table.Table("Darkness, character, promethean, athanor, frankenstein",
       ["Basilisk", "Caladrius", "Griffon", "Lion", "Manticore"]),
-  GALATEA : new table.Table("Darkness, promethean, athanor, galatea",
+  GALATEA : new table.Table("Darkness, character, promethean, athanor, galatea",
       ["Dove", "Gorgon", "Seraph", "Swan", "Unicorn"]),
-   OSIRIS : new table.Table("Darkness, promethean, athanor, osiris",
+   OSIRIS : new table.Table("Darkness, character, promethean, athanor, osiris",
       ["Ant", "Dragon", "Eagle", "Eel", "Honeybee", "Owl", "Sphinx"]),
-   TAMMUZ : new table.Table("Darkness, promethean, athanor, tammuz",
+   TAMMUZ : new table.Table("Darkness, character, promethean, athanor, tammuz",
       ["Cerberus", "Crab", "Humbaba", "Pelican", "Phoenix"]),
-   ULGAN : new table.Table("Darkness, promethean, athanor, ulgan",
+   ULGAN : new table.Table("Darkness, character, promethean, athanor, ulgan",
       ["Chimera", "Crane", "Dragon", "Fox", "La llorona", "Raven", "Salamander", "Toad"])
 }
 tables.push(...[Athanor.FRANKENSTEIN,Athanor.GALATEA,Athanor.OSIRIS,Athanor.TAMMUZ,Athanor.ULGAN])
@@ -295,7 +295,7 @@ const GALATEA = "Galatea";
 const OSIRIS = "Osiris";
 const TAMMUZ = "Tammuz";
 const ULGAN = "Ulgan";
-const LINEAGE = new table.Table("Darkness, promethean, lineage",
+const LINEAGE = new table.Table("Darkness, character, promethean, lineage",
   [FRANKENSTEIN, GALATEA, OSIRIS, TAMMUZ, ULGAN])
 const AES = "Aes (aid)";
 const ARGENTUM = "Argentum (mystery)";
@@ -303,14 +303,14 @@ const COBALUS = "Cobalus (impurity)";
 const MERCURIUS = "Mercurius (pyros)";
 const PHOSPORUM = "Phosporum (ephemerality)";
 const CENTIMANTI = "Centimanti (flux)";
-const REFINEMENT = new table.Table("Darkness, promethean, simple refinement")
+const REFINEMENT = new table.Table("Darkness, character, promethean, simple refinement")
 for (let r of ["Aurum (mortality)", "Coprum (self)", "Ferrum (corpus)", "Plumbum (Source)",
     "Stannum (torment)"])
   REFINEMENT.add(r, 100);
 for (let r of [AES, ARGENTUM, COBALUS, MERCURIUS, PHOSPORUM])
   REFINEMENT.add(r, 10);
 REFINEMENT.add(CENTIMANTI, 1);
-const TRANSMUTATION = new table.Table("Darkness, promethean, transmutations",
+const TRANSMUTATION = new table.Table("Darkness, character, promethean, transmutations",
   ["Consortium", "Corporeum", "Deception", "Disquietism", "Electrification", "Mesmerism",
       "Metamorphosis", "Saturminus", "Sensorium", "Vitality", "Vulcanus"])
 tables.push(...[LINEAGE,REFINEMENT,TRANSMUTATION])
@@ -336,7 +336,7 @@ DISQUIET.set(TAMMUZ, "disrupts communication between the Promethean and the Disq
 DISQUIET.set(ULGAN, "causes intense paranoia");
 class Promethean extends table.Table {
 	constructor() {
-		super("Darkness, promethean");
+		super("Darkness, character, promethean");
 	}
 
   roll() {
@@ -358,13 +358,13 @@ class Promethean extends table.Table {
 var promethean=new Promethean()
 tables.push(promethean)
 
-const DECREE = new table.Table("Darkness, mummy, decree",
+const DECREE = new table.Table("Darkness, character, mummy, decree",
     ["Heart", "Spirit", "Essence", "Name", "Shadow"])
-const GUILD = new table.Table("Darkness, mummy, guild", ["Engravers of amulets",
+const GUILD = new table.Table("Darkness, character, mummy, guild", ["Engravers of amulets",
     "First alchemists", "Inscribers of texts", "Sheperds of the shell", "Builders of effigies"])
 class Mummy extends table.Table{
 	constructor() {
-		super("Darkness, mummy");
+		super("Darkness, character, mummy");
 	}
 
   roll() {
@@ -380,7 +380,7 @@ tables.push(...[DECREE,GUILD,mummy])
 
 class Monster extends table.Table {
 	constructor() {
-		super("Darkness, NPC");
+		super("Darkness, character");
     this.add( wraith,500);
 		this.add( hunter,500);
 		this.add( werewolf.werewolf,300);

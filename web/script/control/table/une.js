@@ -3,7 +3,7 @@ import * as rpg from '../rpg.js'
 
 export var tables=[]
 
-const VERB = new table.Table("UNE, NPC motivation, verb",
+const VERB = new table.Table("UNE, character, motivation, verb",
   ["advise", "obtain", "attempt", "spoil", "oppress", "interact", "create", "abduct", "promote",
       "conceive", "blight", "progress", "distress", "possess", "record", "embrace", "contact", "pursue",
       "associate", "prepare", "shepherd", "abuse", "indulge", "chronicle", "fulfill", "drive", "review",
@@ -16,7 +16,7 @@ const VERB = new table.Table("UNE, NPC motivation, verb",
       "manage", "suppress", "proclaim", "operate", "access", "refine", "compose", "undermine", "explain",
       "discourage", "attend", "detect", "execute", "maintain", "realize", "convey", "rob", "establish",
       "overthrow", "support"]);
-const MOTIVATIONNOUN = new table.Table("UNE, NPC motivation, noun",
+const MOTIVATIONNOUN = new table.Table("UNE, character, motivation, noun",
   ["wealth", "hardship", "affluence", "resources", "prosperity", "poverty", "opulence", "deprivation",
       "success", "distress", "contraband", "music", "literature", "technology", "alcohol", "medicines",
       "beauty", "strength", "intelligence", "force", "the wealthy", "the populous", "enemies",
@@ -35,7 +35,7 @@ const ROLLS = 3;
 
 class Motivation extends table.Table {
 	constructor() {
-		super("UNE, NPC motivation");
+		super("UNE, character, motivation");
 	}
 
   roll() {
@@ -59,7 +59,7 @@ tables.push(...[motivation,VERB,MOTIVATIONNOUN])
 
 class PowerLevel extends table.Table {
 	constructor() {
-		super("UNE, NPC power level");
+		super("UNE, character, power level");
 		this.add("much weaker",4);
 		this.add( "weaker",20);
 		this.add( "comparable",60);
@@ -70,19 +70,19 @@ class PowerLevel extends table.Table {
 var powerlevel=new PowerLevel()
 tables.push(powerlevel)
 
-const FRIENDLY = new table.Table("UNE, NPC mood, friendly") 
+const FRIENDLY = new table.Table("UNE, character, mood, friendly") 
 FRIENDLY.add("hostile",8);
 FRIENDLY.add( "cautious",20);
 FRIENDLY.add( "neutral",20);
 FRIENDLY.add( "sociable",30);
 FRIENDLY.add( "friendly",30);
-const NEUTRAL = new table.Table("UNE, NPC mood, neutral") 
+const NEUTRAL = new table.Table("UNE, character, mood, neutral") 
 NEUTRAL.add( "hostile",10);
 NEUTRAL.add( "cautious",20);
 NEUTRAL.add( "neutral",30);
 NEUTRAL.add("sociable",20);
 NEUTRAL.add("friendly",20);
-const HOSTILE = new table.Table("UNE, NPC mood, hostile") 
+const HOSTILE = new table.Table("UNE, character, mood, hostile") 
 HOSTILE.add("hostile",20);
 HOSTILE.add("cautious",40);
 HOSTILE.add("neutral",20);
@@ -90,28 +90,28 @@ HOSTILE.add("sociable",10);
 HOSTILE.add("friendly",10);
 tables.push(...[FRIENDLY,NEUTRAL,HOSTILE])
 
-const DEMEANOR = new table.Table("UNE, NPC importance, demeanor",
+const DEMEANOR = new table.Table("UNE, character, importance, demeanor",
     ["scheming", "insane", "friendly", "hostile", "inquisitive", "knowing", "mysterious", "prejudiced"])
 const BEARINGS = new Map([
-  ["scheming", new table.Table("UNE, NPC importance, NPC bearing, scheming", ["intent", "bargain", "means",
+  ["scheming", new table.Table("UNE, character, importance, NPC bearing, scheming", ["intent", "bargain", "means",
       "proposition", "plan", "compromise", "agenda", "arrangement", "negotiation", "plot"])],
-  ["insane", new table.Table("UNE, NPC importance, NPC bearing, insane", ["madness", "fear", "accident", "chaos",
+  ["insane", new table.Table("UNE, character, importance, NPC bearing, insane", ["madness", "fear", "accident", "chaos",
       "idiocy", "illusion", "turmoil", "confusion", "façade", "bewilderment"])],
-  ["friendly", new table.Table("UNE, NPC importance, NPC bearing, friendly", ["alliance", "comfort", "gratitude",
+  ["friendly", new table.Table("UNE, character, importance, NPC bearing, friendly", ["alliance", "comfort", "gratitude",
       "shelter", "happiness", "support", "promise", "delight", "aid", "celebration"])],
-  ["hostile", new table.Table("UNE, NPC importance, NPC bearing, hostile", ["death", "capture", "judgment",
+  ["hostile", new table.Table("UNE, character, importance, NPC bearing, hostile", ["death", "capture", "judgment",
       "combat", "surrender", "rage", "resentment", "submission", "injury", "destruction"])],
-  ["inquisitive", new table.Table("UNE, NPC importance, NPC bearing, inquisitive", ["questions", "investigation",
+  ["inquisitive", new table.Table("UNE, character, importance, NPC bearing, inquisitive", ["questions", "investigation",
       "interest", "demand", "suspicion", "request", "curiosity", "skepticism", "command", "petition"])],
-  ["knowing", new table.Table("UNE, NPC importance, NPC bearing, knowing", ["report", "effects", "examination",
+  ["knowing", new table.Table("UNE, character, importance, NPC bearing, knowing", ["report", "effects", "examination",
       "records", "account", "news", "history", "telling", "discourse", "speech"])],
-  ["mysterious", new table.Table("UNE, NPC importance, NPC bearing, mysterious", ["rumor", "uncertainty",
+  ["mysterious", new table.Table("UNE, character, importance, NPC bearing, mysterious", ["rumor", "uncertainty",
       "secrets", "misdirection", "whispers", "lies", "shadows", "enigma", "obscurity", "conundrum"])],
-  ["prejudiced", new table.Table("UNE, NPC importance, NPC bearing, prejudiced", ["reputation", "doubt", "bias",
+  ["prejudiced", new table.Table("UNE, character, importance, NPC bearing, prejudiced", ["reputation", "doubt", "bias",
       "dislike", "partiality", "belief", "view", "discrimination", "assessment", "difference"])]
 ])
 
-const FOCUS = new table.Table("UNE, NPC importance, focus",
+const FOCUS = new table.Table("UNE, character, importance, focus",
     ["current scene", "parents", "wealth", "skills", "campaign", "allies", "flaws", "experience",
         "community", "current story", "weapons", "last story", "history", "relics", "superiors",
         "future action", "last scene", "antagonist", "knowledge", "treasure", "family", "previous scene",
@@ -120,7 +120,7 @@ const FOCUS = new table.Table("UNE, NPC importance, focus",
 
  class Importance extends table.Table {
 	constructor() {
-		super("UNE, NPC importance");
+		super("UNE, character, importance");
 	}
 
 	roll() {
@@ -133,7 +133,7 @@ const FOCUS = new table.Table("UNE, NPC importance, focus",
 var importance=new Importance()
 tables.push(...[DEMEANOR,FOCUS,importance].concat(Array.from(BEARINGS.values())))
 
-const MODIFIER = new table.Table("UNE, NPC generator, modifier",
+const MODIFIER = new table.Table("UNE, character, modifier",
 ["superfluous", "addicted", "conformist", "nefarious", "sensible", "untrained", "romantic",
     "unreasonable", "skilled", "neglectful", "lively", "forthright", "idealistic", "unsupportive",
     "rational", "coarse", "foolish", "cunning", "delightful", "miserly", "inept", "banal", "logical",
@@ -147,7 +147,7 @@ const MODIFIER = new table.Table("UNE, NPC generator, modifier",
     "jovial", "shrewd", "liberal", "compliant", "destitute", "conniving", "careful", "alluring",
     "defective", "optimistic", "affluent", "despondent", "mindless", "passionate", "devoted",
     "established", "unseemly", "dependable", "righteous", "confident"]);
-const NOUN = new table.Table("UNE, NPC generator, noun",
+const NOUN = new table.Table("UNE, character, noun",
 ["gypsy", "witch", "merchant", "expert", "commoner", "judge", "ranger", "occultist", "reverend",
     "thug", "drifter", "journeyman", "statesman", "astrologer", "duelist", "jack-of-all-trades",
     "aristocrat", "preacher", "artisan", "rogue", "missionary", "outcast", "mercenary", "caretaker",
@@ -164,7 +164,7 @@ const NOUN = new table.Table("UNE, NPC generator, noun",
  
 class Npc extends table.Table {
 	 constructor() {
-		super("UNE, NPC generator");
+		super("UNE, character");
 	}
 
   roll() {
