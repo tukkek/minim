@@ -9,9 +9,11 @@ const NORMAL = "Normal";
 const WEALTH = new table.Table("Kult, character, living standard",
 			["Destitude", "Poor", "Low income", "Lower middle-class", "Middle-class", "Upper middle-class",
 					"Well-off", "Very well-off", "Rich", "Extremely rich"]);
-
 const LORES = new table.Table("Kult, character, skill, magic lore",
     ["Madness", "Space-time", "Dream", "Death", "Passion", "Reality"].map(l => l + " magic"))
+
+tables.push(...[WEALTH,LORES])
+
 const MELEE = "Mêlée weapons";
 const POISONS = "Poisons";
 const DRUGS = "Drugs";
@@ -121,6 +123,8 @@ class Skill extends table.Table {
 }
 var skill=new Skill()
 
+tables.push(skill)
+
 const ARTISTIC = "Artistic talent";
 const HONOR = "Code of honor";
 const AWARENESS = "Awareness";
@@ -162,6 +166,7 @@ class Advantage extends table.Table {
 }
 
 var advantage=new Advantage()
+tables.push(advantage)
 
 const GOODBALANCE = new Map();
 GOODBALANCE.set(ALTRUIST, 5);
@@ -263,6 +268,7 @@ class Disadvantage extends table.Table {
 }
 
 var disadvantage=new Disadvantage()
+tables.push(disadvantage)
 
 const BADBALANCE = new Map();
 BADBALANCE.set(BADLUCK, 5);
@@ -404,7 +410,8 @@ class KultCharacter extends table.Table {
 		this.profession = Array.from(profession);
 		this.wealthmin = wealthmin;
 		this.wealthmax = wealthmax;
-		this.skills = Array.from(skills);
+		this.skills = Array.from(skills)
+    this.archetype=false
 	}
 
   describe(balance) {
@@ -433,36 +440,35 @@ class KultCharacter extends table.Table {
 
   roll() {
 		let l = [];
+    let n=this.name.split(', ')
+    n=n[n.length-1]
+    n=n.toUpperCase().slice(0,1)+n.slice(1)
+    if(this.archetype) n=this.archetype+' '+n.toLowerCase()
+    l.push(n)
 		let balance = 0;
 		rpg.shuffle(this.disadvantages);
-		let disadvantages = this.disadvantages.slice(0,
-				rpg.roll(1,5))
-		l.push("Disadvantages", disadvantages.join(", ").toLowerCase());
-		for (let d of disadvantages) {
-			balance -= BALANCE.get(d);
-		}
+		let disadvantages = this.disadvantages.slice(0,rpg.roll(1,5))
+		l.push("Disadvantages"+': '+ disadvantages.join(", ").toLowerCase());
+		for (let d of disadvantages) balance -= BADBALANCE.get(d);
 		rpg.shuffle(this.advantages);
-		let advantages = this.advantages.slice(0, rpg.roll(5));
-		l.push("Advantages", advantages.join(", ").toLowerCase());
-		for (let a of advantages) {
-			balance += GOODBALANCE.get(a);
-		}
+		let advantages = this.advantages.slice(0, rpg.roll(1,5));
+		l.push("Advantages"+': '+ advantages.join(", ").toLowerCase());
+		for (let a of advantages) balance += GOODBALANCE.get(a);
 		let mental = this.describe(balance);
 		if (mental != NORMAL) {
-			l.push("Mental balance", mental);
-			if (balance < 0)
-				l.push("Dark secret", roll(secrets, disadvantages));
+			l.push("Mental balance"+': '+ mental);
+			if (balance < 0) l.push("Dark secret"+': '+ secret.roll(this.secrets, this.disadvantages));
 		}
-		rpg.shuffle(profession);
-		l.push("Profession", get(0));
+		rpg.shuffle(this.profession);
+		l.push("Profession"+': '+ this.profession[0]);
 		let wealth = 0;
-		while (!(wealthmin <= wealth && wealth <= wealthmax))
+		while (!(this.wealthmin <= wealth && wealth <= this.wealthmax))
 			wealth = rpg.roll(1,10);
-		l.push("Wealth", WEALTH.lines[wealth - 1]);
+		l.push("Wealth"+': '+ WEALTH.lines[wealth - 1]);
 		rpg.shuffle(this.skills);
-		let skills = this.skills.slice(0, 1 + rpg.roll(3));
-		l.push("Skills", skills.join(", ").toLowerCase());
-		return l.toString();
+		let skills = this.skills.slice(0, 1 + rpg.roll(1,3));
+		l.push("Skills"+': '+ skills.join(", ").toLowerCase());
+		return l.join('<br/>')
 	}
 }
 
@@ -493,6 +499,7 @@ class Secret extends table.Table {
 	}
 }
 var secret=new Secret()
+tables.push(secret)
 
 const UNEMPLOYED = "Unemployed";
 const CRIMINAL = "Criminal";
@@ -557,6 +564,7 @@ class Profession extends table.Table {
 	}
 }
 var profession=new Profession()
+tables.push(profession)
 
 const GANGMEMBER = new KultCharacter("Kult, character, archetype, gang member",
   [REPUTATION, DEATHWISH, ENEMY, REVENGE,
@@ -940,6 +948,8 @@ const STARS = "Controlled by stars";
 const LIMITATIONS = new table.Table("Kult, character, child of the night, limitations",
     [BLOODTHIRST, SYMBOLBOUND, TOMBBOUND, HUNTER, CANNIBAL, CONTROLLED, FIRE, ELECTRICITY, HOLYSYMBOL,
         SILVER, IRON, COPPER, SUNLIGHT, SHAPECHANGE, INHUMAN, SOULTHIRST, STARS])
+tables.push(LIMITATIONS)
+
 const COMMANDING = "Commanding voice";
 const ETERNAL = "Eternal youth";
 const ABILITY = "Increased ability";
@@ -961,6 +971,7 @@ const NOFOOD = "Never needs food or drink";
 const POWERS = new table.Table("Kult, character, child of the night, powers",
     [COMMANDING, ETERNAL, ABILITY, POISON, VISION, WEAPONS, FIREIMMUNE, ELECTRICITYIMMUNE, RADIATION,
         WEAPONSIMMUNITY, FAST, REGENERATION, SKIN, SENSES, TELEKINESIS, TELEPATHY, ENDURANCEPOWER, NOFOOD])
+tables.push(POWERS)
 
 class NightChild extends KultCharacter {
 	constructor(title, secrets, powers, limitations,
@@ -969,6 +980,7 @@ class NightChild extends KultCharacter {
 		super(title, disadvantages, advantages, secrets, profession, wealthmin, wealthmax, skills);
 		this.advantages.push(...powers);
 		this.disadvantages.push(...limitations);
+    this.archetype='Child of the night, '
 	}
 
 	describe(balance) {
@@ -1029,6 +1041,7 @@ const WOLVEN = new NightChild("Kult, character, child of the night, archetype, w
     profession.lines, 1, 10, [CONTACTS, SNEAK, SURVIVAL, UNARMED])
 const CHILDOFTHENIGHT = new table.Table("Kult, character, child of the night",
     [GENERIC, LORELEI, NEPHILIM, REVENANT, SERAPHIM, WOLVEN])
+tables.push(...CHILDOFTHENIGHT.lines.concat([CHILDOFTHENIGHT]))
 
 BADBALANCE.set(BLOODTHIRST, 10);
 BADBALANCE.set(SYMBOLBOUND, 10);
@@ -1051,28 +1064,30 @@ for (var p of POWERS.lines)
   GOODBALANCE.set(p, 0);
 
 const ARCHETYPE = new table.Table("Kult, character",
-  [GANGMEMBER, AVENGER, DEALER, FEMMEFATALE, PI, VETERAN, AGENT, CORPORATE, STUDENT, SCIENTIST,
-      SAMURAI, MUCKRAKER, COP, ARTIST, ROCKER, OUTSIDER, ESCAPEE, HACKER, HOMEMAKER, PRODIGY, ACTIVIST,
-      ARISTOCRAT, ATHLETE, CAREGIVER, CELEBRITY, CLERGY, DOCTOR, FUGITIVE, X, HUSTLER, MARTIAL,
+  [GANGMEMBER, AVENGER, DEALER, FEMMEFATALE, PIARCHETYPE, VETERAN, AGENT, CORPORATE, STUDENTARCHETYPE, SCIENTISTARCHETYPE,
+      SAMURAI, MUCKRAKER, COP, ARTISTARCHETYPE, ROCKER, OUTSIDER, ESCAPEE, HACKER, HOMEMAKER, PRODIGY, ACTIVIST,
+      ARISTOCRAT, ATHLETEARCHETYPE, CAREGIVER, CELEBRITY, CLERGYARCHETYPE, DOCTOR, FUGITIVE, X, HUSTLER, MARTIAL,
       PARAPSYCHOLOGIST, SCHOLAR, OCCULTIST, PAGAN])
 ARCHETYPE.add(CHILDOFTHENIGHT,ARCHETYPE.lines.length/3)
+tables.push(...ARCHETYPE.lines.concat([ARCHETYPE]))
 
 class Effect extends table.Table {
 	constructor() {
 		super("Kult, effect");
-		add("Bad");
-		add("Acceptable",5);
-		add("Normal",4);
-		add("Good",10);
-		add("very good",4);
-		add("Exceptionally good",3);
-		add("Impossibly good!");
+		this.add("Bad");
+		this.add("Acceptable",5);
+		this.add("Normal",4);
+		this.add("Good",10);
+		this.add("very good",4);
+		this.add("Exceptionally good",3);
+		this.add("Impossibly good!");
 	}
 }
+tables.push(new Effect())
 
 const SHOCK = new table.Table("Kult, madness, reaction, shock",
   ["Screams", "Weeps", "Faints", "Runs away", "Shocked"])
-const POSSESSION = new table.Table("Madness (reaction, possession)",
+const POSSESSION = new table.Table("Kult, madness, reaction, possession",
   ["Dead human spirit", "Purgatide (refugee from Hell)", "Etherace (non-physical creature)",
       "Razide (demon)", "Nepharite (demon)"])
 const DREAM = new table.Table("Kult, madness, hallucination, waking dream, other")
@@ -1157,6 +1172,7 @@ HALLUCINATION.add("See through the illusion and into " + setting.portal, 500 / 3
 HALLUCINATION.add("Your Shadow haunts you", 500 / 100);
 HALLUCINATION.add("Your Shadow confronts you", 500 / 300);
 HALLUCINATION.add("Awakening (attain divinity)", 500 / 500);
+tables.push(...[SHOCK,POSSESSION,DREAM,DREAMSELF,DREAMPORTAL,TIME,SPACE,HALLUCINATION])
 
 // TODO 228-230 251
 class Madness extends table.Table {
@@ -1173,7 +1189,7 @@ class Madness extends table.Table {
 		this.add(mentalchange);
 		let p = HALLUCINATION.roll();
 		this.add("Projected hallucination (affects all)" + p, 10 / 2);
-		this.add("Hallucinate (affects you)" + p, 10 / 2);
+		this.add("Hallucinate (affects you)<br/>" + p, 10 / 2);
 		this.add("Hurt yourself");
 		this.add("Hurt others");
 		this.add("Lose control over flaws");
@@ -1195,18 +1211,24 @@ class Negative extends Madness{
   }
 
   roll() {
-    return this.lines[rpg.low(0,this.lines-1)]
+    super.roll()
+    let l=this.lines
+    return l[rpg.low(0,l.length-1)]
   }
 };
 class Positive extends Madness{
   constructor(){
-    super("negative")
+    super("positive")
   }
 
   roll() {
-    return this.lines[rpg.high(0,this.lines-1)]
+    super.roll()
+    let l=this.lines
+    return l[rpg.high(0,l.length-1)]
   }
 };
+
+tables.push(...[NEUTRAL,new Negative(),new Positive()])
 
 class MentalChange extends table.Table {
 	constructor() {
@@ -1223,7 +1245,7 @@ class MentalChange extends table.Table {
 		return `new ${change}, ${t.roll().toLowerCase()} (reroll if not relevant)`;
 	}
 }
- class PhysicalChange extends table.Table {
+class PhysicalChange extends table.Table {
 	constructor() {
 		super("Kult, madness, reaction, physical change",
 				[new table.Table("Sex", ["Angrodynous", "Sex change"]),
@@ -1243,3 +1265,7 @@ class MentalChange extends table.Table {
 	}
 }
 
+var physicalchange=new PhysicalChange()
+var mentalchange=new MentalChange()
+
+tables.push(...[physicalchange,mentalchange])

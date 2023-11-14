@@ -422,7 +422,7 @@ class Portal extends table.Table {
 			this.add(to);
 	}
 }
-var portal=new Portal()
+export var portal=new Portal()
 class Lower extends Portal {
   constructor(){
     super("Kult, portal, lower")
@@ -492,4 +492,3 @@ class City extends table.Table {
 }
 
 tables.push(new City())
-
