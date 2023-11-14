@@ -26,7 +26,7 @@ class Beast extends table.Table {
 	}
 }
 
-var beast=new Beast()
+export var beast=new Beast()
 tables.push(...[FAMILIES,HUNGER,beast])
 
 const LEGIONS = new table.Table("Darkness, wraith, faction, hierarchy legions",
@@ -101,7 +101,7 @@ const WRAITH = new table.Table("Darkness, artifact, wraith",
         "Gird", "Savage", "Embed"])
 const MAGE = new table.Table("Darkness, artifact, mage",
     ["Enchantment", "Nightmare", "Shadow", "Celestial", "Totem"])
-const ARTIFACT = new table.Table("Darkness, artifact", [VAMPIRE, WRAITH, MAGE])
+export const ARTIFACT = new table.Table("Darkness, artifact", [VAMPIRE, WRAITH, MAGE])
 
 tables.push(...[VAMPIRE, WRAITH, MAGE,ARTIFACT])
 
@@ -242,7 +242,7 @@ class Hunter extends table.Table {
 	}
 }
 
-var hunter=new Hunter()
+export var hunter=new Hunter()
 
 tables.push(...[MERCY,VISION,ZEAL,CREED,COMPACT,CONSPIRACY,ORGANIZATION,hunter])
 
@@ -402,4 +402,5 @@ class Monster extends table.Table {
 	}
 }
 
-tables.push(new Monster())
+export var monster=new Monster()
+tables.push(monster)

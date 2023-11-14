@@ -208,7 +208,7 @@ class Being extends table.Table {
     return super.roll()
   }
 }
-var being=new Being()
+export var being=new Being()
 tables.push(being)
 
 const LENSES = new table.Table("Kult, artifact, lenses",
@@ -271,8 +271,8 @@ class KultArtifact extends table.Table {
     return super.roll()
 	}
 }
-
-tables.push(...[LENSES,PASSWORD,DESTINATION,PORTAL,CLOCKWORK,new KultArtifact()])
+export var artifact=new KultArtifact()
+tables.push(...[LENSES,PASSWORD,DESTINATION,PORTAL,CLOCKWORK,artifact])
 
 var elysium=new table.Table("Kult, elysium",["An empty paradise"])
 tables.push(elysium)
@@ -472,7 +472,8 @@ class Cult extends table.Table {
 	}
 }
 
-tables.push(new Cult())
+export var cult=new Cult()
+tables.push(cult)
 
 class City extends table.Table {
 	 constructor() {

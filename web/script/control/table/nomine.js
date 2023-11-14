@@ -176,8 +176,8 @@ class Angel extends Character {
 	}
 }
 
-const GOD = new Soldier("Soldier of god");
-const HELL = new Soldier("Soldier of hell");
+export const GOD = new Soldier("Soldier of god");
+export const HELL = new Soldier("Soldier of hell");
 
 var angel=new Angel()
 tables.push(...[angel,GOD,HELL])
@@ -330,7 +330,8 @@ class Artifact extends table.Table {
 		return super.roll() + ", " + LEVEL.roll().toLowerCase();
 	}
 }
-tables.push(...[TALISMAN,RELIC,COMPASS,VESSEL,LEVEL,new Artifact()])
+export var artifact=new Artifact()
+tables.push(...[TALISMAN,RELIC,COMPASS,VESSEL,LEVEL,artifact])
 
 class Characters extends table.Table {
 	constructor() {
@@ -343,4 +344,5 @@ class Characters extends table.Table {
 	}
 }
 
-tables.push(new Characters())
+export var characters=new Characters()
+tables.push(characters)

@@ -989,7 +989,7 @@ class NightChild extends KultCharacter {
 	}
 }
 
-const GENERIC = new NightChild("Kult, character, child of the night, archetype, generic",
+export const GENERIC = new NightChild("Kult, character, child of the night, archetype, generic",
     secret.lines, POWERS.lines, LIMITATIONS.lines,
     [DEPRESSION, REPUTATION, DEATHWISH, ENEMY,
         REVENGE, CURSE, PERSECUTED, CONSTRICTION,
@@ -1063,7 +1063,7 @@ BADBALANCE.set(STARS, 10);
 for (var p of POWERS.lines)
   GOODBALANCE.set(p, 0);
 
-const ARCHETYPE = new table.Table("Kult, character",
+export const ARCHETYPE = new table.Table("Kult, character",
   [GANGMEMBER, AVENGER, DEALER, FEMMEFATALE, PIARCHETYPE, VETERAN, AGENT, CORPORATE, STUDENTARCHETYPE, SCIENTISTARCHETYPE,
       SAMURAI, MUCKRAKER, COP, ARTISTARCHETYPE, ROCKER, OUTSIDER, ESCAPEE, HACKER, HOMEMAKER, PRODIGY, ACTIVIST,
       ARISTOCRAT, ATHLETEARCHETYPE, CAREGIVER, CELEBRITY, CLERGYARCHETYPE, DOCTOR, FUGITIVE, X, HUSTLER, MARTIAL,

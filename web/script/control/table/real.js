@@ -147,6 +147,7 @@ class WorldNpc extends table.Table {
 	}
 }
 
+export const FULL = new WorldNpc();
 const SIMPLE = new WorldNpc("Realistic, simple NPC", true);
 
-tables.push(...[new WorldNpc(),SIMPLE])
+tables.push(...[FULL,SIMPLE])
