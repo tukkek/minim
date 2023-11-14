@@ -17,7 +17,10 @@ export class Table{
     }
   }
   
-  add(l,count=1){for(let i=0;i<count;i++) this.lines.push(l)}
+  add(l,count=1){
+    count=Math.round(count)
+    for(let i=0;i<count;i++) this.lines.push(l)
+  }
   
   toString(){return this.roll()}
   
