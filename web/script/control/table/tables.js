@@ -15,13 +15,14 @@ import * as instant from './instant.js'
 import * as weather from './weather.js'
 import * as real from './real.js'
 import * as misc from './misc.js'
+import * as une from './une.js'
 import * as darkness from './darkness/darkness.js'
 import * as kult from './kult/kult.js'
 
 export var tables=[
   adungeon,type,bold,combat,conjectural,cyberpunk,darkness,
   falkenstein,fantasy,hexcrawl,nomine,instant,kult,oneshot,
-  weather,cartoon,real,journey,misc
+  weather,cartoon,real,journey,misc,une
 ]
 
 export function setup(){
