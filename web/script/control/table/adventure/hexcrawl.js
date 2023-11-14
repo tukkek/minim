@@ -202,7 +202,7 @@ class Hexcrawl extends table.Table{
   }
 }
 
-const SMALL=new Hexcrawl(3);
-const BIG=new Hexcrawl(5);
+export const SMALL=new Hexcrawl(3);
+export const BIG=new Hexcrawl(5);
 
 tables.push(...[SMALL,BIG])

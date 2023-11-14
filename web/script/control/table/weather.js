@@ -154,5 +154,5 @@ class Calendar extends table.Table {
 		return s;
 	}
 }
-
-tables.push(new Calendar())
+export var calendar=new Calendar()
+tables.push(calendar)

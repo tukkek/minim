@@ -192,7 +192,7 @@ class InstantSetting extends table.Table {
 	}
 }
 
-let setting=new InstantSetting()
+export var setting=new InstantSetting()
 tables.push(...[TONE,PLACE,POPULATION,TECH,setting])
 
 const OPPOSITION = new table.Table("Instant game, plot, opposition",

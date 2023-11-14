@@ -131,7 +131,7 @@ class Waylay extends table.Table {
 	}
 }
 
-var waylay=new Waylay()
+export var waylay=new Waylay()
 
 
 export var tables=[new ArcedWaylay()]

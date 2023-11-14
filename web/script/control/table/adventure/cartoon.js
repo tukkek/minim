@@ -33,7 +33,6 @@ MOTIVE.add("all of the above");
 
 tables.push(...[BADGUY,OBJECT,MOTIVE])
 
-
 const THECITY = new table.Table("Adventure, cartoon, location, the city",
     ["construction site", "subway station", "subway tunnel", "sewer", "rush-hour traffic jam",
         "sumphony hall", "opera house", "department store", "grocery store", "bakery", "bank", "city hall",
@@ -253,4 +252,5 @@ class CartoonAdventure extends table.Table {
 	}
 }
 
-tables.push(new CartoonAdventure())
+export var adventure=new CartoonAdventure()
+tables.push(adventure)
