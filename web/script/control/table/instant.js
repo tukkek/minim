@@ -123,11 +123,11 @@ const DESCRIPTOR = new table.Table("Instant game, thing, descriptor",
 var thing=new Thing()
 tables.push(...[DESCRIPTOR,thing])
 
-const TONE = new table.Table("Instant game, challenge, setting, tone",
+const TONE = new table.Table("Instant game, adventure, setting, tone",
     ["Action/Adventure", "B-movie", "Campy", "Conspiracy", "Despair", "Epic", "Fantasy", "Gothic",
         "Heroic", "Horror", "Intrigue", "Mystery", "Mythic", "Parable/Moralistic", "Pulp", "Realistic",
         "Romance", "Suspense", "Swashbuckling", "Tactical"])
-const PLACE = new table.Table("Instant game, challenge, setting, place", ["Afterlife", "Amusement Park",
+const PLACE = new table.Table("Instant game, adventure, setting, place", ["Afterlife", "Amusement Park",
     "Arcade", "Armory", "Auction", "Auditorium", "Bank", "Barracks", "Bathhouse", "Beach", "Bordello", "Bridge",
     "Burrow", "Business Office", "Camping Out", "Carnival", "Castle", "Cave", "Charitable Shelter", "Church",
     "Control Room", "Correctional System", "Crash Site", "Crater", "Crossroads", "Dam", "Docks", "Dormitory",
@@ -140,9 +140,9 @@ const PLACE = new table.Table("Instant game, challenge, setting, place", ["After
     "Road", "Rooftop", "Ruins", "Safehouse", "School", "Sewer", "Ship", "Space", "Stadium", "Stage", "Store",
     "Stronghold", "Suburb", "Suburban Retail Center", "Tavern", "Theatre", "Tower", "Town Square",
     "Underground", "Underwater", "Vehicle", "Volcano", "Warehouse", "Wilderness", "Wildlife Preserve", "Zoo"])
-const POPULATION = new table.Table("Instant game, challenge, setting, population", ["<20", "100", "600",
+const POPULATION = new table.Table("Instant game, adventure, setting, population", ["<20", "100", "600",
     "3,000", "15,000", "80,000", "400,000", "2,000,000", "10,000,000", ">10,000,000"])
-const TECH = new table.Table("Instant game, challenge, setting, tech",
+const TECH = new table.Table("Instant game, adventure, setting, tech",
     ["Agriculture", "Alchemy", "Alien Supertech", "Artificial Intelligence", "Automobiles", "Bronze",
         "Computers", "Contemporary", "Cybertech", "Domesticated Animals", "Early Space Exploration",
         "Electricity", "Electronics", "Flight", "Fossil Fuels", "Frankentech", "FTL Travel",
@@ -155,7 +155,7 @@ const TECH = new table.Table("Instant game, challenge, setting, tech",
 
 class InstantSetting extends table.Table {
 	constructor() {
-		super("Instant game, challenge, setting");
+		super("Instant game, adventure, setting");
 		this.lines.push(...["Alien Occupied Earth", "All Supers World", "Alternate History", "Ancient Egypt", "Ape World",
 				"Arabian Nights", "Archaic/Biblical", "Arkship", "Artificial World", "Atlantis", "Barbarian Europe",
 				"Bizarro World", "Boston, 1770s", "Camping Out", "City Under Siege",
@@ -195,7 +195,7 @@ class InstantSetting extends table.Table {
 export var setting=new InstantSetting()
 tables.push(...[TONE,PLACE,POPULATION,TECH,setting])
 
-const OPPOSITION = new table.Table("Instant game, challenge, plot, opposition",
+const OPPOSITION = new table.Table("Instant game, adventure, plot, opposition",
   ["Artifact", "Big Business", "Charismatic Leader", "Common Criminal", "Conspiracy", "Crazed Loner",
       "Demon", "Desperate Citizen", "Deity", "Disease", "Divine Creation", "Doppelganger",
       "Evil Mastermind", "Family", "Force of Nature", "Government Agents", "Hired Muscle", "Immortals",
@@ -205,7 +205,7 @@ const OPPOSITION = new table.Table("Instant game, challenge, plot, opposition",
       "Security Forces", "Serial Killer", "Societal Pressure/Custom", "Spy", "Street Gang/Gang Member",
       "The System", "Ticking Time Bomb", "Tragic Villain", "Traitor", "Troubled Youth", "Undead",
       "Underground Pariahs", "Warlord", "Wild Animals", "Yourself"])
-const ACTION = new table.Table("Instant game, challenge, plot, action",
+const ACTION = new table.Table("Instant game, adventure, plot, action",
   ["Alert", "Assassinate", "Blackmail", "Brainwash", "Build", "Celebrate", "Clean", "Clear", "Collect",
       "Convince", "Cover Up", "Defend", "Deliver", "Destroy", "Discover", "Disguise", "Duel", "Escape",
       "Explore", "Fight", "Fire", "Guard", "Guide", "Hide", "Humiliate", "Hunt", "Infiltrate",
@@ -215,7 +215,7 @@ const ACTION = new table.Table("Instant game, challenge, plot, action",
 
 class InstantPlot extends table.Table {
 	constructor() {
-		super("Instant game, challenge, plot");
+		super("Instant game, adventure, plot");
 	}
 
   roll() {
@@ -334,7 +334,7 @@ tables.push(...[PEOPLE,PERSONALITY,FLAW,NORMAL,WEAK,FLAMBOYANT])
 
 class InstantChallenge extends table.Table {
 	constructor() {
-		super("Instant game, challenge");
+		super("Instant game, adventure");
 	}
 
 	roll() {

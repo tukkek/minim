@@ -1,23 +1,23 @@
 import * as table from './table.js'
 import * as rpg from '../rpg.js'
 
-const  WHO = new table.Table("Cyberpunk, lifepath, enemy, who",
+const  WHO = new table.Table("Cyberpunk, character, enemy, who",
   ["Ex-friend", "Ex-lover", "Relative", "Childhood foe", "Subordinate", "Superior", "Colleague",
       "Gang member", "Corporate executive", "Government official"])
-const  WHY = new table.Table("Cyberpunk, lifepath, enemy, why",
+const  WHY = new table.Table("Cyberpunk, character, enemy, why",
   ["Hurt reputation", "Loss of someone important", "Embarassment", "Insult", "Physical injury",
       "Desertion or betrayal", "Turned down offer", "Didn't like each other", "Romantic competitor",
       "Foiled a plan"])
 
-const DIRECTION = new table.Table("Cyberpunk, lifepath, enemy, direction")
+const DIRECTION = new table.Table("Cyberpunk, character, enemy, direction")
 DIRECTION.add("They hate you",4);
 DIRECTION.add("You hate them",7-5);
 DIRECTION.add("Mutual hatred",10-8);
 
-const  ENEMYACTION = new table.Table("Cyberpunk, lifepath, enemy, what you gonna do?",
+const  ENEMYACTION = new table.Table("Cyberpunk, character, enemy, what you gonna do?",
   ["Kill enemy", "Avoid enemy", "Backstab enemy", "Ignore enemy", "Humiliate enemy"])
 
-const  FORCES = new table.Table("Cyberpunk, lifepath, enemy, forces")
+const  FORCES = new table.Table("Cyberpunk, character, enemy, forces")
 FORCES.add("Just himself",3);
 FORCES.add("A few friends",5-4);
 FORCES.add("A gang",7-6);
@@ -27,7 +27,7 @@ FORCES.add("Government agency");
 
 class Enemy extends table.Table {
 	 constructor() {
-		super("Cyberpunk, lifepath, enemy");
+		super("Cyberpunk, character, enemy");
 	}
 
 	 roll() {
@@ -42,24 +42,24 @@ class Enemy extends table.Table {
 
 var enemy=new Enemy()
 
-const  RANKING = new table.Table("Cyberpunk, lifepath, family, ranking",
+const  RANKING = new table.Table("Cyberpunk, character, family, ranking",
   ["Corporate executive", "Corporate manager", "Corporate technician", "Nomad pack", "Pirate fleet",
       "Gang", "Crime lord", "Warzone inhabitants", "Urban homeless", "Arcology"])
-const  CHILDHOOD = new table.Table("Cyberpunk, lifepath, family, childhood environment",
+const  CHILDHOOD = new table.Table("Cyberpunk, character, family, childhood environment",
   ["Streets, unsupervised", "Corporate suburbs", "Nomad pack", "Once-upscale decaying neighborhood",
       "Defnded corporate zone", "Combat zone", "Village", "Arcology", "Pirates", "Farm",
       "Research facility"])
-const  TRAGEDY = new table.Table("Cyberpunk, lifepath, family, tragedy",
+const  TRAGEDY = new table.Table("Cyberpunk, character, family, tragedy",
   ["Betrayed, lost everything", "Mismanaged, lost everything", "Exiled", "Imprisoned", "Vanished",
       "Dead", "Involed in conspiracy or organization", "Scattered by misfortune", "Feud", "Debt"])
-const  NOPARENTS = new table.Table("Cyberpunk, lifepath, family, something happened to your parents",
+const  NOPARENTS = new table.Table("Cyberpunk, character, family, something happened to your parents",
   ["Died in war", "Died in accident", "Murdered", "Amnesiacs", "Never met them", "In hiding",
       "Raised by relatives", "Never had parents", "Adopted", "They sold you"])
 
 
 class Family extends table.Table {
 	constructor() {
-		super("Cyberpunk, lifepath, family");
+		super("Cyberpunk, character, family");
 	}
 
 	 roll() {
@@ -80,12 +80,12 @@ class Family extends table.Table {
 
 var family=new Family()
 
-const ACTION = new table.Table("Cyberpunk, lifepath, life events, what are you gonna do about it?",
+const ACTION = new table.Table("Cyberpunk, character, life events, what are you gonna do about it?",
     ["Clear your name;", "Forget it.", "Take tevenge.", "Get what's yours.", "Save everyone involved."])
 
 class Disaster extends table.Table{
   constructor(){
-    super("Cyberpunk, lifepath, life events, disaster",
+    super("Cyberpunk, character, life events, disaster",
         ["Debt", "Imprisonment", "Illness", "Addiction", "Betrayal", "Accident",
         "Lover, friend or relative killed", "False accusation", "Hunted by the law",
         "Hunted by corporation", "Mental or physical incapacitation"])
@@ -98,19 +98,19 @@ class Disaster extends table.Table{
 
 const DISASTER=new Disaster()
 
-const LUCKY = new table.Table("Cyberpunk, lifepath, life events, luck",
+const LUCKY = new table.Table("Cyberpunk, character, life events, luck",
     ["Powerful connection", "Windfall", "Big score", "Found a mentor", "Found a sensei",
       "Friend in corporation", "Friend in nomad pack", "Friend in the police", "Friend in gang"])
 
-const BIGPROBLEMSBIGWINS = new table.Table("Cyberpunk, lifepath, life events, big-problems-big-wins",[DISASTER,LUCKY])
+const BIGPROBLEMSBIGWINS = new table.Table("Cyberpunk, character, life events, big-problems-big-wins",[DISASTER,LUCKY])
 
-const FRIEND = new table.Table("Cyberpunk, lifepath, life events, friend",
+const FRIEND = new table.Table("Cyberpunk, character, life events, friend",
     ["Like an older sibling", "Like a younger sibling", "Mentor", "Colleague", "Past lover",
         "Past enemy", "Guardian", "Relative", "Past friend", "Through common interest"])
         
 class FriendFoe extends table.Table{
   constructor(){
-    super("Cyberpunk, lifepath, life events, friend or foe")
+    super("Cyberpunk, character, life events, friend or foe")
   }
   
   roll(){
@@ -126,7 +126,7 @@ var friendfoe=new FriendFoe()
 
 class LifeEvent extends table.Table {
 	constructor() {
-		super("Cyberpunk, lifepath, life event");
+		super("Cyberpunk, character, life event");
 		this.add(BIGPROBLEMSBIGWINS,3);
 		this.add( friendfoe,6-4);
 		this.add("Romance (roll table)");
@@ -134,12 +134,12 @@ class LifeEvent extends table.Table {
 	}
 }
 
-const  ETHNICITY = new table.Table("Cyberpunk, lifepath, ethnicity", ["Anglo-american", "African", "Asian",
+const  ETHNICITY = new table.Table("Cyberpunk, character, ethnicity", ["Anglo-american", "African", "Asian",
   "East european / russian", "Polynesian", "Indian", "South american", "Hispanic", "European"])
 
 class Lifepath extends table.Table {
 	 constructor() {
-		super("Cyberpunk, lifepath");
+		super("Cyberpunk, character");
 	}
 
 	 roll() {
@@ -160,24 +160,24 @@ class Lifepath extends table.Table {
 var lifeevent=new LifeEvent()
 var lifepath=new Lifepath()
 
-const PERSONALITY = new table.Table("Cyberpunk, lifepath, motivation, personality",
+const PERSONALITY = new table.Table("Cyberpunk, character, motivation, personality",
   ["Shy and secretive", "Rebelious, antisocial, violent", "Arrogant, proud, aloof",
       "Moody, rash, headstrong", "Picky, fussy, nervous", "Stable, serious", "Silly", "Deceptive",
       "Intellectual, detached", "Friendly, outgoing"])
-const  VALUED = new table.Table("Cyberpunk, lifepath, motivation, valued person", ["Parent", "Sibling",
+const  VALUED = new table.Table("Cyberpunk, character, motivation, valued person", ["Parent", "Sibling",
   "Lover", "Friend", "Yourself", "Pet", "Mentor", "Celebrity", "Personal hero", "No one"])
-const  VALUES = new table.Table("Cyberpunk, lifepath, motivation, values", ["Money", "Honor", "Trust",
+const  VALUES = new table.Table("Cyberpunk, character, motivation, values", ["Money", "Honor", "Trust",
   "Honesty", "Knowledge", "Vengeance", "Love", "Power", "Pleasure", "Friendship"])
-const  RELATIONS = new table.Table("Cyberpunk, lifepath, motivation, relations",
+const  RELATIONS = new table.Table("Cyberpunk, character, motivation, relations",
   ["Neutral", "Neutral", "Like everyone", "Hate everyone", "People are tools", "Everyone is valuable",
       "Can be obstacles to destroy", "People are not to be trusted", "Wipe everyone out",
       "People are wonderful"])
-const  POSSESSION = new table.Table("Cyberpunk, lifepath, motivation, possession", ["Weapon", "Tool",
+const  POSSESSION = new table.Table("Cyberpunk, character, motivation, possession", ["Weapon", "Tool",
   "Clothing", "Photo", "Book or diary", "Recording", "Instrument", "Jewelry", "Toy", "Letter"])
       
 class Motivation extends table.Table {
 	constructor() {
-		super("Cyberpunk, lifepath, motivation");
+		super("Cyberpunk, character, motivation");
 	}
 
 	 roll() {
@@ -192,17 +192,17 @@ class Motivation extends table.Table {
 
 var motivation=new Motivation()
 
-const TRAGIC = new table.Table("Cyberpunk, lifepath, romance, tragic",
+const TRAGIC = new table.Table("Cyberpunk, character, romance, tragic",
     ["Died accidently", "Vanished", "Didn't work out", "Goal or vendetta came in-between", "Kidnapped",
         "Insanity", "Suicide", "Left for another", "Imrposned or exiled"])
-const ROMANCEFEELINGS = new table.Table("Cyberpunk, lifepath, romance, residual feelings",
+const ROMANCEFEELINGS = new table.Table("Cyberpunk, character, romance, residual feelings",
     ["They love you", "You love them", "You still love each other", "You hate them", "They hate you",
         "You hate each other", "You're friends now", "It's over for both of you",
         "You like them, they hate you", "You hate them, they like you"])
 
 class Problematic extends table.Table{
   constructor(){
-    super("Cyberpunk, lifepath, romance, problematic",
+    super("Cyberpunk, character, romance, problematic",
     ["Their friends/family hate you", "Their friends/family want to get rid of you",
         "Your family/friends hate your lover", "One of you has a romantic rival",
         "You are somehow separated", "Constant fights", "You two compete professionaly", "Jealousy",
@@ -218,7 +218,7 @@ var problematic=new Problematic()
 
 class Romance extends table.Table {
 	 constructor() {
-		super("Cyberpunk, lifepath, romance");
+		super("Cyberpunk, character, romance");
 	}
 
 	 roll() {
@@ -233,19 +233,19 @@ class Romance extends table.Table {
 
 var romance=new Romance()
 
-const  GENDER = new table.Table("Cyberpunk, lifepath, family, sibling, gender", ["brother", "sister"])
+const  GENDER = new table.Table("Cyberpunk, character, family, sibling, gender", ["brother", "sister"])
 
-const  AGE = new table.Table("Cyberpunk, lifepath, family, sibling, age") 
+const  AGE = new table.Table("Cyberpunk, character, family, sibling, age") 
 AGE.add( "Younger",5);
 AGE.add( "Older",9-6);
 AGE.add("Twin");
 
-const  FEELINGS = new table.Table("Cyberpunk, lifepath, family, sibling, feelings",
+const  FEELINGS = new table.Table("Cyberpunk, character, family, sibling, feelings",
   ["dislikes you", "likes you", "neutral", "hates you", "adores you"])
 
 class Sibling extends table.Table {
 	constructor() {
-		super("Cyberpunk, lifepath, family, sibling");
+		super("Cyberpunk, character, family, sibling");
 	}
 
 	 roll() {
@@ -255,16 +255,16 @@ class Sibling extends table.Table {
 
 var sibling=new Sibling()
 
-const  CLOTHES = new table.Table("Cyberpunk, lifepath, style, clothes", ["Leather", "Jeans", "Suit",
+const  CLOTHES = new table.Table("Cyberpunk, character, style, clothes", ["Leather", "Jeans", "Suit",
   "Jumpsuit", "Miniskirt", "Fashionable", "Camouflage", "Casual", "Nude", "X-large"])
-const  HAIR = new table.Table("Cyberpunk, lifepath, style, hair", ["Mohawk", "Long (ratty)", "Spiked", "Wild",
+const  HAIR = new table.Table("Cyberpunk, character, style, hair", ["Mohawk", "Long (ratty)", "Spiked", "Wild",
   "Bald", "Striped", "Tinted", "Neat", "Curly", "Long (straight)"])
-const  AFFECTATION = new table.Table("Cyberpunk, lifepath, style, affectation", ["Tatoos", "Mirrorshades",
+const  AFFECTATION = new table.Table("Cyberpunk, character, style, affectation", ["Tatoos", "Mirrorshades",
   "Scarification", "Gloves", "Piercing", "Earring", "Fingernails", "Boots", "Contact lens"])
 
 class Style extends table.Table {
 	constructor() {
-		super("Cyberpunk, lifepath, style");
+		super("Cyberpunk, character, style");
 	}
 
 	 roll() {

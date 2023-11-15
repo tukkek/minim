@@ -7,7 +7,7 @@ export var tables=[]
 const ETHEREAL = "Ethereal";
 const CORPOREA = "Corporeal";
 const CELESTIAL = "Celestial";
-const TYPE = new table.Table("In Nomine, song, type", [CELESTIAL, CORPOREA, ETHEREAL])
+const TYPE = new table.Table("In Nomine, character, song, type", [CELESTIAL, CORPOREA, ETHEREAL])
 const TONGUES = "Tongues";
 const THUNDER = "Thunder";
 const SHIELDS = "Shields";
@@ -29,7 +29,7 @@ const SONGS = [AFFINITY, ATTRACTION, CHARM, DREAMS, ENTROPY, FORM, HARMONY,
 
 class Song extends table.Table {
 	 constructor(songs, types=TYPE.lines) {
-		super("In Nomine, song");
+		super("In Nomine, character, song");
 		for (let s of songs)
 			for (let t of types)
 				this.add(t + " " + s.toLowerCase())
@@ -51,12 +51,12 @@ class Song extends table.Table {
 
 var song=new Song(SONGS)
 
-const DISCORDTYPE = new table.Table("In Nomine, discord, type",
+const DISCORDTYPE = new table.Table("In Nomine, character, discord, type",
     ["Celestial discord", "Etherial discord", "Corporeal discord"])
 const YES = "Yes";
 class Discord extends table.Table {
 	constructor() {
-		super("In Nomine, discord");
+		super("In Nomine, character, discord");
 		this.add(YES, 1);
 		this.add("None", 300);
 	}
