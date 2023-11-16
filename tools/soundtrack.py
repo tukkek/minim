@@ -1,5 +1,11 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+'''
+Requires:
+
+- Python 3 https://www.python.org/downloads/
+- VLC https://www.videolan.org/
+'''
+
 import subprocess,string,os,sys
 
 if len(sys.argv)==1:
