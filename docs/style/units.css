@@ -27,9 +27,12 @@
 }
 #units .unit button.name{
   padding:0 1em;
-  font-weight:bold;
   outline:none;
   border-style:outset;
+  font-weight:bold;
+}
+#units .unit button.name[type=group]{
+  font-style:italic;
 }
 #units button:focus-visible{
   background-color:gold;

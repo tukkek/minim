@@ -159,6 +159,7 @@ function draw(unit){
   let b=parent.querySelector('button')
   b.onclick=()=>setTimeout(()=>act(unit,b),100)
   b.textContent=unit.name
+  b.setAttribute('type',unit.constructor.name.toLowerCase())
   b.setAttribute('accesskey',unit.name[0].toLowerCase())
   parent.unit=unit
   parent.trash=false
