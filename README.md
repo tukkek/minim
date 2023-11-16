@@ -1,12 +1,13 @@
 # Minim
 
-Minim is a full, lightweight [tabletop roleplaying system](https://en.wikipedia.org/wiki/Tabletop_role-playing_game) that uses only normal dice (six-sided ones, also know as d6) and can be used to play any RPG style or genre. In this repository you will find 3 independent (but related) projects:
+Minim is a complete, universal, light-weight [tabletop roleplaying system](https://en.wikipedia.org/wiki/Tabletop_role-playing_game) that requries only common six-sided dice and can be used to play any game style or genre. In this repository you will find:
 
-1. The Minim system in itself, which is an 11-page booklet focusing on fun-and-fast rules for your gaming sessions;
-2. The GM Companion for Minim, which is a software that helps a gamemaster run a session with minimal pre-planning and also handles as much dice-rolling and rules as you'll let it - meaning that you can focus entirely on what's important: having fun and telling stories with your friends;
-3. A simple script to helps you manage a soundtrack while you run your games.
+1. [The Minim rules](https://github.com/tukkek/minim/blob/master/rules/minim.pdf), a short booklet focusing on dynamic, fun-and-fast rules for your gaming sessions;
+2. [Ready-to-print character sheets](https://github.com/tukkek/minim/blob/master/sheets/sheet.en.pdf) for players to use;
+3. [The Minim companion](https://tukkek.github.io/minim/), a web application that helps run sessions with minimal pre-planning and handles as much (or as little) dice-rolling and tracking as you want it to - speeding up the game and letting players focus on creating great stories together;
+4. [A few other tools](https://github.com/tukkek/minim/tree/master/tools) that advanced game-masters may find useful.
 
-We'll now dive into each ot these in more detail.
+The documents are provided in portable format, which any web-browser should be able to open but to use the originals you will need an office suite (such as [Libre Office](https://www.libreoffice.org/) or [Google Docs](https://www.google.com/docs/about/)).
 
 # The Minim role-playing system
 
@@ -14,38 +15,30 @@ Minim is the *minimalistic* role-playing system and it tries to offer as much po
 
 The system has been put to use and tested with a variety of scenarios and groups of people and holds up to the task fairly well in any situation. It will never be as detailed for fantasy games as D&D is, for example, with decades of excellent work put into it - but it doesn't try to! It focuses on letting the story flow fast and for interesting situations to always appear during a gaming session - and not on deciding only between your attack hitting or missing or the exact composition of a wizard's spellbook, down to the very last level-zero cantrip.
 
-If you're looking for something more traditional like that then the Companion (detailed below) will also not be of any value to you - but if the premise of Minim sounds interesting to you so far then make sure to read on as [the entire system is free to read  and use](https://github.com/tukkek/minim/raw/master/doc/minim.pdf)! You will also find ready-to-print character sheets in the ["doc" folder](https://github.com/tukkek/minim/tree/master/doc) - which, in the same spirit should allow you and your players to get started in a matter of around 15 minutes of character creation if you're familiar enough with the rules to guide them through the process.
+Due to its minimalistic design, Minim games are very fast and simple to prepare for and run - a lot of it being intuitive and hence easy to adjucate on-the-fly mid-session. A group of brand-new players should take around 10 to 20 minutes to learn enough rules to create their first characters and start playing.
 
-# The GM companion
+# The companion web application
 
-The Minim Gamemaster Companion is the largest part of this repository. It allows you to create virtual characters for your games (both for player and GM characters), roll dice and resolve actions with it, eliminating as much overhead as possible to allow you and your players to focus in the game itself and not on the rules and dice around the game. Minim is already a lightweight system designed with the same sort of philosophy in mind - when allied with this Companion program it can really bring role-playing to the next level, especially for those gaming groups interested more in the story and fast-and-furious combat, instead of memorizing and looking up rules or battle rounds that can take over 10 minutes to finish - as those who are familiar with traditional role-playing systems will surely be familiar with.
+The Minim game companion takes a system already designed to be simple and fast to play using physical dice and brings it to the next level by automating most of the basic game tasks and actions such as keeping track of scores for both player and non-player characters; rolling and tallying up dice; applying modifiers... to provide the most friction-less roleplaying game experience possible.
 
-One of the biggest strengths of the Companion for the gamemaster is to reduce pre-planning as much as possible: with it by your side you don't need to flesh out entire sets of monsters and characters before you can even start playing - you can focus on your dungeon design or story and not have to worry about countless stats even before the game begins! Once your group enters an encounter, all you have to do is add the appropriate units in the companion and it will only ask you about their specific stats (skill levels, gear, current damage, etc) when absolutely necessary, remembering that information so it doesn't have to ask you again and never bothering you with anything unrelated to the checks that need to be made for the encounter to run through to completion. 
+The companion itself is fairly simple to learn and even features a brief introduction to its functions via the "Help" button - [give it a try](https://tukkek.github.io/minim/) (or continue reading for more information on its design, utility and purposes)!
 
-This can be a great help for GMs who want to try improvising part of their games, as it's easier to just enter the relevant data into the program using your best judgement as a DM than to have to write it all down so you don't forget during the rest of the encounter. Just tell the Companion which actors will be in a scene and what actions are being taken and it will handle as much as possible for you - from combat to group tasks and even managing damage levels or determining initiaitve! We'd all love to have more time to prepare our games but the Companion makes it easier to pick up the slack so that you can focus on the meaningful things when you're writing your adventures, and not on the mechanics of your game!
+Players don't need to commit to doing absolutely everything (or nothing at all) with the companion. It can be used only for more demanding scenes (such as quickly rolling for group initiative or perception and tracking combat scenes, for example). Other groups may want to take advantage of its speed and simplicity to perform most game actions but then leave the more critical rolls of a session to actual physical dice to enhance the dramatic moments of their games.
 
-**What the Companion is not:** the companion is not a replacement for coming up with an awesome adventure for your group, great dungeon designs, terrific monstrous foes or memorable figures to inhabit your game world. All it tries to do is take care of all the mechanical parts of a game session so that everything else can progress as smoothly as possible. It also knows that some of these mechanical tasks are better left for the players, who will want to roll some things on their own and keep track of their most important information themselves. The Companion makes no attempt at managing the heroes' special abilities, willpower pools or equipment - a skilled GM will know how to use it to the fullest and when to let the players roll their own dice and resolve their own actions manually.
+## How the Companion helps reduce game preparation
 
-You can download the Companion's [latest relase for your operating system on the releases page](https://github.com/tukkek/minim/releases).
+One of the biggest strengths of the Companion for the game-master is to reduce [game prep](https://www.roleplayingtips.com/running-games/preparing-to-run-a-commercial-module/) as much as possible: with it by your side you don't need to flesh out all the details of every scene before you can even start playing. Once your group enters an encounter, all you have to do is add-in the appropriate units and it will only ask you about specific stats (skill levels, gear, current damage)... when absolutely necessary, remembering that information later and never bothering to ask you for numbers that will never come into play.
 
-If instead you want to compile the source code yourself then you will need:
+This can be a great help also for GMs who want to try improvising part of their games, as it's easier to just enter the relevant numbers into the program on-the-fly using your best judgement than to keep track of all that data as the game progresses later on (and any great game-master will tell you that improvisation is half of any roleplay session). When improvising, it's crucial to "guesstimate" appropriate information over relying on pre-planned data and the Minim Companion is built to enable exactly that!
 
-* Java Development Kit (Version 14 or higher) http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html
-* Eclipse RCP (version 4 or higher, Minim 1.4 built with Eclipse 4.20) http://www.eclipse.org/downloads/eclipse-packages/
+We'd all love to have more time to prepare our games but the Companion makes it easier to pick up the slack so that you can focus on the meaningful things when you're writing your adventures and not on game mechanics and blocks of numbers. It also helps quickly and gracefully deal with unexpected scenarios where improvisation might be required.
 
-A little bit about the Companion's history: it was first created around 2008 as a New World of Darkness companion software, with much of the same goals as it has today. In 2013 it was converted to the Minim roleplaying system (at the time called "Base 5"). The current version is a rewrite from scratch, turning the old 10-thousand lines-of-code previous project into around one thousand LoC only. The previous incarnation was a little bit fancier but they are, for all intents and purposes, equivalent solutions.
+## What the Companion is not
 
-# Soundtrack management
+The Companion is not a replacement for coming up with awesome adventures for your group, great dungeon designs, terrific and creative monstrous foes, tactical combat encounters and memorable figures to populate your game world - all it tries to do is take care of the mechanical parts of a game session so that everything else can progress as smoothly as possible.
 
-This is only a simple script which could go unnoticed if not featured here in the manual. If you have an organized collection of music tracks to use as a backdrop for your gaming sessions, this will help you manage them as effortlessly as possible during the course of a gaming session. For this to work you'll need:
+The Companion also makes no attempt at managing the players' special abilities, willpower pools, equipment... these should be simple and important enough that they will want to manually track it themselves - letting the Companion focus instead on GM tasks or those that involve more active dice-rolling, like combat.
 
-1. [Python 3](https://www.python.org/downloads/) installed in your computer.
-2. The [VLC media player](https://www.videolan.org/vlc/) installed as well.
-3. Minimal knowledge about how to use a command-line program.
-4. A folder where you have different genres of music separated into subfolders (for example: a folder for action tracks, another for drama, yet another for suspense, etc).
+## Tables galore!
 
-What this script does is to list your folders and allow you to select one. When you do, it will launch VLC in random mode and automatically start playing them. As soon as you close VLC it will once again show you your folder selection so you can change between moods as fast as possible, without having to worry about handling playlists, finding your folders or anything else that can be a bit of a bother, especially if you're trying to tell an amazing story at your gaming table instead.
-
-The command line usage is simply `python3 soundchooser.py [your main folder location]`. So on Windows it could become something like `python3 soundchooser.py "c:\my songs\"`or, on UNIX, something like `./soundchooser.py ~/soundtrack/`.
-
-This originally had a more friendly user-interface but due to technology changes that version stopped working - it was rewritten as a command-line utility to ensure a longer lifespan and independence from third-party graphical libraries.
+The Companion also provides many hundreds of built-in tables, ranging from entire adventure and character generators to setting-specific content and miscellanious tools like weather calendars. These can be incredibly helpful or entirely ignored, depending on the GM, group and play-style.
