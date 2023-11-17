@@ -18,9 +18,9 @@ const PENALTIES=new Map([
 ])
   
 export var values=new Map([
-  ['Physical',['Brawl','Coordination','Shooting','Sports','Steal']],
-  ['Mental',['Art','Cure','Security','Technology','Knowledge']],
-  ['Social',['Animals','Coercion','Communication','Languages','Perception']]
+  ['Physical',['Brawl','Coordination','Fire','Sports','Stealth']],
+  ['Social',['Coercion','Communication','Languages','Perception','Survival']],
+  ['Mental',['Art','Cure','Security','Technology','Wisdom']],
 ])
 export var templates=[]
 export var units=[]

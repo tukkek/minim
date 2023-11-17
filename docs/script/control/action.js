@@ -13,15 +13,15 @@ const OUTCOME=new Map([
   [+2,'Amazing'],
 ])
 const FUMBLE=[
-  ['begins grappling','grappling'],
-  ['is disarmed','disarmed'],
   ['is stunned','stunned'],
-  ['is shaken','shaken'],
+  ['is disarmed','disarmed'],
   ['falls','fallen'],
-  ['is disabled','disabled'], // only 'minor' actions next round
-  ['is pinned','pinned'], // cannot move
+  ['is shaken','shaken'],
   ['interacts with ally (or enemy)',false],
   ['interacts with environment',false],
+  ['begins grappling','grappling'],
+  ['is disabled','disabled'], // only 'minor' actions next round
+  ['is pinned','pinned'], // cannot move
   ['moves back',false],
 ]
 
@@ -161,7 +161,7 @@ class Change extends Action{
 }
 
 export var order=new Order()
-export var actions=[order,new Attack('Brawl'),new Attack('Shooting')]
+export var actions=['Brawl','Shooting','Sports'].map(a=>new Attack(a)).concat([order])
 export var bonus=0
 
 var change=['weapon','armor','life']
