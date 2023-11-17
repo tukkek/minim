@@ -9,6 +9,10 @@ Minim is a complete, universal, light-weight [tabletop roleplaying system](https
 
 The documents are provided in portable format, which any web-browser should be able to open but to use the originals you will need an office suite (such as [Libre Office](https://www.libreoffice.org/) or [Google Docs](https://www.google.com/docs/about/)).
 
+# Contact and support
+
+To discuss the game rules, the Companion software or just to say thanks, [join the Minim community on Discord](https://discord.gg/5sXXcwPCSP)!
+
 # The Minim role-playing system
 
 Minim is the *minimalistic* role-playing system and it tries to offer as much potential as those other systems that come in expensive books with hundreds of pages of rules. It leaves a lot of work to the imagination of players and GMs alike but it does so while providing an established foundation which you should be able to easily expand upon and derive your own ideas from.
