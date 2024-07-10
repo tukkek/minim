@@ -48,7 +48,8 @@ const HEALTHY='Healthy'
 const INTERMEDIATE='Intermediate'
 const AVERAGE='Average'
 const NORMAL='Normal'
-const TYPICAL=new Set([ATHEIST, STRAIGHT, ABLE, NEUROTYPICAL, HEALTHY, INTERMEDIATE,AVERAGE,NORMAL])
+const MISERABLE='Miserable'
+const TYPICAL=new Set([ATHEIST,STRAIGHT,ABLE,NEUROTYPICAL,HEALTHY,INTERMEDIATE,AVERAGE,NORMAL,MISERABLE])
 
 const AGE=new table.Table('Realistic, character, age')
 AGE.add('Baby', 1)
@@ -130,7 +131,13 @@ WEIGHT.add(NORMAL,40)
 WEIGHT.add('Over-weight',40)
 WEIGHT.add('Obese',20)
 
-tables.push(...[AGE,SEX,RACE,SEXUALITY,RELIGION,DISABILITY,MENTALISSUE,HEALTH,CHRONOTYPE,HEIGHT,WEIGHT])
+const WEALTH=new table.Table('Realistic, character, wealth')
+WEALTH.add('Millionaire',1)
+WEALTH.add('Middle-class',10)
+WEALTH.add('Poor',30)
+WEALTH.add(MISERABLE,50)
+
+tables.push(...[AGE,SEX,RACE,SEXUALITY,RELIGION,DISABILITY,MENTALISSUE,HEALTH,CHRONOTYPE,HEIGHT,WEIGHT,WEALTH])
 
 /**
  * Built using semi-extensive real-world data.
@@ -146,7 +153,7 @@ class WorldNpc extends table.Table{
 	roll(){
 		let basic=[AGE,RACE,SEX].map(b=>b.roll()).join(' ')
     basic=basic[0]+basic.slice(1).toLowerCase()
-		let details=[RELIGION,SEXUALITY,DISABILITY,MENTALISSUE,HEALTH,CHRONOTYPE,HEIGHT,WEIGHT]
+		let details=[RELIGION,SEXUALITY,DISABILITY,MENTALISSUE,HEALTH,CHRONOTYPE,HEIGHT,WEIGHT,WEALTH]
                   .map(d=>d.roll()).filter(d=>!TYPICAL.has(d))
 		if(this.simple) details=rpg.shuffle(details).slice(0,2)
 		details=details.sort().join(', ').toLowerCase()
