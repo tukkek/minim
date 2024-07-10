@@ -16,11 +16,12 @@ import * as une from './une.js'
 import * as conjectural from './conjectural.js'
 import * as darkness from './darkness/darkness.js'
 import * as kult from './kult/kult.js'
+import * as tarot from './tarot.js'
 
 export var tables=[
   adungeon,bold,cyberpunk,darkness,conjectural,
   falkenstein,fantasy,hexcrawl,nomine,instant,kult,oneshot,
-  weather,cartoon,real,journey,misc,une
+  weather,cartoon,real,journey,misc,une,tarot,
 ]
 
 export function setup(){
