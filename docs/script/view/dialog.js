@@ -180,6 +180,9 @@ export class Tables extends Dialog{
   
   async input(){
     let table=await super.input()
+    let all=tables.tables
+    all.splice(all.indexOf(table),1)
+    all.splice(0,0,table)
     output.clear()
     output.say(table.roll()+table.end)
   }
