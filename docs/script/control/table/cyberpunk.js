@@ -141,7 +141,7 @@ class LifeEvent extends table.Table {
 const  ETHNICITY = new table.Table("Cyberpunk, character, ethnicity", ["Anglo-american", "African", "Asian",
   "East european / russian", "Polynesian", "Indian", "South american", "Hispanic", "European"])
 
-class Lifepath extends table.Table {
+export class Lifepath extends table.Table{
 	 constructor() {
 		super("Cyberpunk, character");
 	}
