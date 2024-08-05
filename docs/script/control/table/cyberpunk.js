@@ -31,12 +31,11 @@ class Enemy extends table.Table {
 	}
 
 	 roll() {
-		let enemy = WHO.roll();
-		enemy += "<br/>Why? " + WHY.roll();
-		enemy += "<br/>" + DIRECTION.roll();
-		enemy += "<br/>What you gonna do about it? " + ENEMYACTION.roll();
-		enemy += "<br/>Enemy forces: " + FORCES.roll();
-		return enemy;
+		return [WHO.roll(),
+						"Why? " + WHY.roll(),
+						DIRECTION.roll(),
+						"What you gonna do about it? " + ENEMYACTION.roll(),
+						"Enemy forces: " + FORCES.roll()].join('; ')
 	}
 }
 
@@ -81,7 +80,7 @@ class Family extends table.Table {
 var family=new Family()
 
 const ACTION = new table.Table("Cyberpunk, character, life events, what are you gonna do about it?",
-    ["Clear your name;", "Forget it.", "Take tevenge.", "Get what's yours.", "Save everyone involved."])
+    ["Clear your name.", "Forget it.", "Take tevenge.", "Get what's yours.", "Save everyone involved."])
 
 class Disaster extends table.Table{
   constructor(){
@@ -116,8 +115,8 @@ class FriendFoe extends table.Table{
   roll(){
     this.lines=[]
     var gender = rpg.roll(1,10) % 2 == 0 ? "Male" : "Female";
-    this.add(gender+" friend (" + FRIEND.roll().toLowerCase() + ")");
-    this.add(gender+" foe: (roll table)");
+    this.add(`${gender} friend (${FRIEND.roll().toLowerCase()}).`);
+    this.add(`${gender} foe (${enemy.roll()}).`);
     return super.roll()
   }
 }
@@ -127,10 +126,15 @@ var friendfoe=new FriendFoe()
 class LifeEvent extends table.Table {
 	constructor() {
 		super("Cyberpunk, character, life event");
+	}
+	
+	roll(){
+		this.lines=[]
 		this.add(BIGPROBLEMSBIGWINS,3);
-		this.add( friendfoe,6-4);
-		this.add("Romance (roll table)");
+		this.add(friendfoe,6-4);
+		this.add("Romance ("+romance.roll().toLowerCase()+")");
 		this.add("");
+		return super.roll()
 	}
 }
 
@@ -150,8 +154,11 @@ class Lifepath extends table.Table {
 		lifepath += "<br/><br/>Family<br/>" + family.roll();
 		lifepath += "<br/><br/>Motivation<br/>" + motivation.roll() + "<br/>";
 		for (let year = 17; year <= age; year++) {
-			let e = lifeevent.roll();
-			if (e) lifepath += "<br/>Life event at " + year + ": " + e;
+			let e=lifeevent.roll();
+			if(!e) continue
+			lifepath+=`<br/>Life event at ${year} years of age: ${e}`
+			let last=lifepath[lifepath.length-1]
+			if(['.','?','!'].indexOf(last)<0) lifepath+='.'
 		}
 		return lifepath;
 	}
