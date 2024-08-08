@@ -37,7 +37,7 @@ class Personality extends table.Table{
 		return traits.join(', ')
 	}
 }
-var personality=new Personality()
+export var personality=new Personality()
 tables.push(personality)
 
 const ATHEIST='Atheist'
