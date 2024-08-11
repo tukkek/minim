@@ -88,8 +88,15 @@ const DRUID=new table.Table("Fantasy, character, class, kit, druid",
 const KITS=[FIGHTER,WIZARD,CLERIC,ROGUE,
   DRUID,PALADIN,RANGER,BARD,MONK];
 const KIT=new Kit("Fantasy, character, class, kit",TYPES);
-const RACE=new table.Table("Fantasy, character, race",
-  ["Human","Dwarf","Elf","Gnome","Half-elf","Half-orc","Halfling"])
+
+const DEVA=new table.Table('Fantasy, character, race, deva',['Nephilim','Kami'])
+const FEY=new table.Table('Fantasy, character, race, fey',['Dryad','Elf'])
+const HUMAN=new table.Table('Fantasy, character, race, human',['Mortal','Half-orc'])
+const CAVER=new table.Table('Fantasy, character, race, caver',['Nibelung','Lacerta'])
+const DJINN=new table.Table('Fantasy, character, race, djinn',['Lycanthrope','Cambion'])
+const RACE=new table.Table('Fantasy, character, race',[DEVA,FEY,HUMAN,CAVER,DJINN])
+tables.push(...[RACE,DEVA,FEY,HUMAN,CAVER,DJINN])
+
 const TIERS=["Low-level","Mid-level","High-level",
   "Epic-level"];
 const LEVEL=new table.Table("Fantasy, character, level")
@@ -98,7 +105,7 @@ LEVEL.add(TIERS[1],30);
 LEVEL.add(TIERS[2],6);
 LEVEL.add(TIERS[3],1);
 
-tables.push(...[MONK,FIGHTER,ROGUE,PALADIN,RANGER,BARD,CLERIC,WIZARD,DRUID,KIT,RACE,LEVEL])
+tables.push(...[MONK,FIGHTER,ROGUE,PALADIN,RANGER,BARD,CLERIC,WIZARD,DRUID,KIT,LEVEL])
 
 function describe(ethic,moral){
   if(ETHICS.lines[1]==ethic&&MORALS.lines[1]==moral)
@@ -121,15 +128,15 @@ class FantasyCharacter extends table.Table{
   }
 
   roll(){
-    let r=KIT.roll(false);
-    let e=ETHICS.roll();
+    let r=KIT.roll(false)
+    let e=ETHICS.roll()
     while (!this.validate(r,e,LAWFUL,ETHICS.lines[2])
         ||!this.validate(r,e,CHAOTIC,ETHICS.lines[0]))
-      e=ETHICS.roll();
-    let l=LEVEL.roll();
-    let alignment=describe(e,MORALS.roll()).toLowerCase();
-    let race=RACE.roll().toLowerCase();
-    r=swap(r).toLowerCase();
+      e=ETHICS.roll()
+    let l=LEVEL.roll()
+    let alignment=describe(e,MORALS.roll()).toLowerCase()
+    let race=RACE.roll().toLowerCase().trim()
+    r=swap(r).toLowerCase()
     return [l,alignment,race,r].join(' ')
   }
 }
@@ -168,11 +175,12 @@ class SimpleCharacter extends FantasyCharacter{
   }
 
   roll(){
-    let alignment=describe(ETHICS.roll(),MORALS.roll()).toLowerCase();
-    let race=RACE.roll().toLowerCase();
-    let l=LEVEL.roll();
-    let tier=CLASSES[TIERS.indexOf(l)+1];
-    let kit=tier.roll().toLowerCase();
+    let alignment=describe(ETHICS.roll(),MORALS.roll()).toLowerCase()
+    let race=RACE.roll().toLowerCase()
+    let l=LEVEL.roll()
+    let tier=CLASSES[TIERS.indexOf(l)+1]
+    let kit=tier.roll().toLowerCase()
+    kit=kit.slice(0,kit.indexOf(' '))
     return [l,alignment,race,kit].join(' ')
   }
 }
