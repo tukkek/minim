@@ -91,8 +91,8 @@ const KIT=new Kit("Fantasy, character, class, kit",TYPES);
 
 const DEVA=new table.Table('Fantasy, character, race, deva',['Nephilim','Kami'])
 const FEY=new table.Table('Fantasy, character, race, fey',['Dryad','Elf'])
-const HUMAN=new table.Table('Fantasy, character, race, human',['Mortal','Half-orc'])
-const CAVER=new table.Table('Fantasy, character, race, caver',['Nibelung','Lacerta'])
+const HUMAN=new table.Table('Fantasy, character, race, human',['Human','Orc'])
+const CAVER=new table.Table('Fantasy, character, race, caver',['Dwarf','Lacerta'])
 const DJINN=new table.Table('Fantasy, character, race, djinn',['Lycanthrope','Cambion'])
 const RACE=new table.Table('Fantasy, character, race',[DEVA,FEY,HUMAN,CAVER,DJINN])
 tables.push(...[RACE,DEVA,FEY,HUMAN,CAVER,DJINN])
