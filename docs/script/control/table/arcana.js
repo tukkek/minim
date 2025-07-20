@@ -1,30 +1,21 @@
 import * as table from './table.js'
 
-const COURAGE=new table.Table('Courage',['Scared','Hesitant','Careful','Brave','Fearless'])
-const POWER=new table.Table('Power',['Sick','Meager','Hardy','Strong','Champion'])
-const WEALTH=new table.Table('Wealth',['Destitute','Poor','Mid-class','High-class','Elite'])
-const COMPASSION=new table.Table('Compassion',['Cold','Distant','Sympathetic','Compassionate','Saintly'])
-const PERSONALITY=new table.Table('Arcana (personality)',[COURAGE,POWER])
-const NATURE=new table.Table('Arcana (nature)',[WEALTH,COMPASSION])
-const INTELLECT=new table.Table('Arcana (theme, intellect)',['Stupidity','Ignorance','Competence','Intelligence','Brilliance'])
-const CREATIVITY=new table.Table('Arcana (theme, creativity)',['Shallowness','Blandness','Pedestry','Creativity','Artistry'])
-const EXPRESSION=new table.Table('Arcana (theme, self-expression)',['Distance','Timidity','Reticence','Eloquence','Leadership'])
-const EMPATHY=new table.Table('Arcana (theme, empathy)',['Hostility','Apathy','Reflection','Compassion','Altruism'])
-const HEALTH=new table.Table('Arcana (theme, health)',['Infermity','Frailty','Resilience','Vigor','Purity'])
-const THEME=new table.Table('Arcana (theme)',[INTELLECT,CREATIVITY,EXPRESSION,EMPATHY,HEALTH])
+const FIRE=new table.Table('Fire',['Ash','Ember','Kindling','Pyre','Hearth'])
+const WATER=new table.Table('Water',['Desert','Oasis','Mountain','Forest','Jungle'])
+const EARTH=new table.Table('EARTH',['Misery','Poverty','Struggle','Comfort','Abundance'])
+const AIR=new table.Table('AIR',['Storm','Gale','Calm','Gust','Zephyr'])
+const REALMS=new table.Table('Arcana (realms)',['Hell','Umbra','Eden','Astral','Heaven'])
+const ARCANA=new table.Table('Arcana',[WATER,AIR,FIRE,EARTH,REALMS])
 
 class Character extends table.Table{
-  constructor(){
-    super('Arcana (character)')
-  }
-  
+  constructor(){super('Arcana (character)')}
+
   roll(){
-    let traits=[PERSONALITY,NATURE].map((t)=>t.roll()).sort()
-    traits=traits.join(' and ').toLowerCase()
-    traits=traits[0].toUpperCase()+traits.slice(1)
-    let t=THEME.roll().toLowerCase()
-    return `${traits} (theme: ${t})`
+    let mood=new table.Table('Arcana (mood)',[FIRE,WATER])
+    let nature=new table.Table('Arcana (nature)',[FIRE,WATER])
+    let traits=`Mood: ${mood}; nature: ${nature}`
+    return traits[0].toUpperCase()+traits.slice(1).toLowerCase()
   }
 }
 
-export var tables=[PERSONALITY,NATURE,new Character(),INTELLECT,CREATIVITY,EXPRESSION,EMPATHY,HEALTH,THEME]
+export var tables=[ARCANA,new Character()]
