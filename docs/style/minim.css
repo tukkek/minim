@@ -1,6 +1,8 @@
 html,body{
   height:99%;
   overflow:hidden;
+  background-color:black;
+  color:white;
 }
 #layout{
   display:grid;

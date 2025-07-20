@@ -1,6 +1,7 @@
 #output{
   border:.1em solid black;
   border-radius:2em;
+  border-color:silver;
   padding-left:1em;
   display:grid;
   grid-template-rows:auto auto;
@@ -21,7 +22,7 @@
   padding:1em;
   display:grid;
   grid-auto-flow:column;
-  grid-gap:1em;
+  gap:1em;
 }
 #output .bar .controls>button{
   text-decoration:underline;
@@ -31,6 +32,7 @@
   font-size:1em;
   padding:0;
   transition:.2s;
+  color:white;
 }
 #output .bar .controls>button:focus-visible{
   background-color:gold;

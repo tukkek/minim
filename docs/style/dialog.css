@@ -11,13 +11,14 @@
   border:.2em gray solid;
   background-color:slategray;
   display:grid;
-  grid-gap:1em;
+  gap:1em;
   min-width:20em;
+  color:black;
 }
 #dialog .search{
   display:grid;
   grid-template-columns:min-content auto;
-  grid-gap:1em;
+  gap:1em;
   align-items:center;
 }
 #dialog .search hinput{

@@ -62,6 +62,7 @@
   border-radius:1em;
   text-align:center;
   display:grid;
+  color:black;
 }
 #units #grouper button{
   width:100%;
