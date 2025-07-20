@@ -1,6 +1,7 @@
 import * as db from '../control/db.js'
 import * as input from '../control/input.js'
 import * as action from '../control/action.js'
+import * as rpgm from '../control/rpg.js'
 import * as actionsm from './actions.js'
 import * as output from './output.js'
 import * as dialog from './dialog.js'
@@ -138,12 +139,13 @@ async function act(unit,button=false){
   update()
 }
 
-function affect(text,unit){
+function affect(text,unit,call=false){
+  if(!call) call=()=>unit.end(text)
   let parent=get(unit).querySelector('.effects')
   let e=EFFECT.cloneNode(true)
   e.textContent=text
   e.onclick=()=>{
-    unit.end(text)
+    call.call(this)
     update()
   }
   parent.appendChild(e)
@@ -165,7 +167,7 @@ function draw(unit){
   parent.trash=false
   for(let e of parent.querySelectorAll('.effect')) e.remove()
   let s=unit.status
-  if(s) affect(s.toLowerCase(),unit)
+  if(s) affect(s.toLowerCase(),unit,()=>unit.heal())
   let effects=unit.effects
   if(effects) for(let e of effects) affect(e,unit)
 }
@@ -221,7 +223,12 @@ async function order(){
   let views=Array.from(VIEW.querySelectorAll('.unit'))
   let units=views.map(u=>u.unit)
   let order=new Map()
-  for(let u of units) order.set(u,await u.order())
+  for(let u of units){
+    let brain=await u.get('brain')
+    let initiative=rpgm.rolldice(brain,6)+brain/10
+    order.set(u,initiative)
+    console.log(u.name,initiative)
+  }
   units.sort((a,b)=>order.get(b)-order.get(a))
   for(let v of views) v.remove()
   for(let u of units){

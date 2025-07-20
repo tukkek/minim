@@ -1,5 +1,11 @@
 export function roll(min,max){return Math.floor(Math.random()*(max-min+1))+min}
 
+export function rolldice(dice,sides){
+  let sum=0
+  for(let i=0;i<dice;i+=1) sum+=roll(1,sides)
+  return sum
+}
+
 export function low(min,max){return Math.min(roll(min,max),roll(min,max))}
 
 export function high(min,max){return Math.max(roll(min,max),roll(min,max))}

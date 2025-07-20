@@ -18,9 +18,9 @@ const PENALTIES=new Map([
 ])
   
 export var values=new Map([
-  ['Physical',['Brawl','Coordination','Fire','Sports','Stealth']],
-  ['Social',['Coercion','Communication','Languages','Perception','Survival']],
-  ['Mental',['Art','Cure','Security','Technology','Wisdom']],
+  ['Brain',['Art','Cure','Security','Technology','Wisdom']],
+  ['Brawl',['Fight','Coordination','Fire','Sports','Stealth']],
+  ['Brass',['Coercion','Communication','Languages','Perception','Survival']],
 ])
 export var templates=[]
 export var units=[]
@@ -29,15 +29,17 @@ export var roll=-1//last roll
 export class Unit{
   constructor(n,t=false){
     if(!n) throw 'unit needs name'
-    this.skills=new Map([['life',5]])
+    this.skills=new Map()
     this.templatename=t&&t.name
     this.hidden=false
     this.effects=[]
     this.name=n
+    this.wounds=0
   }
   
   affect(effect){
-    this.effects.push(effect)
+    let effects=this.effects
+    if(!effects.includes(effect)) effects.push(effect)
     db.store()
   }
   
@@ -79,7 +81,7 @@ export class Unit{
   async get(skill){
     skill=skill.toLowerCase()
     let t=this.template
-    if(t&&skill!='life'){
+    if(t){
       let value=await t.get(skill)
       return Promise.resolve(value)
     }
@@ -92,15 +94,8 @@ export class Unit{
     return Promise.resolve(value)
   }
   
-  async modify(){
-    let l=await this.get('life')
-    let p=PENALTIES.get(l)
-    return Promise.resolve(p||-0)
-  }
-  
   async roll(skill){
     skill=await this.get(skill)
-    skill+=await this.modify()
     skill+=action.bonus
     if(skill<1) skill=1
     else if(skill>5) skill=5
@@ -113,23 +108,32 @@ export class Unit{
   
   toString(){return this.name}
   
-  async order(){return await action.order.act(this)}
-  
   async act(action){Promise.resolve(await action.act(this))}
   
-  hit(hits){
+  async hit(hits){
     if(hits<1) hits=1
-    let s=this.skills
-    let l=s.get('life')
-    l-=hits
-    if(l<0) l=0
-    s.set('life',l)
-    if(l==0) this.remove()
+    this.wounds+=hits
+    let trait='brass'
+    let value=await this.get(trait)
+    value-=hits
+    this.skills.set(trait,value)
+    if(value<1) this.remove()
+    return Promise.resolve()
   }
   
-  get life(){return this.skills.get('life')}
-  
-  get status(){return STATUS.get(this.life)}
+  get life(){return Math.max(this.skills.get('brass'),0)}
+
+  get status(){return STATUS.get(this.wounds?this.life:5)}
+
+  heal(){
+    let wounds=this.wounds
+    if(!wounds) return
+    let skills=this.skills
+    let skill='brass'
+    skills.set(skill,skills.get(skill)+wounds)
+    this.wounds=0
+    db.store()
+  }
 }
 
 export class Template extends Unit{

@@ -22,7 +22,6 @@ function save(){
 }
 
 export async function setup(){
-//   data.delete()
   let tables={units:'name',templates:'name',groups:'name',
               notes:'title'}
   await data.version(1).stores(tables)

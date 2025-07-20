@@ -12,18 +12,22 @@ const OUTCOME=new Map([
   [+1,'Success'],
   [+2,'Amazing'],
 ])
+const GRAPPLING='grappling'
 const FUMBLE=[
   ['is stunned','stunned'],
-  ['is disarmed','disarmed'],
   ['falls','fallen'],
+  ['is disarmed','disarmed'],
   ['is shaken','shaken'],
-  ['interacts with ally (or enemy)',false],
+  ['interacts with enemy',false],
   ['interacts with environment',false],
-  ['begins grappling','grappling'],
-  ['is disabled','disabled'], // only 'minor' actions next round
+  ['interacts with ally',false],
+  ['moves back','back'],
+  ['is disabled','disabled'], // can only move
   ['is pinned','pinned'], // cannot move
-  ['moves back',false],
-]
+  ['begins grappling',GRAPPLING],
+  false,
+  false,
+].reverse()
 
 export class Action{
   constructor(n){
@@ -48,25 +52,32 @@ class Test extends Action{
     this.skills=skills
     this.group=true
   }
-  
+
+  sign(number){return number<0?new String(number):`+${number}`}
+
+  compare(number1,number2){
+    let symbol='='
+    if(number1>number2) symbol='>'
+    else if(number1<number2) symbol='<'
+    return [number1,symbol,number2].join('')
+  }
+
   async act(unit){
-    let m=await unit.modify()
-    let result=0
-    let rolls=[]
-    for(let s of this.skills){
-      s=s.toLowerCase()
-      result+=await unit.roll(s)
-      let value=await unit.get(s)
-      let b=bonus
-      let target=value+bonus+m
-      if(b>=0) b='+'+b
-      rolls.push(`${s} ${unitm.roll}≤${target}=${value}${b}-${Math.abs(m)}`)
+    let hits=0
+    let details=[]
+    for(let skill of this.skills.map((skill)=>skill.toLowerCase())){
+      hits+=await unit.roll(skill)
+      let value=await unit.get(skill)
+      let comparison=this.compare(unitm.roll,value+bonus)
+      let calculation=`(${[value,this.sign(bonus)].join('')})`
+      details.push([skill,comparison,calculation].join(' '))
     }
-    let o=OUTCOME.get(result).toLowerCase()
-    if(result==-2||result==+2) o+='!'
-    let dice=rolls.join(', ').toLowerCase()
-    output.test(unit,this,o,dice)
-    return Promise.resolve(result)
+    details=details.join('; ')
+    details=details[0].toUpperCase()+details.slice(1).toLowerCase()
+    let punctuation=hits==-2||hits==+2?'!':'.'
+    let outcome=OUTCOME.get(hits).toLowerCase()+punctuation
+    output.test(unit,this,outcome,details)
+    return Promise.resolve(hits)
   }
   
   async prepare(){
@@ -81,31 +92,21 @@ class Test extends Action{
   }
 }
 
-class Order extends Test{
-  constructor(){
-    super('',['Social','Physical'])
-    this.name='Determine order'
-    this.group=true
-  }
-  
-  async act(unit){
-    let roll=await super.act(unit)
-    let s=await unit.get('social')
-    let p=await unit.get('physical')
-    return Promise.resolve(roll*100+s*10+p)
-  }
-}
-
 class Attack extends Test{
   constructor(skill){
-    super('',['Physical',skill])
+    super('',['Brawl',skill])
     this.name=skill+' attack'
   }
   
-  fumble(unit){
-    let f=rpg.pick(FUMBLE)
-    output.say(`${unit.name} ${f[0]}.`)
-    if(f[1]) unit.affect(f[1])
+  fumble(unit,unit2){
+    let fumble=FUMBLE[rpg.rolldice(2,6)]
+    output.say(`${unit.name} ${fumble[0]}.`)
+    let effect=fumble[1]
+    if(effect){
+      let targets=[unit]
+      if(effect==GRAPPLING&&unit2) targets.push(unit2)
+      for(let target of targets) target.affect(effect)
+    }
     db.store()
   }
   
@@ -116,28 +117,22 @@ class Attack extends Test{
   }
   
   async act(unit,target=false){
-    let outcome=await super.act(unit)
-    if(outcome==-2){
-      this.fumble(unit)
-    }else if(outcome==-1){
-      //fail
-    }else if(outcome==0){
-      if(!target) target=await this.target()
-      this.fumble(target)
-    }else if(outcome>=+1){
-      if(!target) target=await this.target()
-      let w=await unit.get('weapon')
-      let a=await target.get('armor')
-      target.hit(w-a)
-      if(target.life>0&&outcome==+2){
+    let hits=await super.act(unit)
+    if(!target)
+      target=await this.target()
+    if(hits>0){
+      let weapon=await unit.get('weapon')
+      let armor=await target.get('armor')
+      await target.hit(weapon-armor)
+      if(target.life>0&&hits==+2){
         let next=await this.act(unit,target)
-        if(next>=+1) return Promise.resolve(+2)
+        if(next>0) return Promise.resolve(+2)
       }
-      let s=target.status.toLowerCase()
-      output.say(`${target} is ${s}!`)
+      output.say(`${target} is ${target.status.toLowerCase()}!`)
       db.store()
-    }
-    return Promise.resolve(outcome)
+    }else if(hits==0) this.fumble(target,unit)
+    else if(hits==-2) this.fumble(unit,target)
+    return Promise.resolve(hits)
   }
 }
 
@@ -160,11 +155,10 @@ class Change extends Action{
   }
 }
 
-export var order=new Order()
-export var actions=['Brawl','Shooting','Sports'].map(a=>new Attack(a)).concat([order])
+export var actions=['Fight','Shooting','Sports'].map(a=>new Attack(a))
 export var bonus=0
 
-var change=['weapon','armor','life']
+var change=['weapon','armor']
 
 export function setup(){
   let values=unitm.values
