@@ -1,4 +1,4 @@
-export function roll(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+export function roll(min=1,max=6){return Math.floor(Math.random()*(max-min+1))+min}
 
 export function rolldice(dice,sides){
   let sum=0
@@ -21,4 +21,10 @@ export function shuffle(array){
     array[j]=a
   }
   return array
+}
+
+export function bind(min,value,max){
+  if(value>max) return max
+  if(value<min) return min
+  return value
 }

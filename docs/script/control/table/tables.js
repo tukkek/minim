@@ -17,11 +17,12 @@ import * as conjectural from './conjectural.js'
 import * as darkness from './darkness/darkness.js'
 import * as kult from './kult/kult.js'
 import * as arcana from './arcana.js'
+import * as visarc from './visarc.js'
 
 export var tables=[
   adungeon,bold,cyberpunk,darkness,conjectural,
   falkenstein,fantasy,hexcrawl,nomine,instant,kult,oneshot,
-  weather,cartoon,real,journey,misc,une,arcana,
+  weather,cartoon,real,journey,misc,une,arcana,visarc,
 ]
 
 export function setup(){

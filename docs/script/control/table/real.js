@@ -97,7 +97,6 @@ MENTALISSUE.add('Schizophrenia', 1)
 MENTALISSUE.add('Bipolar', 1)
 MENTALISSUE.add(NEUROTYPICAL, MENTALISSUE.lines.length * 9)
 
-
 /*
   * As of August 2021 (cases per year, relative to population):
   * 
