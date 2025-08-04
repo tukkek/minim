@@ -1,3 +1,4 @@
+import '../../lib/array.js'
 import * as debug from './debug.js'
 import * as db from './db.js'
 import * as input from './input.js'

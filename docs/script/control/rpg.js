@@ -6,9 +6,9 @@ export function rolldice(dice,sides){
   return sum
 }
 
-export function low(min,max){return Math.min(roll(min,max),roll(min,max))}
+export function low(min=1,max=6){return Math.min(roll(min,max),roll(min,max))}
 
-export function high(min,max){return Math.max(roll(min,max),roll(min,max))}
+export function high(min=1,max=6){return Math.max(roll(min,max),roll(min,max))}
 
 export function pick(array){return array[roll(0,array.length-1)]}
 

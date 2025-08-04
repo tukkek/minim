@@ -22,19 +22,17 @@ const EXTRAVERSION=new Trait('Extraversion', 'Outgoing', 'Reserved')
 const AGREEABLENESS=new Trait('Agreeableness', 'Friendly', 'Harsh')
 const NEUROTICISM=new Trait('Neuroticism', 'Nervous', 'Confident')
 
-const TRAITS=[OPENNESS, CONSCIOUSNESS, EXTRAVERSION, AGREEABLENESS, NEUROTICISM]
+export var traits=[OPENNESS, CONSCIOUSNESS, EXTRAVERSION, AGREEABLENESS, NEUROTICISM]
 
-tables.push(...TRAITS)
+tables.push(...traits)
 
 class Personality extends table.Table{
-	constructor(){
-		super('Realistic, character, personality')
-	}
+	constructor(){super('Realistic, character, personality')}
 
   roll(){
-    let traits=TRAITS.filter(t=>t.israre()).map(t=>t.rare.toLowerCase())
-    if(traits.length==0) traits.push('normal')
-		return traits.join(', ')
+    let rare=traits.filter(t=>t.israre()).map(t=>t.rare.toLowerCase())
+    if(rare.length==0) rare.push('normal')
+		return rare.join(', ')
 	}
 }
 export var personality=new Personality()
