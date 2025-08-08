@@ -28,3 +28,7 @@ export function bind(min,value,max){
   if(value<min) return min
   return value
 }
+
+export function mid(low=1,high=6){return Array.from(new Array(3),()=>roll(low,high)).sort()[1]}
+
+export function chance(odds){return odds>0&&roll(1,odds)==odds}

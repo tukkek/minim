@@ -1,8 +1,8 @@
 import * as tablem from './table.js'
 import * as rpgm from '../rpg.js'
 
-const ADORATOR=new tablem.Table('Visio Arcana, character, adorator',
-                                  ['Judger','Martyr','Penant','Priest','Reaver','Tyrant'])
+const ARCHAICS=['Judger','Martyr','Penant','Priest','Reaver','Tyrant']
+const ADORATOR=new tablem.Table('Visio Arcana, character, adorator',ARCHAICS)
 const LIME=new tablem.Table('Visio Arcana, character, indictus, lime',
                             ['Defender','Messenger','Singer'])
 const GAOL=new tablem.Table('Visio Arcana, character, indictus, gaol',
@@ -10,32 +10,76 @@ const GAOL=new tablem.Table('Visio Arcana, character, indictus, gaol',
 const INDICTUS=new tablem.Table('Visio Arcana, character, indictus',[LIME,GAOL])
 const ATER=new tablem.Table('Visio Arcana, character, ater',
                             ['Avatar','Fairy','Ghast','Shifter','Undead','Witch'])
+const TOWNS=new tablem.Table('Visio Arcana, towns',ARCHAICS.map((text)=>`${text} town`))
 
-export class Character extends tablem.Table{
+class Character extends tablem.Table{
   constructor(){
     super('Visio Arcana, character')
-    this.add(ADORATOR,3)
-    this.add(LIME,1)
-    this.add(GAOL,1)
-    this.add(ATER,1)
+    this.add(ADORATOR,60)
+    this.add(LIME,20)
+    this.add(GAOL,20)
+    this.add(ATER,20)
+    this.add('Luminosus',1)
   }
-}
-
-export class Region extends tablem.Table{
-  constructor(){super('Visio Arcana, region')}
 
   roll(){
-    let regions=['Gaol','Saltmarsh Sepulchre','Obsidian Mire','Sunderlands',
-                  'Gloomwood Heartlands','Skyshroud Valleys','Lime',]
-    let i=3
-    let roll=1
-    while(!(3<=roll&&roll<=5)){
-      roll=rpgm.roll(1,6)
-      if(roll==6) i+=1
-      else if(roll<=2) i-=1
-    }
-    return regions[rpgm.bind(0,i,regions.length-1)]
+    let traits=['Brass','Brawl','Brain'].map((text)=>`${text} ${rpgm.mid(1,5)}`)
+    return `${super.roll()} (${traits.join(', ').toLowerCase()})`
   }
 }
 
-export var tables=[ADORATOR,LIME,GAOL,INDICTUS,ATER,new Character(),new Region()]
+class Region extends tablem.Table{
+  constructor(name,foes,subregions=false){
+    super(`Visio Arcana, region, ${name}`)
+    this.foes=this.expand(foes)
+    this.subregions=this.expand(subregions)
+  }
+
+  expand(items){
+    if(!items) return new tablem.Table('_',[false])
+    let table=new tablem.Table('_')
+    for(let i=0;i<items.length;i+=1) table.add(items[i],i+1)
+    table.add(false,table.lines.length)
+    return table
+  }
+
+  roll(){
+    let region=this.name.split(',').last.trim()
+    let subregion=this.subregions.roll()
+    if(subregion) region=`${region}, ${subregion}`
+    return region
+  }
+}
+
+class Regions extends tablem.Table{
+  constructor(){super(`Visio Arcana, region`)}
+
+  roll(){return regions[rpgm.mid(0,regions.length-1)].roll()}
+}
+
+class Reward extends tablem.Table{
+  constructor(){
+    super('Visio Arcana, reward')
+    this.add('No reward',100)
+    this.add('Lumen',10)
+    this.add('Fragment',1)
+  }
+}
+
+class Scene extends tablem.Table{
+  constructor(){super('Visio Arcana, scene')}
+
+  roll(){return [character,reward].map((table)=>table.roll()).join('<br>')}
+}
+
+export var regions=[new Region('Lime',['Machina-lucis','Lime']),
+                    new Region('Sky-shroud',['Spectra','Turba'],['Shrine','Turba']),
+                    new Region('Gloom',['Spora-vivae','Animalia'],['Plana-sporarum','Inner-woods']),
+                    new Region('Heart-land',['Elicti',ADORATOR],['Cor Draconis',TOWNS]),
+                    new Region('Ashen-mire',['Giant','Lacerta'],['Via-gigantus','Graze']),
+                    new Region('Sepulcher-coast',['Colossaeus','Primo'],['Rust-sea','Sea']),
+                    new Region('Gaol',['Roboratus','Gaol'])]
+export var character=new Character()
+export var reward=new Reward()
+export var tables=[ADORATOR,LIME,GAOL,INDICTUS,ATER,character,
+                    new Regions(),regions,TOWNS,reward,new Scene()].flat()
