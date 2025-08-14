@@ -4,8 +4,6 @@ import * as dialog from './dialog.js'
 
 const PARENT=document.querySelector('#output')
 const VIEW=PARENT.querySelector('.text')
-const ROLL=PARENT.querySelector('#roll')
-const POOL=Array.from(PARENT.querySelectorAll('input'))
 const MESSAGE=VIEW.querySelector('template#message').content.children[0]
 const TEST=VIEW.querySelector('template#test').content.children[0]
 const HELP=`
@@ -16,7 +14,74 @@ const HELP=`
   Many functions can be accessed via keyboard keys, including units and dialog choices! For example:
   %commands`.trim()
 
-var pool=[1,6,+0]
+class Roller{
+  constructor(){
+    this.dice=1
+    this.sides=6
+    this.bonus=+0
+    this.result=[]
+  }
+
+  template(){
+    let dice=this.dice
+    let sides=this.sides
+    let bonus=this.bonus
+    if(bonus>=0) bonus=`+${bonus}`
+    return `${dice}d${sides}${bonus}`
+  }
+
+  roll(){
+    let prompt=window.prompt('Type your roll:',this.template())
+    if(!prompt) return false
+    let roll=prompt.split(/[d+-]/).map((text)=>Number(text))
+    let dice=roll[0]
+    this.dice=dice
+    let sides=roll[1]
+    this.sides=sides
+    let bonus=roll.length>2?roll[2]:+0
+    if(prompt.includes('-')) bonus*=-1
+    this.bonus=bonus
+    this.result=Array.from(new Array(dice),()=>rpg.roll(1,sides))
+                      .sort((number1,number2)=>number1-number2)
+    return true
+  }
+
+  sum(){
+    let sum=this.bonus
+    for(let r of this.result) sum+=r
+    return sum
+  }
+
+  get middle(){return this.result[Math.floor(this.result.length/2)]}
+}
+
+class Pooler extends Roller{
+  constructor(){
+    super()
+    this.target=-1
+    this.hits=0
+    this.misses=0
+  }
+
+  template(){return `${this.dice}d${this.sides}`}
+
+  roll(){
+    if(!super.roll()) return false
+    let target=this.target
+    if(target<0) target=Math.round(Math.floor(this.sides/2))
+    target=Number(window.prompt('Target to roll-against?',target))
+    if(!target) return false
+    this.target=target
+    let result=pooler.result
+    let hits=result.filter((number)=>number<=target).length
+    this.hits=hits
+    this.misses=result.length-hits
+    return true
+  }
+}
+
+var roller=new Roller()
+var pooler=new Pooler()
 
 function append(c){
   VIEW.appendChild(c)
@@ -29,43 +94,24 @@ export function say(html){
   append(m)
 }
 
-function close(){
-  input.deafen(confirm)
-  ROLL.classList.add('hidden')
-}
-
 function roll(){
-  close()
-  let rolling=POOL.map(p=>parseInt(p.value))
-  if(rolling.includes(NaN)||rolling.slice(0,2).includes(0)) return
-  pool=rolling
-  let roll=Array.from(new Array(pool[0]),()=>rpg.roll(1,pool[1]))
-  let high=-Number.MAX_VALUE
-  let low=Number.MAX_VALUE
-  let sum=pool[2]
-  for(let r of roll){
-    if(r<low) low=r
-    if(r>high) high=r
-    sum+=r
-  }
+  if(!roller.roll()) return
+  clear()
   say([
-    `Rolled: ${roll.join(", ")}.`,
-    `Sum: ${sum}.`,
-    `Highest: ${high}.`,
-    `Lowest: ${low}.`,
+    `Rolled: ${roller.result.join('; ')}.`,
+    `Result: ${roller.sum()}.`,
+    `Middle: ${roller.middle}.`
   ].join('<br/>'))
 }
 
-function confirm(key){
-  if(key=='Enter') roll()
-  else if(key=='Escape') close()
-}
-
-function open(){
-  input.listen(confirm)
-  for(let i=0;i<3;i++) POOL[i].value=pool[i]
-  ROLL.classList.remove('hidden')
-  POOL[0].select()
+function pool(){
+  if(!pooler.roll()) return
+  clear()
+  say([
+    `Rolled: ${pooler.result.join('; ')}.`,
+    `Hits: ${pooler.hits}.`,
+    `Misses: ${pooler.misses}.`
+  ].join('<br/>'))
 }
 
 function help(){
@@ -90,8 +136,8 @@ export function clear(){VIEW.innerHTML=''}
 
 export function setup(){
   PARENT.querySelector('.clear').onclick=clear
-  ROLL.querySelector('button').onclick=roll
-  PARENT.querySelector('.roll').onclick=()=>setTimeout(open,100)
+  PARENT.querySelector('.roll').onclick=()=>roll()
+  PARENT.querySelector('.pool').onclick=()=>pool()
   PARENT.querySelector('.help').onclick=()=>help()
   PARENT.querySelector('.tables').onclick=()=>new dialog.Tables(true).input()
   PARENT.querySelector('.alltables').onclick=()=>new dialog.Tables(false).input()
