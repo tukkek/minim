@@ -22,6 +22,19 @@ const EXTRAVERSION=new Trait('Extraversion', 'Outgoing', 'Reserved')
 const AGREEABLENESS=new Trait('Agreeableness', 'Friendly', 'Harsh')
 const NEUROTICISM=new Trait('Neuroticism', 'Nervous', 'Confident')
 
+const ATHEIST='Atheist'
+const STRAIGHT='Straight'
+const ABLE='Able'
+const NEUROTYPICAL='Neurotypical'
+const HEALTHY='Healthy'
+const INTERMEDIATE='Intermediate'
+const AVERAGE='Average'
+const NORMAL='Normal'
+const MISERABLE='Miserable'
+const NEUTRAL='Neutral'
+const TYPICAL=new Set([ATHEIST,STRAIGHT,ABLE,NEUROTYPICAL,HEALTHY,INTERMEDIATE,AVERAGE,
+                      NORMAL,NORMAL.toLowerCase(),MISERABLE,NEUTRAL])
+
 export var traits=[OPENNESS, CONSCIOUSNESS, EXTRAVERSION, AGREEABLENESS, NEUROTICISM]
 
 tables.push(...traits)
@@ -38,24 +51,19 @@ class Personality extends table.Table{
 export var personality=new Personality()
 tables.push(personality)
 
-const ATHEIST='Atheist'
-const STRAIGHT='Straight'
-const ABLE='Able'
-const NEUROTYPICAL='Neurotypical'
-const HEALTHY='Healthy'
-const INTERMEDIATE='Intermediate'
-const AVERAGE='Average'
-const NORMAL='Normal'
-const MISERABLE='Miserable'
-const TYPICAL=new Set([ATHEIST,STRAIGHT,ABLE,NEUROTYPICAL,HEALTHY,INTERMEDIATE,AVERAGE,NORMAL,MISERABLE])
 
 const AGE=new table.Table('Realistic, character, age')
-AGE.add('Baby', 1)
-AGE.add('Child', 1)
-AGE.add('Teenager', 1)
-AGE.add('Adult', 4)
-AGE.add('Middle-aged', 2)
 AGE.add('Elder', 1)
+AGE.add('Middle-aged', 2)
+AGE.add('Adult', 4)
+AGE.add('Teen', 1)
+AGE.add('Child', 1)
+AGE.add('Baby', 1)
+
+const SIMPLEAGE=new table.Table('Realistic, character, age (simple)')
+SIMPLEAGE.add('Old',3)
+SIMPLEAGE.add('Adult',4)
+SIMPLEAGE.add('Young',3)
 
 const SEX=new table.Table('Realistic, character, sex',['Male', 'Female'])
 
@@ -66,6 +74,11 @@ RACE.add('Asian', 2)
 RACE.add('Black', 1)
 RACE.add('Indian', 1)
 RACE.add('Arab', 1)
+
+const SIMPLERACE=new table.Table('Realistic, character, race (simple)')
+SIMPLERACE.add('White-arab',4)
+SIMPLERACE.add('Black-latino',3)
+SIMPLERACE.add('Asian-indian',3)
 
 const SEXUALITY=new table.Table('Realistic, character, sexuality')
 SEXUALITY.add(STRAIGHT, 9 * 2)
@@ -102,13 +115,13 @@ MENTALISSUE.add(NEUROTYPICAL, MENTALISSUE.lines.length * 9)
   * 
   * - Flu: 0.01%.
   * 
-  * - CoVid: 0.02%.
+  * - COVID: 0.02%.
   */
 const HEALTH=new table.Table('Realistic, character, health issues')
 HEALTH.add('Hypertension', 3)
 HEALTH.add('Diabetes', 1)
 HEALTH.add('Cardiovascular disease', 1)
-HEALTH.add('Common cold (if cold weather)', 1)
+HEALTH.add('Common-cold if cold-weather', 1)
 HEALTH.add(HEALTHY, 10 - HEALTH.lines.length)
 
 const CHRONOTYPE=new table.Table('Realistic, character, chronotype')
@@ -134,7 +147,17 @@ WEALTH.add('Middle-class',10)
 WEALTH.add('Poor',30)
 WEALTH.add(MISERABLE,50)
 
-tables.push(...[AGE,SEX,RACE,SEXUALITY,RELIGION,DISABILITY,MENTALISSUE,HEALTH,CHRONOTYPE,HEIGHT,WEIGHT,WEALTH])
+const ALERTED=new table.Table('Realistic, character, emotion, alerted') //arousal
+ALERTED.add('Alert',1)
+ALERTED.add(NEUTRAL,4)
+ALERTED.add('Calm',1)
+const ENGAGED=new table.Table('Realistic, character, emotion, engaged') //valence
+ENGAGED.add('Happy',1)
+ENGAGED.add(NEUTRAL,4)
+ENGAGED.add('Sad',1)
+
+tables.push(...[AGE,SIMPLEAGE,SEX,RACE,SIMPLERACE,SEXUALITY,RELIGION,DISABILITY,MENTALISSUE,HEALTH,
+                CHRONOTYPE,HEIGHT,WEIGHT,WEALTH,ALERTED,ENGAGED,])
 
 /**
  * Built using semi-extensive real-world data.
@@ -147,16 +170,23 @@ class WorldNpc extends table.Table{
     this.simple=s
 	}
 
+	format(array){
+    if(this.simple) array=[rpg.pick(array)]
+    return array.sort().join(', ').toLowerCase()
+  }
+
 	roll(){
-		let basic=[AGE,RACE,SEX].map(b=>b.roll()).join(' ')
+    let basic=this.simple?[SIMPLEAGE,SIMPLERACE,SEX]:[AGE,RACE,SEX]
+		basic=basic.map(b=>b.roll()).join(' ')
     basic=basic[0]+basic.slice(1).toLowerCase()
-		let details=[RELIGION,SEXUALITY,DISABILITY,MENTALISSUE,HEALTH,CHRONOTYPE,HEIGHT,WEIGHT,WEALTH]
+		let details=[RELIGION,SEXUALITY,DISABILITY,MENTALISSUE,HEALTH,CHRONOTYPE,HEIGHT,WEIGHT,WEALTH,]
                   .map(d=>d.roll()).filter(d=>!TYPICAL.has(d))
-		if(this.simple) details=rpg.shuffle(details).slice(0,2)
-		details=details.sort().join(', ').toLowerCase()
-    let p=personality.toString().toLowerCase()
-		return [`${basic} (${details}).`,
-              `Personality: ${p}`].join('<br/>')
+    let traits=[personality.roll().split(',').map((text)=>text.trim()),
+                [ALERTED,ENGAGED].map((table)=>table.roll())]
+                .flat().filter((text)=>!TYPICAL.has(text))
+    if(!traits.length) traits=['bland']
+		return [`${basic} (${this.format(details)}).`,
+              `Personality: ${this.format(traits)}`].join('<br/>')
 	}
 }
 
