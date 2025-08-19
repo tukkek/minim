@@ -19,11 +19,13 @@ import * as kult from './kult/kult.js'
 import * as arcana from './arcana.js'
 import * as visarc from './visarc.js'
 import * as scene from './scene.js'
+import * as areindamam from './areindama.js'
 
 export var tables=[
   adungeon,bold,cyberpunk,darkness,conjectural,
   falkenstein,fantasy,hexcrawl,nomine,instant,kult,oneshot,
   weather,cartoon,real,journey,misc,une,arcana,visarc,scene,
+  areindamam,
 ]
 
 export function setup(){
