@@ -1,7 +1,7 @@
 # Grind-house encounters
 This document presents 6 tables to be used for generating encounters, with over-50 units in total. The presented theme is "grind-house horror" but the units can be adapted to cover any-thing from simulationist zombie-apocalypses to dark-humor stories such as Gremlins or Addams Family, including much in-between!
 
-The tables are presented top-bottom as most-least challenging so that rolling two ten-sided dice and picking the highest or lowest result may be used as a strategy to incentivize certain-results rather than a single die.
+The tables are presented top-bottom as most-least challenging so that rolling two-dice and picking the highest or lowest result may be used as a strategy to incentivize certain-results rather than a single die.
 
 # Index
 * 1 Grind-house
