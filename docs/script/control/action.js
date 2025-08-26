@@ -68,7 +68,7 @@ class Test extends Action{
     for(let skill of this.skills.map((skill)=>skill.toLowerCase())){
       hits+=await unit.roll(skill)
       let value=await unit.get(skill)
-      let comparison=this.compare(unitm.roll,value+bonus)
+      let comparison=this.compare(unitm.roll,rpg.bind(1,value+bonus,5))
       let calculation=`(${[value,this.sign(bonus)].join('')})`
       details.push([skill,comparison,calculation].join(' '))
     }

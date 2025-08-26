@@ -9,11 +9,11 @@ const CHOICES=VIEW.querySelector('.choices')
 const CHOICE=CHOICES.querySelector('template#choice').content.childNodes[0]
 const TITLE=VIEW.querySelector('.title')
 const PROFICIENCY=new Map([
-  ['Terrible',1],
-  ['Bad',2],
-  ['Mediocre',3],
-  ['Good',4],
   ['Exceptional',5],
+  ['Good',4],
+  ['Mediocre',3],
+  ['Bad',2],
+  ['Terrible',1],
 ])
 const BONUSES=new Map([
   ['Trivial (+2)',+2],
