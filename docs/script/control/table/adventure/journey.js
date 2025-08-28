@@ -18,7 +18,7 @@ class Character extends table.Table{
   }
 
   roll() {
-    return real.FULL.roll() + "<br/><br/>" + super.roll();
+    return real.full.roll() + "<br/><br/>" + super.roll();
   };
 };
 

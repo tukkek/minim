@@ -165,14 +165,16 @@ tables.push(...[AGE,SIMPLEAGE,SEX,RACE,SIMPLERACE,SEXUALITY,RELIGION,DISABILITY,
  * @author alex
  */
 class WorldNpc extends table.Table{
-	constructor(name='Realistic, character',s=false){
+	constructor(name,simple=false){
 		super(name)
-    this.simple=s
+    this.simple=simple
 	}
 
 	format(array){
+    if(!array.length) return false
     if(this.simple) array=[rpg.pick(array)]
-    return array.sort().join(', ').toLowerCase()
+    let text=array.sort().join(', ')
+    return text[0].toUpperCase()+text.slice(1).toLowerCase()
   }
 
 	roll(){
@@ -184,13 +186,15 @@ class WorldNpc extends table.Table{
     let traits=[personality.roll().split(',').map((text)=>text.trim()),
                 [ALERTED,ENGAGED].map((table)=>table.roll())]
                 .flat().filter((text)=>!TYPICAL.has(text))
-    if(!traits.length) traits=['bland']
-		return [`${basic} (${this.format(details)}).`,
-              `Personality: ${this.format(traits)}`].join('<br/>')
+		return [
+      basic,
+      this.format(details),
+      this.format(traits)
+    ].filter().map((text)=>`${text}.`).join('<br/>').slice(0,-1)
 	}
 }
 
-export const FULL=new WorldNpc()
-const SIMPLE=new WorldNpc('Realistic, character (simple)', true)
+export var full=new WorldNpc('Realistic, character')
+export var simple=new WorldNpc('Realistic, character (simple)',true)
 
-tables.push(...[FULL,SIMPLE])
+tables.push(...[full,simple])

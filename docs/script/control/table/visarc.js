@@ -1,5 +1,6 @@
-import * as tablem from './table.js'
-import * as rpgm from '../rpg.js'
+import * as tablem from '../../control/table/table.js'
+import * as realm from '../../control/table/real.js'
+import * as rpgm from '../../control/rpg.js'
 
 const ARCHAICS=['Judger','Martyr','Penant','Priest','Reaver','Tyrant']
 const ADORATOR=new tablem.Table('Visio Arcana, character, adorator',ARCHAICS)
@@ -24,7 +25,10 @@ class Character extends tablem.Table{
 
   roll(){
     let traits=['Brass','Brawl','Brain'].map((text)=>`${text} ${rpgm.mid(1,5)}`)
-    return `${super.roll()} (${traits.join(', ').toLowerCase()})`
+    return [
+      `${super.roll()} (${traits.join(', ').toLowerCase()}).`,
+      realm.simple.roll()
+    ].join('<br>')
   }
 }
 
