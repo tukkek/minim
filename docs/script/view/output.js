@@ -13,6 +13,7 @@ const HELP=`
 
   Many functions can be accessed via keyboard keys, including units and dialog choices! For example:
   %commands`.trim()
+const COPY=PARENT.querySelector('.copy')
 
 class Roller{
   constructor(){
@@ -134,6 +135,13 @@ export function test(unit,action,outcome,dice){
 
 export function clear(){VIEW.innerHTML=''}
 
+export async function copy(){
+  let text=VIEW.innerText
+  await navigator.clipboard.write([new ClipboardItem({['text/plain']:text})])
+  COPY.innerText='Copied'
+  setTimeout(()=>COPY.innerText='Copy',1_000)
+}
+
 export function setup(){
   PARENT.querySelector('.clear').onclick=clear
   PARENT.querySelector('.roll').onclick=()=>roll()
@@ -141,5 +149,6 @@ export function setup(){
   PARENT.querySelector('.help').onclick=()=>help()
   PARENT.querySelector('.tables').onclick=()=>new dialog.Tables(true).input()
   PARENT.querySelector('.alltables').onclick=()=>new dialog.Tables(false).input()
+  COPY.onclick=()=>copy()
   help()
 }
