@@ -2,8 +2,8 @@
 
 Minim is a complete, universal, light-weight [tabletop roleplaying system](https://en.wikipedia.org/wiki/Tabletop_role-playing_game) that requries only common six-sided dice and can be used to play any game style or genre. In this repository you will find:
 
-1. [The Minim rules](https://github.com/tukkek/minim/blob/master/rules/minim.pdf), a short booklet focusing on dynamic, fun-and-fast rules for your gaming sessions;
-2. [Ready-to-print character sheets](https://github.com/tukkek/minim/blob/master/sheets/sheet.en.pdf) for players to use;
+1. [The Minim rules](https://github.com/tukkek/minim/blob/master/rules.md), a short booklet focusing on dynamic, fun-and-fast rules for your gaming sessions;
+2. [Ready-to-print character sheets](https://github.com/tukkek/minim/tree/master/character-sheets/) for players to use;
 3. [The Minim companion](https://tukkek.github.io/minim/), a web application that helps run sessions with minimal pre-planning and handles as much (or as little) dice-rolling and tracking as you want it to - speeding up the game and letting players focus on creating great stories together;
 4. [A few other tools](https://github.com/tukkek/minim/tree/master/tools) that advanced game-masters may find useful.
 
