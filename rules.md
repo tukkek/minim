@@ -1,5 +1,5 @@
 # Minim 
-`2025-09-14`.
+`Alex Henry, 2025-09-14`.
 
 Minim is a role-playing game system that is simple to learn and play! RPGs are free; fun; and can be played by people of all-ages! They also promote problem-solving; creativity; team-work and story-telling, even being-used as an education-aide!
 
