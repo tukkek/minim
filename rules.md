@@ -15,6 +15,8 @@ You may be wondering *this game seems more-like group story-telling, why should 
 
 Minim's rules also help the narrator prepare interesting; fair situations for his players. A game that is too easy or hard can quickly become unfun. Rules can't substitute a narrator who knows his-players best but they can surely help!
 
+That being-said players don't need to constantly-rely on the rules! If the game goes-well with few-rules, that's fine and they are still-available for when they are required; are valuable; or can lead-to interesting-situations. Each game has its own sweet-spot!
+
 The Golden-rule of RPGs states that the narrator always has the final-say on any decision even if it goes against the rules! Remember also that the game is meant to be fun for all-involved, whatever *fun* may mean for any particular player-group! 
 
 # Philosophy
