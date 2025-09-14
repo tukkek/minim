@@ -256,6 +256,7 @@ A typical-floor has 2 to 12 rooms; 1 to 6 combat-scenes; and 1 to 3 features. Th
 * The official Minim project https://github.com/tukkek/minim
 * Print-ready characters-sheets https://github.com/tukkek/minim/tree/master/character-sheets/
 * The Minim companion-software https://tukkek.github.io/minim/
+* Dozens of Minim-characters tables https://github.com/tukkek/minim/tree/master/encounters
 * Minim's official-community https://discord.com/invite/5sXXcwPCSP
 * Dozens of pages of free; print-ready miniatures https://printableheroes.com/
 * Digital role-playing store with premade settings and adventures https://www.drivethrurpg.com/en/
