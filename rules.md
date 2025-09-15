@@ -74,9 +74,9 @@ It's important to distinguish between a characters-group performing actions indi
 Collaboration usually needs coordination; planning; and discussion. This means that mostly only long-term actions can be collaborations even if there are rare-exceptions such-as pushing a boulder that is blocking a passage. Preparing a strong-argument to take to the ship's captain can be a collaborative-process but delivering it convincingly to him is an individual-action even if many can attompt-it.
 
 # Characters
-Each player-character starts with one-trait at 4, other at 3; and a last-one at 2. They can then acquire 3-skills of the highest-trait; 2-skills of the middle-one; and a skill of the lowest. They also distribute 4-points to powers.
+Each player-character starts with one-trait at 4, other at 3; and a last-one at 2. They can then acquire 3-skills of the highest-trait; 2-skills of the middle-one; and a skill of the lowest. They also distribute 3-points to powers.
 
-Alternatively a player can choose to go-with 3 in all-traits; 2-skills per-trait; and 4 power-points.
+Alternatively a player can choose to go-with 3 in all-traits; 2-skills per-trait; and 3 power-points.
 
 These are normal starting-characters which are average-inhabitants of the game-world. Stronger or weaker player-characters can be made if the narrator so-chooses by applying a +1 or -1 to all-traits.
 
@@ -124,7 +124,7 @@ Each-character starts at health equal to their brass-score and can never go abov
 
 In some-games zero-health player-characters can become **disabled** instead, only-incapable of directly attacking or targetting others.
 
-Health-points are fully-recovered when characters are able to relax for a-few minutes. Even characters mid-action may take a turn to regain their breath and restore a single fatigue-point if they pass a brass-test.
+Health-points are fully-recovered when characters are able to relax for a-few minutes. Even characters mid-action may take a turn to regain their breath and restore a single fatigue-point if they roll equal-to or lower than their health.
 
 Narrators running more realistic; serious; or gritty games can treat health less as fatigue and more as permanent-damage. In those cases recovering a health-point requires long-term healing with a +1 for uninterrupted-rest in that period. A medic may also make his-own cure-test;. An extremely-brassy character recovering from 4 points to 5 may only-require a good-night’s sleep but recovering from a debilitating near-death at 1 remaining health-point may require years or months!
 
@@ -155,9 +155,9 @@ Many Minim-games are one-shots, meaning that players (or the narrator) create th
 -   **Gear** is by-far the most-common way that characters increase in power. Finding; buying; or crafting better weapons; magic-wands; armor; tools… offers great game-play and resource-management opportunities for players that scales really-well over longer-periods (a legendary-sword is even-better than a superior-sword)! Many items work exactly like powers with their own power-scores except they can be traded between players or sold. Items can also be expendable (like an invisibility-potion or a grenade) so that players are constantly finding new-toys then using them to get out of bad-situations safely!
 * **Reputation**: an entirely story-driven advancement-path are intangible rewards like titles; fame; ranks... or gaining-favor with strong-allies; making life-long friends; establishing a well-informed net-work of contacts... Many classic-campaigns saw characters go from being no-name wanderers to rulers of their-own feuds or kingdoms! Do keep in-mind though that as one gains-notoriety more-exposed they are to envy; jealousy; hatred; vitriol, betrayal... they also may collected a number of enemies and mistakes in their-journey!
 -   **Vertical-progress** happens at the end of a major story-arc, usually after a few or several adventures have-occurred and a mile-stone victory has been achieved. Discovering the villain’s secret-weakness may be an entire-story in it-self but usually only actually defeating-him ends the entire story-arc! To celebrate and reward-players on these-occasions the narrator may grant-them an extra-point to spend on a power or to acquire a new-skill.
-    
+
 # Combat
-Tactical-battles against all-sorts of foes are often a corner-stone of role-playing games! Some games can focus on it nigh-exclusively while others save such-scenes for very-special occasions. In-general combat can be a fun-way to intercede or advance a story, the best combat-experiences focusing on mobility; planning; strategy; coordination; and having the freedom to approach them in many-different creative-ways and react to the expected and unexpected out-comes of these actions!
+Tactical-battles against all-sorts of foes are often a corner-stone of role-playing games! Some games can focus on it nigh-exclusively while others save such-scenes for very-special occasions. In-general combat can be a fun-way to intercede or advance a story, the best combat-experiences focusing on mobility; planning; ingenuity; coordination; and having the freedom to approach them in many-different creative-ways and react to the expected and unexpected out-comes of these actions!
 
 Combat in Minin is designed to be fast and short. Characters with high-brawl and combat-skills can be very-deadly; and even the weakest-foes can suddenly-become effective in larger-groups once they start gaining-momentum!
 
@@ -198,7 +198,7 @@ If an attack has a neutral result apply a fumble to the target; or to the attack
 | 4    | Disabled, can-not act but can-move next-turn  |
 | 3    | Pinned, can-not move but can-act next-turn    |
 | 2    | Grapples, attacker and target grab each-other |
- 
+
 ## Zones
 A battle-field in Minim is usually divided in zones. A simple-example would be: front; middle; and back but it's usually more-interesting to uniquely-tailor uniquely to the specific-area (a night-club could have: an entrance; dance-floor; bar; lounge).
 
