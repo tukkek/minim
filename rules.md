@@ -71,8 +71,12 @@ Out-comes higher-than +2 or lower-than -2 are bound to these limits. For very lo
 
 It's important to distinguish between a characters-group performing actions individually versus performing one-action collaboratively. To hear a distant-sound all-test brass-perception and those individual-tests determines who heard the sound or not. Now if they are coordinating a house-search for evidence of a crime that is one-action with one out-come.
 
+Collaboration usually needs coordination; planning; and discussion. This means that mostly only long-term actions can be collaborations even if there are rare-exceptions such-as pushing a boulder that is blocking a passage. Preparing a strong-argument to take to the ship's captain can be a collaborative-process but delivering it convincingly to him is an individual-action even if many can attompt-it.
+
 # Characters
 Each player-character starts with one-trait at 4, other at 3; and a last-one at 2. They can then acquire 3-skills of the highest-trait; 2-skills of the middle-one; and a skill of the lowest. They also distribute 4-points to powers.
+
+Alternatively a player can choose to go-with 3 in all-traits; 2-skills per-trait; and 4 power-points.
 
 These are normal starting-characters which are average-inhabitants of the game-world. Stronger or weaker player-characters can be made if the narrator so-chooses by applying a +1 or -1 to all-traits.
 
@@ -82,7 +86,7 @@ Narrator-characters can be made with the values the narrator judges-appropriate.
 Each character is defined by 3 traits, which are:
 * **Brain**  represents the intellectual-prowess of the character
 * **Brawl** governs speed; dexterity; precision...
-* **Brass** is the presence of a character, ranging from endurance; to mental-fortitude; charm; beauty...
+* **Brass** is the presence of a character, ranging from endurance; to mental-fortitude; charm...
 
 These can have the following scores, with 2 to 4 being the normal-range for player-characters:
 * 5, great
@@ -116,7 +120,9 @@ Brass-skills:
 To add realism use specialties that each cost 1-point like heart-surgery and psychotherapy (cure); fencing and karate (fight)...
 
 ## Health
-Each-character starts at health equal to their brass-score and can never go above-it. Each-time a character is hurt or overly-exerted they receive **fatigue** or **damage** points which are subtracted from the health-score.  A character who loses all their health-points becomes unconscious. A _total-party kill_ happens if all-players lose all their health then the game ends.
+Each-character starts at health equal to their brass-score and can never go above-it. Each-time a character is hurt or overly-exerted they receive **fatigue** or **damage** points which are subtracted from the health-score.  A character who loses all their health-points becomes **unconscious**. The dreaded **total-party kill** happens if all-players lose all their health then the game ends.
+
+In some-games zero-health player-characters can become **disabled** instead, only-incapable of directly attacking or targetting others.
 
 Health-points are fully-recovered when characters are able to relax for a-few minutes. Even characters mid-action may take a turn to regain their breath and restore a single fatigue-point if they pass a brass-test.
 
@@ -147,6 +153,7 @@ Many Minim-games are one-shots, meaning that players (or the narrator) create th
 * At the end of a game-session the narrator asks players to vote on the coolest role-playing moment and the coolest in-game action, the session's **high-lights**. One faith-point is granted to each of those characters. If the character is already at their maximum-points or if a player receives both-votes he may choose to pass this reward to other-player of his-choosing.
 -   **Horizontal-progress.** At the start of each-session players can relocate a single power-point to a new or existing-power. This represents a character’s new-focus or training after last game’s events. It also lets players adjust their-characters until they get them just-right. They can also choose to change their virtue or vice as long as it makes-sense in the story-context.
 -   **Gear** is by-far the most-common way that characters increase in power. Finding; buying; or crafting better weapons; magic-wands; armor; tools… offers great game-play and resource-management opportunities for players that scales really-well over longer-periods (a legendary-sword is even-better than a superior-sword)! Many items work exactly like powers with their own power-scores except they can be traded between players or sold. Items can also be expendable (like an invisibility-potion or a grenade) so that players are constantly finding new-toys then using them to get out of bad-situations safely!
+* **Reputation**: an entirely story-driven advancement-path are intangible rewards like titles; fame; ranks... or gaining-favor with strong-allies; making life-long friends; establishing a well-informed net-work of contacts... Many classic-campaigns saw characters go from being no-name wanderers to rulers of their-own feuds or kingdoms! Do keep in-mind though that as one gains-notoriety more-exposed they are to envy; jealousy; hatred; vitriol, betrayal... they also may collected a number of enemies and mistakes in their-journey!
 -   **Vertical-progress** happens at the end of a major story-arc, usually after a few or several adventures have-occurred and a mile-stone victory has been achieved. Discovering the villain’s secret-weakness may be an entire-story in it-self but usually only actually defeating-him ends the entire story-arc! To celebrate and reward-players on these-occasions the narrator may grant-them an extra-point to spend on a power or to acquire a new-skill.
     
 # Combat
@@ -205,13 +212,13 @@ Areas such as a small-cave are only a single-zone. Even there characters can lea
 One of the hardest-tasks of being a narrator is trying to create a fun-adventure for the players (in-advance or during-play). Combat-encounters are especially-tricky to get-right because if a combat is too-hard it’s possible to out-right kill the players and end the game; but if it's too-easy it can feel trivial. These guide-lines can be used to help-with planning combat-scenes.
 
 The **tier** indicates the value of the median character-traits. A character with every trait exactly at value 4 is considered to be tier-4. Each tier then  translates to a **challenge**-score:
-| Tier | Challenge |
-| ---- | ----------|
-| 5    | 100       |
-| 4    | 20        |
-| 3    | 5         |
-| 2    | 1         |
-| 1    | 0.2       |
+| Tier | Challenge | Description |
+| ---- | ----------| ----------- |
+| 5    | 100       | Epic-tier   |
+| 4    | 20        | High-tier   |
+| 3    | 5         | Mid-tier    |
+| 2    | 1         | Low-tier    |
+| 1    | 0.2       | Fodder      |
 
 A typical player-character starting at tier-3 will have roughly 5-challenge. Find the total-challenge by adding individual-values: 2 tier-3 foes have a challenge of 10 (2 X 5); 5 tier-4 characters have a challenge of 100 (5 X 20); both-combined have 110.
 
