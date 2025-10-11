@@ -289,7 +289,7 @@ Tables from-which premade enemy-groups can be pulled from are often used for the
 Don't forget to place rewards in the dungeon to incentivize-exploration and to help the group continue moving-on! For gear a good base-line is one-item per-floor, its score equal to the player's median-tier.
 
 ## Creating floors
-A typical-floor has 2 to 12 rooms; 1 to 6 combat-scenes; and 1 to 3 features. This list helps create features:
+A typical-floor in a Minin-dungeon has 2 to 12 rooms; 1 to 6 combat-scenes; and 1 to 3 features. This list helps create features:
 1. Mechanical or magical trap:
     1.  Guarding a reward
     2.  With hidden-reward
