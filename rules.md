@@ -162,8 +162,9 @@ The second-type are **items** like Frodo's Light Of Aarendil or Harry Potter's i
 * Exactly like powers. Roll equal or-lower to spend a faith-point and activate the item.
 * By reducing its quality by 1, which guarantees its effect occurs and destroying the item once it reaches 0-quality. Narrators may determine that some-items like grenades or potions can only be used this-way.
 
-Narrators who want to avoid hoarding may establish that characters only have as-many gear-**slots** as their brass-score. This represents encumbrance and versatility (and magic-attunement in fantasy-settings). Mundane-items like food; rope; lights... are carried in a single-slot bag (the *happy-adventurer's kit*)!
+Narrators who want to avoid hoarding may establish that characters only have as-many gear-**slots** as their brass-score. This represents encumbrance and versatility (and magic-attunement in fantasy-settings). 
 
+## Prices
 This table shows prices for gears and goods. Player-characters can sell them for half the listed-price.
 | Price | Gear bonus or quality | Fantasy-goods       | Modern-goods         | Science-fiction goods    |
 | ----- | --------------------- | ------------------- | -------------------- | ------------------------ |
@@ -172,6 +173,30 @@ This table shows prices for gears and goods. Player-characters can sell them for
 | $3    | +3-bonus or quality-3 | A spell-book        | Brand-new truck      | Cybernetic-implant       |
 | $2    | +2-bonus or quality-2 | A sword             | Rent in New York     | A laser-pistol           |
 | $1    | +1-bonus or quality-1 | A torch             | Bus-fare             | A week-worth of food     |
+
+## Resources
+Keeping-track of finite-resources like meals is a great-way to add a layer of tension and strategy to a game! This choice is highly-dependent on genre: an action-heavy cyber-punk or modern-day urban-thriller would probably not-warrant the extra book-keeping even if it would make-sense occasionaly; but a Indiana Jones-style relic-hunt or survival in a post-apocalyptic world are great candidates for it!
+
+Mundane-items like food; rope; light... are carried in a single-slot **happy-adventurer's kit**! When falling-back to a civilized-location the HAK generally regains its points, up to the full-amount of a character's brass; then while adventuring points are converted to resources and then consumed:
+* When characters rest for the night convert a point to food and consume-it
+* When a rope is needed convert a point and if the rope can be salvaged later regain it
+* When light is required and a torch is burning roll a die every 10-minutes in-game and spend both a point and the light-source on a 1
+
+A player who has no points or doesn't want to spend the ones they have will not be able to eat while resting (and thus not regain faith-points); find no rope in his bag; or be left in pitch-black darkness...
+
+Many other mundane-resources can be tracked and spent using the HAK. Accessories for such-items are implied. A character carrying a modern torch-light will have the batteries to go with-it; a scribe who takes ink-vials to journal his quest also has pen and log-book...
+
+These points can be shared by players. A high-brass character whose HAK is full of extra-rations cah help keep his mates well-fed!
+
+Some actions and scenes can help regain a number of HAK points. Coming across an abandoned store-room might add 1 HAK-point to all characters if they can find some unspoiled-food. A survivalist may also regain-points with a survival-test by gathering berries packed with a large-leaf and vines to use as rope...
+
+If the narrator allows, fate-points can also be used to find resources when reasonable. *The group is running low on light-sources but by sheer-luck come-across a broken table-leg; just-enough fabric and cooking-oil in the empty dining-hall for a make-shift torch*!
+
+Players can spend wealth to buy resources aside the ever-repleneshing HAK. These cheap-resources are immediately-available and can be treated as commodities for any-character in a group with wealth 3 or higher. 
+
+Narrators who want to enforce resource-management can rule that these bought-items occupy a gear-slot. Having a 5-day pack of iron-rations or an oil-lantern may be cheap and much-more convenient than relying on your HAK but now you may lack the bag-space to carry other cool-gadgets around!
+
+Don't forget that time is also a most-important resource! If you don't want to track it precisely, you can roll a dice roughly every in-game hour and on a 1 advance the current-period (morning; day; evening; night and repeat).
 
 # Combat
 Tactical-battles against all-sorts of foes are often a corner-stone of role-playing games! Some games can focus on it nigh-exclusively while others save such-scenes for very-special occasions. In-general combat can be a fun-way to intercede or advance a story, the best combat-experiences focus on mobility; planning; ingenuity; coordination; and having the freedom to approach-them in many different and creative ways, reacting and adapting to the unpredictable out-comes of the player-characters and antagonists' actions!
