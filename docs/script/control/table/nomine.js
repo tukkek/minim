@@ -28,7 +28,7 @@ const SONGS = [AFFINITY, ATTRACTION, CHARM, DREAMS, ENTROPY, FORM, HARMONY,
   HEALING, LIGHT, MOTION, CORPUS, POSSESSION, PROJECTION, SHIELDS, THUNDER, TONGUES]
 
 class Song extends table.Table {
-	 constructor(songs, types=TYPE.lines) {
+	 constructor(songs, types=TYPE.rows) {
 		super("In Nomine, character, song");
 		for (let s of songs)
 			for (let t of types)
@@ -37,9 +37,9 @@ class Song extends table.Table {
 
 	 roll(amount=false) {
      if(!amount) return super.roll()
-		if (this.lines.length==0)
+		if (this.rows.length==0)
 			roll();
-		if (amount > this.lines.length)
+		if (amount > this.rows.length)
 			throw "Too few songs!"
 		let songs = new Set()
 		while (songs.length < amount) {
@@ -199,7 +199,7 @@ TITLES.set(HABBALAH, "punishers");
 TITLES.set(LILIM, "tempters");
 TITLES.set(SHEDIM, "corrupters");
 TITLES.set(IMPUDITES, "takers");
-for (let t of PLEDGE.lines) t.forces = 7;
+for (let t of PLEDGE.rows) t.forces = 7;
 
 var band=false
 
@@ -254,7 +254,7 @@ class Gremlin extends Fiend {
 
 class Familiar extends Fiend {
   constructor() {
-    super("Familiar", SONGS, BAND.lines);
+    super("Familiar", SONGS, BAND.rows);
   }
 }
 
@@ -267,8 +267,8 @@ class Fiends extends table.Table {
 	roll(band=false) {
     if(!band) return super.roll()
 		let r = null;
-		while (r == null || !r.pledge.lines.includes(band)) {
-			r = rpg.pick(this.lines)
+		while (r == null || !r.pledge.rows.includes(band)) {
+			r = rpg.pick(this.rows)
 		}
 		return r.roll();
 	}
@@ -276,7 +276,7 @@ class Fiends extends table.Table {
 
 var fiends=new Fiends()
 
-tables.push(...fiends.lines.concat([fiends]))
+tables.push(...fiends.rows.concat([fiends]))
 
 
 class Talisman extends table.Table{
@@ -292,17 +292,17 @@ class Talisman extends table.Table{
 const TALISMAN=new Talisman()
 const RELIC = new table.Table("In Nomine, artifact, relic")
 TYPE.roll();
-for (let s of TYPE.lines)
+for (let s of TYPE.rows)
   RELIC.add(`Relic of ${s.toLowerCase()} (song)`)
 const COMPASS = new table.Table("In Nomine, artifact, compass") 
 CHOIR.roll();
-var attunements = Array.from(CHOIR.lines);
-for (let b of BAND.lines)
+var attunements = Array.from(CHOIR.rows);
+for (let b of BAND.rows)
   attunements.push(`${b} (${TITLES.get(b)})`)
 for (let s of attunements)
   COMPASS.add("Compass of the "+s)
 const VESSEL = new table.Table("In Nomine, artifact, vessel")
-for (let t of TYPE.lines)
+for (let t of TYPE.rows)
   VESSEL.add(`Vessel (${t.toLowerCase()} elemental)`)
 const LEVEL = new table.Table("In Nomine, artifact, level")
 LEVEL.add("Level 1", 5);

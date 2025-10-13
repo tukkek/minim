@@ -28,7 +28,7 @@ class Weather extends table.Table {
 	}
 	
 	roll(){
-    if(this.lines.length==0){
+    if(this.rows.length==0){
       this.add(this.normal, this.normalodds);
       this.add(this.abnormal1, this.abnormal1odds);
       this.add(this.abnormal2, this.abnormal2odds);

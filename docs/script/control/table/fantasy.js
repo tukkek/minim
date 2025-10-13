@@ -18,13 +18,13 @@ const MARTIAL=new table.Table("Fantasy, character, class, by type, martial",
   ["Monk","Fighter","Rogue"])
 const TYPES=[MAGICAL,HYBRID,MARTIAL]
 const LAWFUL=new table.Table("Fantasy, character, class, by ethics, lawful",
-  TYPES.map(t => t.lines[0]))
+  TYPES.map(t => t.rows[0]))
 const NEUTRAL=new table.Table(
   "Fantasy, character, class, by ethics, neutral",
-  TYPES.map(t => t.lines[1]))
+  TYPES.map(t => t.rows[1]))
 const CHAOTIC=new table.Table(
   "Fantasy, character, class, by ethics, chaotic",
-  TYPES.map(t => t.lines[2]))
+  TYPES.map(t => t.rows[2]))
 const ETHICS=new table.Table("Fantasy, character, alignment, ethics",
   ["Lawful","Neutral","Chaotic"])
 const MORALS=new table.Table("Fantasy, character, alignment, morals",
@@ -46,34 +46,34 @@ class Alignment extends table.Table{
 export var tables=[MAGICAL,HYBRID,MARTIAL,LAWFUL,NEUTRAL,CHAOTIC,ETHICS,MORALS,new Alignment()]
 
 const MONK=new table.Table("Fantasy, character, class, kit, monk",
-  [MARTIAL.lines[0],"Ninja","Acrobat","Drunken master","Dervish",
+  [MARTIAL.rows[0],"Ninja","Acrobat","Drunken master","Dervish",
       "Brawler","Samurai","Tattooist","Kinetic psionic","Metabolic psionic",
       "Teleporting psionic"])
 const FIGHTER=new table.Table("Fantasy, character, class, kit, fighter",
-  [MARTIAL.lines[1],"Barbarian","Duelist","Gladiator",
+  [MARTIAL.rows[1],"Barbarian","Duelist","Gladiator",
       "Field commander","Dragoon","Viking","Knight","Breaker","Defender",
       "Dual-wielder"])
 const ROGUE=new table.Table("Fantasy, character, class, kit, rogue",
-  [MARTIAL.lines[2],"Assassin","Infiltrator","Swashbuckler",
+  [MARTIAL.rows[2],"Assassin","Infiltrator","Swashbuckler",
       "Dungeoneer","Poison-master","Cutpurse","Saboteur","Thug"])
 const PALADIN=new table.Table("Fantasy, character, class, kit, paladin",
-  [HYBRID.lines[0],"Demon-hunter","Witch-hunter","Exorcist",
+  [HYBRID.rows[0],"Demon-hunter","Witch-hunter","Exorcist",
       "Evangelist","Guardian","Justicar","Unholy knight"])
 const RANGER=new table.Table("Fantasy, character, class, kit, ranger",
-  [HYBRID.lines[1],"Warden","Archer","Hunter","Trapper",
+  [HYBRID.rows[1],"Warden","Archer","Hunter","Trapper",
       "Pathfinder","Rider","Mageblade"])
 const BARD=new table.Table("Fantasy, character, class, kit, bard",
-  [HYBRID.lines[2],"Loremaster","Diplomat","Navigator","Spy",
+  [HYBRID.rows[2],"Loremaster","Diplomat","Navigator","Spy",
       "Orator","Gambler","Trickster","Jester","Juggler","Mime","Dancer",
       "Ministrel","Troubadour","Artificer","Gadgeteer","Apothecary",
       "Runesmith"])
 const CLERIC=new table.Table("Fantasy, character, class, kit, cleric",
-  [MAGICAL.lines[0],"Chaos cleric","Curses cleric",
+  [MAGICAL.rows[0],"Chaos cleric","Curses cleric",
       "Dream cleric","Glory cleric","Control cleric","Healing cleric",
       "Law cleric","Luck cleric","Madness cleric","Manipulation cleric",
       "Sacrifice cleric","Sun cleric","Wealth cleric"])
 const WIZARD=new table.Table("Fantasy, character, class, kit, wizard",
-  [MAGICAL.lines[1],"Air mage","Cold mage","Dimensional mage",
+  [MAGICAL.rows[1],"Air mage","Cold mage","Dimensional mage",
       "Earth mage","Electricity mage","Fire mage","Magma mage","Metal mage",
       "Mud mage","Shadow mage","Smoke mage","Steam mage","Time mage",
       "Water mage","Celestial warlock","Draconic warlock","Fey warlock",
@@ -82,7 +82,7 @@ const WIZARD=new table.Table("Fantasy, character, class, kit, wizard",
       "Demonologist wizard","Divination wizard","Illusionist wizard",
       "Necromancer wizard","Transmutation wizard"])
 const DRUID=new table.Table("Fantasy, character, class, kit, druid",
-  [MAGICAL.lines[2],"Weathermancer","Floramancer","Cultist",
+  [MAGICAL.rows[2],"Weathermancer","Floramancer","Cultist",
       "Werewolf","Werebear","Wereboar","Werebat","Apiarist","Beastmaster",
       "Vermin-lord","Shaman"])
 const KITS=[FIGHTER,WIZARD,CLERIC,ROGUE,
@@ -108,13 +108,13 @@ LEVEL.add(TIERS[3],1);
 tables.push(...[MONK,FIGHTER,ROGUE,PALADIN,RANGER,BARD,CLERIC,WIZARD,DRUID,KIT,LEVEL])
 
 function describe(ethic,moral){
-  if(ETHICS.lines[1]==ethic&&MORALS.lines[1]==moral)
+  if(ETHICS.rows[1]==ethic&&MORALS.rows[1]==moral)
     return "Neutral";
   return ethic+'-'+moral.toLowerCase()
 }
 
 function swap(kit){
-  var k=KITS.find(kits => kits.lines.includes(kit))
+  var k=KITS.find(kits => kits.rows.includes(kit))
   return !k?kit:k.roll();
 }
 
@@ -124,14 +124,14 @@ class FantasyCharacter extends table.Table{
   }
 
   validate(kit,ethic,ethics,forrbidden){
-    return !(ethics.lines.includes(kit)&&ethic==forrbidden);
+    return !(ethics.rows.includes(kit)&&ethic==forrbidden);
   }
 
   roll(){
     let r=KIT.roll(false)
     let e=ETHICS.roll()
-    while (!this.validate(r,e,LAWFUL,ETHICS.lines[2])
-        ||!this.validate(r,e,CHAOTIC,ETHICS.lines[0]))
+    while (!this.validate(r,e,LAWFUL,ETHICS.rows[2])
+        ||!this.validate(r,e,CHAOTIC,ETHICS.rows[0]))
       e=ETHICS.roll()
     let l=LEVEL.roll()
     let alignment=describe(e,MORALS.roll()).toLowerCase()

@@ -68,7 +68,7 @@ const ANYTOWN = new table.Table("Adventure, cartoon, location, Anytown",
 
 const LOCATION=new table.Table("Adventure, cartoon, location",[ANYTOWN,THECITY,OUTERSPACE,OUTSIDEOFTOWN])
 
-tables.push(...LOCATION.lines.concat([LOCATION]))
+tables.push(...LOCATION.rows.concat([LOCATION]))
 
 class Character extends table.Table {
 	constructor() {
@@ -117,7 +117,7 @@ class Secret extends table.Table{
     super("Adventure, cartoon, situation, theft, secret")
     this.add("<br/>Object has been " + objectsecret.roll());
     this.add("<br/>Object is held by " + BADGUY.roll());
-    this.add("<br/>" + this.lines.join(". "));
+    this.add("<br/>" + this.rows.join(". "));
     this.add("");
   }
 }
@@ -145,8 +145,8 @@ chasesecret.add("villain has multiple personalities");
 chasesecret.add("villain has strange companion or familiar");
 chasesecret.add("location changes from scene to scene");
 chasesecret.add("object is really strange");
-rpg.shuffle(chasesecret.lines);
-chasesecret.add(chasesecret.lines.slice(0, rpg.roll(1,chasesecret.lines.length-1)).join(" "));
+rpg.shuffle(chasesecret.rows);
+chasesecret.add(chasesecret.rows.slice(0, rpg.roll(1,chasesecret.rows.length-1)).join(" "));
 
 class Chase extends table.Table{
   constructor(){

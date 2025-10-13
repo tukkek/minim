@@ -26,8 +26,8 @@ class Trait extends tablem.Table{
   constructor(tiers){super('Scene, trait',tiers)}
 
   roll(){
-    let rolls=Array.from(new Array(3),()=>rpgm.roll(0,this.lines.length-1)).sort()
-    return this.lines[rolls[1]]
+    let rolls=Array.from(new Array(3),()=>rpgm.roll(0,this.rows.length-1)).sort()
+    return this.rows[rolls[1]]
   }
 }
 

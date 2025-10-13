@@ -7,7 +7,7 @@ class Age extends table.Table {
 	}
 
 	roll() {
-    this.lines=[]
+    this.rows=[]
 		let millenium = 1;
 		while (rpg.roll(1,2) == 1) millenium += 1;
 		this.add( millenium * 1000 + " years",3);
@@ -21,7 +21,7 @@ class Age extends table.Table {
 
 const ANTITRIBU = "antitribu";
 
-const CAMARILLA = new table.Table("Darkness, character, kindred, clan,  camarilla") 
+const CAMARILLA = new table.Table("Darkness, character, kindred, clan,  camarilla")
 CAMARILLA.add( "Ventrue",10);
 CAMARILLA.add( "Toreador",10);
 CAMARILLA.add( "Tremere",8);
@@ -29,26 +29,26 @@ CAMARILLA.add( "Nosferatu",9);
 CAMARILLA.add( "Malkavian",7);
 CAMARILLA.add( "Lasombra",6);
 
-const INDEPENDENT = new table.Table("Darkness, character, kindred, clan,  independent") 
+const INDEPENDENT = new table.Table("Darkness, character, kindred, clan,  independent")
 INDEPENDENT.add("Giovanni",4);
 INDEPENDENT.add("Ravnos",3);
 
 const SABBAT = new table.Table("Darkness, character, kindred, clan,  sabbat")
 SABBAT.add( "Assamite",3);
 SABBAT.add( "Tzimisce",6);
-let antitribu = Array.from(CAMARILLA.unique)
-antitribu.push(...INDEPENDENT.unique)
+let antitribu = Array.from(CAMARILLA.distinct)
+antitribu.push(...INDEPENDENT.distinct)
 for (let a of antitribu) SABBAT.add(a + " " + ANTITRIBU);
 
-const ANARCH = new table.Table("Darkness, character, kindred, clan,  anarch") 
+const ANARCH = new table.Table("Darkness, character, kindred, clan,  anarch")
 ANARCH.add("Brujah",20);
 ANARCH.add("Gangrel",8);
 ANARCH.add( "Setites",3);
 ANARCH.add("Caitiff",3);
-var others = Array.from(CAMARILLA.unique)
-others.push(...INDEPENDENT.unique);
-others.push(...SABBAT.unique);
-ANARCH.lines.push(...others.filter(o=>!o.includes(ANTITRIBU)).map(o => o + " anarch"))
+var others = Array.from(CAMARILLA.distinct)
+others.push(...INDEPENDENT.distinct);
+others.push(...SABBAT.distinct);
+ANARCH.rows.push(...others.filter(o=>!o.includes(ANTITRIBU)).map(o => o + " anarch"))
 
 const FACTIONS = new Map();
 for (let f of [ANARCH, CAMARILLA, INDEPENDENT, SABBAT]) {

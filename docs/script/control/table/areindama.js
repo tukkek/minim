@@ -27,7 +27,7 @@ class District extends tablem.Table{
     name=name[0].toUpperCase()+name.slice(1)
     let rows=[]
     for(let i=0;i<3;i+=1)
-      rows.push(Array.from(new Array(3),()=>rpgm.pick(table.lines).padEnd(PAD,'')))
+      rows.push(Array.from(new Array(3),()=>rpgm.pick(table.rows).padEnd(PAD,'')))
     return [
       `${name} district.`,
       '',
@@ -50,7 +50,7 @@ class Random extends tablem.Table{
     while(rpgm.chance(2)) tables+=1
     tables=rpgm.shuffle(districts).slice(0,tables)
     let name=tables.map((table)=>table.name.split(', ')[2]).sort().join(', ')
-    let table=new tablem.Table('Districts',tables.map((table)=>table.lines).flat())
+    let table=new tablem.Table('Districts',tables.map((table)=>table.rows).flat())
     return District.map(name,table)
   }
 }

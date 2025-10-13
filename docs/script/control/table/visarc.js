@@ -43,7 +43,7 @@ class Region extends tablem.Table{
     if(!items) return new tablem.Table('_',[false])
     let table=new tablem.Table('_')
     for(let i=0;i<items.length;i+=1) table.add(items[i],i+1)
-    table.add(false,table.lines.length)
+    table.add(false,table.rows.length)
     return table
   }
 

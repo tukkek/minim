@@ -198,7 +198,7 @@ GOODBALANCE.set(OPTIMIST, 5);
 GOODBALANCE.set(MENTOR, 10);
 GOODBALANCE.set(WILL, 10);
 GOODBALANCE.set(MAGICAL, 20);
-for (var a of advantage.lines)
+for (var a of advantage.rows)
   if (GOODBALANCE.get(a) == null)
     throw new RuntimeException("No GOODBALANCE for " + a);
       
@@ -327,7 +327,7 @@ BADBALANCE.set(BLACKSHEEP, 5);
 BADBALANCE.set(FORGOTTEN, 10);
 BADBALANCE.set(ANIMAL, 5);
 BADBALANCE.set(AMNESIA, 10);
-for (let d of disadvantage.lines)
+for (let d of disadvantage.rows)
   if (BADBALANCE.get(d) == null)
     throw new RuntimeException("No BADBALANCE for " + d);
 
@@ -464,7 +464,7 @@ class KultCharacter extends table.Table {
 		let wealth = 0;
 		while (!(this.wealthmin <= wealth && wealth <= this.wealthmax))
 			wealth = rpg.roll(1,10);
-		l.push("Wealth"+': '+ WEALTH.lines[wealth - 1]);
+		l.push("Wealth"+': '+ WEALTH.rows[wealth - 1]);
 		rpg.shuffle(this.skills);
 		let skills = this.skills.slice(0, 1 + rpg.roll(1,3));
 		l.push("Skills"+': '+ skills.join(", ").toLowerCase());
@@ -583,7 +583,7 @@ const AVENGER = new KultCharacter("Kult, mundane character, archetype, avenger",
       MANIA, ENEMY, COMPULSION, PARANOIA,
       SCHIZOPHRENIA, NYMPHOMANIA, WANTED, REVENGE],
   [HONOR, SENSATE, ENDURANCE],
-  [FAMILY, GUILTY, VICTIM], profession.lines, 3, 5,
+  [FAMILY, GUILTY, VICTIM], profession.rows, 3, 5,
   [AUTOMATIC, BURGLARY, CLIMB, MELEE, DEMOLITION, DISGUISE,
       DRIVE, DODGE, FALLING, INFORMATION, HANDGUN, HIDE, IMPACT,
       INTERROGATION, UNARMED, SEARCH, SHADOW, SNEAK])
@@ -716,7 +716,7 @@ const ARTISTARCHETYPE = new KultCharacter("Kult, mundane character, archetype, a
       ADDICTION, SCHIZOPHRENIA, COMPULSION],
   [ARTISTIC, EMPATHY, AWARENESS, INTUITION,
       ENDURANCE],
-  secret.lines, [ARTIST, WRITER, MUSICIAN], 3, 5,
+  secret.rows, [ARTIST, WRITER, MUSICIAN], 3, 5,
   [ACTING, WRITING, CRAFT, DANCING, CONTACTS, ART,
       PHOTOGRAPHY, MUSIC, RHETORIC, WORDLY])
 const ROCKER = new KultCharacter("Kult, mundane character, archetype, rock musician",
@@ -856,7 +856,7 @@ const X = new KultCharacter("Kult, mundane character, archetype, generation X",
   [ARTISTIC, FLEXIBILITY, EMPATHY, AWARENESS],
   [FAMILY, GUILTY, INSANITY, OCCULTEXPERIENCE, UPROOTED,
       VICTIM],
-  profession.lines, 2, 4,
+  profession.rows, 2, 4,
   [CAROUSING, WORDLY, COMPUTERS, DANCING, DRIVE, INFORMATION,
       ART, MUSIC, POISONS, DRUGS, SPORT, WRITING, SOCIALSKILL,
       SCIENCE])
@@ -903,7 +903,7 @@ class Conjurer extends KultCharacter {
 			profession, wealthmin, wealthmax, skills) {
 		super(title, disadvantages, advantages, secrets, profession, wealthmin, wealthmax, skills);
 		LORES.roll();
-		this.skills.push(...LORES.lines);
+		this.skills.push(...LORES.rows);
 	}
 }
 
@@ -990,19 +990,19 @@ class NightChild extends KultCharacter {
 }
 
 export const GENERIC = new NightChild("Kult, mundane character, child of the night, archetype, generic",
-    secret.lines, POWERS.lines, LIMITATIONS.lines,
+    secret.rows, POWERS.rows, LIMITATIONS.rows,
     [DEPRESSION, REPUTATION, DEATHWISH, ENEMY,
         REVENGE, CURSE, PERSECUTED, CONSTRICTION,
         PARANOIA, WANTED, TOUCHY, MANIA,
         NIGHTMARES, SCHIZOPHRENIA, MAIMED],
     [AWARENESS, INTUITION, SENSATE, ENDURANCEPOWER],
     [UNEMPLOYED, WORKER, STUDENT, BOUNCER], 1, 7,
-    skill.lines);
+    skill.rows);
 const LORELEI = new NightChild("Kult, mundane character, child of the night, archetype, lorelei",
     [GUILTY], [ABILITY, ETERNAL], [CONTROLLED, SOULTHIRST],
     [COMPULSION, ANIMAL, EGOTIST, NYMPHOMANIA,
         TANTALIZING, VAIN],
-    [ENDURANCEPOWER, AWARENESS], profession.lines, 6, 10,
+    [ENDURANCEPOWER, AWARENESS], profession.rows, 6, 10,
     [WORDLY, DANCING, ETIQUETTE, CONTACTS, STYLE])
 const NEPHILIM = new NightChild("Kult, mundane character, child of the night, archetype, nephilim",
     [CURSE, OCCULTEXPERIENCE, GUILTY, UPROOTED],
@@ -1038,10 +1038,10 @@ const WOLVEN = new NightChild("Kult, mundane character, child of the night, arch
     [CURSE, SPLIT, TOUCHY, REPUTATION,
         CYNIC, DEPRESSION, WANTED],
     [ALERTNESS, ANIMALS, ENDURANCEPOWER, INTUITION],
-    profession.lines, 1, 10, [CONTACTS, SNEAK, SURVIVAL, UNARMED])
+    profession.rows, 1, 10, [CONTACTS, SNEAK, SURVIVAL, UNARMED])
 const CHILDOFTHENIGHT = new table.Table("Kult, mundane character, child of the night",
     [GENERIC, LORELEI, NEPHILIM, REVENANT, SERAPHIM, WOLVEN])
-tables.push(...CHILDOFTHENIGHT.lines.concat([CHILDOFTHENIGHT]))
+tables.push(...CHILDOFTHENIGHT.rows.concat([CHILDOFTHENIGHT]))
 
 BADBALANCE.set(BLOODTHIRST, 10);
 BADBALANCE.set(SYMBOLBOUND, 10);
@@ -1060,7 +1060,7 @@ BADBALANCE.set(SHAPECHANGE, 10);
 BADBALANCE.set(INHUMAN, 10);
 BADBALANCE.set(SOULTHIRST, 20);
 BADBALANCE.set(STARS, 10);
-for (var p of POWERS.lines)
+for (var p of POWERS.rows)
   GOODBALANCE.set(p, 0);
 
 export const ARCHETYPE = new table.Table("Kult, mundane character",
@@ -1068,8 +1068,8 @@ export const ARCHETYPE = new table.Table("Kult, mundane character",
       SAMURAI, MUCKRAKER, COP, ARTISTARCHETYPE, ROCKER, OUTSIDER, ESCAPEE, HACKER, HOMEMAKER, PRODIGY, ACTIVIST,
       ARISTOCRAT, ATHLETEARCHETYPE, CAREGIVER, CELEBRITY, CLERGYARCHETYPE, DOCTOR, FUGITIVE, X, HUSTLER, MARTIAL,
       PARAPSYCHOLOGIST, SCHOLAR, OCCULTIST, PAGAN])
-ARCHETYPE.add(CHILDOFTHENIGHT,ARCHETYPE.lines.length/3)
-tables.push(...ARCHETYPE.lines.concat([ARCHETYPE]))
+ARCHETYPE.add(CHILDOFTHENIGHT,ARCHETYPE.rows.length/3)
+tables.push(...ARCHETYPE.rows.concat([ARCHETYPE]))
 
 class Effect extends table.Table {
 	constructor() {
@@ -1181,7 +1181,7 @@ class Madness extends table.Table {
 	}
 
   roll() {
-    this.lines=[]
+    this.rows=[]
 		this.add("Project your inner terrors to reality");
 		this.add(physicalchange);
 		this.add(physicalchange.roll().toLowerCase() + " (temporary)");
@@ -1212,7 +1212,7 @@ class Negative extends Madness{
 
   roll() {
     super.roll()
-    let l=this.lines
+    let l=this.rows
     return l[rpg.low(0,l.length-1)]
   }
 };
@@ -1223,7 +1223,7 @@ class Positive extends Madness{
 
   roll() {
     super.roll()
-    let l=this.lines
+    let l=this.rows
     return l[rpg.high(0,l.length-1)]
   }
 };
@@ -1261,7 +1261,7 @@ class PhysicalChange extends table.Table {
 								["Hooks throught the body", "Needles throught the body", "No skin",
 										"Constantly growing, itching skin scurf", "Worms in your flesh"]),
 						new table.Table("Disease", ["Boils", "Rashes"])]);
-		this.lines.push(...["Extreme hair growth", "Shape change", "Horns", "Hornlike skin", "Rotting flesh", "Tail","Wounds that won't heal", "Supernatural tattoos"])
+		this.rows.push(...["Extreme hair growth", "Shape change", "Horns", "Hornlike skin", "Rotting flesh", "Tail","Wounds that won't heal", "Supernatural tattoos"])
 	}
 }
 

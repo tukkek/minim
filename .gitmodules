@@ -1,0 +1,3 @@
+[submodule "docs/lib/table"]
+	path = docs/lib/table
+	url = https://github.com/tukkek/tuktk-table

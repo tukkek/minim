@@ -397,7 +397,7 @@ class Monster extends table.Table {
 	}
 
 	roll(){
-    let t=rpg.pick(this.lines)
+    let t=rpg.pick(this.rows)
 		return t.name + ":<br/>" + t
 	}
 }

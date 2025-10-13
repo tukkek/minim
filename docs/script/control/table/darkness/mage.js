@@ -7,7 +7,7 @@ class Tradition extends table.Table {
 	constructor() {
 		super("Darkness, character, mage, tradition");
 		this.add("Order of Hermes", 2);
-		this.lines.push(...["Akashic broterhood", "Celestial chorus", "Dreamspeakers", "Verbena", "Cult of ecstacy",
+		this.rows.push(...["Akashic broterhood", "Celestial chorus", "Dreamspeakers", "Verbena", "Cult of ecstacy",
 				"Virtual adepts", "Sons of ether", "Euthanatos"])
 	}
 }

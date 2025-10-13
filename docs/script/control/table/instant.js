@@ -78,7 +78,7 @@ const DESCRIPTOR = new table.Table("Instant game, thing, descriptor",
  class Thing extends table.Table {
 	constructor() {
 		super("Instant game, thing");
-		this.lines.push(...["Advanced Intelligence", "Afterlife", "Alien", "Alliance", "Alternate History", "Animal",
+		this.rows.push(...["Advanced Intelligence", "Afterlife", "Alien", "Alliance", "Alternate History", "Animal",
 				"Anthropomorphic Objects", "Artificial Intelligence", "Atomic Monster", "Big Business", "Blood",
 				"Bogeyman", "Castle", "Church", "Computers", "Conspiracy", "Correctional System", "Dam", "Demon",
 				"Deity", "Disaster", "Disease", "Dragons", "Dungeon", "Elves", "Empire", "Epic Heroes", "Espionage",
@@ -156,7 +156,7 @@ const TECH = new table.Table("Instant game, adventure, setting, tech",
 class InstantSetting extends table.Table {
 	constructor() {
 		super("Instant game, adventure, setting");
-		this.lines.push(...["Alien Occupied Earth", "All Supers World", "Alternate History", "Ancient Egypt", "Ape World",
+		this.rows.push(...["Alien Occupied Earth", "All Supers World", "Alternate History", "Ancient Egypt", "Ape World",
 				"Arabian Nights", "Archaic/Biblical", "Arkship", "Artificial World", "Atlantis", "Barbarian Europe",
 				"Bizarro World", "Boston, 1770s", "Camping Out", "City Under Siege",
 				"Classical (Greek/Roman/Peloponnesian)", "Cloud City", "Cold War", "Contemporary",

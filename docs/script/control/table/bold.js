@@ -111,7 +111,7 @@ class Solution extends table.Table{
   }
   
   roll(){
-    return this.lines[rpg.roll(1,10) + rpg.roll(1,10)]
+    return this.rows[rpg.roll(1,10) + rpg.roll(1,10)]
   }
 }
 
@@ -139,4 +139,3 @@ export var tables=[new ArcedWaylay()]
   .concat([connection])
   .concat([EASYFOES,HARDFOES,KNOWLEDGE,PHYSICAL,FACTIONAL,HAVEN,PARTY,PERSONAL,EPIC,NATURAL,MODIFIER])
   .concat([solution,waylay])
-

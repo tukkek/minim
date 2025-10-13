@@ -98,7 +98,7 @@ DISABILITY.add('Difficulty walking', 5)
 DISABILITY.add('Blind', 1)
 DISABILITY.add('Deaf', 1)
 DISABILITY.add('Wheelchair', 1)
-DISABILITY.add(ABLE, DISABILITY.lines.length * 4)
+DISABILITY.add(ABLE, DISABILITY.rows.length * 4)
 
 const MENTALISSUE=new table.Table('Realistic, character, mental issues')
 MENTALISSUE.add('Depression', 5)
@@ -106,7 +106,7 @@ MENTALISSUE.add('Substance abuse', 4)
 MENTALISSUE.add('Anxiety', 2)
 MENTALISSUE.add('Schizophrenia', 1)
 MENTALISSUE.add('Bipolar', 1)
-MENTALISSUE.add(NEUROTYPICAL, MENTALISSUE.lines.length * 9)
+MENTALISSUE.add(NEUROTYPICAL, MENTALISSUE.rows.length * 9)
 
 /*
   * As of August 2021 (cases per year, relative to population):
@@ -122,12 +122,12 @@ HEALTH.add('Hypertension', 3)
 HEALTH.add('Diabetes', 1)
 HEALTH.add('Cardiovascular disease', 1)
 HEALTH.add('Common-cold if cold-weather', 1)
-HEALTH.add(HEALTHY, 10 - HEALTH.lines.length)
+HEALTH.add(HEALTHY, 10 - HEALTH.rows.length)
 
 const CHRONOTYPE=new table.Table('Realistic, character, chronotype')
 CHRONOTYPE.add('Early bird', 2)
 CHRONOTYPE.add('Night owl', 3)
-CHRONOTYPE.add(INTERMEDIATE, 10 - CHRONOTYPE.lines.length)
+CHRONOTYPE.add(INTERMEDIATE, 10 - CHRONOTYPE.rows.length)
 
 const HEIGHT=new table.Table('Realistic, character, height')
 HEIGHT.add('Tall',5)

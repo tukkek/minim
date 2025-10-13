@@ -18,7 +18,7 @@ const ANGELS = new table.Table("Kult, character, Angels of Death",
 const HELL = "Hell (a sinner's personal purgatory, ruled by a nepharite, always metaphysically super-imposed to the sinner's place of death)";
 const RAZIDE = "Razide of %s (tall, half-living humanoids with a black iron and glass exoskeleton, yellow-red eyes and a metal jaw)";
 const BEING = new table.Table("Kult, character, Inferno")
-for (let a of ANGELS.lines)
+for (let a of ANGELS.rows)
   BEING.add(RAZIDE.replace('%s',a));
 BEING.add("Nepharite (run personal hells for sinners, shape-changing but usually mutilated humans)");
 BEING.add("Purgatide (tormented human sinner)", 10);
@@ -31,8 +31,8 @@ class Inferno extends table.Table {
 		for (let circle of ["First circle", "Second circle", "Third circle", "Fourth circle", "Fifth circle","Sixth circle", "Seventh circle", "Eigth circle", "Ninth circle"])
 			this.add(circle, 10);
 		this.add(HELL, 10);
-		this.lines.push(...BEING.lines);
-		for (let a of ANGELS.lines)
+		this.rows.push(...BEING.rows);
+		for (let a of ANGELS.rows)
 			this.add(`Black palace of ${a} (dark labyrinths down into the deep undeerground)`, 1);
 		this.add("Dead sun (terrifying black sun that is rarely glimpsed in Inferno's starless sky)", 1);
 	}
@@ -46,7 +46,7 @@ class Exposed extends table.Table{
   }
   
   roll(){
-    this.lines=[]
+    this.rows=[]
     let p = portal.roll();
     let i = inferno.roll();
     let m = metropolis.roll();
@@ -79,7 +79,7 @@ tables.push(...[exposed,UNDERGROUND,TRANSPORT,COMMUNICATION,INSTITUTION])
 
 const MISSINGARCHONS = ["Chokmah", "Chesed", "Hod", "Yesod"];
 const CITADELS = new table.Table("Kult, Metropolis, citadels")
-for (let a of ARCHONS.lines) {
+for (let a of ARCHONS.rows) {
   CITADELS.add(`Citadel lower floors, ${a} (mostly empty)`, 10);
   CITADELS.add(`Citadel higher floors, ${a} (modern or holy, sparsely guarded by lictors and acrotides)`
       , 30);
@@ -98,7 +98,7 @@ const LABYRINTH = new table.Table("Kult, Metropolis, underground", [
   "agentii (radioactive soldiers, either killed by or victims of radiation, or those who spread it to the enemy)",
   "Fekkuzer mating grounds (parasites that can possess and manipulate individual body parts, driving prey to their pools)",
   PLATOON]) 
-LABYRINTH.lines.push(...UNDERGROUND.lines);
+LABYRINTH.rows.push(...UNDERGROUND.rows);
 const LIVINGCITY = new table.Table("Kult, Metropolis, The Living City", [
   "The Slums (closest are of Metropolis to the real-world with deformed animals, crime and police, everything much more distant than it seems)",
   "The Bazaar (crowded eastern market district, with aritfacts, information and weapons; artists and pick-pockets; drugs, sex and slaves)",
@@ -188,16 +188,16 @@ class Being extends table.Table {
 	}
 	
 	roll(){
-    this.lines=[]
+    this.rows=[]
     this.add(`Astaroth incarnate (form: ${ASTAROTH.roll()}, immune to magic and controls beings with negative mental balance)`, 1);
-		for (let a of ARCHONS.lines) {
+		for (let a of ARCHONS.rows) {
 			if (a == KETHER)
 				continue;
 			this.add(`Archon incarnate (${a})`, 10);
 			this.add(`Archon manifestation (${a})`, 20);
 			this.add(`${a == MALKUTH ? "Human servant" : "Lictor (jailer)"} of ${a}`, 30);
 		}
-		for (let a of ANGELS.lines) {
+		for (let a of ANGELS.rows) {
 			if (a != NAHEMOTH)
 				this.add(`Angel of Death incarnate (${a})`, 4);
 			this.add(`Angel of Death manifestation (${a})`, 20);
@@ -218,7 +218,7 @@ const PASSWORD = new table.Table("Kult, artifact, portal, password",
   [NONE, "Time-sensitive", "Password", "Ritual"])
 const DESTINATION = new table.Table("Kult, artifact, portal, destination",
   ["Another time", "Another place", "Chaotic"]) 
-DESTINATION.add(portal,DESTINATION.lines.length/10)
+DESTINATION.add(portal,DESTINATION.rows.length/10)
 
 class PortalArtifact extends table.Table {
   constructor(){
@@ -258,7 +258,7 @@ class KultArtifact extends table.Table {
 	}
 
   roll() {
-		this.lines=[]
+		this.rows=[]
 		let p = portal.roll();
 		this.add(PORTAL);
 		this.add(`Mirror to ${p}`, 2);
@@ -388,7 +388,7 @@ class Dream extends table.Table {
 	}
 
   roll() {
-    this.lines=[]
+    this.rows=[]
 		let p = portal.roll();
 		this.add("Real dream (happens in some aspect of reality) in " + p, 10);
 		this.add(DREAMBEING,10);
@@ -401,7 +401,7 @@ class Dream extends table.Table {
 			suffix = ", " + suffix;
 		this.add("Realistic dream (close to reality)" + suffix, 100);
 		this.add("Abstract dream (distant from reality)" + suffix, 10);
-		for (let prince of PRINCE.lines)
+		for (let prince of PRINCE.rows)
 			this.add("Realm of a Dream Prince (powerful dreaming entitier who built vast empires near the Vortex, which they hope to control and wage war over), "
 					+ prince, 1);
 		this.add("Vortex (origin of all dreams, source of the collective subconscious)", 1);
@@ -429,7 +429,7 @@ class Lower extends Portal {
   }
 
   roll() {
-    return this.lines[rpg.low(0,this.lines.length-1)]
+    return this.rows[rpg.low(0,this.rows.length-1)]
   }
 };
 class Higher extends Portal {
@@ -438,7 +438,7 @@ class Higher extends Portal {
   }
 
   roll() {
-    return this.lines[rpg.high(0,this.lines.length-1)]
+    return this.rows[rpg.high(0,this.rows.length-1)]
   }
 }
 tables.push(...[portal,new Lower(),new Higher()])
@@ -462,7 +462,7 @@ class Cult extends table.Table {
 				"Geographical presence", "Luxury", "Ease to identify", "Prone to violence", "Secrecy"])
 			l.push(characteristic+': '+ CHARACTERISTIC.roll());
 		let d = DEITIES;
-		if (rpg.roll(1,d.lines.length) != 1)
+		if (rpg.roll(1,d.rows.length) != 1)
 			l.push("Affiliation"+': '+ d.roll());
 		while (rpg.roll(1,4) == 1)
 			l.push("Ally"+': '+ TYPE.roll());
@@ -481,7 +481,7 @@ class City extends table.Table {
 	}
 
   roll() {
-    this.lines=[exposed, being, UNDERGROUND, TRANSPORT, COMMUNICATION, INSTITUTION]
+    this.rows=[exposed, being, UNDERGROUND, TRANSPORT, COMMUNICATION, INSTITUTION]
 		this.add("Front to " + metropolis.roll());
 		this.add("Lictor residence of " + ARCHONS.roll());
 		this.add("Hidden temple of " + TYPE.roll());

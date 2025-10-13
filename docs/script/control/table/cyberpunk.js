@@ -113,7 +113,7 @@ class FriendFoe extends table.Table{
   }
   
   roll(){
-    this.lines=[]
+    this.rows=[]
     var gender = rpg.roll(1,10) % 2 == 0 ? "Male" : "Female";
     this.add(`${gender} friend (${FRIEND.roll().toLowerCase()}).`);
     this.add(`${gender} foe (${enemy.roll()}).`);
@@ -129,7 +129,7 @@ class LifeEvent extends table.Table {
 	}
 	
 	roll(){
-		this.lines=[]
+		this.rows=[]
 		this.add(BIGPROBLEMSBIGWINS,3);
 		this.add(friendfoe,6-4);
 		this.add("Romance ("+romance.roll().toLowerCase()+")");
@@ -229,7 +229,7 @@ class Romance extends table.Table {
 	}
 
 	 roll() {
-    this.lines=[]
+    this.rows=[]
 		this.add("Happy love affair",4);
 		this.add( TRAGIC.roll());
 		this.add(problematic.roll(),1);

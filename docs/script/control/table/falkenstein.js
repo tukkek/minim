@@ -42,4 +42,4 @@ const FAMILY = new table.Table("Falkenstein, character questions, family",
 
 var diary=new table.Table("Falkenstein, character questions",[BACKGROUND, APPEARANCE, PERSONALITY, PREFERENCES, ALLEGIANCES, SKILLS, ROMANCE, FAMILY])
 
-export var tables=[diary].concat(diary.lines)
+export var tables=[diary].concat(diary.rows)

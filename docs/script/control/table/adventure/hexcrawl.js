@@ -70,7 +70,7 @@ const CHARACTERISTICS=["Elevation","Vegetation",
 function next(current,t,next,lower,
       higher){
   let nexte=next.roll();
-  let l=t.lines;
+  let l=t.rows;
   let i=l.indexOf(current);
   if(nexte==higher&&i>0) i-=1;
   else if(nexte==lower&&i<l.length-1) i+=1;

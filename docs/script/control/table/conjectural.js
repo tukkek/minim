@@ -94,11 +94,11 @@ class YesNoAdvantage extends table.Table {
 
   roll() {
     let r=YesNoAdvantage.roll()
-		return yesno.lines[Math.max(r[0],r[1])]
+		return yesno.rows[Math.max(r[0],r[1])]
 	}
 
   static roll() {
-		var results = yesno.lines;
+		var results = yesno.rows;
 		var a = results.indexOf(yesno.roll(false));
 		var b = results.indexOf(yesno.roll(false));
 		return [a,b];
@@ -112,7 +112,7 @@ class YesNoAdvantage extends table.Table {
 
 	 roll() {
     let r=YesNoAdvantage.roll()
-		return yesno.lines[Math.min(r[0],r[1])]
+		return yesno.rows[Math.min(r[0],r[1])]
 	}
 }
 
@@ -142,7 +142,7 @@ class YesNoLoom extends table.Table {
 			if (roll < 1)
 				roll = 1;
 		}
-		let result = this.lines[roll - 1]
+		let result = this.rows[roll - 1]
 		if (result == YES_AND_UNEXPECTEDLY || result == NO_AND_UNEXPECTEDLY) {
 			result += " " + unexpectedly.roll();
 			surge = 0;
