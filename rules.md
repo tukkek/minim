@@ -140,7 +140,7 @@ Points are regained whenever a character acts according to their **virtue** or *
 
 Faith-points give an-edge to player-characters. Narrator-characters never spend their faith for boosts.
 
-In games that may-want to enable collaborative story-telling, blurring the line between players and narrator, faith-points can be used to dictate **fate**. A player can offer the narrator 1-point in exchange for an effect on the scene or story and if-accepted the point is spent and the effect occurs; like-wise a narrator may offer a point to a player to have his-character perform an action and if-agreed the player gains a faith-point. Narrators and players can always refuse-fate by simply refusing the transaction.
+In games that may-want to enable collaborative story-telling, blurring the line between players and narrator, faith-points can be used to dictate **fate**. A player can offer the narrator 1-point in exchange for an effect on the scene or story and if-accepted the point is spent and the effect occurs; like-wise a narrator may offer a point to a player to have his-character perform an action and if-agreed the player gains a faith-point. Narrators and players can deny-fate by simply refusing the transaction.
 
 ## Powers
 Unlike skills there is no fixed-set of powers, each character or category (such as *dragons*) is expected to be unique and feature their-own. There is no-problem of-course in taking-inspiration from preexisting-powers like the Hadouken; Force-abilities; the Round-house Kick; or Fire-ball and Ultima spells then adapting-them to fit your-style! They don't need to be extraordinary either, powers like detecting-lies; fast reaction-times and leadership are mundane-abilities as-valuable as any magic-incantation!
@@ -314,7 +314,7 @@ Tables from-which premade enemy-groups can be pulled from are often used for the
 Don't forget to place rewards in the dungeon to incentivize-exploration and to help the group continue moving-on! For gear a good base-line is one-item per-floor, its score equal to the player's median-tier.
 
 ## Creating floors
-A typical-floor has 2 to 12 rooms; 1 to 6 combat-scenes; and 1 to 3 features. This list helps create features:
+A typical-floor in a Minin-dungeon has 2 to 12 rooms; 1 to 6 combat-scenes; and 1 to 3 features. This list helps create features:
 1. Mechanical or magical trap:
     1.  Guarding a reward
     2.  With hidden-reward
