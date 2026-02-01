@@ -18,14 +18,15 @@ const PENALTIES=new Map([
 ])
   
 export var values=new Map([
-  ['Brain',['Art','Cure','Security','Technology','Wisdom']],
-  ['Brawl',['Fight','Coordination','Fire','Sports','Stealth']],
-  ['Brass',['Coercion','Communication','Languages','Perception','Survival']],
+  ['Brain',['Art','Cure','Knowledge','Security','Technology']],
+  ['Brawl',['Coordination','Fight','Fire','Sports','Stealth']],
+  ['Brass',['Coercion','Communication','Perception','Steering','Survival']],
 ])
 export var templates=[]
 export var units=[]
 export var roll=-1//last roll
 
+//TODO skills as advantage-disadvantage?
 export class Unit{
   constructor(n,t=false){
     if(!n) throw 'unit needs name'
