@@ -1,0 +1,3 @@
+[submodule "docs/lib/minim"]
+	path = docs/lib/minim
+	url = https://github.com/tukkek/tuktk-minim/

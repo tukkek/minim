@@ -1,0 +1,199 @@
+<!doctype HTML>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Encounter generator</title>
+
+<style>
+  body{
+    display:grid;
+    grid-auto-flow:column;
+    justify-content:left;
+    grid-template-columns:40% 60%;
+    background-color:black;
+    color:white;
+  }
+  team-manager{
+    display:block;
+    border:1px solid #ccc;
+    padding:.5em;
+    background-color:dimgray;
+    margin-bottom:.5em;
+  }
+  .team h3{
+    margin:0 10px 10px 0;
+    display:inline-block;
+  }
+  .unit{margin:5px 0;}
+  input,select{margin-right:5px;}
+  #generator{
+    display:grid;
+    justify-content:center;
+  }
+  #result{text-align:center;}
+</style>
+
+<div id='teams'>
+  <team-manager name="Friends"></team-manager>
+  <team-manager name="Foes"></team-manager>
+</div>
+<div id='generator'>
+  <div>
+    <button class='generate random'>Generate</button>
+    <button class='generate easy'>Generate (easy)</button>
+    <button class='generate fair'>Generate (fair)</button>
+    <button class='generate hard'>Generate (hard)</button>
+  </div>
+  <div id='result'></div>
+</div>
+
+<template id="team-template">
+  <div class="team">
+    <h3></h3>
+    <button class="add">Add unit</button>
+    <button class="save">Save</button>
+    <input class="load" type='file'>
+    <div class="units">
+      <template id="unit">
+        <div class="unit">
+          <input type="text" placeholder="Name" class="name">
+          <label>
+            Tier
+            <select class="tier">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          <label>
+          <button>X</button>
+        </div>
+      </template>
+    </div>
+  </div>
+</template>
+
+<script type='module'>
+  import * as encountersm from './lib/minim/encounters.js'
+
+  class Unit{
+    constructor(team){
+      this.name=''
+      this.tier=1
+      this.view=false
+      this.team=team
+    }
+
+    toJSON(){
+      let clone=Object.assign({},this)
+      delete clone.team
+      delete clone.view
+      return clone
+    }
+
+    remove(){
+      this.view.remove()
+      this.team.remove(this)
+    }
+
+    create(parent){
+      let clone=document.querySelector('template#unit').content.cloneNode(true)
+      let view=clone.querySelector('.unit')
+      let name=view.querySelector('.name')
+      name.value=this.name
+      name.addEventListener('input',()=>this.name=name.value)
+      let tier=view.querySelector('.tier')
+      tier.value=this.tier
+      tier.addEventListener('change',()=>this.tier=parseInt(tier.value))
+      let remove=view.querySelector('button')
+      remove.addEventListener('click',()=>this.remove())
+      parent.appendChild(view)
+      this.view=view
+      name.focus()
+      return this
+    }
+
+    toString(){
+      let name=this.name||'?'
+      return `${name} (tier ${this.tier})`
+    }
+  }
+
+  class Team{
+    constructor(name){
+      this.name=name
+      this.units=[]
+    }
+
+    toString(){return this.units.map((unit)=>unit.toString()).join(', ')}
+
+    add(unit){this.units.push(unit)}
+
+    remove(unit){
+      let units=this.units
+      units.splice(units.indexOf(unit),1)
+    }
+  }
+
+  class TeamControl extends HTMLElement{
+    constructor(){
+      super()
+      this.team=new Team(this.getAttribute('name'))
+    }
+
+    save(){
+      let a=document.createElement("a")
+      let json=JSON.stringify(this.team.units,false,2)
+      a.href=URL.createObjectURL(new Blob([json],{type:'text/json'}))
+      a.download=`${this.team.name}.json`
+      a.click()
+    }
+
+    load(){
+      let input=this.querySelector('input')
+      let files=input.files
+      if(!files.length) return
+      let reader=new FileReader()
+      reader.onload=(event)=>{
+        for(let data of JSON.parse(reader.result)){
+          let team=this.team
+          let unit=new Unit(team)
+          Object.assign(unit,data)
+          team.add(unit.create(this.querySelector('.team .units')))
+        }
+      }
+      reader.readAsText(files[0])
+    }
+
+    connectedCallback(){
+      this.appendChild(document.querySelector('#team-template').content.cloneNode(true))
+      let view=this.querySelector('.team')
+      let team=this.team
+      view.querySelector('h3').textContent=team.name
+      let units=view.querySelector('.units')
+      team.units.forEach((unit)=>unit.create(units))
+      let add=view.querySelector('.add')
+      add.onclick=()=>team.add(new Unit(team).create(units))
+      view.querySelector('.save').onclick=()=>this.save()
+      view.querySelector('.load').onchange=()=>this.load()
+    }
+  }
+
+  function generate(difficulty){
+    let teams=Array.from(document.querySelectorAll('team-manager'))
+                    .map((element)=>element.team.units)
+    let generator=new encountersm.Encounters(teams[0].map((unit)=>unit.tier))
+    for(let unit of teams[1]) generator.populate(unit.tier,()=>unit.name)
+    let result=false
+    if(difficulty=='easy') result=generator.easy
+    else if(difficulty=='fair') result=generator.fair
+    else if(difficulty=='hard') result=generator.hard
+    else result=generator.random
+    if(result) result=`${result.sort().join(', ')}.`
+    document.querySelector('#result').innerText=result||"Can't generate a balanced encounter."
+  }
+
+  customElements.define('team-manager',TeamControl)
+  for(let difficulty of ['random','easy','fair','hard'])
+    document.querySelector(`button.generate.${difficulty}`).onclick=()=>generate(difficulty)
+</script>

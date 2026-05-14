@@ -147,8 +147,12 @@ export function setup(){
   PARENT.querySelector('.roll').onclick=()=>roll()
   PARENT.querySelector('.pool').onclick=()=>pool()
   PARENT.querySelector('.help').onclick=()=>help()
-  PARENT.querySelector('.tables').onclick=()=>new dialog.Tables(true).input()
-  PARENT.querySelector('.alltables').onclick=()=>new dialog.Tables(false).input()
+  PARENT.querySelector('.tables').onclick=
+    ()=>new dialog.Tables(true).input()
+  PARENT.querySelector('.alltables').onclick=
+    ()=>new dialog.Tables(false).input()
+  PARENT.querySelector('.encounters').onclick=
+    ()=>window.open('encounters.html','_blank')
   COPY.onclick=()=>copy()
   help()
 }
