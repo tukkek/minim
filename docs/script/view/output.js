@@ -44,8 +44,7 @@ class Roller{
     this.bonus=bonus
     let result=Array.from(new Array(dice),()=>rpg.roll(1,sides))
     this.result=result
-    this.sorted=Array.from(result)
-      .sortby((number1,number2)=>number1-number2)
+    this.sorted=Array.from(result).sortby((number)=>number)
     return true
   }
 
