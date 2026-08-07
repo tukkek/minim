@@ -19,9 +19,16 @@ function filter(call,self){
   return FILTER.call(this,call,self)
 }
 
+function sortby(call){
+  return this.sort(
+    (item1,item2)=>call.call(this,item1)-call.call(this,item2))
+}
+
 if(!PROTOTYPE.remove) PROTOTYPE.remove=remove
 if(!PROTOTYPE.last) Object.defineProperty(PROTOTYPE,'last',LAST)
 PROTOTYPE.filter=filter
+PROTOTYPE.sortby=sortby
+PROTOTYPE.sortBy=sortby
 
 if(TEST){
   let list=[1,2,3]
