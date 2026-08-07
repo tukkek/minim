@@ -42,8 +42,10 @@ class Roller{
     let bonus=roll.length>2?roll[2]:+0
     if(prompt.includes('-')) bonus*=-1
     this.bonus=bonus
-    this.result=Array.from(new Array(dice),()=>rpg.roll(1,sides))
-                      .sort((number1,number2)=>number1-number2)
+    let result=Array.from(new Array(dice),()=>rpg.roll(1,sides))
+    this.result=result
+    this.sorted=Array.from(result)
+      .sortby((number1,number2)=>number1-number2)
     return true
   }
 
@@ -95,23 +97,14 @@ export function say(html){
   append(m)
 }
 
-function roll(){
-  if(!roller.roll()) return
+function roll(rollerp){
+  if(!rollerp.roll()) return
   clear()
   say([
-    `Rolled: ${roller.result.join('; ')}.`,
-    `Result: ${roller.sum()}.`,
-    `Middle: ${roller.middle}.`
-  ].join('<br/>'))
-}
-
-function pool(){
-  if(!pooler.roll()) return
-  clear()
-  say([
-    `Rolled: ${pooler.result.join('; ')}.`,
-    `Hits: ${pooler.hits}.`,
-    `Misses: ${pooler.misses}.`
+    `Rolled: ${rollerp.result.join('; ')}.`,
+    `Sorted: ${rollerp.sorted.join('; ')}.`,
+    `Result: ${rollerp.sum()}.`,
+    `Middle: ${rollerp.middle}.`
   ].join('<br/>'))
 }
 
@@ -144,8 +137,8 @@ export async function copy(){
 
 export function setup(){
   PARENT.querySelector('.clear').onclick=clear
-  PARENT.querySelector('.roll').onclick=()=>roll()
-  PARENT.querySelector('.pool').onclick=()=>pool()
+  PARENT.querySelector('.roll').onclick=()=>roll(roller)
+  PARENT.querySelector('.pool').onclick=()=>rool(pooler)
   PARENT.querySelector('.help').onclick=()=>help()
   PARENT.querySelector('.tables').onclick=
     ()=>new dialog.Tables(true).input()
