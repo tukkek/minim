@@ -55,6 +55,15 @@ class Roller{
   }
 
   get middle(){return this.result[Math.floor(this.result.length/2)]}
+
+  show(){
+    return [
+      `Rolled: ${this.result.join('; ')}.`,
+      `Sorted: ${this.sorted.join('; ')}.`,
+      `Result: ${this.sum()}.`,
+      `Middle: ${this.middle}.`
+    ]
+  }
 }
 
 class Pooler extends Roller{
@@ -80,6 +89,13 @@ class Pooler extends Roller{
     this.misses=result.length-hits
     return true
   }
+
+  show(){
+    let texts=super.show()
+    texts[2]=`Hits: ${this.hits}.`
+    texts[3]=`Misses: ${this.misses}.`
+    return texts
+  }
 }
 
 var roller=new Roller()
@@ -99,12 +115,7 @@ export function say(html){
 function roll(rollerp){
   if(!rollerp.roll()) return
   clear()
-  say([
-    `Rolled: ${rollerp.result.join('; ')}.`,
-    `Sorted: ${rollerp.sorted.join('; ')}.`,
-    `Result: ${rollerp.sum()}.`,
-    `Middle: ${rollerp.middle}.`
-  ].join('<br/>'))
+  say(rollep.show().join('<br/>'))
 }
 
 function help(){
