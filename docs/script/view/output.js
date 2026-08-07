@@ -138,7 +138,7 @@ export async function copy(){
 export function setup(){
   PARENT.querySelector('.clear').onclick=clear
   PARENT.querySelector('.roll').onclick=()=>roll(roller)
-  PARENT.querySelector('.pool').onclick=()=>rool(pooler)
+  PARENT.querySelector('.pool').onclick=()=>roll(pooler)
   PARENT.querySelector('.help').onclick=()=>help()
   PARENT.querySelector('.tables').onclick=
     ()=>new dialog.Tables(true).input()
