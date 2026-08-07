@@ -115,7 +115,7 @@ export function say(html){
 function roll(rollerp){
   if(!rollerp.roll()) return
   clear()
-  say(rollep.show().join('<br/>'))
+  say(rollerp.show().join('<br/>'))
 }
 
 function help(){
