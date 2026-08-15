@@ -18,7 +18,7 @@ const PENALTIES=new Map([
 ])
   
 export var values=new Map([
-  ['Brain',['Art','Cure','Knowledge','Security','Technology']],
+  ['Brain',['Art','Cure','Security','Technology','Wisdom']],
   ['Brawl',['Coordination','Fight','Fire','Sports','Stealth']],
   ['Brass',['Coercion','Communication','Perception','Steering','Survival']],
 ])
