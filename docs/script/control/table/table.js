@@ -13,6 +13,7 @@ class BaseTable{//TODO inlined from external-module
   add(row,count=1){
     count=Math.floor(count)
     for(let i=0;i<count;i++) this.rows.push(row)
+    return this
   }
 
   toString(){return this.roll()}
